@@ -2,6 +2,8 @@
 function julias_cartoonery_setup() {
     register_nav_menus( array(
         'primary' => __( 'Primary Menu', 'julias-cartoonery' ),
+        'footer_quick_links' => __( 'Footer Quick Links', 'julias-cartoonery' ),
+        'footer_support'     => __( 'Footer Support', 'julias-cartoonery' ),
     ) );
 
     add_theme_support( 'post-thumbnails' );
@@ -38,6 +40,9 @@ function julias_cartoonery_nav_classes( $atts, $item, $args ) {
         }
         
         $atts['class'] = $classes;
+    }
+    if ( $args->theme_location == 'footer_quick_links' || $args->theme_location == 'footer_support' ) {
+        $atts['class'] = 'hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block';
     }
     return $atts;
 }
