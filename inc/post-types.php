@@ -5,14 +5,19 @@ function julias_cartoonery_register_post_types() {
         'stories',
         array(
             'labels'       => array(
-                'name'          => __( 'Stories', 'julias-cartoonery' ),
-                'singular_name' => __( 'Story', 'julias-cartoonery' ),
+                'name'          => 'Stories',
+            'singular_name' => 'Story',
+            'add_new'       => 'Add New Story',
+            'add_new_item'  => 'Add New Story',
+            'edit_item'     => 'Edit Story',
+            'all_items'     => 'All Stories'
             ),
             'public'       => true,
             'has_archive'  => true,
             'menu_icon'    => 'dashicons-book-alt',
-            'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+            'supports'    => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields'),
             'show_in_rest' => true,
+            'rewrite'     => array('slug' => 'stories'),
         )
     );
 
