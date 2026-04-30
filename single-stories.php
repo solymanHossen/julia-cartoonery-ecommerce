@@ -18,12 +18,17 @@ function get_story_page_url($i) {
     <div class="container mx-auto px-4 lg:px-8">
         
         <!-- Back to Library Link -->
-        <a href="<?php echo get_post_type_archive_link('stories'); ?>" class="inline-flex items-center gap-2 mb-8 text-gray-600 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 font-semibold transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            Back to Library
-        </a>
+       <?php 
+// গ্লোবাল ব্যাক বাটন কম্পোনেন্ট কল করা হলো (Props সহ)
+get_template_part( 'template-parts/components/button', 'back', array(
+    'url'  => get_post_type_archive_link('stories'),
+    'text' => 'Back to Library'
+) ); 
+?>
 
         <?php while ( have_posts() ) : the_post(); 
+            
+            // ম্যাজিক ফিক্স: লুপের ভেতরে পেজ কাউন্ট করা হলো
             global $page, $numpages;
             $current_page = $page ? $page : 1;
             $total_pages  = $numpages ? $numpages : 1;
@@ -58,28 +63,30 @@ function get_story_page_url($i) {
                     </div>
                 </div>
 
-                <!-- Custom Pagination -->
-                <div class="flex items-center justify-between p-6 bg-gray-50 dark:bg-slate-800/50 border-t border-gray-100 dark:border-slate-700 transition-colors">
+                <!-- Custom Pagination (World-Class Smooth Design) -->
+                <div class="flex items-center justify-between p-6 bg-white dark:bg-slate-800/50 border-t border-pink-100 dark:border-slate-700 transition-colors">
                     
                     <!-- Previous Button -->
                     <?php if ( $current_page > 1 ) : ?>
-                        <a href="<?php echo get_story_page_url($current_page - 1); ?>" class="px-6 py-2 bg-gray-200 dark:bg-slate-700 text-gray-800 dark:text-gray-200 rounded-lg hover:bg-gray-300 dark:hover:bg-slate-600 font-semibold transition-colors">
-                            &larr; Previous Page
+                        <a href="<?php echo get_story_page_url($current_page - 1); ?>" class="group inline-flex items-center justify-center px-8 py-3 bg-[#A8D8EA] dark:bg-sky-500 text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 hover:bg-[#8BCCE6] dark:hover:bg-sky-400 active:scale-95 transition-all duration-300">
+                            <span class="mr-2 transition-transform duration-300 group-hover:-translate-x-1">&larr;</span> Previous Page
                         </a>
                     <?php else : ?>
-                        <button disabled class="px-6 py-2 bg-gray-100 dark:bg-slate-800 text-gray-400 dark:text-gray-600 rounded-lg font-semibold cursor-not-allowed opacity-50">
-                            &larr; Previous Page
+                        <!-- Disabled State -->
+                        <button disabled class="inline-flex items-center justify-center px-8 py-3 bg-gray-100 dark:bg-slate-800 text-gray-400 dark:text-gray-600 font-bold rounded-full cursor-not-allowed opacity-60 transition-all duration-300">
+                            <span class="mr-2">&larr;</span> Previous Page
                         </button>
                     <?php endif; ?>
                     
-                    <!-- Next / Finish Button -->
+                    <!-- Next Button -->
                     <?php if ( $current_page < $total_pages ) : ?>
-                        <a href="<?php echo get_story_page_url($current_page + 1); ?>" class="px-6 py-2 bg-[#B5EAD7] dark:bg-emerald-600 text-emerald-900 dark:text-white rounded-lg hover:bg-emerald-300 dark:hover:bg-emerald-500 font-semibold transition-colors">
-                            Next Page &rarr;
+                        <a href="<?php echo get_story_page_url($current_page + 1); ?>" class="group inline-flex items-center justify-center px-8 py-3 bg-[#FF9CB0] dark:bg-pink-500 text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 hover:bg-[#FF86A0] dark:hover:bg-pink-400 active:scale-95 transition-all duration-300">
+                            Next Page <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                         </a>
                     <?php else : ?>
-                        <a href="<?php echo get_post_type_archive_link('stories'); ?>" class="px-6 py-2 bg-[#FFB7C5] dark:bg-pink-600 text-white rounded-lg hover:bg-pink-400 dark:hover:bg-pink-500 font-semibold transition-colors">
-                            Finish Book
+                        <!-- Finish Book State -->
+                        <a href="<?php echo get_post_type_archive_link('stories'); ?>" class="group inline-flex items-center justify-center px-8 py-3 bg-[#FF9CB0] dark:bg-pink-500 text-white font-bold rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 hover:bg-[#FF86A0] dark:hover:bg-pink-400 active:scale-95 transition-all duration-300">
+                            Finish Book <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">✨</span>
                         </a>
                     <?php endif; ?>
 
