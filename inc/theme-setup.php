@@ -28,3 +28,17 @@ function julias_cartoonery_theme_bootstrap() {
     <?php
 }
 add_action( 'wp_head', 'julias_cartoonery_theme_bootstrap', 1 );
+
+function julias_cartoonery_nav_classes( $atts, $item, $args ) {
+    if ( $args->theme_location == 'primary' ) {
+        $classes = 'hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors relative pb-1';
+        if ( in_array( 'current-menu-item', $item->classes ) ) {
+            $classes .= ' text-[#FFB7C5] dark:text-pink-400';
+            $classes .= ' after:content-[""] after:absolute after:-bottom-2 after:left-1/2 after:-translate-x-1/2 after:w-1/2 after:h-1 after:bg-[#FFB7C5] dark:after:bg-pink-400 after:rounded-full';
+        }
+        
+        $atts['class'] = $classes;
+    }
+    return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'julias_cartoonery_nav_classes', 10, 3 );
