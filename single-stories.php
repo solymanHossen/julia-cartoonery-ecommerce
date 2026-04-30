@@ -4,11 +4,6 @@
  */
 get_header(); 
 
-// Get current page and total pages for the badge
-global $page, $numpages;
-$current_page = $page ? $page : 1;
-$total_pages  = $numpages ? $numpages : 1;
-
 // Helper function to get exact URL for pagination
 function get_story_page_url($i) {
     global $post;
@@ -28,9 +23,13 @@ function get_story_page_url($i) {
             Back to Library
         </a>
 
-        <?php while ( have_posts() ) : the_post(); ?>
+        <?php while ( have_posts() ) : the_post(); 
+            global $page, $numpages;
+            $current_page = $page ? $page : 1;
+            $total_pages  = $numpages ? $numpages : 1;
+        ?>
             <!-- Main Content Card with Thick Pink Border -->
-            <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-t-3xl rounded-b-md shadow-2xl border-x-8 border-t-8 border-[#FFB7C5] dark:border-pink-600 overflow-hidden transition-colors">
+            <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-t-3xl rounded-b-md shadow-2xl border-x-8 border-t-8 border-[#FFB7C5] dark:border-pink-600 overflow-hidden transition-colors relative">
                 
                 <!-- Hero Image & Page Badge -->
                 <div class="w-full h-[40vh] bg-gray-100 dark:bg-slate-700 relative">
@@ -38,8 +37,8 @@ function get_story_page_url($i) {
                         <img src="<?php the_post_thumbnail_url('large'); ?>" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal" alt="<?php the_title_attribute(); ?>" />
                     <?php endif; ?>
                     
-                    <!-- Dynamic Page Badge (e.g., Page 1 of 3) -->
-                    <div class="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur px-4 py-1.5 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 shadow-sm">
+                    <!-- Dynamic Page Badge -->
+                    <div class="absolute top-4 right-4 z-10 bg-white/90 dark:bg-slate-800/90 backdrop-blur px-4 py-1.5 rounded-full text-xs font-bold text-gray-600 dark:text-gray-300 shadow-sm">
                         Page <?php echo $current_page; ?> of <?php echo $total_pages; ?>
                     </div>
                 </div>
@@ -50,10 +49,8 @@ function get_story_page_url($i) {
                         <?php the_title(); ?>
                     </h1>
                     
-                    <!-- Lora Font Content -->
                     <div class="font-['Lora'] text-xl md:text-2xl leading-relaxed text-gray-800 dark:text-gray-200">
                         <?php 
-                        // Show current page content
                         $content = get_the_content();
                         $content = apply_filters('the_content', $content);
                         echo $content;
@@ -61,7 +58,7 @@ function get_story_page_url($i) {
                     </div>
                 </div>
 
-                <!-- Custom Pagination (Matches React State Logic) -->
+                <!-- Custom Pagination -->
                 <div class="flex items-center justify-between p-6 bg-gray-50 dark:bg-slate-800/50 border-t border-gray-100 dark:border-slate-700 transition-colors">
                     
                     <!-- Previous Button -->
@@ -81,7 +78,6 @@ function get_story_page_url($i) {
                             Next Page &rarr;
                         </a>
                     <?php else : ?>
-                        <!-- Only shows on the very last page! -->
                         <a href="<?php echo get_post_type_archive_link('stories'); ?>" class="px-6 py-2 bg-[#FFB7C5] dark:bg-pink-600 text-white rounded-lg hover:bg-pink-400 dark:hover:bg-pink-500 font-semibold transition-colors">
                             Finish Book
                         </a>
