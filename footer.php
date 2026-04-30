@@ -20,6 +20,7 @@
                         wp_nav_menu( array(
                             'theme_location' => 'footer_quick_links',
                             'container'      => false,
+                            'fallback_cb'    => false,
                             'menu_class'     => 'space-y-4 text-gray-500 dark:text-gray-400 text-[15px]', 
                             'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                         ) );
@@ -37,6 +38,7 @@
                         wp_nav_menu( array(
                             'theme_location' => 'footer_support',
                             'container'      => false,
+                            'fallback_cb'    => false,
                             'menu_class'     => 'space-y-4 text-gray-500 dark:text-gray-400 text-[15px]',
                             'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                         ) );
