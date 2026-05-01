@@ -1,66 +1,66 @@
 export function initPlaygroundGames($) {
-  if ($('#playground-root').length === 0) return;
+    if ($('#playground-root').length === 0) return;
 
-  // Icon Helpers
-  const icons = {
-      gamepad: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><path d="M15 13h.01"/><path d="M18 11h.01"/></svg>`,
-      brain: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>`,
-      mouse: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 9 5 12 1.774-5.226L21 14 9 9z"/><path d="m16.071 16.071 4.243 4.243"/><path d="m7.188 2.239.776 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656-2.12 2.122"/></svg>`,
-      wind: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
-      arrowLeft: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`,
-      timer: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>`,
-      trophy: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`
-  };
+    // Icon Helpers
+    const icons = {
+        gamepad: `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><path d="M15 13h.01"/><path d="M18 11h.01"/></svg>`,
+        brain: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>`,
+        mouse: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 9 5 12 1.774-5.226L21 14 9 9z"/><path d="m16.071 16.071 4.243 4.243"/><path d="m7.188 2.239.776 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656-2.12 2.122"/></svg>`,
+        wind: `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>`,
+        arrowLeft: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>`,
+        timer: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" x2="14" y1="2" y2="2"/><line x1="12" x2="15" y1="14" y2="11"/><circle cx="12" cy="14" r="8"/></svg>`,
+        trophy: `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`
+    };
 
-  const CHARACTERS = [
-      { img: 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Felix' },
-      { img: 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Aneka' },
-      { img: 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Buster' }
-  ];
-  
-  const PRODUCTS = [
-      { img: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robot1' },
-      { img: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robot2' },
-      { img: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robot3' }
-  ];
+    const CHARACTERS = [
+        { img: 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Felix' },
+        { img: 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Aneka' },
+        { img: 'https://api.dicebear.com/7.x/fun-emoji/svg?seed=Buster' }
+    ];
 
-  const Playground = {
-      activeGame: null,
-      score: 0,
-      timeLeft: 0,
-      timerInterval: null,
-      gameLoopInterval: null,
-      animationFrameId: null,
-      
-      init() {
-          this.renderLobby();
-      },
+    const PRODUCTS = [
+        { img: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robot1' },
+        { img: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robot2' },
+        { img: 'https://api.dicebear.com/7.x/bottts/svg?seed=Robot3' }
+    ];
 
-      clearTimers() {
-          if (this.timerInterval) clearInterval(this.timerInterval);
-          if (this.gameLoopInterval) clearInterval(this.gameLoopInterval);
-          if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
-      },
+    const Playground = {
+        activeGame: null,
+        score: 0,
+        timeLeft: 0,
+        timerInterval: null,
+        gameLoopInterval: null,
+        animationFrameId: null,
 
-      backButton() {
-          return `
-              <button id="back-to-lobby" class="group inline-flex items-center gap-2 mb-8 px-5 py-2.5 -ml-5 text-gray-500 dark:text-gray-400 font-bold rounded-full hover:bg-pink-50 dark:hover:bg-slate-800 hover:text-[#FF9CB0] dark:hover:text-pink-400 transition-all duration-300 active:scale-95">
+        init() {
+            this.renderLobby();
+        },
+
+        clearTimers() {
+            if (this.timerInterval) clearInterval(this.timerInterval);
+            if (this.gameLoopInterval) clearInterval(this.gameLoopInterval);
+            if (this.animationFrameId) cancelAnimationFrame(this.animationFrameId);
+        },
+
+        backButton() {
+            return `
+              <button id="back-to-lobby" class="group w-fit inline-flex items-center gap-2 mb-8 px-5 py-2.5 -ml-5 text-gray-500 dark:text-gray-400 font-bold rounded-full hover:bg-pink-50 dark:hover:bg-slate-800 hover:text-[#FF9CB0] dark:hover:text-pink-400 transition-all duration-300 active:scale-95">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:-translate-x-1.5">
                       <path d="m15 18-6-6 6-6"/>
                   </svg>
                   Back to Playground
               </button>
           `;
-      },
+        },
 
-      // ==========================================
-      // 1. MAIN LOBBY
-      // ==========================================
-      renderLobby() {
-          this.clearTimers();
-          this.activeGame = null;
+        // ==========================================
+        // 1. MAIN LOBBY
+        // ==========================================
+        renderLobby() {
+            this.clearTimers();
+            this.activeGame = null;
 
-          const html = `
+            const html = `
               <div class="container mx-auto px-4 lg:px-8 py-12 animate-in fade-in">
                   <div class="text-center mb-16">
                       <div class="w-24 h-24 bg-gradient-to-br from-purple-300 to-pink-300 dark:from-purple-900/50 dark:to-pink-900/50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg border-4 border-white dark:border-slate-800">
@@ -104,39 +104,39 @@ export function initPlaygroundGames($) {
                   </div>
               </div>
           `;
-          $('#playground-root').html(html);
-          this.bindLobbyEvents();
-      },
+            $('#playground-root').html(html);
+            this.bindLobbyEvents();
+        },
 
-      bindLobbyEvents() {
-          $('.game-start-card').on('click', (e) => {
-              const game = $(e.currentTarget).data('game');
-              if(game === 'memory') this.startMemoryGame();
-              if(game === 'catch') this.startCatchGame();
-              if(game === 'balloon') this.startBalloonGame();
-          });
-      },
+        bindLobbyEvents() {
+            $('.game-start-card').on('click', (e) => {
+                const game = $(e.currentTarget).data('game');
+                if (game === 'memory') this.startMemoryGame();
+                if (game === 'catch') this.startCatchGame();
+                if (game === 'balloon') this.startBalloonGame();
+            });
+        },
 
-      // ==========================================
-      // 2. MEMORY MATCH GAME
-      // ==========================================
-      startMemoryGame() {
-          this.activeGame = 'memory';
-          this.score = 0; // Moves
-          this.matchedPairs = 0;
-          this.flippedCards = [];
-          this.isBoardLocked = false;
-          
-          const gameItems = [
-              { id: 'c1', img: CHARACTERS[0].img }, { id: 'c2', img: CHARACTERS[1].img }, { id: 'c3', img: CHARACTERS[2].img },
-              { id: 'p1', img: PRODUCTS[0].img }, { id: 'p2', img: PRODUCTS[1].img }, { id: 'p3', img: PRODUCTS[2].img }
-          ];
+        // ==========================================
+        // 2. MEMORY MATCH GAME
+        // ==========================================
+        startMemoryGame() {
+            this.activeGame = 'memory';
+            this.score = 0; // Moves
+            this.matchedPairs = 0;
+            this.flippedCards = [];
+            this.isBoardLocked = false;
 
-          this.memoryCards = [...gameItems, ...gameItems]
-              .sort(() => Math.random() - 0.5)
-              .map((item, idx) => ({ ...item, uniqueId: idx, matched: false }));
+            const gameItems = [
+                { id: 'c1', img: CHARACTERS[0].img }, { id: 'c2', img: CHARACTERS[1].img }, { id: 'c3', img: CHARACTERS[2].img },
+                { id: 'p1', img: PRODUCTS[0].img }, { id: 'p2', img: PRODUCTS[1].img }, { id: 'p3', img: PRODUCTS[2].img }
+            ];
 
-          const html = `
+            this.memoryCards = [...gameItems, ...gameItems]
+                .sort(() => Math.random() - 0.5)
+                .map((item, idx) => ({ ...item, uniqueId: idx, matched: false }));
+
+            const html = `
               <div class="container mx-auto px-4 py-8 animate-in fade-in">
                   ${this.backButton()}
                   <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-[40px] p-8 shadow-xl border border-gray-100 dark:border-slate-700">
@@ -172,82 +172,82 @@ export function initPlaygroundGames($) {
                   </div>
               </div>
           `;
-          $('#playground-root').html(html);
+            $('#playground-root').html(html);
 
-          $('#back-to-lobby, #memory-exit').on('click', () => this.renderLobby());
-          $('#memory-replay').on('click', () => this.startMemoryGame());
+            $('#back-to-lobby, #memory-exit').on('click', () => this.renderLobby());
+            $('#memory-replay').on('click', () => this.startMemoryGame());
 
-          $('.memory-card').on('click', (e) => {
-              if(this.isBoardLocked) return;
-              const card = $(e.currentTarget);
-              if(card.hasClass('flipped') || card.hasClass('matched')) return;
+            $('.memory-card').on('click', (e) => {
+                if (this.isBoardLocked) return;
+                const card = $(e.currentTarget);
+                if (card.hasClass('flipped') || card.hasClass('matched')) return;
 
-              this.flipCard(card);
-          });
-      },
+                this.flipCard(card);
+            });
+        },
 
-      flipCard(card) {
-          card.addClass('flipped').css('transform', 'rotateY(180deg)');
-          card.find('.card-front').addClass('hidden');
-          card.find('.card-back').removeClass('hidden');
+        flipCard(card) {
+            card.addClass('flipped').css('transform', 'rotateY(180deg)');
+            card.find('.card-front').addClass('hidden');
+            card.find('.card-back').removeClass('hidden');
 
-          this.flippedCards.push(card);
+            this.flippedCards.push(card);
 
-          if(this.flippedCards.length === 2) {
-              this.isBoardLocked = true;
-              this.score++; // Increment moves
-              $('#memory-moves').text(this.score);
-              this.checkMemoryMatch();
-          }
-      },
+            if (this.flippedCards.length === 2) {
+                this.isBoardLocked = true;
+                this.score++; // Increment moves
+                $('#memory-moves').text(this.score);
+                this.checkMemoryMatch();
+            }
+        },
 
-      checkMemoryMatch() {
-          const card1 = this.flippedCards[0];
-          const card2 = this.flippedCards[1];
-          const id1 = card1.data('id');
-          const id2 = card2.data('id');
+        checkMemoryMatch() {
+            const card1 = this.flippedCards[0];
+            const card2 = this.flippedCards[1];
+            const id1 = card1.data('id');
+            const id2 = card2.data('id');
 
-          if(id1 === id2) {
-              // Match
-              this.matchedPairs++;
-              card1.addClass('matched');
-              card2.addClass('matched');
-              this.flippedCards = [];
-              this.isBoardLocked = false;
-              if(this.matchedPairs === 6) {
-                  setTimeout(() => {
-                      $('#memory-grid').addClass('hidden');
-                      $('#memory-win-screen').removeClass('hidden');
-                      $('#final-moves').text(this.score);
-                  }, 500);
-              }
-          } else {
-              // No Match
-              setTimeout(() => {
-                  card1.removeClass('flipped').css('transform', '');
-                  card1.find('.card-front').removeClass('hidden');
-                  card1.find('.card-back').addClass('hidden');
+            if (id1 === id2) {
+                // Match
+                this.matchedPairs++;
+                card1.addClass('matched');
+                card2.addClass('matched');
+                this.flippedCards = [];
+                this.isBoardLocked = false;
+                if (this.matchedPairs === 6) {
+                    setTimeout(() => {
+                        $('#memory-grid').addClass('hidden');
+                        $('#memory-win-screen').removeClass('hidden');
+                        $('#final-moves').text(this.score);
+                    }, 500);
+                }
+            } else {
+                // No Match
+                setTimeout(() => {
+                    card1.removeClass('flipped').css('transform', '');
+                    card1.find('.card-front').removeClass('hidden');
+                    card1.find('.card-back').addClass('hidden');
 
-                  card2.removeClass('flipped').css('transform', '');
-                  card2.find('.card-front').removeClass('hidden');
-                  card2.find('.card-back').addClass('hidden');
+                    card2.removeClass('flipped').css('transform', '');
+                    card2.find('.card-front').removeClass('hidden');
+                    card2.find('.card-back').addClass('hidden');
 
-                  this.flippedCards = [];
-                  this.isBoardLocked = false;
-              }, 1000);
-          }
-      },
+                    this.flippedCards = [];
+                    this.isBoardLocked = false;
+                }, 1000);
+            }
+        },
 
-      // ==========================================
-      // 3. CATCH OLLIE GAME
-      // ==========================================
-      startCatchGame() {
-          this.activeGame = 'catch';
-          this.score = 0;
-          this.timeLeft = 30;
-          this.isPlaying = false;
-          
-          const html = `
+        // ==========================================
+        // 3. CATCH OLLIE GAME
+        // ==========================================
+        startCatchGame() {
+            this.activeGame = 'catch';
+            this.score = 0;
+            this.timeLeft = 30;
+            this.isPlaying = false;
+
+            const html = `
               <div class="container mx-auto px-4 py-8 animate-in fade-in">
                   ${this.backButton()}
                   <div class="max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-[40px] p-8 shadow-xl border border-gray-100 dark:border-slate-700">
@@ -296,69 +296,69 @@ export function initPlaygroundGames($) {
                   </div>
               </div>
           `;
-          $('#playground-root').html(html);
+            $('#playground-root').html(html);
 
-          $('#back-to-lobby, #catch-exit').on('click', () => this.renderLobby());
-          $('#catch-start-btn, #catch-replay').on('click', () => this.runCatchLoop());
+            $('#back-to-lobby, #catch-exit').on('click', () => this.renderLobby());
+            $('#catch-start-btn, #catch-replay').on('click', () => this.runCatchLoop());
 
-          $('.ollie-character').on('click', (e) => {
-              if(!this.isPlaying) return;
-              const char = $(e.currentTarget);
-              if(!char.hasClass('translate-y-full')) {
-                  this.score++;
-                  $('#catch-score').text(this.score);
-                  char.addClass('translate-y-full'); // hide immediately
-              }
-          });
-      },
+            $('.ollie-character').on('click', (e) => {
+                if (!this.isPlaying) return;
+                const char = $(e.currentTarget);
+                if (!char.hasClass('translate-y-full')) {
+                    this.score++;
+                    $('#catch-score').text(this.score);
+                    char.addClass('translate-y-full'); // hide immediately
+                }
+            });
+        },
 
-      runCatchLoop() {
-          this.score = 0;
-          this.timeLeft = 30;
-          this.isPlaying = true;
-          
-          $('#catch-score').text(this.score);
-          $('#catch-timer').text(this.timeLeft);
-          $('#catch-timer-icon').removeClass('text-red-500 animate-pulse');
-          $('#catch-start-screen, #catch-end-screen').addClass('hidden');
-          $('#catch-grid').removeClass('hidden');
+        runCatchLoop() {
+            this.score = 0;
+            this.timeLeft = 30;
+            this.isPlaying = true;
 
-          this.clearTimers();
+            $('#catch-score').text(this.score);
+            $('#catch-timer').text(this.timeLeft);
+            $('#catch-timer-icon').removeClass('text-red-500 animate-pulse');
+            $('#catch-start-screen, #catch-end-screen').addClass('hidden');
+            $('#catch-grid').removeClass('hidden');
 
-          this.timerInterval = setInterval(() => {
-              this.timeLeft--;
-              $('#catch-timer').text(this.timeLeft);
-              if(this.timeLeft <= 5) $('#catch-timer-icon').addClass('text-red-500 animate-pulse');
+            this.clearTimers();
 
-              if(this.timeLeft <= 0) {
-                  this.clearTimers();
-                  this.isPlaying = false;
-                  $('#catch-grid').addClass('hidden');
-                  $('#catch-end-screen').removeClass('hidden');
-                  $('#catch-final-score').text(this.score);
-                  $('.ollie-character').addClass('translate-y-full');
-              }
-          }, 1000);
+            this.timerInterval = setInterval(() => {
+                this.timeLeft--;
+                $('#catch-timer').text(this.timeLeft);
+                if (this.timeLeft <= 5) $('#catch-timer-icon').addClass('text-red-500 animate-pulse');
 
-          this.gameLoopInterval = setInterval(() => {
-              if(!this.isPlaying) return;
-              $('.ollie-character').addClass('translate-y-full'); // Hide all
-              const randomHole = Math.floor(Math.random() * 9);
-              $(`.ollie-character[data-idx="${randomHole}"]`).removeClass('translate-y-full');
-          }, 700);
-      },
+                if (this.timeLeft <= 0) {
+                    this.clearTimers();
+                    this.isPlaying = false;
+                    $('#catch-grid').addClass('hidden');
+                    $('#catch-end-screen').removeClass('hidden');
+                    $('#catch-final-score').text(this.score);
+                    $('.ollie-character').addClass('translate-y-full');
+                }
+            }, 1000);
 
-      // ==========================================
-      // 4. BALLOON POP GAME
-      // ==========================================
-      startBalloonGame() {
-          this.activeGame = 'balloon';
-          this.score = 0;
-          this.timeLeft = 30;
-          this.isPlaying = false;
-          this.balloons = [];
-          
-          const html = `
+            this.gameLoopInterval = setInterval(() => {
+                if (!this.isPlaying) return;
+                $('.ollie-character').addClass('translate-y-full'); // Hide all
+                const randomHole = Math.floor(Math.random() * 9);
+                $(`.ollie-character[data-idx="${randomHole}"]`).removeClass('translate-y-full');
+            }, 700);
+        },
+
+        // ==========================================
+        // 4. BALLOON POP GAME
+        // ==========================================
+        startBalloonGame() {
+            this.activeGame = 'balloon';
+            this.score = 0;
+            this.timeLeft = 30;
+            this.isPlaying = false;
+            this.balloons = [];
+
+            const html = `
               <div class="container mx-auto px-4 py-8 animate-in fade-in flex flex-col h-[85vh]">
                   ${this.backButton()}
                   <div class="w-full max-w-4xl mx-auto flex-grow flex flex-col bg-white dark:bg-slate-800 rounded-[40px] shadow-xl border border-gray-100 dark:border-slate-700 overflow-hidden relative">
@@ -396,46 +396,46 @@ export function initPlaygroundGames($) {
                   </div>
               </div>
           `;
-          $('#playground-root').html(html);
+            $('#playground-root').html(html);
 
-          $('#back-to-lobby, #balloon-exit').on('click', () => this.renderLobby());
-          $('#balloon-start-btn, #balloon-replay').on('click', () => this.runBalloonLoop());
-      },
+            $('#back-to-lobby, #balloon-exit').on('click', () => this.renderLobby());
+            $('#balloon-start-btn, #balloon-replay').on('click', () => this.runBalloonLoop());
+        },
 
-      runBalloonLoop() {
-          this.score = 0;
-          this.timeLeft = 30;
-          this.isPlaying = true;
-          this.balloons = [];
-          
-          $('#balloon-score').text(this.score);
-          $('#balloon-timer').text(this.timeLeft);
-          $('#balloon-timer-icon').removeClass('text-red-500 animate-pulse');
-          $('#balloon-start-screen, #balloon-end-screen').addClass('hidden');
-          $('.balloon-element').remove(); // clear existing
+        runBalloonLoop() {
+            this.score = 0;
+            this.timeLeft = 30;
+            this.isPlaying = true;
+            this.balloons = [];
 
-          this.clearTimers();
+            $('#balloon-score').text(this.score);
+            $('#balloon-timer').text(this.timeLeft);
+            $('#balloon-timer-icon').removeClass('text-red-500 animate-pulse');
+            $('#balloon-start-screen, #balloon-end-screen').addClass('hidden');
+            $('.balloon-element').remove(); // clear existing
 
-          const colors = [
-              'bg-red-400 dark:bg-red-500 shadow-red-200 dark:shadow-red-900', 
-              'bg-blue-400 dark:bg-blue-500 shadow-blue-200 dark:shadow-blue-900', 
-              'bg-emerald-400 dark:bg-emerald-500 shadow-green-200 dark:shadow-emerald-900', 
-              'bg-yellow-400 dark:bg-yellow-500 shadow-yellow-200 dark:shadow-yellow-900', 
-              'bg-purple-400 dark:bg-purple-500 shadow-purple-200 dark:shadow-purple-900'
-          ];
+            this.clearTimers();
 
-          // Spawner
-          this.gameLoopInterval = setInterval(() => {
-              if(!this.isPlaying) return;
-              
-              const color = colors[Math.floor(Math.random() * colors.length)];
-              const id = 'balloon-' + Date.now() + Math.random();
-              const startX = Math.random() * 80 + 10; // 10-90%
-              const speed = Math.random() * 0.8 + 0.4; // Speed factor (faster like React version)
-              const wobbleSpeed = Math.random() * 0.05 + 0.02;
-              const wobbleOffset = Math.random() * Math.PI * 2;
+            const colors = [
+                'bg-red-400 dark:bg-red-500 shadow-red-200 dark:shadow-red-900',
+                'bg-blue-400 dark:bg-blue-500 shadow-blue-200 dark:shadow-blue-900',
+                'bg-emerald-400 dark:bg-emerald-500 shadow-green-200 dark:shadow-emerald-900',
+                'bg-yellow-400 dark:bg-yellow-500 shadow-yellow-200 dark:shadow-yellow-900',
+                'bg-purple-400 dark:bg-purple-500 shadow-purple-200 dark:shadow-purple-900'
+            ];
 
-              const balloonEl = $(`
+            // Spawner
+            this.gameLoopInterval = setInterval(() => {
+                if (!this.isPlaying) return;
+
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const id = 'balloon-' + Date.now() + Math.random();
+                const startX = Math.random() * 80 + 10; // 10-90%
+                const speed = Math.random() * 0.8 + 0.4; // Speed factor (faster like React version)
+                const wobbleSpeed = Math.random() * 0.05 + 0.02;
+                const wobbleOffset = Math.random() * Math.PI * 2;
+
+                const balloonEl = $(`
                   <div id="${id}" class="balloon-element absolute w-16 h-20 rounded-[50%] ${color} cursor-pointer shadow-lg active:scale-0 transition-transform duration-75"
                        style="border-bottom-left-radius: 50%; border-bottom-right-radius: 50%; border-top-left-radius: 40%; border-top-right-radius: 40%; transform-origin: bottom center;">
                       <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-2 ${color.split(' ')[0]} rotate-45"></div>
@@ -444,66 +444,66 @@ export function initPlaygroundGames($) {
                   </div>
               `);
 
-              balloonEl.on('click', () => {
-                  if(!this.isPlaying) return;
-                  this.score++;
-                  $('#balloon-score').text(this.score);
-                  balloonEl.remove();
-                  this.balloons = this.balloons.filter(b => b.id !== id);
-              });
+                balloonEl.on('click', () => {
+                    if (!this.isPlaying) return;
+                    this.score++;
+                    $('#balloon-score').text(this.score);
+                    balloonEl.remove();
+                    this.balloons = this.balloons.filter(b => b.id !== id);
+                });
 
-              $('#balloon-area').append(balloonEl);
+                $('#balloon-area').append(balloonEl);
 
-              this.balloons.push({
-                  id,
-                  el: balloonEl,
-                  x: startX,
-                  y: -20, // Bottom percentage
-                  speed,
-                  wobbleSpeed,
-                  wobbleOffset
-              });
+                this.balloons.push({
+                    id,
+                    el: balloonEl,
+                    x: startX,
+                    y: -20, // Bottom percentage
+                    speed,
+                    wobbleSpeed,
+                    wobbleOffset
+                });
 
-          }, 800);
+            }, 800);
 
-          // Timer
-          this.timerInterval = setInterval(() => {
-              this.timeLeft--;
-              $('#balloon-timer').text(this.timeLeft);
-              if(this.timeLeft <= 5) $('#balloon-timer-icon').addClass('text-red-500 animate-pulse');
+            // Timer
+            this.timerInterval = setInterval(() => {
+                this.timeLeft--;
+                $('#balloon-timer').text(this.timeLeft);
+                if (this.timeLeft <= 5) $('#balloon-timer-icon').addClass('text-red-500 animate-pulse');
 
-              if(this.timeLeft <= 0) {
-                  this.isPlaying = false;
-                  this.clearTimers();
-                  $('#balloon-end-screen').removeClass('hidden');
-                  $('#balloon-final-score').text(this.score);
-              }
-          }, 1000);
+                if (this.timeLeft <= 0) {
+                    this.isPlaying = false;
+                    this.clearTimers();
+                    $('#balloon-end-screen').removeClass('hidden');
+                    $('#balloon-final-score').text(this.score);
+                }
+            }, 1000);
 
-          // Animation Loop
-          const animate = () => {
-              if(this.isPlaying && this.balloons.length > 0) {
-                  this.balloons.forEach((b, index) => {
-                      b.y += b.speed;
-                      b.wobble = Math.sin(b.y * b.wobbleSpeed + b.wobbleOffset) * 20;
-                      
-                      if(b.y > 120) {
-                          b.el.remove();
-                          this.balloons[index] = null;
-                      } else {
-                          b.el.css({
-                              left: `calc(${b.x}% + ${b.wobble}px)`,
-                              bottom: `${b.y}%`
-                          });
-                      }
-                  });
-                  this.balloons = this.balloons.filter(b => b !== null);
-              }
-              this.animationFrameId = requestAnimationFrame(animate);
-          };
-          this.animationFrameId = requestAnimationFrame(animate);
-      }
-  };
+            // Animation Loop
+            const animate = () => {
+                if (this.isPlaying && this.balloons.length > 0) {
+                    this.balloons.forEach((b, index) => {
+                        b.y += b.speed;
+                        b.wobble = Math.sin(b.y * b.wobbleSpeed + b.wobbleOffset) * 20;
 
-  Playground.init();
+                        if (b.y > 120) {
+                            b.el.remove();
+                            this.balloons[index] = null;
+                        } else {
+                            b.el.css({
+                                left: `calc(${b.x}% + ${b.wobble}px)`,
+                                bottom: `${b.y}%`
+                            });
+                        }
+                    });
+                    this.balloons = this.balloons.filter(b => b !== null);
+                }
+                this.animationFrameId = requestAnimationFrame(animate);
+            };
+            this.animationFrameId = requestAnimationFrame(animate);
+        }
+    };
+
+    Playground.init();
 }
