@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # ১. ডাটাবেস (আগের মতোই থাকবে)
+  db:
+    image: mysql:8.0
+    container_name: solyman_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: solyman_root_pass
+      MYSQL_DATABASE: solyman_db
+      MYSQL_USER: solyman
+      MYSQL_PASSWORD: solyman_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  # ২. phpMyAdmin (আগের মতোই)
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: solyman_pma
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: solyman_root_pass
+    depends_on:
+      - db
+
+  # ৩. ওয়ার্ডপ্রেস কন্টেইনার (এটি নতুন!)
+  wordpress:
+    image: wordpress:latest
+    container_name: solyman_wp
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: solyman
+      WORDPRESS_DB_PASSWORD: solyman_password
+      WORDPRESS_DB_NAME: solyman_db
+    volumes:
+      # আপনার বর্তমান ফোল্ডারের কোডগুলো সরাসরি ওয়ার্ডপ্রেসের থিম ফোল্ডারে ম্যাপ করে দিলাম
+      - ./:/var/www/html/wp-content/themes/julia-cartoonery-ecommerce
+    depends_on:
+      - db
+
+volumes:
+  db_data:
