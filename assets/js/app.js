@@ -193,46 +193,65 @@ function e(e){let t=e(`#chat-toggle`),n=e(`#chat-window`),r=e(`#close-chat`),i=e
                       <div class="absolute top-[100%] left-1/2 -translate-x-1/2 w-px h-12 bg-white/50"></div>
                       <div class="absolute top-2 left-2 w-4 h-6 bg-white/30 rounded-full rotate-12"></div>
                   </div>
-              `);c.on(`click`,()=>{this.isPlaying&&(this.score++,e(`#balloon-score`).text(this.score),c.remove(),this.balloons=this.balloons.filter(e=>e.id!==r))}),e(`#balloon-area`).append(c),this.balloons.push({id:r,el:c,x:i,y:-20,speed:a,wobbleSpeed:o,wobbleOffset:s})},800),this.timerInterval=setInterval(()=>{this.timeLeft--,e(`#balloon-timer`).text(this.timeLeft),this.timeLeft<=5&&e(`#balloon-timer-icon`).addClass(`text-red-500 animate-pulse`),this.timeLeft<=0&&(this.isPlaying=!1,this.clearTimers(),e(`#balloon-end-screen`).removeClass(`hidden`),e(`#balloon-final-score`).text(this.score))},1e3);let n=()=>{this.isPlaying&&this.balloons.length>0&&(this.balloons.forEach((e,t)=>{e.y+=e.speed,e.wobble=Math.sin(e.y*e.wobbleSpeed+e.wobbleOffset)*20,e.y>120?(e.el.remove(),this.balloons[t]=null):e.el.css({left:`calc(${e.x}% + ${e.wobble}px)`,bottom:`${e.y}%`})}),this.balloons=this.balloons.filter(e=>e!==null)),this.animationFrameId=requestAnimationFrame(n)};this.animationFrameId=requestAnimationFrame(n)}}).init()}var a=e=>{let t=e(`#create-character-root`);if(!t.length)return;let n={prompt:``,selectedStyle:`Cute 3D`,styles:[`Cute 3D`,`Watercolor`,`Coloring Book`,`Pixel Art`,`Anime Style`],tools:[{id:`craiyon`,name:`Craiyon`,color:`bg-orange-500`,urlTemplate:(e,t)=>`https://www.craiyon.com/?prompt=${encodeURIComponent(e+` in `+t+` style`)}`},{id:`gemini`,name:`Gemini AI`,color:`bg-blue-500`,urlTemplate:()=>`https://gemini.google.com`},{id:`designer`,name:`Microsoft Designer`,color:`bg-purple-600`,urlTemplate:()=>`https://designer.microsoft.com`}]},r={sparkles:`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute top-4 right-8 text-white/40 w-16 h-16 animate-pulse"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>`,image:`<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>`},i=()=>{let e=`
-            <div class="container mx-auto px-4 lg:px-8 py-12 animate-in fade-in">
-                <div class="max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-[40px] shadow-xl overflow-hidden border border-gray-100 dark:border-slate-700">
-                    <div class="bg-gradient-to-r from-[#A8D8EA] to-[#B5EAD7] dark:from-sky-700 dark:to-emerald-700 p-10 text-center relative overflow-hidden">
-                        ${r.sparkles}
-                        <h1 class="font-['Bubblegum_Sans'] text-4xl lg:text-5xl text-white mb-3 relative z-10 drop-shadow-sm">Create Your Character</h1>
-                        <p class="text-white/90 font-bold relative z-10">Use free AI tools to bring your imagination to life!</p>
+              `);c.on(`click`,()=>{this.isPlaying&&(this.score++,e(`#balloon-score`).text(this.score),c.remove(),this.balloons=this.balloons.filter(e=>e.id!==r))}),e(`#balloon-area`).append(c),this.balloons.push({id:r,el:c,x:i,y:-20,speed:a,wobbleSpeed:o,wobbleOffset:s})},800),this.timerInterval=setInterval(()=>{this.timeLeft--,e(`#balloon-timer`).text(this.timeLeft),this.timeLeft<=5&&e(`#balloon-timer-icon`).addClass(`text-red-500 animate-pulse`),this.timeLeft<=0&&(this.isPlaying=!1,this.clearTimers(),e(`#balloon-end-screen`).removeClass(`hidden`),e(`#balloon-final-score`).text(this.score))},1e3);let n=()=>{this.isPlaying&&this.balloons.length>0&&(this.balloons.forEach((e,t)=>{e.y+=e.speed,e.wobble=Math.sin(e.y*e.wobbleSpeed+e.wobbleOffset)*20,e.y>120?(e.el.remove(),this.balloons[t]=null):e.el.css({left:`calc(${e.x}% + ${e.wobble}px)`,bottom:`${e.y}%`})}),this.balloons=this.balloons.filter(e=>e!==null)),this.animationFrameId=requestAnimationFrame(n)};this.animationFrameId=requestAnimationFrame(n)}}).init()}var a=e=>{let t=e(`#create-character-root`);if(!t.length)return;let n=e=>{let t=document.createElement(`div`);return t.textContent=e,t.innerHTML},r={prompt:``,selectedStyle:`Cute 3D 🧸`,styles:[`Cute 3D 🧸`,`Watercolor 🎨`,`Coloring Book 🖍️`,`Pixel Art 👾`,`Anime Style 🌸`],tools:[{id:`craiyon`,name:`Craiyon`,desc:`Best for fun art!`,color:`bg-gradient-to-br from-orange-400 to-red-500 shadow-orange-300`,urlTemplate:(e,t)=>`https://www.craiyon.com/?prompt=${encodeURIComponent(e+` in `+t+` style`)}`},{id:`chatgpt`,name:`ChatGPT (DALL-E)`,desc:`Super smart AI!`,color:`bg-gradient-to-br from-emerald-400 to-teal-500 shadow-emerald-300`,urlTemplate:(e,t)=>`https://chatgpt.com/?q=${encodeURIComponent(`Create a highly detailed image of: `+e+`. Must use `+t+` style.`)}`},{id:`designer`,name:`MS Designer`,desc:`Ultra high quality!`,color:`bg-gradient-to-br from-purple-500 to-indigo-600 shadow-purple-300`,urlTemplate:(e,t)=>`https://www.bing.com/images/create?q=${encodeURIComponent(e+` in `+t+` style`)}`},{id:`gemini`,name:`Gemini AI`,desc:`Google Magic!`,color:`bg-gradient-to-br from-blue-400 to-indigo-500 shadow-blue-300`,urlTemplate:(e,t)=>`https://gemini.google.com/app?q=${encodeURIComponent(`Please generate an image of: `+e+`, using a `+t+` art style.`)}`}]},i={sparkles:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute top-6 right-10 text-white/60 w-20 h-20 animate-[spin_4s_linear_infinite]"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>`,magicWand:`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mb-2"><path d="m15 5 4 4"/><path d="M13 7 8.7 2.7a2.41 2.41 0 0 0-3.4 0L2.7 5.3a2.41 2.41 0 0 0 0 3.4L7 13"/><path d="m8 6 2-2"/><path d="m2 22 5.5-1.5L21.1 6.9a2.41 2.41 0 0 0 0-3.4l-2.6-2.6a2.41 2.41 0 0 0-3.4 0L1.5 14.5Z"/></svg>`,cloud:`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="white" opacity="0.1" class="absolute -left-4 top-4"><path d="M17.5 19c-2.5 0-4.5-2-4.5-4.5a4.5 4.5 0 0 1 1-2.8A5 5 0 0 0 4 12a5 5 0 0 0 5 5h8.5A2.5 2.5 0 0 0 20 14.5c0-1.2-.9-2.2-2-2.4a4.5 4.5 0 0 0-.5-8.1v.1Z"/></svg>`},a=()=>{let e=`
+            <div class="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-[50px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-none overflow-hidden border-4 border-white dark:border-slate-700">
+                
+                <!-- Magical Header -->
+                <div class="bg-gradient-to-r from-[#FFB7C5] via-[#A8D8EA] to-[#B5EAD7] p-12 text-center relative overflow-hidden">
+                    ${i.cloud}
+                    ${i.sparkles}
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-white/30 backdrop-blur-md rounded-[30px] mb-6 rotate-12 hover:rotate-0 transition-transform duration-500 shadow-xl border-2 border-white/50">
+                        <span class="text-4xl">🦄</span>
                     </div>
+                    <h1 class="font-['Bubblegum_Sans'] text-5xl lg:text-6xl text-white mb-4 relative z-10 drop-shadow-md tracking-wide">Magic Character Maker</h1>
+                    <p class="text-white/95 font-bold text-xl relative z-10 drop-shadow-sm">Describe your dream friend and watch AI draw it!</p>
+                </div>
 
-                    <div class="p-8 lg:p-12">
-                        <div class="mb-8">
-                            <label class="block text-gray-700 dark:text-gray-300 font-bold mb-3 text-lg">Describe your character</label>
+                <div class="p-8 lg:p-14 bg-[#fdfbf7] dark:bg-slate-900">
+                    
+                    <!-- Prompt Box -->
+                    <div class="mb-10 relative group">
+                        <label class="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-black mb-4 text-2xl font-['Bubblegum_Sans'] tracking-wide">
+                            <span class="text-pink-400">1.</span> Describe your character:
+                        </label>
+                        <div class="relative">
                             <textarea 
                                 id="prompt-textarea"
-                                placeholder="e.g. A cute fluffy bunny wearing a tiny blue backpack, eating a carrot..."
-                                class="w-full p-4 rounded-2xl bg-gray-50 dark:bg-slate-900 border-2 border-gray-100 dark:border-slate-700 focus:border-[#A8D8EA] dark:focus:border-sky-500 focus:ring-0 transition-colors outline-none min-h-[120px] resize-y dark:text-white shadow-inner"
+                                placeholder="Example: A tiny fluffy cat wearing a superhero cape, flying through space..."
+                                class="w-full p-6 text-lg rounded-[30px] bg-white dark:bg-slate-800 border-4 border-sky-100 dark:border-slate-700 focus:border-pink-300 dark:focus:border-pink-500 focus:ring-0 transition-all outline-none min-h-[140px] resize-y dark:text-white shadow-[inset_0_4px_20px_rgba(0,0,0,0.03)] focus:shadow-[0_10px_40px_-10px_rgba(255,183,197,0.4)]"
                             ></textarea>
+                            <div class="absolute bottom-4 right-6 text-sm font-bold text-slate-300 dark:text-slate-600 transition-colors" id="char-counter">0 chars</div>
                         </div>
+                    </div>
 
-                        <div class="mb-10">
-                            <label class="block text-gray-700 dark:text-gray-300 font-bold mb-3 text-lg">Choose a style</label>
-                            <div id="styles-container" class="flex flex-wrap gap-3"></div>
-                        </div>
+                    <!-- Style Selector -->
+                    <div class="mb-12">
+                        <label class="flex items-center gap-2 text-slate-700 dark:text-slate-200 font-black mb-4 text-2xl font-['Bubblegum_Sans'] tracking-wide">
+                            <span class="text-sky-400">2.</span> Pick an art style:
+                        </label>
+                        <div id="styles-container" class="flex flex-wrap gap-4"></div>
+                    </div>
 
-                        <div class="h-px bg-gray-100 dark:bg-slate-700 w-full mb-10"></div>
+                    <div class="h-1 bg-slate-100 dark:bg-slate-800 rounded-full w-full mb-12"></div>
 
-                        <div class="mb-4">
-                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200 mb-6 text-center">Select an AI Engine to Generate</h3>
-                            <div id="tools-container" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+                    <!-- AI Tools -->
+                    <div class="mb-6">
+                        <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+                            <h3 class="text-2xl font-black text-slate-800 dark:text-slate-200 font-['Bubblegum_Sans'] flex items-center gap-2">
+                                <span class="text-emerald-400">3.</span> Choose your Magic Engine!
+                            </h3>
                             <div id="warning-container"></div>
                         </div>
+                        <div id="tools-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
                     </div>
                 </div>
             </div>
-        `;t.html(e)},a=()=>{let t=!n.prompt.trim(),i=n.styles.map(e=>`<button data-style="${e}" class="style-btn px-5 py-2 rounded-full font-bold transition-all ${n.selectedStyle===e?`bg-[#FFB7C5] dark:bg-pink-500 text-white shadow-md transform scale-105`:`bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-600`}">${e}</button>`).join(``);e(`#styles-container`).html(i);let a=n.tools.map(e=>{let n=t?`opacity-50 cursor-not-allowed bg-gray-50 dark:bg-slate-800 border-gray-100 dark:border-slate-700`:`hover:border-[#A8D8EA] dark:hover:border-sky-500 hover:bg-sky-50 dark:hover:bg-slate-700/50 border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 cursor-pointer hover:-translate-y-1 hover:shadow-lg`;return`
-                <button data-tool="${e.id}" ${t?`disabled`:``} class="tool-btn flex flex-col items-center p-6 rounded-3xl border-2 transition-all group ${n}">
-                    <div class="w-16 h-16 rounded-2xl ${e.color} flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-500 ease-out">
-                        ${r.image}
+        `;t.html(e)},o=()=>{let t=!r.prompt.trim(),n=r.styles.map(e=>`<button data-style="${e}" class="style-btn px-6 py-3 rounded-full font-bold transition-all duration-300 ${r.selectedStyle===e?`bg-pink-400 dark:bg-pink-500 text-white shadow-[0_10px_20px_-5px_rgba(244,114,182,0.5)] transform scale-110 -translate-y-2 border-2 border-white`:`bg-white dark:bg-slate-800 text-slate-500 dark:text-slate-300 hover:bg-pink-50 dark:hover:bg-slate-700 border-2 border-slate-100 dark:border-slate-700 hover:-translate-y-1 hover:shadow-lg`}">${e}</button>`).join(``);e(`#styles-container`).html(n);let a=r.tools.map(e=>{let n=t?`opacity-40 cursor-not-allowed filter grayscale bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700`:`bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 hover:border-transparent hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.5)] cursor-pointer hover:-translate-y-2 active:scale-95 group relative overflow-hidden`,r=t?`bg-slate-300 dark:bg-slate-600`:e.color;return`
+                <button data-tool="${e.id}" ${t?`disabled`:``} aria-label="Open in ${e.name}" class="tool-btn flex flex-col items-center p-8 rounded-[40px] border-4 transition-all duration-300 ease-out ${n}">
+                    <div class="w-20 h-20 rounded-full ${r} flex items-center justify-center text-white mb-6 shadow-lg group-hover:scale-110 transition-transform duration-500 ease-out border-4 border-white/20 relative z-10">
+                        ${i.magicWand}
                     </div>
-                    <span class="font-bold text-gray-800 dark:text-gray-200">${e.name}</span>
-                    <span class="text-xs text-gray-500 dark:text-gray-400 mt-1">Opens in new tab</span>
+                    <span class="font-black text-xl text-slate-800 dark:text-white font-['Bubblegum_Sans'] tracking-wide relative z-10">${e.name}</span>
+                    <span class="text-sm font-bold text-slate-400 dark:text-slate-500 mt-2 relative z-10">${e.desc}</span>
                 </button>
-            `}).join(``);e(`#tools-container`).html(a);let o=t?`<p class="text-center text-sm text-red-400 dark:text-red-500 mt-4 animate-pulse font-bold">Please enter a description first!</p>`:``;e(`#warning-container`).html(o)};i(),a(),e(`#prompt-textarea`).on(`input`,function(){n.prompt=e(this).val(),a()}),t.on(`click`,`.style-btn`,function(){n.selectedStyle=e(this).data(`style`),a()}),t.on(`click`,`.tool-btn`,function(){if(!n.prompt.trim())return;let t=e(this).data(`tool`),r=n.tools.find(e=>e.id===t);if(r){let e=r.urlTemplate(n.prompt,n.selectedStyle);window.open(e,`_blank`)}})};(function(o){o(document).ready(function(){t(o),n(o),e(o),r(o),i(o),a(o)})})(jQuery);
+            `}).join(``);e(`#tools-container`).html(a);let o=t?`<span class="px-4 py-2 bg-rose-100 text-rose-500 rounded-full text-sm font-bold animate-bounce inline-block border-2 border-rose-200">↑ Type something first!</span>`:`<span class="px-4 py-2 bg-emerald-100 text-emerald-600 rounded-full text-sm font-bold inline-block border-2 border-emerald-200 shadow-sm animate-pulse">Ready to magic! ✨</span>`;e(`#warning-container`).html(o)};a(),o(),e(`#prompt-textarea`).on(`input`,function(){let t=e(this).val();r.prompt=n(t);let i=e(`#char-counter`);i.text(`${t.length} chars`),t.length>150?i.addClass(`text-emerald-400`).removeClass(`text-slate-300 text-rose-400`):t.length>0?i.addClass(`text-rose-400`).removeClass(`text-slate-300 text-emerald-400`):i.addClass(`text-slate-300`).removeClass(`text-rose-400 text-emerald-400`),o()}),t.on(`click`,`.style-btn`,function(){r.selectedStyle=e(this).data(`style`);let t=e(`#prompt-textarea`);t.addClass(`scale-[1.02] shadow-[0_10px_40px_-10px_rgba(168,216,234,0.5)] border-[#A8D8EA]`),setTimeout(()=>{t.removeClass(`scale-[1.02] shadow-[0_10px_40px_-10px_rgba(168,216,234,0.5)] border-[#A8D8EA]`)},300),o()}),t.on(`click`,`.tool-btn`,function(t){if(t.preventDefault(),!r.prompt.trim())return;let n=e(this).data(`tool`),i=r.tools.find(e=>e.id===n);i&&(e(this).append(`<div class="absolute inset-0 bg-white/40 rounded-[40px] animate-ping pointer-events-none z-0"></div>`),setTimeout(()=>{let e=i.urlTemplate(r.prompt,r.selectedStyle);window.open(e,`_blank`,`noopener,noreferrer`)},400))})};(function(o){o(document).ready(function(){t(o),n(o),e(o),r(o),i(o),a(o)})})(jQuery);
