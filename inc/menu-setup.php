@@ -70,7 +70,6 @@ function julias_cartoonery_fallback_menu()
     echo '</ul>';
 }
 
-// মেনু লোকেশন রেজিস্টার করার কোড (একদম শেষে যোগ করা হলো)
 function julias_cartoonery_register_menus()
 {
     register_nav_menus(array(

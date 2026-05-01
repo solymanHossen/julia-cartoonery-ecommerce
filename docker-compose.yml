@@ -43,7 +43,6 @@ services:
       WORDPRESS_DB_PASSWORD: solyman_password
       WORDPRESS_DB_NAME: solyman_db
     volumes:
-      # আপনার বর্তমান ফোল্ডারের কোডগুলো সরাসরি ওয়ার্ডপ্রেসের থিম ফোল্ডারে ম্যাপ করে দিলাম
       - ./:/var/www/html/wp-content/themes/julia-cartoonery-ecommerce
     depends_on:
       - db
