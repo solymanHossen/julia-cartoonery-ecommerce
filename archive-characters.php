@@ -33,14 +33,14 @@ get_header(); ?>
     <div class="container mx-auto px-4 lg:px-8 relative z-10">
         
         <!-- Header Section -->
-        <div class="text-center mb-16 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
-            <span class="inline-block py-1 px-4 rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400 text-sm font-bold tracking-widest uppercase mb-6 shadow-sm border border-pink-200 dark:border-pink-800">Free Goodies</span>
-            <h1 class="font-['Bubblegum_Sans'] text-5xl md:text-6xl text-slate-800 dark:text-white mb-6 drop-shadow-sm">Meet the Characters</h1>
-            <p class="text-lg text-slate-600 dark:text-slate-300">Download high-quality coloring pages and vector art of your favorite friends! Perfect for kids and kids at heart.</p>
+        <div class="text-center mb-12 sm:mb-16 max-w-3xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700">
+            <span class="inline-block py-1 px-4 rounded-full bg-pink-100 text-pink-600 dark:bg-pink-900/30 dark:text-pink-400 text-xs sm:text-sm font-bold tracking-widest uppercase mb-4 sm:mb-6 shadow-sm border border-pink-200 dark:border-pink-800">Free Goodies</span>
+            <h1 class="font-['Bubblegum_Sans'] text-5xl md:text-6xl lg:text-7xl text-slate-800 dark:text-white mb-4 sm:mb-6 drop-shadow-sm leading-tight">Meet the Characters</h1>
+            <p class="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-slate-300 px-4 sm:px-0">Download high-quality coloring pages and vector art of your favorite friends! Perfect for kids and kids at heart.</p>
         </div>
 
         <!-- Characters Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto">
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                 
                 <div class="group relative flex flex-col items-center p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/50 dark:border-slate-700/50 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_rgb(0,0,0,0.3)] transition-all duration-300 ease-out">
@@ -86,12 +86,12 @@ get_header(); ?>
     <!-- ============================================== -->
     <!-- SUBSCRIPTION MODAL                             -->
     <!-- ============================================== -->
-    <div id="subModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 ease-out p-4">
+    <div id="subModal" class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 ease-out p-4 sm:p-6">
         <!-- Backdrop -->
-        <div id="modalBackdrop" class="absolute inset-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-md transition-opacity duration-500"></div>
+        <div id="modalBackdrop" class="absolute inset-0 bg-slate-900/60 dark:bg-slate-900/80 backdrop-blur-md transition-opacity duration-500"></div>
         
         <!-- Modal Content -->
-        <div id="modalContent" class="relative bg-white dark:bg-slate-800 p-8 sm:p-10 rounded-[2.5rem] shadow-2xl max-w-md w-full transform scale-90 translate-y-8 transition-all duration-500 ease-out border border-white/20">
+        <div id="modalContent" class="relative bg-white dark:bg-slate-800 p-8 sm:p-12 rounded-[2.5rem] shadow-2xl max-w-lg w-full transform scale-90 translate-y-8 transition-all duration-500 ease-out border border-white/20">
             
             <!-- Close Button -->
             <button id="closeModalBtn" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-full transition-colors z-10 focus:outline-none focus:ring-2 focus:ring-slate-200 dark:focus:ring-slate-600">
@@ -107,8 +107,8 @@ get_header(); ?>
                     </div>
                 </div>
                 
-                <h2 class="font-['Bubblegum_Sans'] text-4xl text-slate-800 dark:text-white mb-4 tracking-wide">Subscriber Exclusive!</h2>
-                <p class="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed text-lg">
+                <h2 class="font-['Bubblegum_Sans'] text-4xl sm:text-5xl text-slate-800 dark:text-white mb-4 tracking-wide">Subscriber Exclusive!</h2>
+                <p class="text-slate-600 dark:text-slate-300 mb-8 leading-relaxed text-base sm:text-lg px-2 sm:px-6">
                     To download <strong id="dynamicCharName" class="text-slate-900 dark:text-white font-bold bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded-md">Character</strong>, please subscribe to Julia's Cartoonery on YouTube. It's free and helps us make more cartoons!
                 </p>
                 
