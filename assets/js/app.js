@@ -35,8 +35,8 @@ function e(e){let t=e(`#chat-toggle`),n=e(`#chat-window`),r=e(`#close-chat`),i=e
                   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                       
                       <!-- Memory Match -->
-                      <div data-game="memory" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-blue-50 to-white dark:from-sky-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-xl transition-all border-2 border-transparent hover:border-[#A8D8EA] dark:hover:border-sky-500 group">
-                          <div class="w-20 h-20 bg-[#A8D8EA] dark:bg-sky-500 rounded-2xl flex items-center justify-center text-white mb-6 transform group-hover:rotate-12 transition-transform shadow-md">
+                      <div data-game="memory" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-blue-50 to-white dark:from-sky-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_rgb(0,0,0,0.3)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] border-2 border-transparent hover:border-[#A8D8EA] dark:hover:border-sky-500 group">
+                          <div class="w-20 h-20 bg-[#A8D8EA] dark:bg-sky-500 rounded-2xl flex items-center justify-center text-white mb-6 transform group-hover:rotate-12 group-hover:scale-110 transition-transform duration-500 shadow-md">
                               ${t.brain}
                           </div>
                           <h3 class="font-['Bubblegum_Sans'] text-2xl text-gray-800 dark:text-gray-100 mb-2">Memory Match</h3>
@@ -45,8 +45,8 @@ function e(e){let t=e(`#chat-toggle`),n=e(`#chat-window`),r=e(`#close-chat`),i=e
                       </div>
 
                       <!-- Catch Ollie -->
-                      <div data-game="catch" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-green-50 to-white dark:from-emerald-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-xl transition-all border-2 border-transparent hover:border-[#B5EAD7] dark:hover:border-emerald-500 group">
-                          <div class="w-20 h-20 bg-[#B5EAD7] dark:bg-emerald-500 rounded-2xl flex items-center justify-center text-white mb-6 transform group-hover:-rotate-12 transition-transform shadow-md">
+                      <div data-game="catch" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-green-50 to-white dark:from-emerald-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_rgb(0,0,0,0.3)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] border-2 border-transparent hover:border-[#B5EAD7] dark:hover:border-emerald-500 group">
+                          <div class="w-20 h-20 bg-[#B5EAD7] dark:bg-emerald-500 rounded-2xl flex items-center justify-center text-white mb-6 transform group-hover:-rotate-12 group-hover:scale-110 transition-transform duration-500 shadow-md">
                               ${t.mouse}
                           </div>
                           <h3 class="font-['Bubblegum_Sans'] text-2xl text-gray-800 dark:text-gray-100 mb-2">Catch Ollie</h3>
@@ -55,8 +55,8 @@ function e(e){let t=e(`#chat-toggle`),n=e(`#chat-window`),r=e(`#close-chat`),i=e
                       </div>
 
                       <!-- Balloon Pop -->
-                      <div data-game="balloon" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-pink-50 to-white dark:from-pink-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-xl transition-all border-2 border-transparent hover:border-[#FFB7C5] dark:hover:border-pink-500 group">
-                          <div class="w-20 h-20 bg-[#FFB7C5] dark:bg-pink-500 rounded-2xl flex items-center justify-center text-white mb-6 transform group-hover:scale-110 transition-transform shadow-md">
+                      <div data-game="balloon" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-pink-50 to-white dark:from-pink-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_rgb(0,0,0,0.3)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] border-2 border-transparent hover:border-[#FFB7C5] dark:hover:border-pink-500 group">
+                          <div class="w-20 h-20 bg-[#FFB7C5] dark:bg-pink-500 rounded-2xl flex items-center justify-center text-white mb-6 transform group-hover:scale-110 group-hover:-translate-y-2 transition-transform duration-500 shadow-md">
                               ${t.wind}
                           </div>
                           <h3 class="font-['Bubblegum_Sans'] text-2xl text-gray-800 dark:text-gray-100 mb-2">Balloon Pop</h3>
