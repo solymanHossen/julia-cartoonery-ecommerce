@@ -4,7 +4,7 @@ import { initHeader } from './components/header.js';
 import { initTheme } from './components/theme.js';
 import { initCharactersArchive } from './components/charactersArchive.js';
 import { initPlaygroundGames } from './components/playgroundGames.js';
-
+import { initCreateCharacter } from './components/createCharacter.js';
 (function ($) {
   "use strict";
 
@@ -14,6 +14,7 @@ import { initPlaygroundGames } from './components/playgroundGames.js';
     initChatWidget($);
     initCharactersArchive($);
     initPlaygroundGames($);
+    initCreateCharacter($);
   });
 
 })(jQuery);

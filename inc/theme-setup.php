@@ -49,19 +49,33 @@ function julias_cartoonery_nav_classes( $atts, $item, $args ) {
 add_filter( 'nav_menu_link_attributes', 'julias_cartoonery_nav_classes', 10, 3 );
 
 /**
- * Automatically create the Playground Games page if it doesn't exist
- * to ensure the /games/ URL works immediately.
+ * Automatically create the Playground Games & Create Character pages if they don't exist
+ * to ensure the /games/ and /create/ URLs work immediately.
  */
 function julias_cartoonery_auto_create_pages() {
-    $page_slug = 'games';
-    if ( ! get_page_by_path( $page_slug ) ) {
-        wp_insert_post( array(
-            'post_title'     => 'Playground Games',
-            'post_name'      => $page_slug,
-            'post_status'    => 'publish',
-            'post_type'      => 'page',
-            'page_template'  => 'page-games.php'
-        ) );
+    $pages = [
+        [
+            'title' => 'Playground Games',
+            'slug' => 'games',
+            'template' => 'page-games.php'
+        ],
+        [
+            'title' => 'Create Character',
+            'slug' => 'create',
+            'template' => 'page-create.php'
+        ]
+    ];
+
+    foreach ($pages as $page) {
+        if ( ! get_page_by_path( $page['slug'] ) ) {
+            wp_insert_post( array(
+                'post_title'     => $page['title'],
+                'post_name'      => $page['slug'],
+                'post_status'    => 'publish',
+                'post_type'      => 'page',
+                'page_template'  => $page['template']
+            ) );
+        }
     }
 }
 add_action( 'init', 'julias_cartoonery_auto_create_pages' );
