@@ -3,6 +3,7 @@ import { initChatWidget } from './components/chat.js';
 import { initHeader } from './components/header.js';
 import { initTheme } from './components/theme.js';
 import { initCharactersArchive } from './components/charactersArchive.js';
+import { initPlaygroundGames } from './components/playgroundGames.js';
 
 (function ($) {
   "use strict";
@@ -12,7 +13,7 @@ import { initCharactersArchive } from './components/charactersArchive.js';
     initTheme($);
     initChatWidget($);
     initCharactersArchive($);
-
+    initPlaygroundGames($);
   });
 
 })(jQuery);

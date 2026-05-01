@@ -47,3 +47,21 @@ function julias_cartoonery_nav_classes( $atts, $item, $args ) {
     return $atts;
 }
 add_filter( 'nav_menu_link_attributes', 'julias_cartoonery_nav_classes', 10, 3 );
+
+/**
+ * Automatically create the Playground Games page if it doesn't exist
+ * to ensure the /games/ URL works immediately.
+ */
+function julias_cartoonery_auto_create_pages() {
+    $page_slug = 'games';
+    if ( ! get_page_by_path( $page_slug ) ) {
+        wp_insert_post( array(
+            'post_title'     => 'Playground Games',
+            'post_name'      => $page_slug,
+            'post_status'    => 'publish',
+            'post_type'      => 'page',
+            'page_template'  => 'page-games.php'
+        ) );
+    }
+}
+add_action( 'init', 'julias_cartoonery_auto_create_pages' );
