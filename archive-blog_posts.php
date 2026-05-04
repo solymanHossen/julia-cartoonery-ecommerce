@@ -1,70 +1,51 @@
 <?php get_header(); ?>
 
-<div class="container mx-auto px-4 py-16 max-w-7xl">
-    <div class="text-center mb-12">
-        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Our Latest Blogs</h1>
-        <p class="text-lg text-gray-600">Read the best articles written by our amazing community.</p>
-    </div>
+<main class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-[#FFB7C5]/20 via-transparent to-transparent dark:from-pink-500/10"></div>
 
-    <?php if ( have_posts() ) : ?>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <?php while ( have_posts() ) : the_post(); ?>
-                
-                <!-- Single Blog Card -->
-                <article class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col transform hover:-translate-y-1">
-                    
-                    <!-- Thumbnail -->
-                    <?php if ( has_post_thumbnail() ) : ?>
-                        <a href="<?php the_permalink(); ?>" class="block overflow-hidden h-56">
-                            <?php the_post_thumbnail( 'large', ['class' => 'w-full h-full object-cover transition-transform duration-500 hover:scale-105'] ); ?>
-                        </a>
-                    <?php else: ?>
-                        <!-- Fallback Image if no thumbnail -->
-                        <div class="w-full h-56 bg-gray-200 flex items-center justify-center text-gray-400">No Image</div>
-                    <?php endif; ?>
-
-                    <!-- Content -->
-                    <div class="p-6 flex flex-col flex-grow">
-                        <div class="text-xs font-semibold text-indigo-600 mb-2 uppercase tracking-wider">
-                            <?php echo get_the_date(); ?>
-                        </div>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-3 leading-tight">
-                            <a href="<?php the_permalink(); ?>" class="hover:text-indigo-600 transition-colors"><?php the_title(); ?></a>
-                        </h2>
-                        <div class="text-gray-600 mb-6 flex-grow line-clamp-3">
-                            <?php echo wp_trim_words( get_the_excerpt(), 20, '...' ); ?>
-                        </div>
-                        
-                        <!-- Read More Button & Author -->
-                        <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-100">
-                            <span class="text-sm font-medium text-gray-700">By <?php the_author(); ?></span>
-                            <a href="<?php the_permalink(); ?>" class="text-indigo-600 font-semibold hover:text-indigo-800 flex items-center">
-                                Read More 
-                                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-            <?php endwhile; ?>
+    <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+        <div class="mx-auto max-w-3xl text-center">
+            <span class="mb-4 inline-flex items-center rounded-full bg-[#A8D8EA]/20 px-4 py-1 text-sm font-semibold text-[#5F9DB3] dark:bg-sky-500/15 dark:text-sky-300">
+                <?php esc_html_e( 'Parenting & Play', 'julias-cartoonery' ); ?>
+            </span>
+            <h1 class="font-['Bubblegum_Sans'] text-5xl leading-tight text-gray-900 dark:text-gray-50 md:text-6xl">
+                <?php esc_html_e( 'Our Latest Blogs', 'julias-cartoonery' ); ?>
+            </h1>
+            <p class="mx-auto mt-5 max-w-2xl text-base leading-8 text-gray-600 dark:text-gray-300 md:text-lg">
+                <?php esc_html_e( 'Read practical tips, playful stories, and thoughtful notes from the world of Julia’s Cartoonery.', 'julias-cartoonery' ); ?>
+            </p>
         </div>
 
-        <!-- Pagination -->
-        <div class="mt-12 flex justify-center gap-2">
-            <?php 
-                echo paginate_links( array(
-                    'prev_text' => '&laquo; Prev',
-                    'next_text' => 'Next &raquo;',
-                    'class'     => 'pagination-links' // আপনি চাইলে CSS এ স্টাইল করতে পারেন
-                ) ); 
-            ?>
-        </div>
+        <?php if ( have_posts() ) : ?>
+            <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+                <?php
+                while ( have_posts() ) : the_post();
+                    get_template_part( 'template-parts/content', 'blog' );
+                endwhile;
+                ?>
+            </div>
 
-    <?php else : ?>
-        <div class="text-center py-20">
-            <h2 class="text-2xl text-gray-500">No blog posts found yet!</h2>
-        </div>
-    <?php endif; ?>
-</div>
+            <nav class="mt-14 flex justify-center" aria-label="<?php esc_attr_e( 'Blog pagination', 'julias-cartoonery' ); ?>">
+                <?php
+                the_posts_pagination( array(
+                    'mid_size'           => 2,
+                    'prev_text'          => '<span class="sr-only">' . esc_html__( 'Previous page', 'julias-cartoonery' ) . '</span><span aria-hidden="true">&larr;</span>',
+                    'next_text'          => '<span class="sr-only">' . esc_html__( 'Next page', 'julias-cartoonery' ) . '</span><span aria-hidden="true">&rarr;</span>',
+                    'screen_reader_text' => esc_html__( 'Blog navigation', 'julias-cartoonery' ),
+                ) );
+                ?>
+            </nav>
+        <?php else : ?>
+            <div class="mt-16 rounded-[2rem] border border-dashed border-gray-200 bg-white/70 px-8 py-16 text-center shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/70">
+                <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-50">
+                    <?php esc_html_e( 'No blog posts found yet.', 'julias-cartoonery' ); ?>
+                </h2>
+                <p class="mt-3 text-gray-600 dark:text-gray-300">
+                    <?php esc_html_e( 'Check back soon for new stories, advice, and updates.', 'julias-cartoonery' ); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+    </section>
+</main>
 
 <?php get_footer(); ?>
