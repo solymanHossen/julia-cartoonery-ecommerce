@@ -1,27 +1,25 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying all single pages
+ */
 
-<main class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-	<section class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-12">
-		<h1 class="text-3xl font-semibold tracking-tight text-slate-950 dark:text-white">
-			Latest posts
-		</h1>
-		<div class="mt-8 space-y-6 text-slate-600 dark:text-slate-300">
-			<?php if ( have_posts() ) : ?>
-				<?php while ( have_posts() ) : the_post(); ?>
-					<article <?php post_class( 'rounded-2xl border border-slate-200/70 p-6 dark:border-slate-800' ); ?>>
-						<h2 class="text-xl font-medium text-slate-950 dark:text-white">
-							<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-						</h2>
-						<div class="mt-3 leading-7">
-							<?php the_excerpt(); ?>
-						</div>
-					</article>
-				<?php endwhile; ?>
-			<?php else : ?>
-				<p>No posts found.</p>
-			<?php endif; ?>
-		</div>
-	</section>
-</main>
+get_header(); ?>
+
+<div class="container mx-auto px-4 lg:px-8 py-12 min-h-[60vh] animate-in fade-in">
+    <?php
+    // Start the Loop.
+    while ( have_posts() ) :
+        the_post();
+
+        // পেজের টাইটেল (যদি আপনি দেখাতে চান, না চাইলে মুছে দিতে পারেন)
+        // echo '<h1 class="font-[\'Bubblegum_Sans\'] text-4xl text-gray-800 dark:text-gray-100 mb-8">' . get_the_title() . '</h1>';
+
+        // এই the_content() ফাংশনটিই হলো আসল ম্যাজিক! 
+        // এটি ওয়ার্ডপ্রেসের শর্টকোড রিড করে আপনার woocommerce/checkout/form-checkout.php এবং cart.php কে কল করবে।
+        the_content();
+
+    endwhile; // End of the loop.
+    ?>
+</div>
 
 <?php get_footer(); ?>
