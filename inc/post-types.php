@@ -80,5 +80,38 @@ function julias_cartoonery_register_post_types() {
     );
     register_post_type( 'characters', $character_args );
 
+    $blog_post_labels = array(
+        'name'                  => __( 'Blog Posts', 'julia-cartoonery' ),
+        'singular_name'         => __( 'Blog Post', 'julia-cartoonery' ),
+        'menu_name'             => __( 'Blog Posts', 'julia-cartoonery' ),
+        'add_new'               => __( 'Add New Blog Post', 'julia-cartoonery' ),
+        'add_new_item'          => __( 'Add New Blog Post', 'julia-cartoonery' ),
+        'edit_item'             => __( 'Edit Blog Post', 'julia-cartoonery' ),
+        'new_item'              => __( 'New Blog Post', 'julia-cartoonery' ),
+        'view_item'             => __( 'View Blog Post', 'julia-cartoonery' ),
+        'all_items'             => __( 'All Blog Posts', 'julia-cartoonery' ),
+        'search_items'          => __( 'Search Blog Posts', 'julia-cartoonery' ),
+        'not_found'             => __( 'No blog posts found.', 'julia-cartoonery' ),
+    );
+    $blog_post_args = array(
+        'labels'              => $blog_post_labels,
+        'public'              => true,
+        'publicly_queryable'  => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'query_var'           => true,
+        'has_archive'         => true,
+        'hierarchical'        => false,
+        'menu_position'       => 7, 
+        'menu_icon'           => 'dashicons-welcome-write-blog',
+        'exclude_from_search' => false,
+        'show_in_rest'        => true,
+        'rewrite'             => array( 'slug' => 'blog', 'with_front' => false ),
+        'supports'            => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments', 'custom-fields', 'revisions' ),
+        // ব্লগ পোস্টগুলোকে ক্যাটাগরি এবং ট্যাগ দিয়ে গ্রুপ করার জন্য
+        'taxonomies'          => array( 'category', 'post_tag' ), 
+    );
+    register_post_type( 'blog_posts', $blog_post_args );
+
 }
 add_action( 'init', 'julias_cartoonery_register_post_types' );
