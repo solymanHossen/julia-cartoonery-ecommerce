@@ -40,7 +40,7 @@ do_action( 'woocommerce_before_single_product' );
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'julias-single-product container mx-auto px-4 lg:px-8 py-8 lg:py-12', $product ); ?>>
     
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-14 max-w-6xl mx-auto">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-14 mx-auto">
         
         <!-- ========== LEFT: Gallery ========== -->
         <div class="w-full lg:w-[50%] xl:w-[45%] shrink-0">
@@ -222,7 +222,7 @@ do_action( 'woocommerce_before_single_product' );
     </div>
 
     <!-- ========== TABS: Description / Reviews ========== -->
-    <div class="max-w-6xl mx-auto mt-12 lg:mt-16">
+    <div class=" mx-auto mt-12 lg:mt-16">
         <?php
         /**
          * Hook: woocommerce_after_single_product_summary
@@ -233,7 +233,7 @@ do_action( 'woocommerce_before_single_product' );
     </div>
 
     <!-- ========== Related Products ========== -->
-    <div class="max-w-6xl mx-auto mt-12 lg:mt-16">
+    <div class=" mx-auto mt-12 lg:mt-16">
         <?php woocommerce_output_related_products(); ?>
     </div>
 
