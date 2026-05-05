@@ -7,6 +7,16 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+// Enforce email-only registration for our custom modern login page
+add_action('init', function() {
+    if (get_option('woocommerce_registration_generate_username') !== 'yes') {
+        update_option('woocommerce_registration_generate_username', 'yes');
+    }
+    if (get_option('woocommerce_registration_generate_password') !== 'yes') {
+        update_option('woocommerce_registration_generate_password', 'yes');
+    }
+});
+
 // 1. AJAX Cart Fragments (Header Cart Count)
 add_filter('woocommerce_add_to_cart_fragments', 'julias_cart_count_fragments', 10, 1);
 function julias_cart_count_fragments($fragments) {

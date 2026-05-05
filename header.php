@@ -76,10 +76,47 @@
                     </a>
                 <?php endif; ?>
 
-                <!-- User Icon -->
-                <a href="<?php echo class_exists('WooCommerce') ? esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ) : esc_url( wp_login_url() ); ?>" class="p-2 text-gray-500 dark:text-gray-400 hover:text-[#B5EAD7] dark:hover:text-emerald-400 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                </a>
+                <!-- User Icon / Avatar -->
+                <?php 
+                $myaccount_page_url = class_exists('WooCommerce') ? esc_url( get_permalink( get_option('woocommerce_myaccount_page_id') ) ) : esc_url( wp_login_url() );
+                $is_logged_in = is_user_logged_in();
+                ?>
+                <div class="relative group flex items-center h-full">
+                    <a href="<?php echo $myaccount_page_url; ?>" class="<?php echo $is_logged_in ? 'p-1.5' : 'p-2'; ?> text-gray-500 dark:text-gray-400 hover:text-[#B5EAD7] dark:hover:text-emerald-400 transition-colors flex items-center justify-center">
+                        <?php if ( $is_logged_in ) : ?>
+                            <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 group-hover:border-[#B5EAD7] dark:group-hover:border-emerald-400 transition-colors shadow-sm">
+                                <?php echo get_avatar( get_current_user_id(), 64, '', 'User Avatar', array( 'class' => 'w-full h-full object-cover' ) ); ?>
+                            </div>
+                        <?php else : ?>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <?php endif; ?>
+                    </a>
+                    
+                    <!-- Dropdown (Only shows if logged in) -->
+                    <?php if ( $is_logged_in ) : ?>
+                        <div class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 overflow-hidden transform origin-top-right group-hover:scale-100 scale-95">
+                            <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700/50">
+                                <p class="text-sm font-bold text-slate-800 dark:text-slate-100 truncate">
+                                    <?php 
+                                    $current_user = wp_get_current_user(); 
+                                    echo esc_html( $current_user->display_name ); 
+                                    ?>
+                                </p>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 truncate">
+                                    <?php echo esc_html( $current_user->user_email ); ?>
+                                </p>
+                            </div>
+                            <div class="p-2">
+                                <a href="<?php echo $myaccount_page_url; ?>" class="flex items-center px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-[#FFB7C5] hover:bg-slate-50 dark:hover:bg-slate-700/50 rounded-lg transition-colors">
+                                    Dashboard
+                                </a>
+                                <a href="<?php echo esc_url( wc_logout_url() ); ?>" class="flex items-center px-3 py-2 mt-1 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors">
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
                 
                 <!-- Mobile Hamburger -->
                 <button id="mobile-menu-open" class="lg:hidden p-3 text-gray-500 dark:text-gray-400">
