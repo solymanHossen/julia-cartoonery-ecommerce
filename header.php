@@ -51,17 +51,28 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </button>
 
+                <!-- Wishlist Icon with Pink Badge -->
+                <a href="#" class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg>
+                    
+                    <?php 
+                    $wishlist = function_exists('julias_get_wishlist') ? julias_get_wishlist() : [];
+                    $wishlist_count = count($wishlist); 
+                    ?>
+                    <span class="julias-wishlist-count absolute -top-1 -right-1 bg-[#FFB7C5] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full transition-transform duration-300 transform scale-100 <?php echo $wishlist_count == 0 ? 'hidden' : ''; ?>">
+                        <?php echo esc_html( $wishlist_count ); ?>
+                    </span>
+                </a>
+
                 <!-- Cart Icon with Red Badge -->
                 <?php if ( class_exists( 'WooCommerce' ) ) : ?>
                     <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                         
                         <?php $cart_count = WC()->cart->get_cart_contents_count(); ?>
-                        <?php if ( $cart_count > 0 ) : ?>
-                            <span class="absolute -top-1 -right-1 bg-red-400 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                                <?php echo esc_html( $cart_count ); ?>
-                            </span>
-                        <?php endif; ?>
+                        <span class="julias-cart-count absolute -top-1 -right-1 bg-red-400 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full transition-transform duration-300 transform scale-100 <?php echo $cart_count == 0 ? 'hidden' : ''; ?>">
+                            <?php echo esc_html( $cart_count ); ?>
+                        </span>
                     </a>
                 <?php endif; ?>
 
