@@ -7,13 +7,13 @@ do_action( 'woocommerce_before_customer_login_form' );
 $enable_registration = 'yes' === get_option( 'woocommerce_enable_myaccount_registration' );
 ?>
 
-<div class="max-w-md mx-auto my-16 relative" id="customer_login">
+<div class="w-full max-w-md mx-auto px-4 sm:px-0 my-8 lg:my-16 relative" id="customer_login">
     
     <!-- Decorative background elements -->
-    <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#FFB7C5]/30 dark:bg-[#FFB7C5]/10 rounded-full blur-3xl pointer-events-none z-0"></div>
-    <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-[#A8D8EA]/30 dark:bg-[#A8D8EA]/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+    <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#FFB7C5]/30 dark:bg-[#FFB7C5]/10 rounded-full blur-3xl pointer-events-none z-0 hidden sm:block"></div>
+    <div class="absolute -bottom-10 -right-10 w-60 h-60 bg-[#A8D8EA]/30 dark:bg-[#A8D8EA]/10 rounded-full blur-3xl pointer-events-none z-0 hidden sm:block"></div>
 
-    <div class="relative z-10 bg-white dark:bg-slate-800 rounded-[40px] shadow-[0_20px_60px_-15px_rgba(15,23,42,0.08)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden border border-white/50 dark:border-slate-700/50 p-8 lg:p-10">
+    <div class="relative z-10 bg-white dark:bg-slate-800 rounded-[32px] sm:rounded-[40px] shadow-[0_20px_60px_-15px_rgba(15,23,42,0.08)] dark:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.5)] overflow-hidden border border-white/50 dark:border-slate-700/50 p-6 sm:p-8 lg:p-10">
         
         <?php if ( $enable_registration ) : ?>
             <!-- Tab Toggle -->
@@ -21,8 +21,14 @@ $enable_registration = 'yes' === get_option( 'woocommerce_enable_myaccount_regis
                 <!-- Active background pill -->
                 <div id="tab-active-bg" class="absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%-6px)] bg-white dark:bg-slate-600 rounded-xl shadow-sm transition-transform duration-300 ease-in-out"></div>
                 
-                <button type="button" id="tab-login" class="relative z-10 flex-1 py-3 text-sm font-bold text-slate-800 dark:text-white transition-colors cursor-pointer">Sign In</button>
-                <button type="button" id="tab-register" class="relative z-10 flex-1 py-3 text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white transition-colors cursor-pointer">Create Account</button>
+                <button type="button" id="tab-login" class="relative z-10 flex-1 py-3 text-sm font-bold text-slate-800 dark:text-white transition-colors cursor-pointer flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path></svg>
+                    <span>Sign In</span>
+                </button>
+                <button type="button" id="tab-register" class="relative z-10 flex-1 py-3 text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white transition-colors cursor-pointer flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                    <span>Create Account</span>
+                </button>
             </div>
         <?php endif; ?>
 
@@ -61,7 +67,7 @@ $enable_registration = 'yes' === get_option( 'woocommerce_enable_myaccount_regis
                 </div>
                 
                 <?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
-                <button type="submit" class="woocommerce-button button woocommerce-form-login__submit w-full py-4 bg-slate-800 dark:bg-slate-700 hover:bg-[#FFB7C5] dark:hover:bg-[#FFB7C5] text-white rounded-2xl font-bold text-lg transition-all shadow-[0_4px_15px_rgba(15,23,42,0.1)] hover:shadow-[0_4px_20px_rgba(255,183,197,0.4)] flex items-center justify-center gap-2 group" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">
+                <button type="submit" class="woocommerce-button button woocommerce-form-login__submit w-full !flex py-4 bg-slate-800 dark:bg-slate-700 hover:bg-[#FFB7C5] dark:hover:bg-[#FFB7C5] text-white rounded-2xl font-bold text-lg transition-all shadow-[0_4px_15px_rgba(15,23,42,0.1)] hover:shadow-[0_4px_20px_rgba(255,183,197,0.4)] flex items-center justify-center gap-2 group" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">
                     <?php esc_html_e( 'Sign In', 'woocommerce' ); ?>
                     <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                 </button>
@@ -90,7 +96,7 @@ $enable_registration = 'yes' === get_option( 'woocommerce_enable_myaccount_regis
                 <?php do_action( 'woocommerce_register_form' ); ?>
                 <?php wp_nonce_field( 'woocommerce-register', 'woocommerce-register-nonce' ); ?>
                 
-                <button type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit w-full py-4 mt-2 bg-[#FFB7C5] hover:bg-[#ff9eaa] text-white rounded-2xl font-bold text-lg transition-all shadow-[0_4px_15px_rgba(255,183,197,0.3)] hover:shadow-[0_4px_20px_rgba(255,183,197,0.5)] flex items-center justify-center gap-2 group" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>">
+                <button type="submit" class="woocommerce-Button woocommerce-button button woocommerce-form-register__submit w-full !flex py-4 mt-2 bg-[#FFB7C5] hover:bg-[#ff9eaa] text-white rounded-2xl font-bold text-lg transition-all shadow-[0_4px_15px_rgba(255,183,197,0.3)] hover:shadow-[0_4px_20px_rgba(255,183,197,0.5)] flex items-center justify-center gap-2 group" name="register" value="<?php esc_attr_e( 'Register', 'woocommerce' ); ?>">
                     <?php esc_html_e( 'Create Account', 'woocommerce' ); ?>
                     <svg class="w-5 h-5 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
                 </button>
