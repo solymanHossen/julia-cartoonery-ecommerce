@@ -176,7 +176,7 @@
 
   .woocommerce-tabs .wc-tabs,
   .woocommerce-tabs ul.tabs {
-    @apply !flex !gap-1.5 !m-0 !mb-6 !p-1.5 !list-none !border-none !bg-slate-100 dark:!bg-slate-800 !rounded-2xl !overflow-hidden;
+    @apply !flex !gap-1.5 !m-0 !mb-6 !p-1.5 !list-none !border-none !border-b-0 !bg-slate-100 dark:!bg-slate-800 !rounded-2xl !overflow-hidden;
   }
 
   .woocommerce-tabs .wc-tabs li,
@@ -188,6 +188,13 @@
   .woocommerce-tabs .wc-tabs li::after,
   .woocommerce-tabs ul.tabs li::before,
   .woocommerce-tabs ul.tabs li::after {
+    @apply !hidden;
+  }
+
+  .woocommerce-tabs .wc-tabs::before,
+  .woocommerce-tabs .wc-tabs::after,
+  .woocommerce-tabs ul.tabs::before,
+  .woocommerce-tabs ul.tabs::after {
     @apply !hidden;
   }
 
