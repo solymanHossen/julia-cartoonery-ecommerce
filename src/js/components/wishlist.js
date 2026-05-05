@@ -114,7 +114,12 @@ export const initWishlist = ($) => {
         openWishlistDrawer();
     });
 
-    $('#wishlist-drawer-close, #wishlist-drawer').on('click', function (e) {
+    $('#wishlist-drawer-close').on('click', function (e) {
+        e.preventDefault();
+        closeWishlistDrawer();
+    });
+
+    $('#wishlist-drawer').on('click', function (e) {
         if (e.target === this) {
             closeWishlistDrawer();
         }
