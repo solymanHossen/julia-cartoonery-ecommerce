@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&display=swap');
 @import "tailwindcss";
 
 @source "../../**/*.php";
@@ -26,129 +27,26 @@
   }
 }
 
-/* Single Product Page Fixes */
-.woocommerce-product-gallery {
-  @apply rounded-3xl overflow-hidden bg-gray-50 dark:bg-slate-700;
-}
+@layer components {
 
-.woocommerce-product-gallery__image img {
-  @apply w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal hover:scale-110 transition-transform duration-700;
-}
+  /* WooCommerce Sorting Dropdown override */
+  form.woocommerce-ordering select {
+    @apply bg-transparent font-bold text-gray-600 outline-none cursor-pointer border-none p-0 appearance-none pr-4;
+  }
 
-/* Quantity Input Styling */
-.quantity {
-  @apply flex items-center bg-gray-100 dark:bg-slate-700 rounded-full inline-flex mr-4;
-}
+  /* WooCommerce Add to Cart Button override */
+  .custom-cart-button a.button {
+    @apply w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-[#A8D8EA] hover:text-white transition-colors text-[0px] p-0 min-w-0;
+  }
 
-.quantity input[type="number"] {
-  @apply w-12 h-12 text-center font-bold text-gray-800 dark:text-gray-100 bg-transparent outline-none border-none;
-}
+  /* Adding the SVG icon via CSS content for the Add to Cart button */
+  .custom-cart-button a.button::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>');
+    @apply flex items-center justify-center w-full h-full;
+  }
 
-/* Single Add to Cart Button */
-.single_add_to_cart_button {
-  @apply py-3 px-8 text-lg font-bold bg-[#A8D8EA] dark:bg-sky-500 hover:bg-sky-400 dark:hover:bg-sky-600 text-white rounded-xl transition-colors cursor-pointer;
-}
-
-/* Product Tabs (Reviews & Description) */
-.woocommerce-tabs ul.tabs {
-  @apply flex gap-6 border-b border-gray-100 dark:border-slate-700 mb-8 p-0 list-none;
-}
-
-.woocommerce-tabs ul.tabs li {
-  @apply pb-4 font-bold text-gray-500 dark:text-gray-400 cursor-pointer hover:text-[#FFB7C5];
-}
-
-.woocommerce-tabs ul.tabs li.active {
-  @apply border-b-2 border-[#FFB7C5] text-gray-800 dark:text-gray-100;
-}
-
-/* =========================================
-   Cart Page CSS Magic (Table to Cards)
-   ========================================= */
-
-/* Hide the default table headers */
-.woocommerce-cart-form__contents thead {
-  @apply hidden;
-}
-
-/* Transform Table Rows into Beautiful React Cards */
-.woocommerce-cart-form__contents tbody tr.cart_item {
-  @apply flex items-center bg-white dark:bg-slate-800 rounded-3xl p-4 shadow-sm border border-gray-50 dark:border-slate-700 mb-4 gap-4 relative w-full;
-}
-
-/* Fix product link colors */
-.woocommerce-cart-form__contents td.product-name a {
-  @apply text-gray-800 dark:text-gray-200 hover:text-[#A8D8EA] transition-colors;
-}
-
-/* Remove default table borders */
-.shop_table td,
-.shop_table th {
-  @apply border-none p-0;
-}
-
-/* Cart Totals Sidebar Styling */
-.cart_totals table {
-  @apply w-full mb-6;
-}
-
-.cart_totals th {
-  @apply text-left font-normal text-gray-500 dark:text-gray-400 py-3;
-}
-
-.cart_totals td {
-  @apply text-right font-bold text-gray-800 dark:text-gray-100 py-3;
-}
-
-.cart_totals tr.order-total th,
-.cart_totals tr.order-total td {
-  @apply text-xl text-[#FFB7C5] dark:text-pink-400 border-t border-gray-100 dark:border-slate-700 mt-4 pt-4;
-}
-
-.checkout-button {
-  @apply block w-full text-center py-4 text-lg font-bold bg-[#A8D8EA] dark:bg-sky-500 hover:bg-sky-400 dark:hover:bg-sky-600 text-white rounded-xl transition-colors;
-}
-
-/* =========================================
-   Checkout Page CSS Magic
-   ========================================= */
-
-/* Form Inputs Styling */
-.woocommerce-input-wrapper input,
-.woocommerce-input-wrapper textarea {
-  @apply w-full bg-gray-50 dark:bg-slate-900 border border-gray-200 dark:border-slate-700 rounded-xl p-3 outline-none focus:border-[#A8D8EA] dark:focus:border-sky-500 dark:text-white transition-colors;
-}
-
-.woocommerce-form-row label {
-  @apply block text-sm font-bold text-gray-600 dark:text-gray-400 mb-2;
-}
-
-.form-row {
-  @apply mb-4;
-}
-
-/* Order Review Table */
-.woocommerce-checkout-review-order-table th {
-  @apply text-left text-gray-500 font-normal py-3 border-b border-gray-100 dark:border-slate-700;
-}
-
-.woocommerce-checkout-review-order-table td {
-  @apply text-right font-bold text-gray-800 dark:text-gray-100 py-3 border-b border-gray-100 dark:border-slate-700;
-}
-
-/* Payment Methods Area */
-#payment {
-  @apply mt-6 bg-gray-50 dark:bg-slate-900 p-4 rounded-2xl;
-}
-
-.wc_payment_method {
-  @apply flex items-center gap-3 p-3 border border-transparent dark:border-slate-700 rounded-xl cursor-pointer hover:bg-white dark:hover:bg-slate-800 transition-colors mb-2 list-none;
-}
-
-.payment_box {
-  @apply text-sm text-gray-500 p-4 bg-white dark:bg-slate-800 rounded-xl mt-2 mb-4 shadow-sm;
-}
-
-#place_order {
-  @apply w-full py-4 mt-6 text-lg font-bold bg-[#A8D8EA] dark:bg-sky-500 hover:bg-sky-400 text-white rounded-xl transition-colors cursor-pointer;
+  /* Override WooCommerce Price Color */
+  .custom-price-color .amount {
+    @apply text-[#FFB7C5] font-bold text-xl;
+  }
 }
