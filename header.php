@@ -52,7 +52,7 @@
                 </button>
 
                 <!-- Wishlist Icon with Pink Badge -->
-                <a href="#" class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
+                <button type="button" id="wishlist-drawer-open" class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg>
                     
                     <?php 
@@ -62,7 +62,7 @@
                     <span class="julias-wishlist-count absolute -top-1 -right-1 bg-[#FFB7C5] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full transition-transform duration-300 transform scale-100 <?php echo $wishlist_count == 0 ? 'hidden' : ''; ?>">
                         <?php echo esc_html( $wishlist_count ); ?>
                     </span>
-                </a>
+                </button>
 
                 <!-- Cart Icon with Red Badge -->
                 <?php if ( class_exists( 'WooCommerce' ) ) : ?>
@@ -111,5 +111,28 @@
                 }
                 ?>
             </nav>
+        </div>
+    </div>
+
+    <!-- WISHLIST DRAWER -->
+    <div id="wishlist-drawer" class="fixed inset-0 z-[70] bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div id="wishlist-drawer-content" class="absolute right-0 top-0 bottom-0 w-[340px] max-w-[90vw] bg-white dark:bg-slate-900 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-400">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-5 border-b border-slate-100 dark:border-slate-800">
+                <div class="flex items-center gap-2 text-[#FFB7C5]">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                    <h2 class="font-['Bubblegum_Sans'] text-2xl">Wishlist</h2>
+                </div>
+                <button id="wishlist-drawer-close" class="p-2  text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-50 dark:hover:bg-slate-800">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Items Area -->
+            <div id="wishlist-drawer-items" class="flex-1 overflow-y-auto relative bg-slate-50 dark:bg-slate-900/50">
+                <div class="flex flex-col items-center justify-center h-full text-slate-400">
+                    <svg class="w-8 h-8 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                </div>
+            </div>
         </div>
     </div>
