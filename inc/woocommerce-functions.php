@@ -90,35 +90,75 @@ function julias_get_wishlist_content_ajax() {
     ob_start();
     
     if (empty($wishlist)) {
-        echo '<div class="flex flex-col items-center justify-center h-full text-center p-6">';
-        echo '<svg class="w-16 h-16 text-slate-300 dark:text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z" /></svg>';
-        echo '<h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 mb-2 font-[\'Bubblegum_Sans\']">Your wishlist is empty</h3>';
-        echo '<p class="text-sm text-slate-500 dark:text-slate-400">Looks like you haven\'t added anything to your wishlist yet.</p>';
+        echo '<div class="flex flex-col items-center justify-center h-full text-center p-8">';
+        echo '<div class="w-24 h-24 bg-slate-50 dark:bg-slate-800/50 rounded-[28px] flex items-center justify-center mb-6">';
+        echo '<svg class="w-10 h-10 text-slate-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>';
+        echo '</div>';
+        echo '<h3 class="text-xl font-bold text-slate-800 dark:text-slate-100 mb-2 font-[\'Bubblegum_Sans\']">Empty Wishlist</h3>';
+        echo '<p class="text-sm font-medium text-slate-400 dark:text-slate-500">Your minimal wishlist is waiting for items.</p>';
         echo '</div>';
     } else {
-        echo '<ul class="flex flex-col gap-4 p-4">';
+        echo '<ul class="flex flex-col gap-3 p-4">';
+        global $product;
         foreach ($wishlist as $product_id) {
             $product = wc_get_product($product_id);
             if (!$product || !$product->is_visible()) continue;
             
-            $image = wp_get_attachment_image($product->get_image_id(), 'thumbnail', false, ['class' => 'w-full h-full object-cover rounded-lg']);
             $title = $product->get_name();
             $price = $product->get_price_html();
             $url = $product->get_permalink();
+            $categories = strip_tags(wc_get_product_category_list($product->get_id(), ', '));
             
-            echo '<li class="flex items-center gap-4 bg-white dark:bg-slate-800 p-3 rounded-[16px] shadow-sm border border-slate-100 dark:border-slate-700 relative group">';
-            echo '<a href="' . esc_url($url) . '" class="w-16 h-16 shrink-0 bg-slate-50 dark:bg-slate-700 rounded-lg overflow-hidden">' . $image . '</a>';
-            echo '<div class="flex-1 min-w-0">';
-            echo '<a href="' . esc_url($url) . '" class="block text-sm font-bold text-slate-800 dark:text-slate-100 truncate hover:text-[#FFB7C5] transition-colors">' . esc_html($title) . '</a>';
-            echo '<div class="text-xs font-bold text-[#FFB7C5] mt-1">' . wp_kses_post($price) . '</div>';
+            echo '<li class="flex bg-white dark:bg-slate-800 p-3 rounded-[28px] shadow-[0_4px_20px_rgba(15,23,42,0.03)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] border border-slate-50 dark:border-slate-700/50 transition-all duration-300 relative group">';
+            
+            // Image Area
+            echo '<div class="w-[84px] h-[84px] shrink-0 rounded-[20px] overflow-hidden bg-slate-50 dark:bg-slate-700 mr-4 relative">';
+            echo '<a href="' . esc_url($url) . '" class="block w-full h-full">';
+            echo wp_get_attachment_image($product->get_image_id(), 'woocommerce_thumbnail', false, ['class' => 'w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105 mix-blend-multiply dark:mix-blend-normal']);
+            echo '</a>';
             echo '</div>';
             
-            // Remove button
-            echo '<button type="button" class="julias-wishlist-btn absolute -top-2 -right-2 w-7 h-7 bg-white dark:bg-slate-700 rounded-full shadow-md text-red-400 hover:text-red-600 flex items-center justify-center transition-transform hover:scale-110 opacity-0 group-hover:opacity-100" data-product-id="' . esc_attr($product_id) . '" aria-label="Remove from wishlist">';
-            echo '<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+            // Details Area
+            echo '<div class="flex flex-1 flex-col justify-center min-w-0 py-0.5">';
+            
+            // Category
+            if ($categories) {
+                echo '<div class="text-[0.6rem] font-bold uppercase tracking-[0.15em] text-slate-400 dark:text-slate-500 mb-0.5 truncate">' . esc_html($categories) . '</div>';
+            }
+            // Title
+            echo '<a href="' . esc_url($url) . '" class="block text-[0.9rem] font-extrabold text-slate-800 dark:text-slate-100 leading-snug mb-2 hover:text-[#FFB7C5] transition-colors truncate">' . esc_html($title) . '</a>';
+            
+            // Bottom Row: Price + Actions
+            echo '<div class="flex items-end justify-between w-full">';
+            
+            // Price (Stacked with minimal-price-stack class handled in CSS, or inline)
+            // Using a wrapper that we will style in CSS for the stacked look
+            echo '<div class="minimal-price-stack text-[#FFB7C5] leading-none">';
+            echo wp_kses_post($price);
+            echo '</div>';
+            
+            // Actions
+            echo '<div class="flex items-center gap-2">';
+            
+            // Remove Button
+            echo '<button type="button" class="julias-wishlist-btn flex items-center justify-center w-[34px] h-[34px] rounded-full bg-red-50/80 dark:bg-red-500/10 text-red-400 hover:bg-red-100 hover:text-red-500 transition-colors" data-product-id="' . esc_attr($product_id) . '" aria-label="Remove from wishlist" title="Remove">';
+            echo '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>';
             echo '</button>';
+            
+            // Native Add to Cart wrapper with minimal styles override
+            echo '<div class="minimal-cart-btn shrink-0 flex items-center justify-center">';
+            ob_start();
+            woocommerce_template_loop_add_to_cart();
+            echo ob_get_clean();
+            echo '</div>';
+            
+            echo '</div>'; // End Actions
+            echo '</div>'; // End Bottom Row
+            
+            echo '</div>'; // End Details Area
             echo '</li>';
         }
+        wp_reset_postdata();
         echo '</ul>';
     }
     
