@@ -32,7 +32,11 @@ $wishlist         = function_exists('julias_get_wishlist') ? julias_get_wishlist
 $is_in_wishlist   = in_array( $product_id, $wishlist );
 ?>
 
-<?php do_action( 'woocommerce_before_single_product' ); ?>
+<?php
+// Suppress default WooCommerce notices on single product — we use custom toast.js
+remove_action( 'woocommerce_before_single_product', 'woocommerce_output_all_notices', 10 );
+do_action( 'woocommerce_before_single_product' );
+?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'julias-single-product container mx-auto px-4 lg:px-8 py-8 lg:py-12', $product ); ?>>
     
@@ -146,7 +150,7 @@ $is_in_wishlist   = in_array( $product_id, $wishlist );
 
             <!-- Description -->
             <?php if ( $display_desc ) : ?>
-            <div class="mb-8 text-[0.95rem] leading-relaxed text-slate-600 dark:text-slate-400 font-medium max-w-lg">
+            <div class="mb-8 text-[0.95rem] leading-relaxed text-slate-600 dark:text-slate-400 font-medium">
                 <?php echo wp_kses_post( $display_desc ); ?>
             </div>
             <?php endif; ?>

@@ -86,4 +86,51 @@ export function initSingleProduct($) {
       }
     });
   }
+
+  // ==============================
+  // 4. AJAX Add to Cart (custom toast)
+  // ==============================
+  const cartForm = productPage.querySelector('form.julias-cart-form');
+  if (cartForm) {
+    cartForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const submitBtn = cartForm.querySelector('button[name="add-to-cart"]');
+      if (!submitBtn) return;
+
+      const productId = submitBtn.value;
+      const quantity  = cartForm.querySelector('input.qty')?.value || 1;
+
+      // Disable button during request
+      submitBtn.disabled = true;
+      const originalHTML = submitBtn.innerHTML;
+      submitBtn.innerHTML = `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Adding...`;
+
+      $.post(
+        wc_add_to_cart_params?.wc_ajax_url?.replace('%%endpoint%%', 'add_to_cart') || '/?wc-ajax=add_to_cart',
+        {
+          product_id: productId,
+          quantity: quantity,
+        },
+        function (response) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalHTML;
+
+          if (response.error) {
+            if (window.showToast) window.showToast(response.error, 'error');
+            return;
+          }
+
+          // Trigger WooCommerce cart fragments refresh
+          $(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $(submitBtn)]);
+
+          // The toast is already triggered by the 'added_to_cart' listener in app.js
+        }
+      ).fail(function () {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+        if (window.showToast) window.showToast('Something went wrong. Please try again.', 'error');
+      });
+    });
+  }
 }
