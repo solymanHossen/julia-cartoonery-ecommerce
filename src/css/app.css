@@ -136,4 +136,89 @@
   .minimal-cart-btn .added_to_cart.wc-forward {
     display: none !important;
   }
+
+  /* ===== Single Product Page ===== */
+
+  /* Price on single product */
+  .julias-single-price ins {
+    @apply no-underline;
+  }
+
+  .julias-single-price del {
+    @apply text-slate-300 dark:text-slate-600 text-xl font-bold mr-2;
+  }
+
+  /* Main image fade transition */
+  #julias-main-image {
+    transition: opacity 0.2s ease;
+  }
+
+  /* Thumbnail scrollbar */
+  .julias-thumb-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 183, 197, 0.3) transparent;
+  }
+
+  .julias-thumb-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .julias-thumb-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .julias-thumb-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 183, 197, 0.3);
+    border-radius: 100px;
+  }
+
+  /* WooCommerce Tabs Override */
+  .woocommerce-tabs .wc-tabs {
+    @apply flex gap-2 border-b-0 mb-6 p-1.5 bg-slate-100 dark:bg-slate-800 rounded-2xl list-none;
+  }
+
+  .woocommerce-tabs .wc-tabs li {
+    @apply m-0 p-0 list-none;
+  }
+
+  .woocommerce-tabs .wc-tabs li a {
+    @apply block px-5 py-2.5 rounded-xl text-sm font-bold text-slate-500 dark:text-slate-400 transition-all duration-300 no-underline hover:text-slate-800 dark:hover:text-white;
+  }
+
+  .woocommerce-tabs .wc-tabs li.active a {
+    @apply bg-white dark:bg-slate-700 text-slate-800 dark:text-white shadow-sm;
+  }
+
+  .woocommerce-tabs .woocommerce-Tabs-panel {
+    @apply bg-white dark:bg-slate-800 rounded-[28px] p-6 sm:p-8 shadow-[0_4px_20px_rgba(15,23,42,0.04)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)] border border-slate-100 dark:border-slate-700/50;
+  }
+
+  .woocommerce-tabs .woocommerce-Tabs-panel h2 {
+    @apply text-2xl font-extrabold text-slate-800 dark:text-white mb-4 font-['Bubblegum_Sans'];
+  }
+
+  .woocommerce-tabs .woocommerce-Tabs-panel p {
+    @apply text-slate-600 dark:text-slate-400 leading-relaxed;
+  }
+
+  /* Related Products Override */
+  .related.products > h2 {
+    @apply text-2xl font-extrabold text-slate-800 dark:text-white mb-6 font-['Bubblegum_Sans'];
+  }
+
+  /* GLightbox skin overrides */
+  .glightbox-clean .gslide-description {
+    background: transparent !important;
+  }
+
+  .glightbox-clean .gclose,
+  .glightbox-clean .gnext,
+  .glightbox-clean .gprev {
+    @apply bg-white/90 dark:bg-slate-800/90 backdrop-blur-md rounded-full shadow-lg;
+  }
+
+  /* Quantity input in single product */
+  .julias-cart-form input.qty {
+    -moz-appearance: textfield;
+  }
 }
