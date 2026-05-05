@@ -5,6 +5,7 @@ import { initTheme } from './components/theme.js';
 import { initCharactersArchive } from './components/charactersArchive.js';
 import { initPlaygroundGames } from './components/playgroundGames.js';
 import { initCreateCharacter } from './components/createCharacter.js';
+import { showToast } from './components/toast.js';
 (function ($) {
   "use strict";
 
@@ -15,6 +16,10 @@ import { initCreateCharacter } from './components/createCharacter.js';
     initCharactersArchive($);
     initPlaygroundGames($);
     initCreateCharacter($);
+    $(document.body).on('added_to_cart', function (event, fragments, cart_hash, $button) {
+      showToast("Item added to your cart.", "success");
+    });
+
   });
 
 })(jQuery);
