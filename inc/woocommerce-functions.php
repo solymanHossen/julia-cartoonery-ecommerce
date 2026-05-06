@@ -76,7 +76,7 @@ function julias_toggle_wishlist_ajax() {
     ob_start();
     $wishlist_count = count($wishlist);
     ?>
-    <span class="julias-wishlist-count absolute -top-1 -right-1 bg-[#FFB7C5] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full transition-transform duration-300 transform scale-100 <?php echo $wishlist_count == 0 ? 'hidden' : ''; ?>">
+    <span class="julias-wishlist-count absolute -top-1 -right-1 bg-red-400  text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full transition-transform duration-300 transform scale-100 <?php echo $wishlist_count == 0 ? 'hidden' : ''; ?>">
         <?php echo esc_html($wishlist_count); ?>
     </span>
     <?php
