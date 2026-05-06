@@ -62,7 +62,7 @@ export const initCreateCharacter = ($) => {
     // --- 1. Initial Skeleton Render ---
     const renderSkeleton = () => {
         const html = `
-            <div class="max-w-5xl mx-auto bg-white dark:bg-slate-800 rounded-[50px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-none overflow-hidden border-4 border-white dark:border-slate-700">
+            <div class="max-w-5xl my-6 md:my-8 lg:my-12  mx-auto bg-white dark:bg-slate-800 rounded-[50px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] dark:shadow-none overflow-hidden border-4 border-white dark:border-slate-700">
                 
                 <!-- Magical Header -->
                 <div class="bg-gradient-to-r from-[#FFB7C5] via-[#A8D8EA] to-[#B5EAD7] p-12 text-center relative overflow-hidden">

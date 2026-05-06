@@ -69,7 +69,7 @@ export function initPlaygroundGames($) {
                       <h1 class="font-['Bubblegum_Sans'] text-5xl md:text-6xl text-gray-800 dark:text-gray-100 mb-4">The Playground</h1>
                       <p class="text-xl text-gray-500 dark:text-gray-400">Choose a fun mini-game to play!</p>
                   </div>
-                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8  mx-auto">
                       
                       <!-- Memory Match -->
                       <div data-game="memory" class="game-start-card cursor-pointer flex flex-col items-center p-8 text-center bg-gradient-to-b from-blue-50 to-white dark:from-sky-900/20 dark:to-slate-800 rounded-[40px] shadow-sm hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] dark:hover:shadow-[0_20px_40px_rgb(0,0,0,0.3)] transition-all duration-500 ease-out hover:-translate-y-2 hover:scale-[1.02] border-2 border-transparent hover:border-[#A8D8EA] dark:hover:border-sky-500 group">

@@ -3,7 +3,7 @@
 <main class="relative overflow-hidden">
     <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-72 bg-gradient-to-b from-[#FFB7C5]/20 via-transparent to-transparent dark:from-pink-500/10"></div>
 
-    <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+    <section class="container mx-auto px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <div class="mx-auto max-w-3xl text-center">
             <span class="mb-4 inline-flex items-center rounded-full bg-[#A8D8EA]/20 px-4 py-1 text-sm font-semibold text-[#5F9DB3] dark:bg-sky-500/15 dark:text-sky-300">
                 <?php esc_html_e( 'Parenting & Play', 'julias-cartoonery' ); ?>

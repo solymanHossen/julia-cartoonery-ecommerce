@@ -19,7 +19,7 @@ get_header(); ?>
     </div>
 
     <!-- 3D Bookshelf Section -->
-    <div class="max-w-5xl mx-auto relative mt-12">
+    <div class="relative mt-12">
         <!-- The White translucent background & Wooden Shelf -->
         <div class="bg-white/60 dark:bg-slate-800/50 backdrop-blur-sm rounded-t-3xl pt-16 pb-4 px-8 border-b-[16px] border-[#d4a373] dark:border-[#8b5a2b] shadow-[0_15px_30px_rgba(0,0,0,0.1)] flex justify-center gap-8 lg:gap-16 flex-wrap">
             

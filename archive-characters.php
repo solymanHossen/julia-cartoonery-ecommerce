@@ -74,7 +74,7 @@ get_header(); ?>
         </div>
 
         <!-- Characters Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10  mx-auto">
             <?php if (have_posts()):
                 while (have_posts()):
                     the_post(); ?>

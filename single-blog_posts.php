@@ -3,7 +3,7 @@
 <main class="relative overflow-hidden py-12 sm:py-16">
     <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-80 bg-[radial-gradient(circle_at_top,_rgba(255,183,197,0.25),_transparent_55%)] dark:bg-[radial-gradient(circle_at_top,_rgba(255,127,156,0.12),_transparent_55%)]"></div>
 
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <?php while ( have_posts() ) : the_post(); ?>
             <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => get_post_type_archive_link( 'blog_posts' ), 'text' => __( 'Back to Blog', 'julias-cartoonery' ) ) ); ?>
 

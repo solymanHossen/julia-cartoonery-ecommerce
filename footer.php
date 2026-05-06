@@ -1,4 +1,4 @@
-<footer class="bg-white dark:bg-slate-900 pt-16 pb-8 border-t border-gray-100 dark:border-slate-800 mt-20 relative overflow-hidden transition-colors">
+<footer class="bg-white dark:bg-slate-900 pt-16 pb-8 border-t border-gray-100 dark:border-slate-800 relative overflow-hidden transition-colors">
         <!-- Background Blur Blobs -->
         <div class="absolute top-0 left-0 w-64 h-64 bg-[#FFB7C5]/10 dark:bg-pink-900/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         <div class="absolute bottom-0 right-0 w-64 h-64 bg-[#A8D8EA]/10 dark:bg-sky-900/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
