@@ -86,17 +86,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     </div>
                 <?php endif; ?>
 
-                <!-- Payment Method -->
-                <div class="checkout-card" data-step="4">
-                    <div class="card-header">
-                        <div class="step-badge">3</div>
-                        <h2 class="card-title">Payment Method</h2>
-                    </div>
-                    <div class="card-body">
-                        <?php do_action( 'woocommerce_checkout_order_review' ); ?>
-                    </div>
-                </div>
-
                 <!-- Desktop: Back to Cart Link -->
                 <div class="back-to-cart">
                     <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="back-link">
@@ -113,12 +102,13 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     
                     <!-- Order Summary Header -->
                     <div class="order-summary-header">
-                        <h3 class="order-summary-title">Order Summary</h3>
+                        <h3 class="order-summary-title">Review &amp; Payment</h3>
+                        <p class="order-summary-kicker">Confirm items, shipping, and payment before placing the order.</p>
                         <div class="order-details">
                             <svg class="order-icon" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M2 3a1 1 0 011-1h2.15a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06m0 0a1 1 0 001.037 1.852m0 0L9.5 15.5m-7.5-4l7.5 4m0 0l4 2.372c.537.317 1.29.004 1.469-.797l.821-4.91a1 1 0 00-.44-1.06m0 0L9.5 9.5"></path>
                             </svg>
-                            <span id="cart-items-count">Order Details</span>
+                            <span id="cart-items-count">Secure Order Review</span>
                         </div>
                     </div>
 
@@ -148,19 +138,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                     <button type="submit" name="apply_coupon" class="coupon-button">Apply</button>
                                 </div>
                             </details>
-                        </div>
-
-                        <!-- Place Order Button -->
-                        <div class="place-order-section">
-                            <?php wc_get_template( 'checkout/terms.php' ); ?>
-                            <?php do_action( 'woocommerce_review_order_before_submit' ); ?>
-                            
-                            <button type="submit" class="place-order-button" name="woocommerce_checkout_place_order" id="place_order" value="<?php esc_attr_e( 'Place Order', 'woocommerce' ); ?>" data-value="<?php esc_attr_e( 'Place Order', 'woocommerce' ); ?>">
-                                <?php esc_html_e( 'Complete Purchase', 'woocommerce' ); ?>
-                            </button>
-                            
-                            <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
-                            <?php wp_nonce_field( 'woocommerce-process_checkout', 'woocommerce-process-checkout-nonce' ); ?>
                         </div>
 
                         <!-- Trust Signals -->

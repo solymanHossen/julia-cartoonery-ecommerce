@@ -17,6 +17,7 @@ export function initCheckout($) {
       1: { name: "Contact", fields: ["email", "phone"] },
       2: { name: "Shipping", fields: ["address", "city", "country", "shipping_method"] },
       3: { name: "Payment", fields: ["payment_method"] },
+      4: { name: "Review", fields: [] },
     },
     validationRules: {
       email: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
@@ -68,6 +69,14 @@ export function initCheckout($) {
                 <span class="step-checkmark" style="display:none;">✓</span>
               </div>
               <span class="step-label">Payment</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" data-step="4">
+              <div class="step-circle">
+                <span class="step-number">4</span>
+                <span class="step-checkmark" style="display:none;">✓</span>
+              </div>
+              <span class="step-label">Review</span>
             </div>
           </div>
         </div>
@@ -218,10 +227,11 @@ export function initCheckout($) {
     setupMobileOptimization() {
       // Sticky bottom checkout button on mobile
       const placeOrderBtn = $("#place_order");
+      const placeOrderSection = placeOrderBtn.closest(".place-order");
       const isMobile = $(window).width() < 1024;
 
-      if (isMobile && placeOrderBtn.length) {
-        placeOrderBtn.closest(".place-order").addClass("mobile-sticky");
+      if (isMobile && placeOrderBtn.length && placeOrderSection.length) {
+        placeOrderSection.addClass("mobile-sticky");
 
         $(window).on("scroll", function () {
           const scrollTop = $(window).scrollTop();
@@ -230,9 +240,9 @@ export function initCheckout($) {
           const windowBottom = scrollTop + $(window).height();
 
           if (windowBottom < formBottom - 100) {
-            placeOrderBtn.closest(".place-order").addClass("sticky-visible");
+            placeOrderSection.addClass("is-visible");
           } else {
-            placeOrderBtn.closest(".place-order").removeClass("sticky-visible");
+            placeOrderSection.removeClass("is-visible");
           }
         });
       }

@@ -335,20 +335,32 @@ ul#shipping_method li input[type="radio"]:checked + label {
         bottom: 0;
         left: 0;
         right: 0;
-        background: white;
+        background: rgba(255, 255, 255, 0.98);
         border-top: 1px solid #e2e8f0;
         padding: 1rem;
-        box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 -12px 30px rgba(15, 23, 42, 0.12);
         z-index: 40;
+        transform: translateY(100%);
+        transition: transform 0.25s ease, opacity 0.25s ease;
+        opacity: 0;
+    }
+
+    .place-order.mobile-sticky.is-visible {
+        transform: translateY(0);
+        opacity: 1;
     }
 
     .dark .place-order.mobile-sticky {
-        background: #1e293b;
+        background: rgba(30, 41, 59, 0.98);
         border-top-color: #334155;
     }
 
     .place-order.mobile-sticky button {
         padding: 0.75rem 1.5rem;
+    }
+
+    .checkout-container {
+        padding-bottom: 7rem;
     }
 }
 
@@ -523,6 +535,13 @@ ul#shipping_method li input[type="radio"]:checked + label {
     font-weight: 700;
     white-space: nowrap;
     margin-bottom: 0.5rem;
+}
+
+.order-summary-kicker {
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #cbd5e1;
 }
 
 .order-details {
@@ -756,6 +775,96 @@ ul#shipping_method li input[type="radio"]:checked + label {
     font-size: 0.75rem;
     font-weight: 600;
     color: #64748b;
+}
+
+/* Checkout Progress */
+.checkout-progress-bar {
+    padding: 1rem 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 183, 197, 0.08), rgba(255, 255, 255, 0));
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+}
+
+.dark .checkout-progress-bar {
+    background: linear-gradient(180deg, rgba(255, 183, 197, 0.08), rgba(30, 41, 59, 0));
+    border-color: #334155;
+}
+
+.checkout-progress-bar .step-circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #64748b;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.dark .checkout-progress-bar .step-circle {
+    background: #1e293b;
+    border-color: #475569;
+    color: #cbd5e1;
+}
+
+.checkout-progress-bar .step-item.active .step-circle {
+    background: linear-gradient(135deg, #FFB7C5 0%, #FF9FB3 100%);
+    border-color: #FFB7C5;
+    color: #ffffff;
+    box-shadow: 0 10px 20px rgba(255, 183, 197, 0.25);
+}
+
+.checkout-progress-bar .step-item.completed .step-circle {
+    background: #22c55e;
+    border-color: #22c55e;
+    color: #ffffff;
+}
+
+.checkout-progress-bar .step-label {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #64748b;
+}
+
+.dark .checkout-progress-bar .step-label {
+    color: #cbd5e1;
+}
+
+.checkout-progress-bar .step-connector {
+    flex: 1;
+    height: 2px;
+    margin: 0 0.75rem;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #e2e8f0, #cbd5e1);
+}
+
+.dark .checkout-progress-bar .step-connector {
+    background: linear-gradient(90deg, #334155, #475569);
+}
+
+@media (max-width: 768px) {
+    .checkout-progress-bar {
+        padding: 0.875rem 1rem;
+    }
+
+    .checkout-progress-bar .step-label {
+        font-size: 0.625rem;
+    }
+
+    .checkout-progress-bar .step-circle {
+        width: 2.25rem;
+        height: 2.25rem;
+    }
+
+    .checkout-progress-bar .step-connector {
+        margin: 0 0.5rem;
+    }
 }
 
 .dark .trust-label {
