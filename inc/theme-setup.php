@@ -79,3 +79,32 @@ function julias_cartoonery_auto_create_pages() {
     }
 }
 add_action( 'init', 'julias_cartoonery_auto_create_pages' );
+
+function jc_force_create_cart_page() {
+    if ( ! class_exists( 'WooCommerce' ) ) {
+        return;
+    }
+
+    $cart_page_id = get_option( 'woocommerce_cart_page_id' );
+
+    // যদি কার্ট পেজ না থাকে বা পাবলিশড না থাকে
+    if ( ! $cart_page_id || ! get_post( $cart_page_id ) || get_post_status( $cart_page_id ) !== 'publish' ) {
+        
+        $cart_page_data = array(
+            'post_title'    => 'Cart',
+            'post_content'  => '[woocommerce_cart]',
+            'post_status'   => 'publish',
+            'post_type'     => 'page',
+            'post_name'     => 'cart',
+            'page_template' => 'page-cart.php' // আপনার তৈরি করা টেমপ্লেট
+        );
+
+        $new_cart_page_id = wp_insert_post( $cart_page_data );
+
+        if ( ! is_wp_error( $new_cart_page_id ) ) {
+            update_option( 'woocommerce_cart_page_id', $new_cart_page_id );
+        }
+    }
+}
+// থিম সেটআপের সময় এটি রান করবে
+add_action( 'after_setup_theme', 'jc_force_create_cart_page' );
