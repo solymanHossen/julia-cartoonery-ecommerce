@@ -1,140 +1,203 @@
 <?php
 /**
- * Checkout Form
- *
- * This template can be overridden by copying it to yourtheme/woocommerce/checkout/form-checkout.php.
- *
- * HOWEVER, on occasion WooCommerce will need to update template files and you
- * (the theme developer) will need to copy the new files to your theme to
- * maintain compatibility. We try to do this as little as possible, but it does
- * happen. When this occurs the version of the template file will be bumped and
- * the readme will list any important changes.
- *
- * @see https://woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
+ * Checkout Form - Premium High-Conversion UX
  * @version 9.4.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 do_action( 'woocommerce_before_checkout_form', $checkout );
 
-// If checkout registration is disabled and not logged in, the input field should not be displayed.
 if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
-	echo esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) );
-	return;
+    echo esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) );
+    return;
 }
-
 ?>
 
-<form name="checkout" method="post" class="checkout woocommerce-checkout py-8 lg:py-16" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
+<div class="checkout-wrapper">
+    <div class="checkout-container">
+        
+        <!-- Header -->
+        <div class="checkout-header">
+            <h1 class="checkout-title">Secure Checkout</h1>
+            <p class="checkout-subtitle">Complete your order securely in a few simple steps</p>
+        </div>
 
-	<div class="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
-		
-		<!-- LEFT COLUMN: Contact, Address, Shipping & Payment -->
-		<div class="lg:col-span-7 space-y-12">
-			
-			<?php if ( $checkout->get_checkout_fields() ) : ?>
+        <form name="checkout" method="post" class="checkout woocommerce-checkout checkout-form" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
-				<div id="customer_details" class="space-y-10">
-					
-					<?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
+            <!-- Left Column - Form -->
+            <div class="checkout-left-column">
 
-					<!-- Section 1: Contact Information -->
-					<div class="checkout-section">
-						<div class="flex items-center justify-between mb-6">
-							<h3 class="text-2xl font-bold text-slate-800 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
-								<?php esc_html_e( 'Contact Information', 'woocommerce' ); ?>
-							</h3>
-							<?php if ( ! is_user_logged_in() && $checkout->is_registration_enabled() ) : ?>
-								<p class="text-sm text-slate-500">
-									<a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="text-[#FFB7C5] font-bold hover:underline">Log in</a>
-								</p>
-							<?php endif; ?>
-						</div>
-						
-						<div class="bg-white dark:bg-slate-800 rounded-[32px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-700/50">
-							<?php do_action( 'woocommerce_checkout_billing' ); ?>
-						</div>
-					</div>
+                <?php if ( $checkout->get_checkout_fields() ) : ?>
+                    <div id="customer_details" class="space-y-6">
+                        <?php do_action( 'woocommerce_checkout_before_customer_details' ); ?>
 
-					<!-- Section 2: Shipping Address -->
-					<div class="checkout-section">
-						<h3 class="text-2xl font-bold mb-6 text-slate-800 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
-							<?php esc_html_e( 'Shipping Address', 'woocommerce' ); ?>
-						</h3>
-						<div class="bg-white dark:bg-slate-800 rounded-[32px] p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 dark:border-slate-700/50">
-							<?php do_action( 'woocommerce_checkout_shipping' ); ?>
-						</div>
-					</div>
+                        <!-- Step 1: Contact Information -->
+                        <div class="checkout-card" data-step="1">
+                            <div class="card-header">
+                                <div class="step-badge">1</div>
+                                <h2 class="card-title">Contact Information</h2>
+                            </div>
+                            <div class="card-body">
+                                <?php 
+                                $billing_fields = $checkout->get_checkout_fields( 'billing' );
+                                $contact_fields = array_intersect_key( $billing_fields, array_flip( ['billing_email', 'billing_phone'] ) );
+                                foreach ( $contact_fields as $key => $field ) {
+                                    woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
+                                }
+                                ?>
+                                
+                                <?php if ( ! is_user_logged_in() && $checkout->is_registration_enabled() ) : ?>
+                                    <div class="login-section">
+                                        <p class="login-text">
+                                            Have an account? 
+                                            <a href="#" class="checkout-login-toggle">Log in</a>
+                                        </p>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </div>
 
-					<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+                        <!-- Step 2: Shipping Address -->
+                        <div class="checkout-card" data-step="2">
+                            <div class="card-header">
+                                <div class="step-badge">2</div>
+                                <h2 class="card-title">Shipping Address</h2>
+                            </div>
+                            <div class="card-body">
+                                <?php 
+                                $billing_fields = $checkout->get_checkout_fields( 'billing' );
+                                $address_fields = array_diff_key( $billing_fields, array_flip( ['billing_email', 'billing_phone'] ) );
+                                foreach ( $address_fields as $key => $field ) {
+                                    woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
+                                }
+                                ?>
+                                
+                                <!-- Ship to Different Address -->
+                                <div class="shipping-section">
+                                    <?php do_action( 'woocommerce_checkout_shipping' ); ?>
+                                </div>
+                            </div>
+                        </div>
 
-				</div>
+                        <?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>
+                    </div>
+                <?php endif; ?>
 
-			<?php endif; ?>
+                <!-- Payment Method -->
+                <div class="checkout-card" data-step="4">
+                    <div class="card-header">
+                        <div class="step-badge">3</div>
+                        <h2 class="card-title">Payment Method</h2>
+                    </div>
+                    <div class="card-body">
+                        <?php do_action( 'woocommerce_checkout_order_review' ); ?>
+                    </div>
+                </div>
 
-			<!-- Section 3 & 4: Shipping Methods & Payment (Handled via Order Review Hook) -->
-			<div id="order_review" class="woocommerce-checkout-review-order space-y-10">
-				<?php do_action( 'woocommerce_checkout_order_review' ); ?>
-			</div>
+                <!-- Desktop: Back to Cart Link -->
+                <div class="back-to-cart">
+                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="back-link">
+                        <svg class="back-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        Return to Cart
+                    </a>
+                </div>
 
-			<!-- Bottom Action Bar -->
-			<div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-slate-200 dark:border-slate-700/50">
-				<a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="flex items-center gap-2 text-sm font-bold text-slate-500 hover:text-slate-800 dark:hover:text-white transition-colors">
-					<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"></path></svg>
-					<?php esc_html_e( 'Return to cart', 'woocommerce' ); ?>
-				</a>
-			</div>
+            </div>
 
-		</div>
+            <!-- Right Column - Order Summary (Sticky) -->
+            <div class="checkout-right-column">
+                <div class="order-summary">
+                    
+                    <!-- Order Summary Header -->
+                    <div class="order-summary-header">
+                        <h3 class="order-summary-title">Order Summary</h3>
+                        <div class="order-details">
+                            <svg class="order-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 3a1 1 0 011-1h2.15a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06m0 0a1 1 0 001.037 1.852m0 0L9.5 15.5m-7.5-4l7.5 4m0 0l4 2.372c.537.317 1.29.004 1.469-.797l.821-4.91a1 1 0 00-.44-1.06m0 0L9.5 9.5"></path>
+                            </svg>
+                            <span id="cart-items-count">Order Details</span>
+                        </div>
+                    </div>
 
-		<!-- RIGHT COLUMN: Order Summary Sidebar (Sticky) -->
-		<div class="lg:col-span-5 mt-12 lg:mt-0 lg:sticky lg:top-8 h-fit">
-			<div class="bg-white dark:bg-slate-800 rounded-[32px] p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border border-slate-100 dark:border-slate-700/50">
-				<h3 class="text-2xl font-bold mb-8 text-slate-800 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
-					<?php esc_html_e( 'Order summary', 'woocommerce' ); ?>
-				</h3>
-				
-				<!-- We need a separate container for the product list that doesn't duplicate the full review-order -->
-				<div class="julias-order-summary-sidebar">
-					<?php 
-					// We'll use a custom template or just the cart fragments for the sidebar
-					// For simplicity and to ensure AJAX updates, we can wrap this in a way that our JS can target,
-					// or just keep it as is if we only have one review-order.
-					// Since WooCommerce AJAX targets .woocommerce-checkout-review-order, 
-					// having two of them will actually update BOTH.
-					?>
-					<div class="woocommerce-checkout-review-order">
-						<?php wc_get_template( 'checkout/review-order.php' ); ?>
-					</div>
-				</div>
+                    <div class="order-summary-body">
 
-				<!-- Coupon Dropdown -->
-				<div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700/50">
-					<details class="group">
-						<summary class="flex items-center justify-between cursor-pointer list-none text-sm font-bold text-slate-500 dark:text-slate-400 hover:text-[#FFB7C5] transition-colors">
-							<span class="flex items-center gap-2">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3.28a1 1 0 01-.3.7l-1.42 1.42a1 1 0 000 1.41l1.41 1.42a1 1 0 01.3.7V17a2 2 0 002 2h14a2 2 0 002-2v-3.28a1 1 0 01.3-.7l1.42-1.42a1 1 0 000-1.41l-1.41-1.42a1 1 0 01-.3-.7V7a2 2 0 00-2-2H5z"></path></svg>
-								<?php esc_html_e( 'Add a discount code', 'woocommerce' ); ?>
-							</span>
-							<svg class="w-4 h-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-						</summary>
-						<div class="mt-4">
-							<div class="flex gap-2">
-								<input type="text" name="coupon_code" class="flex-grow px-4 py-2.5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-xl text-sm outline-none focus:border-[#FFB7C5]" id="coupon_code" value="" placeholder="Discount code" />
-								<button type="submit" class="px-6 py-2.5 bg-slate-800 dark:bg-slate-100 text-white dark:text-slate-800 font-bold rounded-xl text-sm hover:opacity-90 transition-opacity" name="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>"><?php esc_attr_e( 'Apply', 'woocommerce' ); ?></button>
-							</div>
-						</div>
-					</details>
-				</div>
-			</div>
-		</div>
+                        <!-- Cart Items -->
+                        <div id="order_review" class="woocommerce-checkout-review-order order-items">
+                            <?php do_action( 'woocommerce_checkout_order_review' ); ?>
+                        </div>
 
-	</div>
+                        <!-- Coupon Code Section -->
+                        <div class="coupon-section">
+                            <details class="coupon-details">
+                                <summary class="coupon-summary">
+                                    <span class="coupon-label">
+                                        <svg class="coupon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                        </svg>
+                                        Add discount code
+                                    </span>
+                                    <svg class="coupon-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                                    </svg>
+                                </summary>
+                                <div class="coupon-input-group">
+                                    <input type="text" name="coupon_code" id="coupon_code" class="coupon-input" placeholder="Enter coupon code" />
+                                    <button type="submit" name="apply_coupon" class="coupon-button">Apply</button>
+                                </div>
+                            </details>
+                        </div>
 
-</form>
+                        <!-- Place Order Button -->
+                        <div class="place-order-section">
+                            <?php wc_get_template( 'checkout/terms.php' ); ?>
+                            <?php do_action( 'woocommerce_review_order_before_submit' ); ?>
+                            
+                            <button type="submit" class="place-order-button" name="woocommerce_checkout_place_order" id="place_order" value="<?php esc_attr_e( 'Place Order', 'woocommerce' ); ?>" data-value="<?php esc_attr_e( 'Place Order', 'woocommerce' ); ?>">
+                                <?php esc_html_e( 'Complete Purchase', 'woocommerce' ); ?>
+                            </button>
+                            
+                            <?php do_action( 'woocommerce_review_order_after_submit' ); ?>
+                            <?php wp_nonce_field( 'woocommerce-process_checkout', 'woocommerce-process-checkout-nonce' ); ?>
+                        </div>
+
+                        <!-- Trust Signals -->
+                        <div class="trust-badges">
+                            <div class="trust-badge-item">
+                                <svg class="trust-icon ssl" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.707 6.707a1 1 0 010 1.414L5.414 9.414a1 1 0 11-1.414-1.414l1.293-1.293a1 1 0 011.414 0zm2.828-2.828a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zm2.828-2.829a1 1 0 010 1.415L9.586 5.586a1 1 0 11-1.414-1.414l4.243-4.243a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="trust-label">SSL Secure</span>
+                            </div>
+                            <div class="trust-badge-item">
+                                <svg class="trust-icon protected" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="trust-label">Protected</span>
+                            </div>
+                            <div class="trust-badge-item">
+                                <svg class="trust-icon returns" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                                </svg>
+                                <span class="trust-label">30-Day Returns</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile: Back to Cart Link -->
+                <div class="mobile-back-to-cart">
+                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="back-link">
+                        <svg class="back-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                        Return to Cart
+                    </a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
 
 <?php do_action( 'woocommerce_after_checkout_form', $checkout ); ?>
