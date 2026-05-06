@@ -139,6 +139,10 @@
 
   /* ===== Single Product Page ===== */
 
+  .julias-cart-form .added_to_cart.wc-forward {
+    display: none !important;
+  }
+
   .julias-single-price ins {
     @apply no-underline;
   }
