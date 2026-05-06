@@ -198,3 +198,50 @@ add_filter('woocommerce_proceed_to_checkout', function() {
 add_filter('woocommerce_button_class', function($class) {
     return $class . ' w-full px-8 py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full font-bold text-base hover:shadow-[0_6px_20px_rgba(255,183,197,0.4)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide';
 }, 10, 1);
+
+/**
+ * 7. Force Classic Checkout & Fix Template Overrides
+ * This ensures that if the user is using the new "Checkout Block", 
+ * it gets converted to the classic [woocommerce_checkout] shortcode 
+ * so our template overrides (form-checkout.php, etc.) actually show up.
+ */
+function julias_force_classic_checkout() {
+    $checkout_page_id = wc_get_page_id('checkout');
+    $cart_page_id = wc_get_page_id('cart');
+
+    // Fix Checkout Page
+    if ($checkout_page_id) {
+        $content = get_post_field('post_content', $checkout_page_id);
+        if (has_block('woocommerce/checkout', $content)) {
+            $classic_content = '<!-- wp:shortcode -->[woocommerce_checkout]<!-- /wp:shortcode -->';
+            wp_update_post([
+                'ID'           => $checkout_page_id,
+                'post_content' => $classic_content,
+            ]);
+        }
+    }
+
+    // Fix Cart Page
+    if ($cart_page_id) {
+        $content = get_post_field('post_content', $cart_page_id);
+        if (has_block('woocommerce/cart', $content)) {
+            $classic_content = '<!-- wp:shortcode -->[woocommerce_cart]<!-- /wp:shortcode -->';
+            wp_update_post([
+                'ID'           => $cart_page_id,
+                'post_content' => $classic_content,
+            ]);
+        }
+    }
+}
+add_action('admin_init', 'julias_force_classic_checkout');
+
+/**
+ * 8. Clear WooCommerce Template Cache
+ * Sometimes WooCommerce caches the template paths. This helps during development.
+ */
+add_action('after_switch_theme', 'wc_clear_template_cache');
+add_action('init', function() {
+    if (isset($_GET['clear_wc_cache'])) {
+        wc_clear_template_cache();
+    }
+});
