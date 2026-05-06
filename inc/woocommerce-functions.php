@@ -183,3 +183,18 @@ function julias_wishlist_scripts() {
         'nonce'   => wp_create_nonce('julias_wishlist_nonce'),
     ]);
 }
+
+// 5. Customize Proceed to Checkout Button
+add_filter('woocommerce_proceed_to_checkout', function() {
+    return sprintf(
+        '<a href="%s" class="checkout-button button alt%s">%s</a>',
+        esc_url(wc_get_checkout_url()),
+        wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : '',
+        esc_html__('Proceed to Checkout', 'woocommerce')
+    );
+}, 20);
+
+// 6. Add Custom CSS Classes to Checkout Button
+add_filter('woocommerce_button_class', function($class) {
+    return $class . ' w-full px-8 py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full font-bold text-base hover:shadow-[0_6px_20px_rgba(255,183,197,0.4)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide';
+}, 10, 1);

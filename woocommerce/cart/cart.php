@@ -18,21 +18,16 @@ do_action( 'woocommerce_before_cart' ); ?>
     Shopping Cart
 </h1>
 
-<!-- Beautiful Stepper -->
-<div class="flex items-center justify-start gap-3 sm:gap-4 mb-12 text-sm font-bold overflow-x-auto pb-4 scrollbar-hide">
-    <div class="flex items-center gap-2 text-white bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-5 py-2.5 rounded-full shadow-[0_4px_15px_rgba(255,183,197,0.4)] shrink-0">
-        <span class="w-6 h-6 rounded-full bg-white text-[#FFB7C5] flex items-center justify-center text-xs shadow-sm">1</span>
-        <span>Cart</span>
+<!-- Beautiful Stepper (2-Step) -->
+<div class="flex items-center justify-start gap-4 mb-12 text-sm font-bold overflow-x-auto pb-4 scrollbar-hide">
+    <div class="flex items-center gap-2.5 text-white bg-[#FFB7C5] px-6 py-2 rounded-full shadow-[0_2px_8px_rgba(255,183,197,0.3)] shrink-0 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full bg-white text-[#FFB7C5] flex items-center justify-center text-xs font-black">✓</span>
+        <span class="text-sm">Cart</span>
     </div>
-    <div class="h-[2px] w-8 sm:w-12 bg-slate-200 dark:bg-slate-700 rounded-full shrink-0"></div>
-    <div class="flex items-center gap-2 text-slate-400 dark:text-slate-500 shrink-0">
-        <span class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center text-xs">2</span>
-        <span>Checkout Details</span>
-    </div>
-    <div class="h-[2px] w-8 sm:w-12 bg-slate-200 dark:bg-slate-700 rounded-full shrink-0"></div>
-    <div class="flex items-center gap-2 text-slate-400 dark:text-slate-500 shrink-0">
-        <span class="w-6 h-6 rounded-full border-2 border-slate-300 dark:border-slate-600 flex items-center justify-center text-xs">3</span>
-        <span>Order Complete</span>
+    <div class="h-0.5 w-6 bg-slate-200 dark:bg-slate-700 rounded-full shrink-0"></div>
+    <div class="flex items-center gap-2.5 text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full shrink-0 whitespace-nowrap">
+        <span class="w-5 h-5 rounded-full border-2 border-slate-400 dark:border-slate-500 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-400">2</span>
+        <span class="text-sm">Shipping & Payment</span>
     </div>
 </div>
 
@@ -41,6 +36,22 @@ do_action( 'woocommerce_before_cart' ); ?>
 
     <!-- LEFT COLUMN: Cart Form -->
     <div class="lg:col-span-8 mb-10 lg:mb-0">
+
+        <?php if ( WC()->cart->is_empty() ) { ?>
+            <!-- Empty Cart State -->
+            <div class="flex flex-col items-center justify-center text-center py-16">
+                <div class="w-32 h-32 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 rounded-[40px] flex items-center justify-center mb-6 shadow-[0_4px_20px_rgba(15,23,42,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]">
+                    <svg class="w-16 h-16 text-slate-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2" style="font-family: 'Bubblegum Sans', cursive;">Your Cart is Empty</h2>
+                <p class="text-slate-500 dark:text-slate-400 font-semibold mb-8 max-w-sm">No products in your cart yet. Start shopping to find amazing items!</p>
+                <a href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full font-bold text-base hover:shadow-[0_6px_20px_rgba(255,183,197,0.4)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide">
+                    <?php esc_html_e( 'Return to Shop', 'woocommerce' ); ?>
+                </a>
+            </div>
+        <?php } else { ?>
 
         <form class="woocommerce-cart-form julias-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
             <?php do_action( 'woocommerce_before_cart_table' ); ?>
@@ -204,9 +215,12 @@ do_action( 'woocommerce_before_cart' ); ?>
             <?php do_action( 'woocommerce_after_cart_table' ); ?>
         </form>
 
+        <?php } // End if cart not empty ?>
+
     </div><!-- end left col -->
 
-    <!-- RIGHT COLUMN: Order Summary -->
+    <!-- RIGHT COLUMN: Order Summary (Only if cart is not empty) -->
+    <?php if ( ! WC()->cart->is_empty() ) { ?>
     <div class="lg:col-span-4">
 
         <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
@@ -224,6 +238,7 @@ do_action( 'woocommerce_before_cart' ); ?>
         </div>
 
     </div><!-- end right col -->
+    <?php } // End if cart not empty ?>
 
 </div><!-- end grid -->
 

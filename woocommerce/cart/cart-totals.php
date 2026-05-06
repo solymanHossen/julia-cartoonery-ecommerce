@@ -100,22 +100,7 @@ defined( 'ABSPATH' ) || exit;
 
     <?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
 
-    <!-- Payment Method Preview (UI only — actual selection happens on checkout) -->
-    <div class="mb-8">
-        <h3 class="text-xs font-bold text-slate-800 dark:text-white mb-3 uppercase tracking-wider">Payment Method</h3>
-        <div class="flex flex-col gap-3">
-            <label class="flex items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-600 cursor-pointer hover:border-[#FFB7C5] transition-colors">
-                <input type="radio" name="mock_payment" checked class="w-4 h-4 accent-[#FFB7C5]">
-                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Cash on Delivery (COD)</span>
-            </label>
-            <label class="flex items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-600 cursor-pointer hover:border-[#FFB7C5] transition-colors">
-                <input type="radio" name="mock_payment" class="w-4 h-4 accent-[#FFB7C5]">
-                <span class="text-sm font-bold text-slate-700 dark:text-slate-200">Credit Card / Mobile Banking</span>
-            </label>
-        </div>
-    </div>
-
-    <!-- Proceed to Checkout -->
+    <!-- Proceed to Checkout Button -->
     <div class="wc-proceed-to-checkout w-full">
         <?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
     </div>
