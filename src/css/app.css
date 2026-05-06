@@ -398,6 +398,126 @@
   .wc-proceed-to-checkout .checkout-button:active {
     @apply bg-purple-800;
   }
+
+  /* ===== Checkout Forms Styling ===== */
+  .woocommerce-checkout .form-row {
+    @apply mb-5 flex flex-col;
+  }
+
+  .woocommerce-checkout label {
+    @apply block text-sm font-bold text-slate-500 dark:text-slate-400 mb-2 ml-1;
+  }
+
+  .woocommerce-checkout input[type="text"],
+  .woocommerce-checkout input[type="tel"],
+  .woocommerce-checkout input[type="email"],
+  .woocommerce-checkout input[type="password"],
+  .woocommerce-checkout select,
+  .woocommerce-checkout textarea {
+    @apply w-full py-3.5 px-5 bg-slate-50 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600 rounded-2xl text-slate-800 dark:text-slate-100 outline-none transition-all duration-300 focus:border-[#FFB7C5] focus:ring-4 focus:ring-[#FFB7C5]/10;
+  }
+
+  .woocommerce-checkout .select2-container--default .select2-selection--single {
+    @apply !h-auto !py-3 !px-4 !bg-slate-50 dark:!bg-slate-700/50 !border-slate-200 dark:!border-slate-600 !rounded-2xl;
+  }
+
+  /* Order Table Styling in Review */
+  .woocommerce-checkout-review-order-table {
+    @apply w-full border-none border-separate border-spacing-y-4;
+  }
+
+  .woocommerce-checkout-review-order-table th,
+  .woocommerce-checkout-review-order-table td {
+    @apply border-none py-0;
+  }
+
+  .woocommerce-checkout-review-order-table .product-name {
+    @apply text-slate-600 dark:text-slate-300 font-medium;
+  }
+
+  .woocommerce-checkout-review-order-table .product-total {
+    @apply text-right font-bold text-slate-800 dark:text-white;
+  }
+
+  .woocommerce-checkout-review-order-table tfoot tr {
+    @apply border-t border-slate-100 dark:border-slate-700/50;
+  }
+
+  .woocommerce-checkout-review-order-table tfoot th {
+    @apply text-left py-4 text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider text-xs;
+  }
+
+  .woocommerce-checkout-review-order-table tfoot td {
+    @apply text-right py-4 font-black text-slate-800 dark:text-white;
+  }
+
+  .woocommerce-checkout-review-order-table .order-total td {
+    @apply text-2xl text-[#FFB7C5];
+  }
+
+  /* Thank You Page Order Details */
+  .woocommerce-order-details {
+    @apply mt-12 bg-white dark:bg-slate-800 rounded-[40px] p-8 sm:p-12 shadow-sm border border-slate-100 dark:border-slate-700/50;
+  }
+
+  .woocommerce-order-details__title {
+    @apply text-3xl font-bold mb-8 text-slate-800 dark:text-white !block;
+    font-family: 'Bubblegum Sans', cursive !important;
+  }
+
+  .woocommerce-table--order-details {
+    @apply w-full border-none border-separate border-spacing-y-4;
+  }
+
+  .woocommerce-table--order-details th,
+  .woocommerce-table--order-details td {
+    @apply border-none py-0 text-left;
+  }
+
+  .woocommerce-table--order-details .product-name {
+    @apply text-slate-600 dark:text-slate-300 font-medium;
+  }
+
+  .woocommerce-table--order-details .product-total {
+    @apply text-right font-bold text-slate-800 dark:text-white;
+  }
+
+  .woocommerce-table--order-details tfoot tr {
+    @apply border-t border-slate-100 dark:border-slate-700/50;
+  }
+
+  .woocommerce-table--order-details tfoot th {
+    @apply text-left py-4 text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider text-xs;
+  }
+
+  .woocommerce-table--order-details tfoot td {
+    @apply text-right py-4 font-black text-slate-800 dark:text-white;
+  }
+
+  /* Payment Methods */
+  #payment {
+    @apply bg-transparent !rounded-none !border-none;
+  }
+
+  #payment ul.payment_methods {
+    @apply !border-none !p-0 !m-0 space-y-3;
+  }
+
+  #payment ul.payment_methods li {
+    @apply bg-slate-50 dark:bg-slate-700/30 rounded-2xl p-4 transition-all duration-300 border border-transparent;
+  }
+
+  #payment ul.payment_methods li:has(input:checked) {
+    @apply border-[#FFB7C5]/30 bg-white dark:bg-slate-700 shadow-sm;
+  }
+
+  #payment .payment_box {
+    @apply !bg-slate-100 dark:!bg-slate-800 !rounded-xl !p-4 !mt-3 !text-sm !text-slate-500 dark:!text-slate-400 before:!hidden;
+  }
+
+  #place_order {
+    @apply w-full mt-6 py-4 px-8 bg-[#FFB7C5] hover:bg-[#ff9eaa] text-white font-black text-lg rounded-full transition-all duration-300 shadow-[0_10px_25px_rgba(255,183,197,0.4)] hover:shadow-[0_15px_30px_rgba(255,183,197,0.6)] hover:-translate-y-1;
+  }
 }
 
 @layer utilities {
