@@ -1,10 +1,11 @@
 <?php
 $url = !empty($args['url']) ? $args['url'] : home_url();
 $text = !empty($args['text']) ? $args['text'] : 'Go Back';
+$class = !empty($args['class']) ? $args['class'] : '';
 ?>
 
 <a href="<?php echo esc_url($url); ?>"
-    class="group inline-flex items-center gap-2 mb-8 px-5 py-2.5 -ml-5 text-gray-500 dark:text-gray-400 font-bold rounded-full hover:bg-pink-50 dark:hover:bg-slate-800 hover:text-[#FF9CB0] dark:hover:text-pink-400 transition-all duration-300 active:scale-95">
+    class="group inline-flex items-center gap-2 mb-8 px-5 py-2.5 -ml-5 text-gray-500 dark:text-gray-400 font-bold rounded-full hover:bg-pink-50 dark:hover:bg-slate-800 hover:text-[#FF9CB0] dark:hover:text-pink-400 transition-all duration-300 active:scale-95 <?php echo $class; ?>">
     <!-- Smooth Arrow SVG -->
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

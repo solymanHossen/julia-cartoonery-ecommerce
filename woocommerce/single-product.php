@@ -12,6 +12,7 @@ get_header(); ?>
     <?php get_template_part( 'template-parts/components/button-back', null, [
         'url'  => wc_get_page_permalink( 'shop' ),
         'text' => 'Back to Shop',
+        'class' => '!mb-0'
     ]); ?>
 </div>
 

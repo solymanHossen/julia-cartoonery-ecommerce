@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $current_label = isset( $catalog_orderby_options[ $orderby ] ) ? $catalog_orderby_options[ $orderby ] : current( $catalog_orderby_options );
 ?>
 
-<form class="woocommerce-ordering m-0 relative z-50" method="get">
+<form class="woocommerce-ordering m-0 relative z-30" method="get">
     <select name="orderby" class="orderby hidden" aria-label="<?php esc_attr_e( 'Shop order', 'woocommerce' ); ?>">
         <?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
             <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
