@@ -7,6 +7,103 @@ export function initCart($) {
     debounceMap[key] = setTimeout(fn, delay);
   }
 
+  // ============================================
+  // COUPON APPLY HANDLER (Separate from cart update)
+  // ============================================
+  $(document.body).on('click', 'button[name="apply_coupon"]', function (e) {
+    e.preventDefault();
+    
+    const $btn = $(this);
+    const $input = $btn.closest('.coupon').find('input[name="coupon_code"]');
+    const couponCode = $input.val().trim();
+
+    // Validation: ensure coupon code is not empty
+    if (!couponCode) {
+      if (window.showToast) {
+        window.showToast('Please enter a coupon code.', 'warning');
+      }
+      $input.focus();
+      return;
+    }
+
+    // Show loading state
+    $btn.prop('disabled', true).addClass('opacity-60');
+    const originalText = $btn.text();
+    $btn.html('<span class="inline-flex items-center gap-2"><span class="w-3 h-3 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>Applying...</span>');
+
+    // Get form for data (to include nonce)
+    const $form = $btn.closest('form.woocommerce-cart-form');
+    let postData = $form.serialize() + '&apply_coupon=1&coupon_code=' + encodeURIComponent(couponCode);
+
+    // Send AJAX request to apply coupon
+    $.post($form.attr('action') || window.location.href, postData).done(function (respHtml) {
+      try {
+        const $tmp = $('<div>').html(respHtml);
+        
+        // Check for error messages in WooCommerce response
+        const $messages = $tmp.find('.woocommerce-message, .woocommerce-error, .woocommerce-info');
+        let hasError = false;
+        let errorMsg = '';
+
+        if ($messages.length) {
+          $messages.each(function () {
+            const $msg = $(this);
+            const msgText = $msg.text().trim();
+            
+            if ($msg.hasClass('woocommerce-error')) {
+              hasError = true;
+              errorMsg = msgText;
+            } else if (msgText.toLowerCase().includes('coupon') || msgText.toLowerCase().includes('invalid')) {
+              hasError = true;
+              errorMsg = msgText;
+            }
+          });
+        }
+
+        // Update cart grid to reflect new totals with coupon applied
+        const $newGrid = $tmp.find('#julias-cart-grid').first();
+        const $oldGrid = $('#julias-cart-grid').first();
+
+        if ($newGrid.length && $oldGrid.length) {
+          $oldGrid.replaceWith($newGrid);
+          
+          // Show success message
+          if (!hasError) {
+            if (window.showToast) {
+              window.showToast('Coupon applied successfully!', 'success');
+            }
+            // Clear input after successful application
+            $input.val('');
+          } else {
+            if (window.showToast) {
+              window.showToast(errorMsg || 'Unable to apply coupon. Please check the code and try again.', 'error');
+            }
+          }
+
+          // Update header cart count if present
+          const $newCount = $tmp.find('span.julias-cart-count').first();
+          const $oldCount = $('span.julias-cart-count').first();
+          if ($newCount.length && $oldCount.length) {
+            $oldCount.replaceWith($newCount);
+          }
+        } else {
+          // Fallback: reload page if elements not found
+          window.location.reload();
+        }
+      } catch (err) {
+        console.error('Error processing coupon response:', err);
+        window.location.reload();
+      }
+    }).fail(function () {
+      if (window.showToast) {
+        window.showToast('Unable to apply coupon. Please try again.', 'error');
+      }
+    }).always(function () {
+      // Restore button state
+      $btn.prop('disabled', false).removeClass('opacity-60').text(originalText);
+    });
+  });
+
   /**
    * Find the qty input relative to a +/- button.
    * WooCommerce wraps the input inside <div class="quantity">,
@@ -136,6 +233,11 @@ export function initCart($) {
   // AJAX submit for cart form to update quantities without full page reload
   $(document.body).on('submit', 'form.woocommerce-cart-form', function (e) {
     const $form = $(this);
+
+    // Check if this is a coupon submission - if so, skip (handled separately above)
+    if (e.originalEvent && $(e.originalEvent.submitter).attr('name') === 'apply_coupon') {
+      return; // Let the button click handler take over
+    }
 
     // Prevent default full-page submit
     e.preventDefault();
