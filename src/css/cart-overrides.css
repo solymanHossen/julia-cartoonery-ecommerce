@@ -79,14 +79,26 @@
   @apply w-10 bg-transparent border-none text-center font-extrabold text-slate-800 dark:text-white focus:ring-0 appearance-none m-0 p-0 text-lg;
 }
 
-/* Remove Button */
+/* Remove Button - world-class pink circular style */
 .woocommerce-cart .product-remove .remove {
-  @apply w-11 h-11 rounded-full bg-red-50 dark:bg-red-500/10 text-red-400 transition-all duration-300;
+  @apply w-11 h-11 flex items-center justify-center rounded-full text-[#FF6B83] bg-[#FFB7C5]/12 transition-all duration-300;
+  border: none;
+  box-shadow: 0 6px 18px rgba(255, 183, 197, 0.16);
+}
+
+.woocommerce-cart .product-remove .remove svg {
+  @apply w-4 h-4;
+  stroke: currentColor;
+  fill: none;
 }
 
 .woocommerce-cart .product-remove .remove:hover {
-  @apply bg-red-400 text-white;
-  transform: rotate(90deg);
+  @apply bg-[#FFB7C5] text-white scale-105;
+  box-shadow: 0 14px 30px rgba(255, 183, 197, 0.28);
+}
+
+.woocommerce-cart .product-remove .remove:active {
+  @apply scale-95;
 }
 
 /* Coupon & Update Row */
