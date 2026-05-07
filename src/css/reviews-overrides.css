@@ -1,0 +1,184 @@
+/* ===== WooCommerce Reviews Section ===== */
+
+  .woocommerce-Reviews {
+    @apply !p-0;
+  }
+
+  .woocommerce-Reviews h2 {
+    @apply !hidden;
+  }
+
+  /* Reviews Container - Two Column Layout */
+  #reviews {
+    @apply flex flex-col lg:flex-row gap-8 lg:gap-12;
+  }
+
+  /* Left Column: Customer Reviews */
+  .woocommerce-Reviews-title,
+  .woocommerce-Reviews-title + ol {
+    @apply w-full lg:w-1/2;
+  }
+
+  .woocommerce-Reviews-title {
+    @apply text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold text-slate-800 dark:text-white mb-8 font-['Bubblegum_Sans'] tracking-wide;
+  }
+
+  html.dark .woocommerce-Reviews-title {
+    @apply text-white;
+  }
+
+  /* Reviews List */
+  .woocommerce-Reviews-title + ol {
+    @apply !list-none !p-0 !m-0 flex flex-col gap-6;
+  }
+
+  /* Individual Review Item */
+  .woocommerce-Review {
+    @apply !bg-slate-50 dark:!bg-slate-800/50 !p-6 !rounded-[20px] !border !border-slate-200 dark:!border-slate-700 !m-0 !list-none;
+    transition: all 0.3s ease;
+  }
+
+  .woocommerce-Review:hover {
+    @apply !shadow-md dark:!shadow-sm;
+  }
+
+  /* Review Header: Name + Date */
+  .woocommerce-Review__author,
+  .woocommerce-Review__published-date {
+    @apply !text-slate-600 dark:!text-slate-400 !font-medium !text-sm !m-0 !inline;
+  }
+
+  .woocommerce-Review__author {
+    @apply !font-bold !text-slate-800 dark:!text-slate-200 !text-base;
+  }
+
+  .woocommerce-Review__published-date::before {
+    content: ' • ';
+    @apply !text-slate-300 dark:!text-slate-600 !mx-1;
+  }
+
+  /* Star Rating */
+  .woocommerce-Review__rating {
+    @apply !flex !items-center !gap-2 !my-3 !m-0;
+  }
+
+  .woocommerce-Review__rating .star-rating {
+    @apply !flex !gap-0.5 !items-center;
+  }
+
+  .woocommerce-Review__rating .star-rating span {
+    @apply !font-bold !text-sm !text-slate-600 dark:!text-slate-400 !ml-2;
+  }
+
+  .star-rating span::before {
+    @apply !inline-flex !items-center !justify-center !text-yellow-400;
+  }
+
+  /* Review Description */
+  .woocommerce-Review__description {
+    @apply !mt-4 !mb-0;
+  }
+
+  .woocommerce-Review__description p {
+    @apply !text-slate-600 dark:!text-slate-400 !text-[0.95rem] !leading-relaxed !font-medium !m-0;
+  }
+
+  /* ===== Review Form Section - Right Column ===== */
+  #review_form,
+  .woocommerce-Reviews + #review_form {
+    @apply w-full;
+  }
+
+  #review_form {
+    @apply !bg-white dark:!bg-slate-800 !rounded-[28px] !p-8 !border !border-slate-100 dark:!border-slate-700 !m-0;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  }
+
+  html.dark #review_form {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  #review_form h3 {
+    @apply !text-2xl !font-extrabold !text-slate-800 dark:!text-white !mb-6 !font-['Bubblegum_Sans'] !tracking-wide;
+  }
+
+  #review_form .comment-form-title {
+    @apply !hidden;
+  }
+
+  /* Form Fields */
+  #review_form .comment-form-comment label,
+  #review_form .comment-form-author label,
+  #review_form .comment-form-email label,
+  #review_form .comment-form-rating label {
+    @apply !block !font-bold !text-slate-700 dark:!text-slate-300 !text-sm !mb-2;
+  }
+
+  #review_form textarea,
+  #review_form input[type="text"],
+  #review_form input[type="email"],
+  #review_form select {
+    @apply !w-full !px-4 !py-3 !rounded-xl !border-2 !border-slate-200 dark:!border-slate-600 !bg-white dark:!bg-slate-700 !text-slate-800 dark:!text-white !placeholder-slate-400 dark:!placeholder-slate-500 !transition-all !duration-300;
+  }
+
+  #review_form textarea:focus,
+  #review_form input[type="text"]:focus,
+  #review_form input[type="email"]:focus,
+  #review_form select:focus {
+    @apply !outline-none !border-[#FFB7C5] !ring-2 !ring-[#FFB7C5]/30;
+  }
+
+  #review_form textarea {
+    @apply !min-h-[120px] !resize-none;
+  }
+
+  /* Rating Select */
+  #review_form .comment-form-rating {
+    @apply !mb-6;
+  }
+
+  #review_form .comment-form-rating p {
+    @apply !m-0 !flex !items-center !gap-3;
+  }
+
+  #review_form select {
+    @apply !flex-1 !cursor-pointer;
+  }
+
+  /* Form Group Spacing */
+  #review_form p {
+    @apply !mb-5;
+  }
+
+  #review_form p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Submit Button */
+  #review_form .form-submit button,
+  #review_form input[type="submit"] {
+    @apply !w-full !py-3 !px-6 !bg-[#FFB7C5] !text-white !font-bold !text-base !rounded-full !border-0 !cursor-pointer !transition-all !duration-300;
+    box-shadow: 0 4px 15px rgba(255, 183, 197, 0.3);
+  }
+
+  #review_form .form-submit button:hover,
+  #review_form input[type="submit"]:hover {
+    @apply !bg-[#FF9FB3];
+    box-shadow: 0 4px 20px rgba(255, 183, 197, 0.5);
+  }
+
+  #review_form .form-submit button:active,
+  #review_form input[type="submit"]:active {
+    @apply !scale-95;
+  }
+
+  /* Required Field Indicator */
+  #review_form .required {
+    @apply !text-[#FFB7C5] !font-bold;
+  }
+
+  /* Privacy Notice */
+  #review_form .comment-notes,
+  #review_form .comment-form-cookies-consent {
+    @apply !text-xs !text-slate-500 dark:!text-slate-500 !leading-relaxed !mb-4;
+  }

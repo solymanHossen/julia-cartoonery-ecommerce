@@ -265,6 +265,8 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
 }
 
 @import "./checkout-overrides.css";
+@import "./reviews-overrides.css";
