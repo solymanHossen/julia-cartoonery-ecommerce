@@ -41,21 +41,19 @@ export function initCart($) {
         const $tmp = $('<div>').html(respHtml);
         
         // Check for error messages in WooCommerce response
-        const $messages = $tmp.find('.woocommerce-message, .woocommerce-error, .woocommerce-info');
+        const $errorMessages = $tmp.find('.woocommerce-error');
         let hasError = false;
         let errorMsg = '';
 
-        if ($messages.length) {
-          $messages.each(function () {
+        if ($errorMessages.length) {
+          $errorMessages.each(function () {
             const $msg = $(this);
             const msgText = $msg.text().trim();
             
-            if ($msg.hasClass('woocommerce-error')) {
+            if (msgText) {
               hasError = true;
               errorMsg = msgText;
-            } else if (msgText.toLowerCase().includes('coupon') || msgText.toLowerCase().includes('invalid')) {
-              hasError = true;
-              errorMsg = msgText;
+              return false; // break loop on first error
             }
           });
         }
