@@ -13,29 +13,58 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<!-- Shopping Cart Title -->
-<h1 class="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white mb-8 tracking-wide" style="font-family: 'Bubblegum Sans', cursive;">
-    Shopping Cart
-</h1>
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
 
-<!-- Beautiful Stepper (2-Step) -->
-<div class="flex items-center justify-start gap-4 mb-12 text-sm font-bold overflow-x-auto pb-4 scrollbar-hide">
-    <div class="flex items-center gap-2.5 text-white bg-[#FFB7C5] px-6 py-2 rounded-full shadow-[0_2px_8px_rgba(255,183,197,0.3)] shrink-0 whitespace-nowrap">
-        <span class="w-5 h-5 rounded-full bg-white text-[#FFB7C5] flex items-center justify-center text-xs font-black">✓</span>
-        <span class="text-sm">Cart</span>
-    </div>
-    <div class="h-0.5 w-6 bg-slate-200 dark:bg-slate-700 rounded-full shrink-0"></div>
-    <div class="flex items-center gap-2.5 text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-4 py-2 rounded-full shrink-0 whitespace-nowrap">
-        <span class="w-5 h-5 rounded-full border-2 border-slate-400 dark:border-slate-500 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-400">2</span>
-        <span class="text-sm">Shipping & Payment</span>
-    </div>
-</div>
+    <!-- Shopping Cart Hero -->
+    <div class="mb-8 rounded-[32px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)] p-6 sm:p-8 lg:p-10">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+            <div class="max-w-2xl">
+                <p class="inline-flex items-center gap-2 rounded-full bg-[#FFB7C5]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-[#FF7F9C] mb-4">
+                    Step 1 of 2
+                </p>
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white tracking-wide leading-none" style="font-family: 'Bubblegum Sans', cursive;">
+                    Shopping Cart
+                </h1>
+                <p class="mt-4 max-w-xl text-sm sm:text-base font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
+                    Review items, apply your code, and continue to secure checkout with a cleaner, faster flow.
+                </p>
+            </div>
 
-<!-- Two-column grid wrapper -->
-<div class="lg:grid lg:grid-cols-12 lg:gap-10 items-start">
+            <div class="flex flex-wrap gap-3">
+                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#FFB7C5]"></span>
+                    Secure checkout
+                </div>
+                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    Fast shipping
+                </div>
+                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                    <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
+                    Easy returns
+                </div>
+            </div>
+        </div>
+
+        <!-- Beautiful Stepper (2-Step) -->
+        <div class="mt-6 flex items-center justify-start gap-4 text-sm font-bold overflow-x-auto pb-1 scrollbar-hide">
+            <div class="flex items-center gap-2.5 text-white bg-[#FFB7C5] px-6 py-2.5 rounded-full shadow-[0_2px_8px_rgba(255,183,197,0.3)] shrink-0 whitespace-nowrap">
+                <span class="w-5 h-5 rounded-full bg-white text-[#FFB7C5] flex items-center justify-center text-xs font-black">✓</span>
+                <span class="text-sm">Cart</span>
+            </div>
+            <div class="h-0.5 w-8 bg-slate-200 dark:bg-slate-700 rounded-full shrink-0"></div>
+            <div class="flex items-center gap-2.5 text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-4 py-2.5 rounded-full shrink-0 whitespace-nowrap">
+                <span class="w-5 h-5 rounded-full border-2 border-slate-400 dark:border-slate-500 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-400">2</span>
+                <span class="text-sm">Shipping & Payment</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Two-column grid wrapper -->
+    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
 
     <!-- LEFT COLUMN: Cart Form -->
-    <div class="lg:col-span-8 mb-10 lg:mb-0">
+    <div class="lg:col-span-7 mb-10 lg:mb-0">
 
         <?php if ( WC()->cart->is_empty() ) { ?>
             <!-- Empty Cart State -->
@@ -57,6 +86,16 @@ do_action( 'woocommerce_before_cart' ); ?>
             <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
             <div class="flex flex-col gap-6">
+                <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 rounded-[28px] bg-white/80 dark:bg-slate-800/80 border border-slate-100/80 dark:border-slate-700/60 p-5 sm:p-6 shadow-[0_4px_24px_rgba(15,23,42,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+                    <div>
+                        <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Your items</p>
+                        <h2 class="mt-2 text-2xl font-extrabold text-slate-800 dark:text-white"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?> item<?php echo WC()->cart->get_cart_contents_count() === 1 ? '' : 's'; ?> in cart</h2>
+                    </div>
+                    <a href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>" class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                        Continue shopping
+                    </a>
+                </div>
+
                 <?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
                 <?php
@@ -221,7 +260,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
     <!-- RIGHT COLUMN: Order Summary (Only if cart is not empty) -->
     <?php if ( ! WC()->cart->is_empty() ) { ?>
-    <div class="lg:col-span-4">
+    <div class="lg:col-span-5">
 
         <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 

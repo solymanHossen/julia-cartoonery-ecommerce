@@ -924,4 +924,6 @@ ul#shipping_method li input[type="radio"]:checked + label {
     width: 1rem;
     height: 1rem;
 }
-
+.added_to_cart.wc-forward {
+    display: none !important;
+  }

@@ -12,11 +12,14 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<div class="cart_totals bg-white dark:bg-slate-800 rounded-[32px] p-6 sm:p-8 shadow-[0_4px_30px_rgba(15,23,42,0.03)] dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)] sticky top-8 <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
+<div class="cart_totals !w-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-8 shadow-[0_20px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.28)] sticky top-8 <?php echo ( WC()->customer->has_calculated_shipping() ) ? 'calculated_shipping' : ''; ?>">
 
     <?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-    <h2 class="text-xl font-extrabold text-slate-800 dark:text-white mb-6"><?php esc_html_e( 'Order Summary', 'woocommerce' ); ?></h2>
+    <div class="mb-6">
+        <h2 class="text-xl font-extrabold text-slate-800 dark:text-white mb-2"><?php esc_html_e( 'Order Summary', 'woocommerce' ); ?></h2>
+        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">Shipping, coupons, and taxes update automatically as you review the order.</p>
+    </div>
 
     <div class="flex flex-col gap-4 mb-6 text-sm">
 
@@ -104,6 +107,10 @@ defined( 'ABSPATH' ) || exit;
     <div class="wc-proceed-to-checkout w-full">
         <?php do_action( 'woocommerce_proceed_to_checkout' ); ?>
     </div>
+
+    <p class="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 text-center">
+        Secure payment on the next step
+    </p>
 
     <?php do_action( 'woocommerce_after_cart_totals' ); ?>
 
