@@ -199,3 +199,6 @@
   html.dark .woocommerce #reviews #comments ol.commentlist li .comment-text:hover {
     @apply !shadow-2xl;
   }
+   .avatar.avatar-60.photo {
+    @apply  !rounded-full !object-cover !object-center !inline-block !flex-shrink-0 !border-2 !border-white dark:!border-slate-700 !shadow-md !transition-all !duration-300;
+  }
