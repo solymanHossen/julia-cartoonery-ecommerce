@@ -16,7 +16,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 <div>
 
     <!-- Shopping Cart Hero -->
-    <div class="mb-8 rounded-[32px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)] p-6 sm:p-8 lg:p-10">
+    <div class="mb-8 md:block hidden rounded-[32px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)] p-6 sm:p-8 lg:p-10">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
             <div class="max-w-2xl">
                 <p class="inline-flex items-center gap-2 rounded-full bg-[#FFB7C5]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-[#FF7F9C] mb-4">
