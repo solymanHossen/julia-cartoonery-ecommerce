@@ -16,48 +16,36 @@ do_action( 'woocommerce_before_cart' ); ?>
 <div>
 
     <!-- Shopping Cart Hero -->
-    <div class="mb-8 md:block hidden rounded-[32px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)] p-6 sm:p-8 lg:p-10">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+    <div class="mb-5 md:block hidden rounded-[20px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_10px_28px_rgba(15,23,42,0.04)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.18)] px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-5">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
             <div class="max-w-2xl">
-                <p class="inline-flex items-center gap-2 rounded-full bg-[#FFB7C5]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.2em] text-[#FF7F9C] mb-4">
+                <p class="inline-flex items-center gap-2 rounded-full bg-[#FFB7C5]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#FF7F9C] mb-2">
                     Step 1 of 2
                 </p>
-                <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white tracking-wide leading-none" style="font-family: 'Bubblegum Sans', cursive;">
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-white tracking-wide leading-tight" style="font-family: 'Bubblegum Sans', cursive;">
                     Shopping Cart
                 </h1>
-                <p class="mt-4 max-w-xl text-sm sm:text-base font-medium text-slate-500 dark:text-slate-400 leading-relaxed">
+                <p class="mt-2 max-w-xl text-sm font-medium text-slate-500 dark:text-slate-400 leading-relaxed sm:text-[0.9rem]">
                     Review items, apply your code, and continue to secure checkout with a cleaner, faster flow.
                 </p>
             </div>
 
-            <div class="flex flex-wrap gap-3">
-                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+            <div class="flex flex-wrap gap-2 lg:justify-end lg:max-w-md">
+                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
                     <span class="w-2.5 h-2.5 rounded-full bg-[#FFB7C5]"></span>
                     Secure checkout
                 </div>
-                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                     Fast shipping
                 </div>
-                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-4 py-2 text-sm font-bold text-slate-600 dark:text-slate-300">
+                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
                     <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
                     Easy returns
                 </div>
             </div>
         </div>
 
-        <!-- Beautiful Stepper (2-Step) -->
-        <div class="mt-6 flex items-center justify-start gap-4 text-sm font-bold overflow-x-auto pb-1 scrollbar-hide">
-            <div class="flex items-center gap-2.5 text-white bg-[#FFB7C5] px-6 py-2.5 rounded-full shadow-[0_2px_8px_rgba(255,183,197,0.3)] shrink-0 whitespace-nowrap">
-                <span class="w-5 h-5 rounded-full bg-white text-[#FFB7C5] flex items-center justify-center text-xs font-black">✓</span>
-                <span class="text-sm">Cart</span>
-            </div>
-            <div class="h-0.5 w-8 bg-slate-200 dark:bg-slate-700 rounded-full shrink-0"></div>
-            <div class="flex items-center gap-2.5 text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-4 py-2.5 rounded-full shrink-0 whitespace-nowrap">
-                <span class="w-5 h-5 rounded-full border-2 border-slate-400 dark:border-slate-500 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-400">2</span>
-                <span class="text-sm">Shipping & Payment</span>
-            </div>
-        </div>
     </div>
 
     <!-- Two-column grid wrapper -->
