@@ -102,6 +102,77 @@ export function initCart($) {
     });
   });
 
+  // ============================================
+  // COUPON REMOVE HANDLER
+  // ============================================
+  $(document.body).on('click', '.cart_totals a.coupon-remove, .woocommerce a[href*="remove_coupon"]', function (e) {
+    e.preventDefault();
+    
+    const $link = $(this);
+    const href = $link.attr('href');
+    
+    if (!href) return;
+
+    // Extract coupon code from the link or parent element
+    const $couponRow = $link.closest('[class*="coupon"]');
+    let couponCode = '';
+    
+    if ($couponRow.length) {
+      // Try to extract from class name: coupon-CODE format
+      const classMatch = $couponRow.attr('class').match(/coupon-([a-z0-9_-]+)/i);
+      if (classMatch) {
+        couponCode = classMatch[1].replace(/-/g, ' ').toUpperCase();
+      }
+    }
+
+    // Disable link and show loading state
+    $link.prop('disabled', true).addClass('opacity-60');
+
+    // Make AJAX request to remove coupon
+    $.get(href).done(function () {
+      // Fetch updated page to get new cart totals
+      $.get(window.location.href).done(function (pageHtml) {
+        try {
+          const $tmp = $('<div>').html(pageHtml);
+          const $newGrid = $tmp.find('#julias-cart-grid').first();
+          const $oldGrid = $('#julias-cart-grid').first();
+
+          if ($newGrid.length && $oldGrid.length) {
+            $oldGrid.replaceWith($newGrid);
+            
+            // Show success message
+            const removeMsg = couponCode 
+              ? `Coupon "${couponCode}" removed.`
+              : 'Coupon removed.';
+            
+            if (window.showToast) {
+              window.showToast(removeMsg, 'success');
+            }
+
+            // Update header cart count if present
+            const $newCount = $tmp.find('span.julias-cart-count').first();
+            const $oldCount = $('span.julias-cart-count').first();
+            if ($newCount.length && $oldCount.length) {
+              $oldCount.replaceWith($newCount);
+            }
+          } else {
+            window.location.reload();
+          }
+        } catch (err) {
+          console.error('Error removing coupon:', err);
+          window.location.reload();
+        }
+      }).fail(function () {
+        window.location.reload();
+      });
+    }).fail(function () {
+      if (window.showToast) {
+        window.showToast('Unable to remove coupon. Please try again.', 'error');
+      }
+      $link.prop('disabled', false).removeClass('opacity-60');
+    });
+  });
+
   /**
    * Find the qty input relative to a +/- button.
    * WooCommerce wraps the input inside <div class="quantity">,
