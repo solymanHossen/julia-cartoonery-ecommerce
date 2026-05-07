@@ -45,7 +45,7 @@ export function initCheckout($) {
 
       // Add step indicator
       const stepIndicator = `
-        <div class="checkout-progress-bar mb-8 lg:mb-12">
+        <div class="checkout-progress-bar">
           <div class="flex justify-between items-center">
             <div class="step-item active" data-step="1">
               <div class="step-circle">
