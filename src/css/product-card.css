@@ -46,5 +46,10 @@
   .custom-premium-cart .added_to_cart.wc-forward {
     display: none !important;
   }
+  .custom-premium-cart {
+   .add_to_cart_button {
+      @apply !rounded-full !flex items-center justify-center !text-[#FFB7C5] !border-2 !border-[#FFB7C5] !px-3 !py-1 !text-xs !font-bold;
+    }
+  }
 
 }
