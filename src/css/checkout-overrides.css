@@ -1,13 +1,6 @@
 /* ========== PREMIUM CHECKOUT EXPERIENCE ========== */
 
 /* Checkout Wrapper & Layout */
-.checkout-wrapper {
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-}
-
-.dark .checkout-wrapper {
-    background: linear-gradient(180deg, #111827 0%, #1e293b 100%);
-}
 
 /* Checkout Card Styling */
 .checkout-card {
