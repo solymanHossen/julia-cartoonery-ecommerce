@@ -29,6 +29,40 @@ import { initCheckout } from './components/checkout.js';
     // WooCommerce native trigger when an item is added to cart via AJAX
     $(document.body).on('added_to_cart', function (event, fragments, cart_hash, $button) {
       showToast("Item added to your cart.", "success");
+      
+      // Add visual feedback to cart button
+      if ($button && $button.length) {
+        const $btn = $button;
+        $btn.addClass('added');
+        
+        // Add scale animation
+        $btn.css({
+          'animation': 'ping-once 0.6s ease-out'
+        });
+        
+        // Keep the pink highlight for 2 seconds then fade
+        setTimeout(() => {
+          $btn.removeClass('added');
+        }, 2000);
+      }
+    });
+
+    // Handle product loop add-to-cart button clicks for visual feedback
+    $(document.body).on('click', '.custom-premium-cart .button, .custom-premium-cart a.button', function (e) {
+      const $btn = $(this);
+      
+      // Add loading state
+      $btn.addClass('opacity-70 pointer-events-none');
+      
+      // Listen for added_to_cart event and restore button
+      $(document.body).one('added_to_cart', function () {
+        $btn.removeClass('opacity-70 pointer-events-none');
+      });
+      
+      // Fallback: restore button after 3 seconds if event doesn't fire
+      setTimeout(() => {
+        $btn.removeClass('opacity-70 pointer-events-none');
+      }, 3000);
     });
 
   });

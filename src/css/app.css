@@ -57,22 +57,7 @@
 
 @layer components {
 
-  /* Wrapper Styles */
-  .product-hover-wrapper {
-    @apply relative;
-  }
-
-  .product-hover-wrapper:hover .featured-product-badge {
-    @apply opacity-100;
-  }
-
-  /* ===== Featured Product Badge ===== */
-
-  .featured-product-badge {
-    @apply absolute top-4 left-4 inline-block bg-gradient-to-r from-[#FFB7C5] to-[#FF9FB3] text-white px-3 py-1 rounded-full text-xs font-bold opacity-0 transition-opacity duration-300 z-10;
-  }
-
-  /* ===== WooCommerce Custom Styles ===== */
+  /* WooCommerce Custom Styles (moved to product-card.css) */
 
   .minimal-cart-btn {
     @apply relative;
@@ -271,3 +256,4 @@
 @import "./checkout-overrides.css";
 @import "./reviews-overrides.css";
 @import "./cart-overrides.css";
+@import "./product-card.css";

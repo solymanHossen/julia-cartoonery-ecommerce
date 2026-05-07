@@ -1,0 +1,50 @@
+/* ===== Product Card Styles ===== */
+
+@layer components {
+
+  /* Wrapper Styles */
+  .product-hover-wrapper {
+    @apply relative;
+  }
+
+  .product-hover-wrapper:hover .featured-product-badge {
+    @apply opacity-100;
+  }
+
+  /* ===== Featured Product Badge ===== */
+  .featured-product-badge {
+    @apply absolute top-4 left-4 inline-block bg-gradient-to-r from-[#FFB7C5] to-[#FF9FB3] text-white px-3 py-1 rounded-full text-xs font-bold opacity-0 transition-opacity duration-300 z-10;
+  }
+
+  /* ===== Product Card Premium Cart Button ===== */
+  .custom-premium-cart {
+    @apply relative;
+  }
+
+  .custom-premium-cart .button,
+  .custom-premium-cart a.button {
+    @apply inline-flex items-center justify-center h-11 w-11 rounded-full bg-white/95 backdrop-blur-xl text-slate-300 shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-all duration-300 hover:text-[#FFB7C5] hover:scale-110 hover:bg-white dark:bg-slate-800/95 dark:text-slate-400 dark:shadow-[0_4px_16px_rgba(0,0,0,0.4)] dark:hover:bg-slate-700 !border-none !m-0 !p-0;
+    font-size: 0 !important;
+  }
+
+  .custom-premium-cart .button::before,
+  .custom-premium-cart a.button::before {
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>');
+    @apply flex items-center justify-center;
+  }
+
+  .custom-premium-cart .button.added,
+  .custom-premium-cart a.button.added {
+    @apply text-[#FFB7C5] shadow-[0_0_0_2px_rgba(255,183,197,0.3)];
+  }
+
+  .custom-premium-cart .button.added::after,
+  .custom-premium-cart a.button.added::after {
+    display: none !important;
+  }
+
+  .custom-premium-cart .added_to_cart.wc-forward {
+    display: none !important;
+  }
+
+}
