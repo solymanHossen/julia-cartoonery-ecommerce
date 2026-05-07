@@ -367,24 +367,9 @@ ul#shipping_method li input[type="radio"]:checked + label {
 /* ========== NEW LAYOUT CLASSES ========== */
 
 /* Checkout Container (full-width / mobile-first) */
-.checkout-container {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 1.5rem 1rem;
-    padding-top: 1.5rem;
-    padding-bottom: 3rem;
-    box-sizing: border-box;
-}
 
 /* Add a comfortable horizontal padding on very large screens */
-@media (min-width: 1280px) {
-    .checkout-container {
-        padding-left: 2rem;
-        padding-right: 2rem;
-        padding-top: 3rem;
-    }
-}
+
 
 /* Checkout Header */
 .checkout-header {
