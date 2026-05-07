@@ -88,10 +88,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
                 <!-- Desktop: Back to Cart Link -->
                 <div class="back-to-cart">
-                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="back-link">
-                        <svg class="back-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        Return to Cart
-                    </a>
+                    <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart', 'class' => '!mb-0 !ml-0 px-0 py-0 bg-transparent hover:bg-transparent text-slate-600 dark:text-slate-300 hover:text-[#FF9CB0] dark:hover:text-pink-400' ) ); ?>
                 </div>
 
             </div>
@@ -166,10 +163,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 
                 <!-- Mobile: Back to Cart Link -->
                 <div class="mobile-back-to-cart">
-                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="back-link">
-                        <svg class="back-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-                        Return to Cart
-                    </a>
+                    <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart' ) ); ?>
                 </div>
             </div>
 
