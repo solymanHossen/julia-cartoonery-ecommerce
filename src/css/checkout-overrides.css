@@ -1020,3 +1020,6 @@ ul#shipping_method li input[type="radio"]:checked + label {
 .woocommerce-checkout-payment{
     background: transparent !important;
 }
+#shipping_first_name_field,#shipping_last_name_field{
+width: 100%!important;
+}
