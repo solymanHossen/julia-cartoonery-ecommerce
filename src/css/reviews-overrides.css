@@ -182,3 +182,20 @@
   #review_form .comment-form-cookies-consent {
     @apply !text-xs !text-slate-500 dark:!text-slate-500 !leading-relaxed !mb-4;
   }
+
+  /* ===== Comment Text - Clean Shadow Design ===== */
+  .woocommerce #reviews #comments ol.commentlist li .comment-text {
+    @apply !bg-white dark:!bg-slate-800 !rounded-2xl !p-6 !border-0 !shadow-lg !transition-all !duration-300 !cursor-pointer;
+  }
+
+  .woocommerce #reviews #comments ol.commentlist li .comment-text:hover {
+    @apply !shadow-2xl;
+  }
+
+  html.dark .woocommerce #reviews #comments ol.commentlist li .comment-text {
+    @apply !bg-slate-800 !shadow-xl;
+  }
+
+  html.dark .woocommerce #reviews #comments ol.commentlist li .comment-text:hover {
+    @apply !shadow-2xl;
+  }
