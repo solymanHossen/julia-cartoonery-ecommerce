@@ -225,7 +225,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                 <!-- Actions Row: Coupon & Update -->
                 <div class="bg-white dark:bg-slate-800 p-5 sm:p-6 rounded-[32px] shadow-[0_4px_24px_rgba(15,23,42,0.04)] dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)] border border-slate-50 dark:border-slate-700/50 flex flex-col lg:flex-row items-center justify-between gap-5 mt-2 transition-all">
                     <?php if ( wc_coupons_enabled() ) { ?>
-                        <div class="coupon flex items-center w-full lg:w-auto relative flex-1 max-w-lg group">
+                        <div class="coupon flex items-center w-full lg:w-auto relative flex-1 max-w-lg group gap-2">
                             <label for="coupon_code" class="screen-reader-text"><?php esc_html_e( 'Coupon:', 'woocommerce' ); ?></label>
                             
                             <!-- Coupon Icon -->
@@ -235,7 +235,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                             
                             <input type="text" name="coupon_code" class="input-text w-full pl-12 pr-[110px] py-4 rounded-full border-2 border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-sm font-bold text-slate-800 dark:text-white outline-none focus:border-[#FFB7C5] focus:bg-white dark:focus:bg-slate-800 transition-all placeholder:text-slate-400 placeholder:font-semibold" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Have a coupon code?', 'woocommerce' ); ?>" />
                             
-                            <button type="button" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?> absolute right-1.5 top-1/2 -translate-y-1/2 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white px-6 py-3 rounded-full text-sm font-bold hover:shadow-[0_4px_15px_rgba(255,183,197,0.4)] hover:-translate-y-[1px] transition-all disabled:opacity-60 disabled:cursor-not-allowed" name="apply_coupon" data-action="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply', 'woocommerce' ); ?></button>
+                            <button type="button" class="button<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>  bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white px-6 py-3 rounded-full text-sm font-bold hover:shadow-[0_4px_15px_rgba(255,183,197,0.4)] hover:-translate-y-[1px] transition-all disabled:opacity-60 disabled:cursor-not-allowed" name="apply_coupon" data-action="apply_coupon" value="<?php esc_attr_e( 'Apply', 'woocommerce' ); ?>"><?php esc_html_e( 'Apply', 'woocommerce' ); ?></button>
                             
                             <?php do_action( 'woocommerce_cart_coupon' ); ?>
                         </div>
