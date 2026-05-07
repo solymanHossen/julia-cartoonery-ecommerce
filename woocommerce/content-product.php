@@ -27,7 +27,9 @@ $categories = wc_get_product_category_list( $product->get_id(), ', ' );
                         'woocommerce_thumbnail',
                         false,
                         array(
-                            'class' => 'h-full w-full object-cover object-center mix-blend-multiply dark:mix-blend-normal transition-transform duration-700 group-hover:scale-105',
+                            'class'    => 'h-full w-full object-cover object-center mix-blend-multiply dark:mix-blend-normal transition-transform duration-700 group-hover:scale-105',
+                            'loading'  => 'lazy',
+                            'decoding' => 'async',
                         )
                     );
                 } else {
@@ -35,6 +37,21 @@ $categories = wc_get_product_category_list( $product->get_id(), ', ' );
                 }
                 ?>
             </a>
+
+            <!-- Stock Status Badge -->
+            <?php if ( ! $product->is_in_stock() ) : ?>
+                <div class="absolute left-3 top-3 z-20">
+                    <span class="inline-block bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-[0_2px_10px_rgba(239,68,68,0.3)]">
+                        Out of Stock
+                    </span>
+                </div>
+            <?php elseif ( $product->get_stock_quantity() > 0 && $product->get_stock_quantity() < 5 ) : ?>
+                <div class="absolute left-3 top-3 z-20">
+                    <span class="inline-block bg-orange-400/90 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide shadow-[0_2px_10px_rgba(251,146,60,0.3)]">
+                        Only <?php echo esc_html( (int) $product->get_stock_quantity() ); ?> left
+                    </span>
+                </div>
+            <?php endif; ?>
 
             <!-- Custom Native Wishlist Button -->
             <div class="absolute right-3 top-3 z-20">

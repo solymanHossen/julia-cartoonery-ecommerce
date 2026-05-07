@@ -34,6 +34,14 @@ export const initWishlist = ($) => {
                 if (response.success) {
                     const isAdded = response.data.is_added;
                     
+                    // Heart animation effect
+                    if (isAdded) {
+                        $btn.addClass('animate-ping-once');
+                        setTimeout(() => {
+                            $btn.removeClass('animate-ping-once');
+                        }, 600);
+                    }
+                    
                     // Note: If removing from inside the drawer, we might want to refresh the drawer or just remove the element
                     if ($btn.closest('#wishlist-drawer').length > 0) {
                         $btn.closest('li').fadeOut(300, function() { 
@@ -49,7 +57,7 @@ export const initWishlist = ($) => {
                         if (isAdded) {
                             $btn.addClass('text-[#FFB7C5]');
                             $icon.attr('fill', 'currentColor');
-                            showToast('Added to your wishlist!', 'success');
+                            showToast('❤️ Added to your wishlist!', 'success');
                         } else {
                             $btn.removeClass('text-[#FFB7C5]');
                             $icon.attr('fill', 'none');

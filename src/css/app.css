@@ -33,6 +33,26 @@
   html.dark ::selection {
     @apply bg-cyan-400 text-slate-950;
   }
+
+  /* Custom heart pulse animation for wishlist */
+  @keyframes ping-once {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 183, 197, 0.7);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(255, 183, 197, 0);
+      transform: scale(1.1);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 183, 197, 0);
+      transform: scale(1);
+    }
+  }
+
+  .animate-ping-once {
+    animation: ping-once 0.6s ease-out;
+  }
 }
 
 @layer components {
