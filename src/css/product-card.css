@@ -46,7 +46,30 @@
   .custom-premium-cart .added_to_cart.wc-forward {
     display: none !important;
   }
-  .custom-premium-cart {
+
+  .custom-price-color,
+  .minimal-price-stack {
+    @apply border-0 bg-transparent p-0 m-0 shadow-none outline-none;
+  }
+
+  .custom-price-color del,
+  .minimal-price-stack del {
+    @apply inline-block relative text-slate-400 text-[0.9rem] font-semibold border-0 bg-transparent p-0 m-0 shadow-none;
+  }
+
+  .custom-price-color del::after,
+  .minimal-price-stack del::after {
+    content: '';
+    @apply absolute left-0 top-1/2 w-full h-[1.5px] bg-[#FFB7C5]/60 -translate-y-1/2;
+  }
+
+  .custom-price-color ins,
+  .custom-price-color > .amount,
+  .minimal-price-stack ins,
+  .minimal-price-stack > .amount {
+    @apply block text-[#FFB7C5] no-underline leading-none border-0 bg-transparent p-0 m-0 shadow-none;
+  }
+    .custom-premium-cart {
    .add_to_cart_button {
       @apply !rounded-full !flex items-center justify-center !text-[#FFB7C5] !border-2 !border-[#FFB7C5] !px-3 !py-1 !text-xs !font-bold;
     }
