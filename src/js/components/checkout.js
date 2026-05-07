@@ -181,25 +181,6 @@ export function initCheckout($) {
         }, 500);
       });
     },
-
-    setupTrustSignals() {
-      const checkout = $("form.checkout");
-
-      // Add security badge
-      const securityBadge = `
-        <div class="trust-signals mt-8 p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800 flex items-center gap-3">
-          <svg class="w-5 h-5 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M5.293 9.707a1 1 0 010-1.414L10 3.586l4.707 4.707a1 1 0 01-1.414 1.414L10 6.414l-3.293 3.293a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-          </svg>
-          <div class="text-sm text-green-700 dark:text-green-300">
-            <strong>SSL Secure Checkout</strong> • 30-Day Money Back Guarantee • Free Shipping Over $50
-          </div>
-        </div>
-      `;
-
-      checkout.append(securityBadge);
-    },
-
     setupCouponUX() {
       const couponField = $("#coupon_code");
       const couponForm = couponField.closest("form");
