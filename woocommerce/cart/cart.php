@@ -61,7 +61,7 @@ do_action( 'woocommerce_before_cart' ); ?>
     </div>
 
     <!-- Two-column grid wrapper -->
-    <div class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+    <div id="julias-cart-grid" class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
 
     <!-- LEFT COLUMN: Cart Form -->
     <div class="lg:col-span-7 mb-10 lg:mb-0">

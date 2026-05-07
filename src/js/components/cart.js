@@ -1,5 +1,12 @@
 export function initCart($) {
 
+  // Debounce for plus/minus to prevent rapid-fire requests
+  const debounceMap = {};
+  function debounce(key, fn, delay = 300) {
+    if (debounceMap[key]) clearTimeout(debounceMap[key]);
+    debounceMap[key] = setTimeout(fn, delay);
+  }
+
   /**
    * Find the qty input relative to a +/- button.
    * WooCommerce wraps the input inside <div class="quantity">,
@@ -26,8 +33,16 @@ export function initCart($) {
 
     if (current > min) {
       $input.val(current - 1).trigger('change');
-      // Unlock and auto-trigger the WooCommerce update button
-      $('[name="update_cart"]').prop('disabled', false).trigger('click');
+      // Debounce the form submission to prevent rapid updates
+      debounce('qty-update', function () {
+        const $form = $btn.closest('form.woocommerce-cart-form');
+        if ($form.length && !$form.data('updating')) {
+          $form.trigger('submit');
+        } else {
+          // Fallback: click update button
+          $('[name="update_cart"]').prop('disabled', false).trigger('click');
+        }
+      });
     }
   });
 
@@ -43,8 +58,16 @@ export function initCart($) {
 
     if (current < maxVal) {
       $input.val(current + 1).trigger('change');
-      // Unlock and auto-trigger the WooCommerce update button
-      $('[name="update_cart"]').prop('disabled', false).trigger('click');
+      // Debounce the form submission to prevent rapid updates
+      debounce('qty-update', function () {
+        const $form = $btn.closest('form.woocommerce-cart-form');
+        if ($form.length && !$form.data('updating')) {
+          $form.trigger('submit');
+        } else {
+          // Fallback: click update button
+          $('[name="update_cart"]').prop('disabled', false).trigger('click');
+        }
+      });
     }
   });
 
@@ -75,11 +98,17 @@ export function initCart($) {
       $.get(window.location.href).done(function (pageHtml) {
         try {
           const $tmp = $('<div>').html(pageHtml);
-          const $newGrid = $tmp.find('.lg\\:grid').first();
-          const $oldGrid = $('.lg\\:grid').first();
+          const $newGrid = $tmp.find('#julias-cart-grid').first();
+          const $oldGrid = $('#julias-cart-grid').first();
 
           if ($newGrid.length && $oldGrid.length) {
             $oldGrid.replaceWith($newGrid);
+            // Also update header cart count fragment if present
+            const $newCount = $tmp.find('span.julias-cart-count').first();
+            const $oldCount = $('span.julias-cart-count').first();
+            if ($newCount.length && $oldCount.length) {
+              $oldCount.replaceWith($newCount);
+            }
           } else {
             // Fallback to full reload if selector not found
             window.location.reload();
@@ -101,6 +130,59 @@ export function initCart($) {
       }
       if (window.showToast) window.showToast('Unable to remove item. Please try again.', 'error');
       $link.prop('disabled', false).removeClass('opacity-60');
+    });
+  });
+
+  // AJAX submit for cart form to update quantities without full page reload
+  $(document.body).on('submit', 'form.woocommerce-cart-form', function (e) {
+    const $form = $(this);
+
+    // Prevent default full-page submit
+    e.preventDefault();
+
+    // Avoid concurrent updates
+    if ($form.data('updating')) return;
+    $form.data('updating', true);
+
+    const action = $form.attr('action') || window.location.href;
+
+    // Disable submit buttons and qty controls to prevent double submits
+    const $submitButtons = $form.find('button[type="submit"], input[type="submit"]');
+    const $qtyButtons = $form.find('.julias-qty-minus, .julias-qty-plus');
+    $submitButtons.prop('disabled', true);
+    $qtyButtons.prop('disabled', true);
+
+    // Ensure WooCommerce sees an update request
+    const postData = $form.serialize() + '&update_cart=1';
+
+    $.post(action, postData).done(function (respHtml) {
+      try {
+        const $tmp = $('<div>').html(respHtml);
+        const $newGrid = $tmp.find('#julias-cart-grid').first();
+        const $oldGrid = $('#julias-cart-grid').first();
+
+        if ($newGrid.length && $oldGrid.length) {
+          $oldGrid.replaceWith($newGrid);
+          // Also update header cart count fragment if present
+          const $newCount = $tmp.find('span.julias-cart-count').first();
+          const $oldCount = $('span.julias-cart-count').first();
+          if ($newCount.length && $oldCount.length) {
+            $oldCount.replaceWith($newCount);
+          }
+          if (window.showToast) window.showToast('Cart updated.', 'success');
+        } else {
+          // Fallback: reload the page to ensure correct state
+          window.location.reload();
+        }
+      } catch (err) {
+        window.location.reload();
+      }
+    }).fail(function () {
+      if (window.showToast) window.showToast('Unable to update cart. Please try again.', 'error');
+    }).always(function () {
+      $submitButtons.prop('disabled', false);
+      $qtyButtons.prop('disabled', false);
+      $form.data('updating', false);
     });
   });
 }

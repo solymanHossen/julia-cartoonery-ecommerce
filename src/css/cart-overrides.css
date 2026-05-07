@@ -97,6 +97,10 @@
   box-shadow: 0 14px 30px rgba(255, 183, 197, 0.28);
 }
 
+.woocommerce-cart .product-remove .remove:focus-visible {
+  @apply outline outline-2 outline-offset-2 outline-[#FFB7C5];
+}
+
 .woocommerce-cart .product-remove .remove:active {
   @apply scale-95;
 }
