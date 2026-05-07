@@ -13,7 +13,7 @@ defined( 'ABSPATH' ) || exit;
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+<div>
 
     <!-- Shopping Cart Hero -->
     <div class="mb-8 rounded-[32px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.06)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.25)] p-6 sm:p-8 lg:p-10">

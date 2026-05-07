@@ -1,0 +1,179 @@
+/* ========== CART EXPERIENCE ========== */
+
+/* Page Shell */
+.woocommerce-cart .woocommerce,
+.woocommerce-cart .woocommerce-notices-wrapper {
+  @apply w-full;
+}
+
+.woocommerce-cart main,
+.page-template-template-cart main {
+  @apply bg-slate-50 dark:bg-slate-950;
+}
+
+/* Shopping Cart Hero */
+.woocommerce-cart .woocommerce h1,
+.page-template-template-cart h1 {
+  @apply text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white tracking-wide leading-none mb-4;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+/* Stepper */
+.woocommerce-cart .woocommerce-cart-form .stepper,
+.woocommerce-cart .cart-steps {
+  @apply flex items-center gap-4 overflow-x-auto pb-1;
+}
+
+/* Cart Item Card */
+.woocommerce-cart .woocommerce-cart-form__cart-item,
+.woocommerce-cart .cart_item {
+  @apply bg-white dark:bg-slate-800 rounded-[32px] border border-slate-100 dark:border-slate-700/50 p-4 sm:p-6 transition-all duration-300;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+}
+
+.woocommerce-cart .woocommerce-cart-form__cart-item:hover,
+.woocommerce-cart .cart_item:hover {
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Thumbnail */
+.woocommerce-cart .product-thumbnail img {
+  @apply w-full h-full object-cover rounded-[24px] transition-transform duration-700;
+}
+
+.woocommerce-cart .woocommerce-cart-form__cart-item:hover .product-thumbnail img {
+  transform: scale(1.05);
+}
+
+/* Item Title / Price */
+.woocommerce-cart .product-name,
+.woocommerce-cart .product-name a {
+  @apply font-extrabold text-slate-800 dark:text-white leading-tight transition-colors;
+}
+
+.woocommerce-cart .product-name a:hover {
+  @apply text-[#FFB7C5];
+}
+
+.woocommerce-cart .product-price {
+  @apply text-[#FFB7C5] font-black tracking-tight;
+}
+
+/* Quantity Controls */
+.woocommerce-cart .product-quantity {
+  @apply bg-slate-50 dark:bg-slate-900/50 rounded-full flex items-center p-1 border border-slate-100 dark:border-slate-700/50;
+}
+
+.woocommerce-cart .julias-qty-minus,
+.woocommerce-cart .julias-qty-plus {
+  @apply w-9 h-9 rounded-full flex items-center justify-center text-slate-400 transition-all duration-300;
+}
+
+.woocommerce-cart .julias-qty-minus:hover,
+.woocommerce-cart .julias-qty-plus:hover {
+  @apply text-[#FFB7C5] bg-white dark:bg-slate-700;
+}
+
+.woocommerce-cart .product-quantity .qty {
+  @apply w-10 bg-transparent border-none text-center font-extrabold text-slate-800 dark:text-white focus:ring-0 appearance-none m-0 p-0 text-lg;
+}
+
+/* Remove Button */
+.woocommerce-cart .product-remove .remove {
+  @apply w-11 h-11 rounded-full bg-red-50 dark:bg-red-500/10 text-red-400 transition-all duration-300;
+}
+
+.woocommerce-cart .product-remove .remove:hover {
+  @apply bg-red-400 text-white;
+  transform: rotate(90deg);
+}
+
+/* Coupon & Update Row */
+.woocommerce-cart .coupon input[type="text"] {
+  @apply w-full rounded-full border-2 border-slate-100 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/50 text-slate-800 dark:text-white outline-none transition-all placeholder:text-slate-400;
+}
+
+.woocommerce-cart .coupon input[type="text"]:focus {
+  @apply border-[#FFB7C5] bg-white dark:bg-slate-800;
+  box-shadow: 0 0 0 3px rgba(255, 183, 197, 0.12);
+}
+
+.woocommerce-cart .coupon button,
+.woocommerce-cart .woocommerce-cart-form button[name="update_cart"],
+.woocommerce-cart .wc-proceed-to-checkout .checkout-button {
+  @apply rounded-full font-bold transition-all duration-300;
+}
+
+.woocommerce-cart .coupon button {
+  @apply bg-slate-800 dark:bg-slate-700 text-white hover:bg-[#FFB7C5] hover:translate-y-[-1px];
+}
+
+.woocommerce-cart .woocommerce-cart-form button[name="update_cart"] {
+  @apply bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 hover:bg-slate-800 hover:text-white dark:hover:bg-slate-600;
+}
+
+/* Cart Summary Card */
+.woocommerce-cart .cart_totals {
+  @apply w-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-8 sticky top-8 border border-slate-100 dark:border-slate-700/60;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.06);
+}
+
+.woocommerce-cart .cart_totals h2 {
+  @apply text-2xl font-extrabold text-slate-800 dark:text-white mb-2;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.woocommerce-cart .cart_totals .cart-subtotal,
+.woocommerce-cart .cart_totals .shipping,
+.woocommerce-cart .cart_totals .fee,
+.woocommerce-cart .cart_totals .tax-total,
+.woocommerce-cart .cart_totals .tax-rate,
+.woocommerce-cart .cart_totals .order-total {
+  @apply text-sm;
+}
+
+.woocommerce-cart .cart_totals .order-total {
+  @apply mb-8;
+}
+
+.woocommerce-cart .cart_totals .order-total span:last-child {
+  @apply text-[#FFB7C5] font-extrabold;
+}
+
+.woocommerce-cart .cart_totals .wc-proceed-to-checkout .checkout-button {
+  @apply w-full inline-flex items-center justify-center bg-[#FFB7C5] text-white py-4 px-6 text-base shadow-[0_10px_25px_rgba(255,183,197,0.3)];
+}
+
+.woocommerce-cart .cart_totals .wc-proceed-to-checkout .checkout-button:hover {
+  @apply bg-[#FF9FB3] -translate-y-0.5;
+  box-shadow: 0 15px 35px rgba(255, 183, 197, 0.4);
+}
+
+/* Shipping Methods */
+.woocommerce-cart #shipping_method label {
+  @apply flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-700/30 rounded-2xl border border-transparent cursor-pointer transition-all duration-300;
+}
+
+.woocommerce-cart #shipping_method label:hover {
+  @apply bg-slate-100 dark:bg-slate-700/50;
+}
+
+.woocommerce-cart #shipping_method input:checked + label {
+  @apply bg-white dark:bg-slate-700 border-[#FFB7C5]/30 shadow-sm;
+}
+
+/* Empty Cart */
+.woocommerce-cart .woocommerce-cart-form + .cart-empty,
+.woocommerce-cart .cart-empty {
+  @apply text-center py-16;
+}
+
+.woocommerce-cart .cart-empty a {
+  @apply inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full font-bold uppercase tracking-wide transition-all duration-300;
+}
+
+.woocommerce-cart .cart-empty a:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 6px 20px rgba(255, 183, 197, 0.4);
+}
