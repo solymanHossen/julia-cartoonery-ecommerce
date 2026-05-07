@@ -100,13 +100,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     <!-- Order Summary Header -->
                     <div class="order-summary-header">
                         <h3 class="order-summary-title">Review &amp; Payment</h3>
-                        <p class="order-summary-kicker">Confirm items, shipping, and payment before placing the order.</p>
-                        <div class="order-details">
-                            <svg class="order-icon" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 3a1 1 0 011-1h2.15a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06m0 0a1 1 0 001.037 1.852m0 0L9.5 15.5m-7.5-4l7.5 4m0 0l4 2.372c.537.317 1.29.004 1.469-.797l.821-4.91a1 1 0 00-.44-1.06m0 0L9.5 9.5"></path>
-                            </svg>
-                            <span id="cart-items-count">Secure Order Review</span>
-                        </div>
                     </div>
 
                     <div class="order-summary-body">

@@ -10,26 +10,11 @@ if ( ! is_ajax() ) {
 }
 ?>
 
-<div id="payment" class="woocommerce-checkout-payment mt-12">
-    <div class="flex items-start justify-between gap-4">
-        <div>
-            <h3 class="font-['Bubblegum_Sans'] text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
-        <?php esc_html_e( 'Payment Method', 'woocommerce' ); ?>
-            </h3>
-            <p class="mt-2 text-sm md:text-base text-slate-600 dark:text-slate-300">
-                <?php esc_html_e( 'Choose the secure option that works best for you.', 'woocommerce' ); ?>
-            </p>
-        </div>
-
-        <div class="hidden sm:inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-bold text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-900/20 dark:text-emerald-300">
-            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-            <?php esc_html_e( 'Secure checkout', 'woocommerce' ); ?>
-        </div>
-    </div>
-    
-    <div class="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow duration-300 dark:border-slate-700 dark:bg-slate-800 sm:p-5 md:p-6 lg:p-8">
+<div id="payment" class="woocommerce-checkout-payment">
+  
+    <div class="">
         <?php if ( WC()->cart->needs_payment() ) : ?>
-            <ul class="wc_payment_methods payment_methods methods list-none p-0 m-0 space-y-4">
+            <ul class="wc_payment_methods payment_methods methods list-none p-0 m-0 space-y-4 !px-0">
                 <?php
                 if ( ! empty( $available_gateways ) ) {
                     foreach ( $available_gateways as $gateway ) {
@@ -42,7 +27,7 @@ if ( ! is_ajax() ) {
             </ul>
         <?php endif; ?>
 
-        <div class="form-row place-order mt-6 md:mt-8 border-t border-slate-200 pt-6 dark:border-slate-700 md:pt-8">
+        <div class="form-row place-order mt-6 md:mt-8 border-t border-slate-200 pt-6 dark:border-slate-700 md:pt-8 !px-0">
             <noscript>
                 <?php
                 /* translators: $1 and $2: opening and closing emphasis tags respectively */

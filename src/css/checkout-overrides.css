@@ -1017,3 +1017,6 @@ ul#shipping_method li input[type="radio"]:checked + label {
         font-size: 1rem;
     }
 }
+.woocommerce-checkout-payment{
+    background: transparent !important;
+}
