@@ -23,7 +23,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
         <div class="checkout-header">
             <div class="checkout-eyebrow">Fast + Secure</div>
             <div class="checkout-header-actions">
-                <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart', 'class' => '!mb-0 !ml-0 px-0 py-0  text-slate-600 dark:text-slate-300 hover:text-[#FF9CB0] dark:hover:text-pink-400 bg-red-50' ) ); ?>
+                <a class="checkout-back-link" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+                    <svg aria-hidden="true" focusable="false" viewBox="0 0 20 20" fill="none" class="checkout-back-icon">
+                        <path d="M12.5 4.5L7 10l5.5 5.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>Return to Cart</span>
+                </a>
             </div>
         </div>
 
