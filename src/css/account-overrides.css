@@ -147,7 +147,7 @@
 }
 
 .julias-account-primary-btn {
-  @apply bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-[#FFB7C5] hover:text-white dark:hover:bg-[#FFB7C5] dark:hover:text-white;
+  @apply bg-pink-50 text-gray-500 dark:text-gray-400 font-bold rounded-full hover:bg-pink-100 dark:hover:bg-slate-800 hover:text-[#FF9CB0] dark:hover:text-pink-400 transition-all duration-300 active:scale-95;
 }
 
 .julias-account-secondary-btn {
@@ -226,7 +226,7 @@
 }
 
 .julias-account-note-link {
-  @apply inline-flex items-center justify-center px-5 py-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold no-underline transition-all duration-300 hover:bg-[#FFB7C5] hover:text-white dark:hover:bg-[#FFB7C5] dark:hover:text-white;
+  @apply inline-flex items-center justify-center px-5 py-3 rounded-full bg-pink-50 text-gray-500 dark:text-gray-400 font-bold rounded-full hover:bg-pink-100 dark:hover:bg-slate-800 hover:text-[#FF9CB0] dark:hover:text-pink-400 transition-all duration-300 active:scale-95;;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-Message,
