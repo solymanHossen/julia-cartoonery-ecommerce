@@ -22,10 +22,8 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
         <!-- Header -->
         <div class="checkout-header">
             <div class="checkout-eyebrow">Fast + Secure</div>
-            <h1 class="checkout-title">Secure Checkout</h1>
-            <p class="checkout-subtitle">Complete your order in under 2 minutes with protected payment and real-time totals.</p>
             <div class="checkout-header-actions">
-                <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart', 'class' => '!mb-0 !ml-0 px-0 py-0 bg-transparent hover:bg-transparent text-slate-600 dark:text-slate-300 hover:text-[#FF9CB0] dark:hover:text-pink-400' ) ); ?>
+                <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart', 'class' => '!mb-0 !ml-0 px-0 py-0  text-slate-600 dark:text-slate-300 hover:text-[#FF9CB0] dark:hover:text-pink-400 bg-red-50' ) ); ?>
             </div>
         </div>
 

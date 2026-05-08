@@ -2,12 +2,49 @@ export function initCheckout($) {
   "use strict";
 
   const $form = $("form.checkout.woocommerce-checkout");
-  if (!$form.length) {
-    return;
-  }
+  if (!$form.length) return;
 
   const $body = $(document.body);
   const $orderSummary = $(".order-summary");
+
+  const injectSkeletonStyles = () => {
+    if ($('#checkout-skeleton-styles').length) return;
+    const styles = `
+      <style id="checkout-skeleton-styles">
+        .woocommerce-checkout form.checkout .blockUI.blockOverlay {
+          display: none !important;
+          background: transparent !important;
+        }
+        .skeleton-loading {
+          position: relative;
+          pointer-events: none !important;
+          user-select: none !important;
+          overflow: hidden;
+        }
+        .skeleton-loading * {
+          color: transparent !important;
+          background-color: #e2e5e7 !important;
+          border-color: #e2e5e7 !important;
+          border-radius: 4px !important;
+          box-shadow: none !important;
+          background-image: none !important;
+        }
+        .skeleton-loading::before {
+          content: "";
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.6), rgba(255,255,255,0));
+          animation: skeleton-shimmer 1.2s infinite;
+          z-index: 10;
+        }
+        @keyframes skeleton-shimmer {
+          0% { transform: translateX(-100%); }
+          100% { transform: translateX(100%); }
+        }
+      </style>
+    `;
+    $("head").append(styles);
+  };
 
   const isLikelyInvalid = ($field) => {
     const val = ($field.val() || "").toString().trim();
@@ -59,14 +96,17 @@ export function initCheckout($) {
   const setupSummaryUpdateState = () => {
     $body.on("update_checkout", function () {
       $orderSummary.addClass("updating");
+      $(".woocommerce-checkout-review-order-table, .woocommerce-checkout-payment").addClass("skeleton-loading");
     });
 
     $body.on("updated_checkout", function () {
       $orderSummary.removeClass("updating");
+      $(".woocommerce-checkout-review-order-table, .woocommerce-checkout-payment").removeClass("skeleton-loading");
     });
 
     $body.on("checkout_error", function () {
       $orderSummary.removeClass("updating");
+      $(".woocommerce-checkout-review-order-table, .woocommerce-checkout-payment").removeClass("skeleton-loading");
       focusFirstError();
     });
   };
@@ -111,6 +151,7 @@ export function initCheckout($) {
     $body.on("updated_checkout", refresh);
   };
 
+  injectSkeletonStyles();
   setupFieldValidation();
   setupSummaryUpdateState();
   setupMobileStickyPlaceOrder();

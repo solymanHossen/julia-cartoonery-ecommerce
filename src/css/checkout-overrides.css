@@ -442,3 +442,25 @@ ul#shipping_method li label {
 .woocommerce form .form-row {
   width: 100% !important;
 }
+.woocommerce-checkout form.checkout .blockUI.blockOverlay {
+    display: none !important;
+    background: transparent !important;
+}
+@keyframes skeleton-loading {
+    0% { background-color: #e2e5e7; }
+    100% { background-color: #f1f3f5; }
+}
+
+.is-loading .checkout-section-content {
+    animation: skeleton-loading 1s linear infinite alternate;
+    color: transparent !important;
+    background-color: #e2e5e7;
+    border-radius: 4px;
+    pointer-events: none;
+    user-select: none;
+}
+.is-loading input, 
+.is-loading select, 
+.is-loading .product-name {
+    visibility: hidden;
+}
