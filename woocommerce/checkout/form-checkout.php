@@ -21,8 +21,12 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
         
         <!-- Header -->
         <div class="checkout-header">
+            <div class="checkout-eyebrow">Fast + Secure</div>
             <h1 class="checkout-title">Secure Checkout</h1>
-            <p class="checkout-subtitle">Complete your order securely in a few simple steps</p>
+            <p class="checkout-subtitle">Complete your order in under 2 minutes with protected payment and real-time totals.</p>
+            <div class="checkout-header-actions">
+                <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart', 'class' => '!mb-0 !ml-0 px-0 py-0 bg-transparent hover:bg-transparent text-slate-600 dark:text-slate-300 hover:text-[#FF9CB0] dark:hover:text-pink-400' ) ); ?>
+            </div>
         </div>
 
         <form name="checkout" method="post" class="checkout woocommerce-checkout checkout-form" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
@@ -38,7 +42,10 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         <div class="checkout-card" data-step="1">
                             <div class="card-header">
                                 <div class="step-badge">1</div>
-                                <h2 class="card-title">Contact Information</h2>
+                                <div>
+                                    <h2 class="card-title">Contact Information</h2>
+                                    <p class="card-subtitle">Used for order confirmation and delivery updates.</p>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <?php 
@@ -48,15 +55,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                     woocommerce_form_field( $key, $field, $checkout->get_value( $key ) );
                                 }
                                 ?>
-                                
-                                <?php if ( ! is_user_logged_in() && $checkout->is_registration_enabled() ) : ?>
-                                    <div class="login-section">
-                                        <p class="login-text">
-                                            Have an account? 
-                                            <a href="#" class="checkout-login-toggle">Log in</a>
-                                        </p>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -64,7 +62,10 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         <div class="checkout-card" data-step="2">
                             <div class="card-header">
                                 <div class="step-badge">2</div>
-                                <h2 class="card-title">Shipping Address</h2>
+                                <div>
+                                    <h2 class="card-title">Shipping Address</h2>
+                                    <p class="card-subtitle">Where we should send your order.</p>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <?php 
@@ -86,11 +87,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     </div>
                 <?php endif; ?>
 
-                <!-- Desktop: Back to Cart Link -->
-                <div class="back-to-cart">
-                    <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart', 'class' => '!mb-0 !ml-0 px-0 py-0 bg-transparent hover:bg-transparent text-slate-600 dark:text-slate-300 hover:text-[#FF9CB0] dark:hover:text-pink-400' ) ); ?>
-                </div>
-
             </div>
 
             <!-- Right Column - Order Summary (Sticky) -->
@@ -100,6 +96,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                     <!-- Order Summary Header -->
                     <div class="order-summary-header">
                         <h3 class="order-summary-title">Review &amp; Payment</h3>
+                        <p class="order-summary-kicker">Verify your items and place the order securely.</p>
                     </div>
 
                     <div class="order-summary-body">
@@ -107,27 +104,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         <!-- Cart Items -->
                         <div id="order_review" class="woocommerce-checkout-review-order order-items">
                             <?php do_action( 'woocommerce_checkout_order_review' ); ?>
-                        </div>
-
-                        <!-- Coupon Code Section -->
-                        <div class="coupon-section">
-                            <details class="coupon-details">
-                                <summary class="coupon-summary">
-                                    <span class="coupon-label">
-                                        <svg class="coupon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                        </svg>
-                                        Add discount code
-                                    </span>
-                                    <svg class="coupon-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                                    </svg>
-                                </summary>
-                                <div class="coupon-input-group">
-                                    <input type="text" name="coupon_code" id="coupon_code" class="coupon-input" placeholder="Enter coupon code" />
-                                    <button type="submit" name="apply_coupon" class="coupon-button">Apply</button>
-                                </div>
-                            </details>
                         </div>
 
                         <!-- Trust Signals -->
@@ -151,12 +127,9 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                 <span class="trust-label">30-Day Returns</span>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Mobile: Back to Cart Link -->
-                <div class="mobile-back-to-cart">
-                    <?php get_template_part( 'template-parts/components/button-back', null, array( 'url' => wc_get_cart_url(), 'text' => 'Return to Cart' ) ); ?>
+                        <p class="checkout-assurance" aria-live="polite">256-bit SSL encryption. Your payment details stay protected.</p>
+                    </div>
                 </div>
             </div>
 
