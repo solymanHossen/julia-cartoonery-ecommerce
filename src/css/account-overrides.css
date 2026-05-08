@@ -105,12 +105,12 @@
 }
 
 .julias-account-hero {
-  @apply grid gap-4 lg:grid-cols-[1.4fr_0.9fr] items-stretch;
+  @apply grid gap-4;
 }
 
 .julias-account-hero-copy,
-.julias-account-hero-panel,
-.julias-account-card,
+.julias-account-metric-card,
+.julias-account-panel,
 .julias-account-notes {
   @apply bg-white/90 dark:bg-slate-800/90 border border-slate-100 dark:border-slate-700/60 rounded-[32px] shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur-xl;
 }
@@ -137,39 +137,84 @@
   @apply max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed;
 }
 
-.julias-account-hero-panel {
-  @apply p-6 sm:p-8 lg:p-10 flex flex-col justify-between gap-5 bg-gradient-to-br from-[#A8D8EA]/35 via-white/90 to-[#FFB7C5]/20 dark:from-slate-800 dark:via-slate-800 dark:to-slate-700/70;
+.julias-account-hero-actions {
+  @apply mt-6 flex flex-wrap gap-3;
 }
 
-.julias-account-hero-badge,
-.julias-account-card-label,
+.julias-account-primary-btn,
+.julias-account-secondary-btn {
+  @apply inline-flex items-center justify-center rounded-full px-5 py-3 font-bold no-underline transition-all duration-300;
+}
+
+.julias-account-primary-btn {
+  @apply bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-[#FFB7C5] hover:text-white dark:hover:bg-[#FFB7C5] dark:hover:text-white;
+}
+
+.julias-account-secondary-btn {
+  @apply bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-600;
+}
+
+.julias-account-metrics {
+  @apply grid gap-4 md:grid-cols-3;
+}
+
+.julias-account-metric-card {
+  @apply p-5 sm:p-6;
+}
+
+.julias-account-metric-label,
 .julias-account-note-label {
   @apply text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400;
 }
 
-.julias-account-hero-links {
-  @apply grid grid-cols-2 gap-3;
-}
-
-.julias-account-hero-link {
-  @apply inline-flex items-center justify-center rounded-2xl px-4 py-3 bg-white/80 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-white dark:hover:bg-slate-700/80;
-}
-
-.julias-account-grid {
-  @apply grid gap-4 sm:grid-cols-2 xl:grid-cols-4;
-}
-
-.julias-account-card {
-  @apply p-5 sm:p-6 flex flex-col gap-3 no-underline transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_65px_rgba(15,23,42,0.1)];
-}
-
-.julias-account-card-title {
-  @apply text-xl font-extrabold text-slate-900 dark:text-white;
+.julias-account-metric-value {
+  @apply text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-3;
   font-family: 'Bubblegum Sans', cursive;
 }
 
-.julias-account-card-copy {
-  @apply text-sm text-slate-600 dark:text-slate-300 leading-relaxed;
+.julias-account-metric-copy {
+  @apply mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed;
+}
+
+.julias-account-panels {
+  @apply grid gap-4 lg:grid-cols-2;
+}
+
+.julias-account-panel {
+  @apply p-5 sm:p-6;
+}
+
+.julias-account-panel-title {
+  @apply text-2xl font-extrabold text-slate-900 dark:text-white mt-3;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.julias-account-panel-copy {
+  @apply mt-2 text-slate-600 dark:text-slate-300 leading-relaxed;
+}
+
+.julias-account-inline-link {
+  @apply inline-flex mt-4 text-sm font-bold text-[#FFB7C5] hover:text-[#ff9eaa] no-underline;
+}
+
+.julias-account-checklist {
+  @apply mt-4 space-y-2.5;
+}
+
+.julias-account-checklist li {
+  @apply flex items-center justify-between gap-4 rounded-2xl px-4 py-3 bg-slate-50 dark:bg-slate-900/40 border border-slate-100 dark:border-slate-700/60;
+}
+
+.julias-account-checklist li span {
+  @apply text-slate-600 dark:text-slate-300 font-semibold;
+}
+
+.julias-account-checklist li strong {
+  @apply text-emerald-600 dark:text-emerald-400 font-bold;
+}
+
+.julias-account-checklist li a {
+  @apply text-[#FFB7C5] hover:text-[#ff9eaa] font-bold no-underline;
 }
 
 .julias-account-notes {
