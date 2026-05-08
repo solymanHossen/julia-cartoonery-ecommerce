@@ -17,6 +17,10 @@ add_action('init', function() {
     }
 });
 
+add_action('init', function() {
+    remove_action('woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10);
+});
+
 // 1. AJAX Cart Fragments (Header Cart Count)
 add_filter('woocommerce_add_to_cart_fragments', 'julias_cart_count_fragments', 10, 1);
 function julias_cart_count_fragments($fragments) {
