@@ -304,45 +304,6 @@
   display: block;
 }
 
-.trust-badges {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.65rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid #e2e8f0;
-}
-
-.dark .trust-badges {
-  border-top-color: #475569;
-}
-
-.trust-badge-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 0.32rem;
-}
-
-.trust-icon {
-  width: 1.1rem;
-  height: 1.1rem;
-}
-
-.trust-icon.ssl { color: #22c55e; }
-.trust-icon.protected { color: #3b82f6; }
-.trust-icon.returns { color: #f97316; }
-
-.trust-label {
-  color: #64748b;
-  font-size: 0.68rem;
-  font-weight: 700;
-}
-
-.dark .trust-label {
-  color: #94a3b8;
-}
-
 .checkout-assurance {
   margin: 0;
   color: #64748b;

@@ -108,28 +108,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                         <div id="order_review" class="woocommerce-checkout-review-order order-items">
                             <?php do_action( 'woocommerce_checkout_order_review' ); ?>
                         </div>
-
-                        <!-- Trust Signals -->
-                        <div class="trust-badges">
-                            <div class="trust-badge-item">
-                                <svg class="trust-icon ssl" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M6.707 6.707a1 1 0 010 1.414L5.414 9.414a1 1 0 11-1.414-1.414l1.293-1.293a1 1 0 011.414 0zm2.828-2.828a1 1 0 010 1.414l-.707.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zm2.828-2.829a1 1 0 010 1.415L9.586 5.586a1 1 0 11-1.414-1.414l4.243-4.243a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="trust-label">SSL Secure</span>
-                            </div>
-                            <div class="trust-badge-item">
-                                <svg class="trust-icon protected" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="trust-label">Protected</span>
-                            </div>
-                            <div class="trust-badge-item">
-                                <svg class="trust-icon returns" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                                </svg>
-                                <span class="trust-label">30-Day Returns</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
