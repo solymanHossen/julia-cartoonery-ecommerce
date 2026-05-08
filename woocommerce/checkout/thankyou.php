@@ -60,9 +60,41 @@ defined( 'ABSPATH' ) || exit;
             </div>
         <?php endif; ?>
 
-        <div class="space-y-8">
-            <?php do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
-            <?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
+        <div class="thankyou-receipt-shell mt-8 grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
+            <aside class="thankyou-receipt-note rounded-[32px] border border-[#A8D8EA]/25 bg-gradient-to-br from-[#f8fcfe] via-white to-[#fff7f9] p-6 shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-slate-700/60 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 dark:shadow-[0_12px_30px_rgba(0,0,0,0.22)]">
+                <div class="inline-flex items-center gap-2 rounded-full bg-[#A8D8EA]/15 px-3 py-1 text-[0.72rem] font-black uppercase tracking-[0.22em] text-slate-700 dark:text-slate-200">
+                    <span class="h-2 w-2 rounded-full bg-[#A8D8EA]"></span>
+                    <?php esc_html_e( 'Receipt summary', 'woocommerce' ); ?>
+                </div>
+
+                <h3 class="mt-4 text-2xl font-black text-slate-900 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
+                    <?php esc_html_e( 'Keep this order receipt handy', 'woocommerce' ); ?>
+                </h3>
+
+                <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                    <?php esc_html_e( 'Your order has been recorded and will be prepared for delivery. Pay the courier in cash when your package arrives.', 'woocommerce' ); ?>
+                </p>
+
+                <dl class="mt-6 space-y-4 text-sm">
+                    <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 dark:border-slate-700/60">
+                        <dt class="font-semibold text-slate-500 dark:text-slate-400"><?php esc_html_e( 'Order number', 'woocommerce' ); ?></dt>
+                        <dd class="font-black text-slate-900 dark:text-white"><?php echo esc_html( $order->get_order_number() ); ?></dd>
+                    </div>
+                    <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 dark:border-slate-700/60">
+                        <dt class="font-semibold text-slate-500 dark:text-slate-400"><?php esc_html_e( 'Payment', 'woocommerce' ); ?></dt>
+                        <dd class="font-black text-slate-900 dark:text-white"><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></dd>
+                    </div>
+                    <div class="flex items-start justify-between gap-4">
+                        <dt class="font-semibold text-slate-500 dark:text-slate-400"><?php esc_html_e( 'Total paid on delivery', 'woocommerce' ); ?></dt>
+                        <dd class="font-black text-[#FFB7C5]"><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></dd>
+                    </div>
+                </dl>
+            </aside>
+
+            <div class="thankyou-receipt-content space-y-8">
+                <?php do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
+                <?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
+            </div>
         </div>
 
     <?php else : ?>
