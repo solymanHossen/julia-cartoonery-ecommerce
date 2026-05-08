@@ -7,7 +7,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <div class="woocommerce-shipping-fields">
     <?php if ( true === WC()->cart->needs_shipping_address() ) : ?>
-        <div id="ship-to-different-address" class="mb-6 pb-6 border-b border-slate-100 dark:border-slate-700/50">
+        <div id="ship-to-different-address" class=" border-slate-100 dark:border-slate-700/50">
             <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox flex items-center justify-between cursor-pointer group">
                 <span class="text-sm font-bold text-slate-700 dark:text-slate-200 group-hover:text-[#FFB7C5] transition-colors"><?php esc_html_e( 'Ship to a different address?', 'woocommerce' ); ?></span>
                 <div class="relative">
@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
     <?php endif; ?>
 </div>
 
-<div class="woocommerce-additional-fields mt-8 pt-8 border-t border-slate-100 dark:border-slate-700/50">
+<div class="woocommerce-additional-fields  ">
     <?php do_action( 'woocommerce_before_order_notes', $checkout ); ?>
     
     <?php if ( apply_filters( 'woocommerce_enable_order_notes_field', 'yes' === get_option( 'woocommerce_enable_order_comments', 'yes' ) ) ) : ?>
