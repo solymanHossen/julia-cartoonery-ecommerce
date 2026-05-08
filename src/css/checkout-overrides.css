@@ -436,3 +436,6 @@ ul#shipping_method li label {
     transition: none !important;
   }
 }
+#add_payment_method #payment, .woocommerce-cart #payment, .woocommerce-checkout #payment {
+    background: transparent!important;
+}
