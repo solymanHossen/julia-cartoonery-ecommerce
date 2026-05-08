@@ -15,38 +15,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 <div>
 
-    <!-- Shopping Cart Hero -->
-    <div class="mb-5 md:block hidden rounded-[20px] border border-slate-100/80 dark:border-slate-700/60 bg-white/90 dark:bg-slate-800/80 backdrop-blur-xl shadow-[0_10px_28px_rgba(15,23,42,0.04)] dark:shadow-[0_10px_28px_rgba(0,0,0,0.18)] px-4 py-4 sm:px-5 sm:py-5 lg:px-6 lg:py-5">
-        <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-            <div class="max-w-2xl">
-                <p class="inline-flex items-center gap-2 rounded-full bg-[#FFB7C5]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[#FF7F9C] mb-2">
-                    Step 1 of 2
-                </p>
-                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-800 dark:text-white tracking-wide leading-tight" style="font-family: 'Bubblegum Sans', cursive;">
-                    Shopping Cart
-                </h1>
-                <p class="mt-2 max-w-xl text-sm font-medium text-slate-500 dark:text-slate-400 leading-relaxed sm:text-[0.9rem]">
-                    Review items, apply your code, and continue to secure checkout with a cleaner, faster flow.
-                </p>
-            </div>
-
-            <div class="flex flex-wrap gap-2 lg:justify-end lg:max-w-md">
-                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#FFB7C5]"></span>
-                    Secure checkout
-                </div>
-                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                    Fast shipping
-                </div>
-                <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 dark:bg-slate-700/70 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-slate-600 dark:text-slate-300">
-                    <span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span>
-                    Easy returns
-                </div>
-            </div>
-        </div>
-
-    </div>
+    <?php
+    get_template_part(
+        'template-parts/components/button-back',
+        null,
+        array(
+            'url'   => wc_get_page_permalink( 'shop' ),
+            'text'  => __( 'Back to Shop', 'julias-cartoonery' ),
+            'class' => '!mb-4 !ml-0 px-0 py-0 bg-transparent hover:bg-transparent text-slate-500 dark:text-slate-400 hover:text-[#FF9CB0] dark:hover:text-pink-400',
+        )
+    );
+    ?>
 
     <!-- Two-column grid wrapper -->
     <div id="julias-cart-grid" class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
