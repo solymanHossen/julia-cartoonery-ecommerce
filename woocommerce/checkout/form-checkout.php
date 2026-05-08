@@ -127,8 +127,6 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
                                 <span class="trust-label">30-Day Returns</span>
                             </div>
                         </div>
-
-                        <p class="checkout-assurance" aria-live="polite">256-bit SSL encryption. Your payment details stay protected.</p>
                     </div>
                 </div>
             </div>
