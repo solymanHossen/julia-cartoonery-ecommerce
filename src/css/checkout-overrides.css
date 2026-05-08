@@ -250,6 +250,17 @@
   border-radius: 0.85rem;
 }
 
+.checkout-form > .woocommerce-NoticeGroup,
+.checkout-form > .woocommerce-NoticeGroup-checkout,
+.checkout-form > [role="alert"] {
+  grid-column: 1 / -1;
+  margin-bottom: 0.25rem;
+}
+
+.checkout-form > [role="alert"] .woocommerce-error {
+  margin: 0;
+}
+
 .checkout-right-column {
   position: relative;
 }
@@ -367,6 +378,14 @@ ul#shipping_method li label {
     grid-template-columns: minmax(0, 1fr) 400px;
     gap: 1.4rem;
     align-items: start;
+  }
+
+  .checkout-left-column {
+    grid-column: 1;
+  }
+
+  .checkout-right-column {
+    grid-column: 2;
   }
 
   .checkout-card .card-header {
