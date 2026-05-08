@@ -10,98 +10,139 @@ defined( 'ABSPATH' ) || exit;
         <?php do_action( 'woocommerce_before_thankyou', $order->get_id() ); ?>
         
         <?php if ( $order->has_status( 'failed' ) ) : ?>
-            <div class="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-800/30 rounded-[32px] p-8 text-center shadow-sm mb-8">
-                <div class="w-16 h-16 bg-red-100 dark:bg-red-800/40 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+            <div class="bg-gradient-to-br from-red-50 to-red-50/50 dark:from-red-900/20 dark:to-red-900/10 border border-red-200 dark:border-red-800/30 rounded-[40px] p-6 sm:p-10 lg:p-12 text-center shadow-[0_8px_30px_rgb(239,68,68,0.06)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.2)] mb-8">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-red-100 dark:bg-red-800/40 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8 shadow-lg shadow-red-200/50 dark:shadow-red-900/30 animate-pulse">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
                 </div>
-                <p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed text-red-800 dark:text-red-200 font-bold text-xl mb-4"><?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?></p>
-                <p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions">
-                    <a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="button pay inline-block px-8 py-3 bg-red-600 text-white rounded-full font-bold hover:bg-red-700 transition-colors"><?php esc_html_e( 'Pay', 'woocommerce' ); ?></a>
+                <p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed text-red-800 dark:text-red-200 font-bold text-lg sm:text-xl mb-4 sm:mb-6 leading-relaxed">
+                    <?php esc_html_e( 'Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.', 'woocommerce' ); ?>
+                </p>
+                <p class="woocommerce-notice woocommerce-notice--error woocommerce-thankyou-order-failed-actions flex flex-col sm:flex-row gap-4 sm:gap-3 justify-center flex-wrap">
+                    <a href="<?php echo esc_url( $order->get_checkout_payment_url() ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-red-600 text-white font-bold rounded-full hover:bg-red-700 hover:shadow-lg hover:shadow-red-600/30 transition-all duration-300 ease-out group">
+                        <?php esc_html_e( 'Try Payment Again', 'woocommerce' ); ?>
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
                     <?php if ( is_user_logged_in() ) : ?>
-                        <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="button pay inline-block px-8 py-3 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-full font-bold hover:bg-slate-300 transition-colors ml-4"><?php esc_html_e( 'My account', 'woocommerce' ); ?></a>
+                        <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold rounded-full hover:bg-slate-300 dark:hover:bg-slate-600 transition-all duration-300 ease-out">
+                            <?php esc_html_e( 'My Account', 'woocommerce' ); ?>
+                        </a>
                     <?php endif; ?>
                 </p>
             </div>
         <?php else : ?>
             <!-- Success Card -->
-            <div class="bg-white dark:bg-slate-800 rounded-[40px] p-8 sm:p-12 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-100 dark:border-slate-700/50 mb-10">
-                <div class="w-20 h-20 bg-[#A8D8EA]/20 dark:bg-[#A8D8EA]/10 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
-                    <svg class="w-10 h-10 text-[#A8D8EA]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+            <div class="bg-white dark:bg-slate-800 rounded-[40px] p-6 sm:p-10 lg:p-12 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-100 dark:border-slate-700/50 mb-12">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-[#A8D8EA] to-[#8DC6DB] rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8 animate-bounce shadow-lg shadow-[#A8D8EA]/30 dark:shadow-[#A8D8EA]/20">
+                    <svg class="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                     </svg>
                 </div>
-                <h2 class="text-4xl sm:text-5xl font-bold mb-4 text-slate-800 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-slate-800 dark:text-white leading-tight" style="font-family: 'Bubblegum Sans', cursive;">
                     <?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you! Order Received.', 'woocommerce' ), $order ); ?>
                 </h2>
-                <p class="text-slate-500 dark:text-slate-400 text-lg mb-10 max-w-lg mx-auto">
+                <p class="text-sm sm:text-base lg:text-lg text-slate-500 dark:text-slate-400 mb-8 sm:mb-12 max-w-2xl mx-auto leading-relaxed">
                     <?php esc_html_e( 'Hooray! Your adventure has begun. We have received your order and are getting it ready for you.', 'woocommerce' ); ?>
                 </p>
-                <!-- Order Meta Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-left border-t border-slate-50 dark:border-slate-700/50 pt-10">
-                    <div class="woocommerce-order-overview__order order">
-                        <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1"><?php esc_html_e( 'Order number:', 'woocommerce' ); ?></span>
-                        <span class="block text-lg font-black text-slate-800 dark:text-white"><?php echo $order->get_order_number(); ?></span>
+                
+                <!-- Order Meta Grid - Fully Responsive -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left border-t border-slate-50 dark:border-slate-700/50 pt-8 sm:pt-10">
+                    <div class="woocommerce-order-overview__order order bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-4 sm:p-5">
+                        <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2"><?php esc_html_e( 'Order number', 'woocommerce' ); ?></span>
+                        <span class="block text-base sm:text-lg font-black text-slate-800 dark:text-white break-words"><?php echo $order->get_order_number(); ?></span>
                     </div>
-                    <div class="woocommerce-order-overview__date date">
-                        <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1"><?php esc_html_e( 'Date:', 'woocommerce' ); ?></span>
-                        <span class="block text-lg font-black text-slate-800 dark:text-white"><?php echo wc_format_datetime( $order->get_date_created() ); ?></span>
+                    <div class="woocommerce-order-overview__date date bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-4 sm:p-5">
+                        <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2"><?php esc_html_e( 'Date', 'woocommerce' ); ?></span>
+                        <span class="block text-base sm:text-lg font-black text-slate-800 dark:text-white"><?php echo wc_format_datetime( $order->get_date_created() ); ?></span>
                     </div>
-                    <div class="woocommerce-order-overview__total total">
-                        <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1"><?php esc_html_e( 'Total:', 'woocommerce' ); ?></span>
-                        <span class="block text-lg font-black text-[#FFB7C5]"><?php echo $order->get_formatted_order_total(); ?></span>
+                    <div class="woocommerce-order-overview__total total bg-gradient-to-br from-[#FFB7C5]/10 to-[#FFB7C5]/5 dark:from-[#FFB7C5]/5 dark:to-[#FFB7C5]/2 rounded-2xl p-4 sm:p-5 border border-[#FFB7C5]/20">
+                        <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2"><?php esc_html_e( 'Total', 'woocommerce' ); ?></span>
+                        <span class="block text-base sm:text-lg font-black text-[#FF6B9D]"><?php echo $order->get_formatted_order_total(); ?></span>
                     </div>
                     <?php if ( $order->get_payment_method_title() ) : ?>
-                        <div class="woocommerce-order-overview__payment-method method">
-                            <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1"><?php esc_html_e( 'Payment method:', 'woocommerce' ); ?></span>
-                            <span class="block text-lg font-black text-slate-800 dark:text-white"><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></span>
+                        <div class="woocommerce-order-overview__payment-method method bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-4 sm:p-5">
+                            <span class="block text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2"><?php esc_html_e( 'Payment method', 'woocommerce' ); ?></span>
+                            <span class="block text-base sm:text-lg font-black text-slate-800 dark:text-white"><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></span>
                         </div>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-slate-50 dark:border-slate-700/50 flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#A8D8EA] to-[#8DC6DB] text-white font-bold rounded-full shadow-lg shadow-[#A8D8EA]/30 hover:shadow-xl hover:shadow-[#A8D8EA]/40 hover:scale-105 transition-all duration-300 ease-out group">
+                        <?php esc_html_e( 'Continue Shopping', 'woocommerce' ); ?>
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    <?php if ( is_user_logged_in() ) : ?>
+                        <a href="<?php echo esc_url( wc_get_page_permalink( 'myaccount' ) ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-white dark:bg-slate-700 text-slate-800 dark:text-white font-bold rounded-full border-2 border-slate-200 dark:border-slate-600 hover:border-[#A8D8EA] dark:hover:border-[#A8D8EA] hover:bg-slate-50 dark:hover:bg-slate-600 transition-all duration-300 ease-out">
+                            <?php esc_html_e( 'View Orders', 'woocommerce' ); ?>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>
         <?php endif; ?>
 
-        <div class="thankyou-receipt-shell mt-8 grid gap-6 lg:grid-cols-[320px_minmax(0,1fr)]">
-            <aside class="thankyou-receipt-note rounded-[32px] border border-[#A8D8EA]/25 bg-gradient-to-br from-[#f8fcfe] via-white to-[#fff7f9] p-6 shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-slate-700/60 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 dark:shadow-[0_12px_30px_rgba(0,0,0,0.22)]">
-                <div class="inline-flex items-center gap-2 rounded-full bg-[#A8D8EA]/15 px-3 py-1 text-[0.72rem] font-black uppercase tracking-[0.22em] text-slate-700 dark:text-slate-200">
+        <div class="thankyou-receipt-shell mt-8 sm:mt-12 grid gap-6 lg:grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr]">
+            <aside class="thankyou-receipt-note order-2 lg:order-1 rounded-[32px] border border-[#A8D8EA]/25 bg-gradient-to-br from-[#f8fcfe] via-white to-[#fff7f9] p-6 sm:p-8 shadow-[0_12px_30px_rgba(15,23,42,0.06)] dark:border-slate-700/60 dark:from-slate-800 dark:via-slate-800 dark:to-slate-900 dark:shadow-[0_12px_30px_rgba(0,0,0,0.22)]">
+                <div class="inline-flex items-center gap-2 rounded-full bg-[#A8D8EA]/15 px-3 py-1 text-[0.65rem] sm:text-[0.72rem] font-black uppercase tracking-[0.15em] sm:tracking-[0.22em] text-slate-700 dark:text-slate-200 whitespace-nowrap">
                     <span class="h-2 w-2 rounded-full bg-[#A8D8EA]"></span>
                     <?php esc_html_e( 'Receipt summary', 'woocommerce' ); ?>
                 </div>
 
-                <h3 class="mt-4 text-2xl font-black text-slate-900 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
+                <h3 class="mt-4 text-lg sm:text-2xl font-black text-slate-900 dark:text-white leading-tight" style="font-family: 'Bubblegum Sans', cursive;">
                     <?php esc_html_e( 'Keep this order receipt handy', 'woocommerce' ); ?>
                 </h3>
 
-                <p class="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                <p class="mt-3 text-xs sm:text-sm leading-6 text-slate-600 dark:text-slate-300">
                     <?php esc_html_e( 'Your order has been recorded and will be prepared for delivery. Pay the courier in cash when your package arrives.', 'woocommerce' ); ?>
                 </p>
 
-                <dl class="mt-6 space-y-4 text-sm">
-                    <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 dark:border-slate-700/60">
-                        <dt class="font-semibold text-slate-500 dark:text-slate-400"><?php esc_html_e( 'Order number', 'woocommerce' ); ?></dt>
-                        <dd class="font-black text-slate-900 dark:text-white"><?php echo esc_html( $order->get_order_number() ); ?></dd>
+                <dl class="mt-6 space-y-3 sm:space-y-4 text-xs sm:text-sm">
+                    <div class="flex items-start justify-between gap-3 sm:gap-4 border-b border-slate-100 pb-3 sm:pb-4 dark:border-slate-700/60">
+                        <dt class="font-semibold text-slate-500 dark:text-slate-400 flex-shrink-0"><?php esc_html_e( 'Order', 'woocommerce' ); ?></dt>
+                        <dd class="font-black text-slate-900 dark:text-white text-right break-words"><?php echo esc_html( $order->get_order_number() ); ?></dd>
                     </div>
-                    <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-4 dark:border-slate-700/60">
-                        <dt class="font-semibold text-slate-500 dark:text-slate-400"><?php esc_html_e( 'Payment', 'woocommerce' ); ?></dt>
-                        <dd class="font-black text-slate-900 dark:text-white"><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></dd>
+                    <div class="flex items-start justify-between gap-3 sm:gap-4 border-b border-slate-100 pb-3 sm:pb-4 dark:border-slate-700/60">
+                        <dt class="font-semibold text-slate-500 dark:text-slate-400 flex-shrink-0"><?php esc_html_e( 'Payment', 'woocommerce' ); ?></dt>
+                        <dd class="font-black text-slate-900 dark:text-white text-right break-words"><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></dd>
                     </div>
-                    <div class="flex items-start justify-between gap-4">
-                        <dt class="font-semibold text-slate-500 dark:text-slate-400"><?php esc_html_e( 'Total paid on delivery', 'woocommerce' ); ?></dt>
-                        <dd class="font-black text-[#FFB7C5]"><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></dd>
+                    <div class="flex items-start justify-between gap-3 sm:gap-4">
+                        <dt class="font-semibold text-slate-500 dark:text-slate-400 flex-shrink-0"><?php esc_html_e( 'Total', 'woocommerce' ); ?></dt>
+                        <dd class="font-black text-[#FF6B9D] text-right"><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></dd>
                     </div>
                 </dl>
             </aside>
 
-            <div class="thankyou-receipt-content space-y-8">
+            <div class="thankyou-receipt-content order-1 lg:order-2 space-y-8">
                 <?php do_action( 'woocommerce_thankyou_' . $order->get_payment_method(), $order->get_id() ); ?>
                 <?php do_action( 'woocommerce_thankyou', $order->get_id() ); ?>
             </div>
         </div>
 
     <?php else : ?>
-        <div class="bg-white dark:bg-slate-800 rounded-[40px] p-12 text-center shadow-lg border border-slate-100 dark:border-slate-700/50">
-            <h2 class="text-3xl font-bold text-slate-800 dark:text-white" >
+        <div class="bg-gradient-to-br from-slate-50 to-slate-50/50 dark:from-slate-800 dark:to-slate-900 rounded-[40px] p-8 sm:p-12 text-center shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-100 dark:border-slate-700/50">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-slate-200 dark:bg-slate-700 rounded-full flex items-center justify-center mx-auto mb-6 sm:mb-8">
+                <svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-800 dark:text-white mb-4" style="font-family: 'Bubblegum Sans', cursive;">
                 <?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?>
             </h2>
+            <p class="text-slate-500 dark:text-slate-400 text-base sm:text-lg mb-8">
+                <?php esc_html_e( 'We appreciate your business and will be in touch shortly to confirm your order details.', 'woocommerce' ); ?>
+            </p>
+            <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#A8D8EA] to-[#8DC6DB] text-white font-bold rounded-full shadow-lg shadow-[#A8D8EA]/30 hover:shadow-xl hover:shadow-[#A8D8EA]/40 hover:scale-105 transition-all duration-300 ease-out group">
+                <?php esc_html_e( 'Continue Shopping', 'woocommerce' ); ?>
+                <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </a>
         </div>
     <?php endif; ?>
 </div>
