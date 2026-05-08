@@ -11,21 +11,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-do_action( 'woocommerce_before_cart' ); ?>
+do_action( 'woocommerce_before_cart' );
+
+$shop_url = apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) );
+?>
 
 <div>
-
-    <?php
-    get_template_part(
-        'template-parts/components/button-back',
-        null,
-        array(
-            'url'   => wc_get_page_permalink( 'shop' ),
-            'text'  => __( 'Back to Shop', 'julias-cartoonery' ),
-            'class' => '!mb-4 !ml-0 px-0 py-0 bg-transparent hover:bg-transparent text-slate-500 dark:text-slate-400 hover:text-[#FF9CB0] dark:hover:text-pink-400',
-        )
-    );
-    ?>
 
     <!-- Two-column grid wrapper -->
     <div id="julias-cart-grid" class="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
@@ -43,8 +34,8 @@ do_action( 'woocommerce_before_cart' ); ?>
                 </div>
                 <h2 class="text-3xl font-extrabold text-slate-800 dark:text-white mb-2" style="font-family: 'Bubblegum Sans', cursive;">Your Cart is Empty</h2>
                 <p class="text-slate-500 dark:text-slate-400 font-semibold mb-8 max-w-sm">No products in your cart yet. Start shopping to find amazing items!</p>
-                <a href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full font-bold text-base hover:shadow-[0_6px_20px_rgba(255,183,197,0.4)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide">
-                    <?php esc_html_e( 'Return to Shop', 'woocommerce' ); ?>
+                <a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full font-bold text-base hover:shadow-[0_6px_20px_rgba(255,183,197,0.4)] hover:-translate-y-1 transition-all duration-300 uppercase tracking-wide">
+                    <?php esc_html_e( 'Continue shopping', 'woocommerce' ); ?>
                 </a>
             </div>
         <?php } else { ?>
@@ -58,7 +49,7 @@ do_action( 'woocommerce_before_cart' ); ?>
                         <p class="text-xs font-bold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">Your items</p>
                         <h2 class="mt-2 text-2xl font-extrabold text-slate-800 dark:text-white"><?php echo esc_html( WC()->cart->get_cart_contents_count() ); ?> item<?php echo WC()->cart->get_cart_contents_count() === 1 ? '' : 's'; ?> in cart</h2>
                     </div>
-                    <a href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>" class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
+                    <a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center px-5 py-3 rounded-full bg-slate-100 dark:bg-slate-700/70 text-slate-700 dark:text-slate-200 font-bold text-sm hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors">
                         Continue shopping
                     </a>
                 </div>
