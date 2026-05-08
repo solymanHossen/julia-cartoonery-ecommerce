@@ -206,29 +206,29 @@ add_filter('woocommerce_button_class', function($class) {
  * so our template overrides (form-checkout.php, etc.) actually show up.
  */
 function julias_force_classic_checkout() {
+    if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'wc_get_page_id' ) ) {
+        return;
+    }
+
     $checkout_page_id = wc_get_page_id('checkout');
     $cart_page_id = wc_get_page_id('cart');
 
-    // Fix Checkout Page
-    if ($checkout_page_id) {
+    if ($checkout_page_id && $checkout_page_id > 0) {
         $content = get_post_field('post_content', $checkout_page_id);
-        if (has_block('woocommerce/checkout', $content)) {
-            $classic_content = '<!-- wp:shortcode -->[woocommerce_checkout]<!-- /wp:shortcode -->';
+        if ( has_block('woocommerce/checkout', $content) ) {
             wp_update_post([
                 'ID'           => $checkout_page_id,
-                'post_content' => $classic_content,
+                'post_content' => '[woocommerce_checkout]',
             ]);
         }
     }
 
-    // Fix Cart Page
-    if ($cart_page_id) {
+    if ($cart_page_id && $cart_page_id > 0) {
         $content = get_post_field('post_content', $cart_page_id);
-        if (has_block('woocommerce/cart', $content)) {
-            $classic_content = '<!-- wp:shortcode -->[woocommerce_cart]<!-- /wp:shortcode -->';
+        if ( has_block('woocommerce/cart', $content) ) {
             wp_update_post([
                 'ID'           => $cart_page_id,
-                'post_content' => $classic_content,
+                'post_content' => '[woocommerce_cart]',
             ]);
         }
     }
