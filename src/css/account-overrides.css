@@ -1,0 +1,207 @@
+/* ========== My Account Experience ========== */
+
+.woocommerce-account .woocommerce {
+  @apply w-full grid gap-6 lg:gap-8;
+}
+
+.woocommerce-account .woocommerce > .woocommerce-notices-wrapper {
+  @apply order-1;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation,
+.woocommerce-account .woocommerce-MyAccount-content {
+  @apply relative z-10;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  @apply order-2 lg:order-1;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+  @apply order-3;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation ul {
+  @apply flex flex-wrap gap-2 p-2 bg-white/90 dark:bg-slate-800/90 border border-slate-100 dark:border-slate-700/60 rounded-[28px] shadow-[0_18px_45px_rgba(15,23,42,0.06)] backdrop-blur-xl list-none m-0;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation li {
+  @apply m-0 p-0 flex-1 min-w-[calc(50%-0.25rem)] sm:min-w-0 sm:flex-none;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a {
+  @apply flex items-center justify-center sm:justify-start gap-2 px-4 py-3 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-300 no-underline transition-all duration-300 bg-transparent;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation a:hover {
+  @apply text-slate-900 dark:text-white bg-slate-50 dark:bg-slate-700/50;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation li.is-active a {
+  @apply text-slate-900 dark:text-white bg-[#FFB7C5]/15;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--customer-logout a {
+  @apply text-[#ff6b83] dark:text-[#ff92a5];
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+  @apply bg-white/95 dark:bg-slate-800/95 border border-slate-100 dark:border-slate-700/60 rounded-[32px] p-5 sm:p-6 lg:p-8 shadow-[0_18px_60px_rgba(15,23,42,0.07)] backdrop-blur-xl;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content p {
+  @apply text-slate-600 dark:text-slate-300 leading-relaxed;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content strong {
+  @apply text-slate-900 dark:text-white;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-Address,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAccountForm,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-EditAddressForm,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-MyAccount-orders,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-order-details,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-customer-details {
+  @apply bg-slate-50/80 dark:bg-slate-900/40 border border-slate-100 dark:border-slate-700/60 rounded-[24px] p-4 sm:p-6;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-Address h3,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-order-details__title,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-column__title,
+.woocommerce-account .woocommerce-MyAccount-content h2 {
+  @apply text-xl font-extrabold text-slate-800 dark:text-white mb-4;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content table.shop_table {
+  @apply bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700/60 rounded-[24px] overflow-hidden;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content table.shop_table th {
+  @apply bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 uppercase tracking-wider text-xs font-bold;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content table.shop_table td,
+.woocommerce-account .woocommerce-MyAccount-content table.shop_table th {
+  @apply px-4 py-3 border-slate-100 dark:border-slate-700/60;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content a:not(.button) {
+  @apply text-[#FFB7C5] hover:text-[#ff9eaa] font-semibold;
+}
+
+.julias-account-shell {
+  @apply grid gap-6 lg:gap-8;
+}
+
+.julias-account-hero {
+  @apply grid gap-4 lg:grid-cols-[1.4fr_0.9fr] items-stretch;
+}
+
+.julias-account-hero-copy,
+.julias-account-hero-panel,
+.julias-account-card,
+.julias-account-notes {
+  @apply bg-white/90 dark:bg-slate-800/90 border border-slate-100 dark:border-slate-700/60 rounded-[32px] shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur-xl;
+}
+
+.julias-account-hero-copy {
+  @apply p-6 sm:p-8 lg:p-10 relative overflow-hidden;
+}
+
+.julias-account-hero-copy::before {
+  content: '';
+  @apply absolute -right-12 -top-12 w-40 h-40 rounded-full bg-[#FFB7C5]/20 blur-3xl pointer-events-none;
+}
+
+.julias-account-kicker {
+  @apply inline-flex items-center px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 text-xs font-bold uppercase tracking-[0.2em] mb-4;
+}
+
+.julias-account-title {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.05] mb-4;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.julias-account-intro {
+  @apply max-w-2xl text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed;
+}
+
+.julias-account-hero-panel {
+  @apply p-6 sm:p-8 lg:p-10 flex flex-col justify-between gap-5 bg-gradient-to-br from-[#A8D8EA]/35 via-white/90 to-[#FFB7C5]/20 dark:from-slate-800 dark:via-slate-800 dark:to-slate-700/70;
+}
+
+.julias-account-hero-badge,
+.julias-account-card-label,
+.julias-account-note-label {
+  @apply text-xs font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400;
+}
+
+.julias-account-hero-links {
+  @apply grid grid-cols-2 gap-3;
+}
+
+.julias-account-hero-link {
+  @apply inline-flex items-center justify-center rounded-2xl px-4 py-3 bg-white/80 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-700/60 text-slate-700 dark:text-slate-200 font-bold transition-all duration-300 hover:-translate-y-0.5 hover:bg-white dark:hover:bg-slate-700/80;
+}
+
+.julias-account-grid {
+  @apply grid gap-4 sm:grid-cols-2 xl:grid-cols-4;
+}
+
+.julias-account-card {
+  @apply p-5 sm:p-6 flex flex-col gap-3 no-underline transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_65px_rgba(15,23,42,0.1)];
+}
+
+.julias-account-card-title {
+  @apply text-xl font-extrabold text-slate-900 dark:text-white;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.julias-account-card-copy {
+  @apply text-sm text-slate-600 dark:text-slate-300 leading-relaxed;
+}
+
+.julias-account-notes {
+  @apply p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4;
+}
+
+.julias-account-note-copy {
+  @apply text-slate-600 dark:text-slate-300 mt-1 mb-0 max-w-2xl;
+}
+
+.julias-account-note-link {
+  @apply inline-flex items-center justify-center px-5 py-3 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold no-underline transition-all duration-300 hover:bg-[#FFB7C5] hover:text-white dark:hover:bg-[#FFB7C5] dark:hover:text-white;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-Message,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-error,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-info,
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-message {
+  @apply rounded-[24px] border border-slate-100 dark:border-slate-700/60 bg-white dark:bg-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.05)];
+}
+
+@media (min-width: 1024px) {
+  .woocommerce-account .woocommerce {
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .woocommerce-account .woocommerce > .woocommerce-MyAccount-navigation {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: 6rem;
+  }
+
+  .woocommerce-account .woocommerce > .woocommerce-MyAccount-content {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
+  .woocommerce-account .woocommerce > .woocommerce-notices-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
