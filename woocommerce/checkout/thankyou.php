@@ -99,7 +99,7 @@ defined( 'ABSPATH' ) || exit;
 
     <?php else : ?>
         <div class="bg-white dark:bg-slate-800 rounded-[40px] p-12 text-center shadow-lg border border-slate-100 dark:border-slate-700/50">
-            <h2 class="text-3xl font-bold text-slate-800 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;">
+            <h2 class="text-3xl font-bold text-slate-800 dark:text-white" >
                 <?php echo apply_filters( 'woocommerce_thankyou_order_received_text', esc_html__( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?>
             </h2>
         </div>
