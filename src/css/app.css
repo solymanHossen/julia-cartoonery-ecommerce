@@ -83,7 +83,7 @@
 
   /* Minimal Cart Button in Drawer */
   .minimal-cart-btn a.button {
-    @apply flex items-center justify-center w-[34px] h-[34px] rounded-full bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors m-0 p-0;
+    @apply flex items-center justify-center w-[34px] h-[34px] !rounded-full bg-slate-100 text-slate-800 hover:bg-slate-200 transition-colors m-0 p-0;
     font-size: 0 !important;
   }
 
