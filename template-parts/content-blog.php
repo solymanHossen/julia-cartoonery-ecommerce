@@ -8,8 +8,13 @@
             <?php if ( has_post_thumbnail() ) : ?>
                 <?php the_post_thumbnail( 'large', array( 'class' => 'h-full w-full object-cover transition duration-500 group-hover:scale-105' ) ); ?>
             <?php else : ?>
-                <div class="flex h-full w-full items-center justify-center px-6 text-center text-sm font-semibold text-gray-400 dark:text-gray-500">
-                    <?php esc_html_e( 'Featured image coming soon', 'julias-cartoonery' ); ?>
+                <div class="flex h-full w-full items-center justify-center bg-slate-50 dark:bg-slate-800/50">
+                    <div class="flex flex-col items-center gap-2">
+                        <svg class="w-12 h-12 sm:w-16 sm:h-16 text-slate-300 dark:text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                        <span class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-widest"><?php esc_html_e( 'No Image', 'julias-cartoonery' ); ?></span>
+                    </div>
                 </div>
             <?php endif; ?>
 
