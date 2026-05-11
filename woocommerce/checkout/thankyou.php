@@ -149,55 +149,7 @@ defined( 'ABSPATH' ) || exit;
                 $shipping_country = $order->get_shipping_country();
                 ?>
 
-                <section class="woocommerce-customer-details">
-                    <section class="woocommerce-columns woocommerce-columns--2 woocommerce-columns--addresses col2-set addresses">
-                        <div class="woocommerce-column woocommerce-column--1 woocommerce-column--billing-address col-1">
-                            <h2 class="woocommerce-column__title"><?php esc_html_e( 'Billing address', 'woocommerce' ); ?></h2>
-                            <address>
-                                <?php if ( $billing_name ) : ?><?php echo esc_html( $billing_name ); ?><br><?php endif; ?>
-                                <?php if ( $billing_company ) : ?><?php echo esc_html( $billing_company ); ?><br><?php endif; ?>
-                                <?php if ( $billing_address_1 ) : ?><?php echo esc_html( $billing_address_1 ); ?><br><?php endif; ?>
-                                <?php if ( $billing_address_2 ) : ?><?php echo esc_html( $billing_address_2 ); ?><br><?php endif; ?>
-                                <?php if ( $billing_city || $billing_state || $billing_postcode ) : ?>
-                                    <?php
-                                    $parts = array_filter( array( $billing_city, $billing_state, $billing_postcode ) );
-                                    echo esc_html( implode( ', ', $parts ) );
-                                    ?><br>
-                                <?php endif; ?>
-                                <?php if ( $billing_country ) : ?><?php echo esc_html( WC()->countries->countries[ $billing_country ] ?? $billing_country ); ?><br><?php endif; ?>
-
-                                <?php if ( $billing_phone ) : ?>
-                                    <p class="woocommerce-customer-details--phone"><a href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $billing_phone ) ); ?>" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-white">
-                                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h2.2a2 2 0 011.9 1.4l.6 2.2a2 2 0 01-.45 1.9l-1.2 1.5a16 16 0 006.1 6.1l1.5-1.2a2 2 0 011.9-.45l2.2.6A2 2 0 0121 18.8V21a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path></svg>
-                                        <?php echo esc_html( $billing_phone ); ?></a></p>
-                                <?php endif; ?>
-
-                                <?php if ( $billing_email ) : ?>
-                                    <p class="woocommerce-customer-details--email"><a href="mailto:<?php echo esc_attr( $billing_email ); ?>" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-white">
-                                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l9 6 9-6"></path><path stroke-linecap="round" stroke-linejoin="round" d="M21 8v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8"></path></svg>
-                                        <?php echo esc_html( $billing_email ); ?></a></p>
-                                <?php endif; ?>
-                            </address>
-                        </div><!-- /.col-1 -->
-
-                        <div class="woocommerce-column woocommerce-column--2 woocommerce-column--shipping-address col-2">
-                            <h2 class="woocommerce-column__title"><?php esc_html_e( 'Shipping address', 'woocommerce' ); ?></h2>
-                            <address>
-                                <?php if ( $shipping_name ) : ?><?php echo esc_html( $shipping_name ); ?><br><?php endif; ?>
-                                <?php if ( $shipping_company ) : ?><?php echo esc_html( $shipping_company ); ?><br><?php endif; ?>
-                                <?php if ( $shipping_address_1 ) : ?><?php echo esc_html( $shipping_address_1 ); ?><br><?php endif; ?>
-                                <?php if ( $shipping_address_2 ) : ?><?php echo esc_html( $shipping_address_2 ); ?><br><?php endif; ?>
-                                <?php if ( $shipping_city || $shipping_state || $shipping_postcode ) : ?>
-                                    <?php
-                                    $parts = array_filter( array( $shipping_city, $shipping_state, $shipping_postcode ) );
-                                    echo esc_html( implode( ', ', $parts ) );
-                                    ?><br>
-                                <?php endif; ?>
-                                <?php if ( $shipping_country ) : ?><?php echo esc_html( WC()->countries->countries[ $shipping_country ] ?? $shipping_country ); ?><br><?php endif; ?>
-                            </address>
-                        </div><!-- /.col-2 -->
-                    </section><!-- /.col2-set -->
-                </section>
+           
             </div>
         </div>
 
