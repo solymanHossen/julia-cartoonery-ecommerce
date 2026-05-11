@@ -375,9 +375,37 @@
 
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-Message,
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-error,
-.woocommerce-account .woocommerce-MyAccount-content .woocommerce-info,
 .woocommerce-account .woocommerce-MyAccount-content .woocommerce-message {
-  @apply rounded-[24px] border border-slate-100 dark:border-slate-700/60 bg-white dark:bg-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.05)];
+  @apply rounded-[24px] border border-slate-100 dark:border-slate-700/60 bg-white dark:bg-slate-800 shadow-[0_12px_30px_rgba(15,23,42,0.05)] p-4 sm:p-5 text-slate-600 dark:text-slate-300 font-semibold text-sm;
+}
+
+/* Modern Empty State for WooCommerce Info (e.g. No Downloads, No Orders) */
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-info {
+  @apply flex flex-col items-center justify-center text-center p-8 sm:p-16 min-h-[400px] bg-white/50 dark:bg-slate-800/50 backdrop-blur-md rounded-[32px] border border-slate-100 dark:border-slate-700/60 shadow-[0_20px_40px_-12px_rgba(15,23,42,0.05)] text-2xl font-extrabold text-slate-800 dark:text-slate-200 tracking-wide;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-info::before {
+  content: '';
+  display: block;
+  position: static;
+  top: auto;
+  left: auto;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 1.5rem auto;
+  background-color: #FFB7C5;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-9"/><path d="M15.17 2.38a2 2 0 0 0-6.34 0l-5 4.87a2 2 0 0 0-.58 1.48v10A2 2 0 0 0 5.25 21h13.5a2 2 0 0 0 2-2.27v-10a2 2 0 0 0-.58-1.48z"/><path d="M5.5 10 12 14.5l6.5-4.5"/></svg>');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  opacity: 0.9;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content .woocommerce-info .button {
+  @apply mt-8 px-8 py-3.5 rounded-full bg-[#FFB7C5] hover:bg-[#ff9eaa] text-white font-bold text-base transition-all duration-300 shadow-[0_8px_20px_rgba(255,183,197,0.4)] hover:shadow-[0_12px_24px_rgba(255,183,197,0.6)] hover:-translate-y-1 block w-fit mx-auto;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.05em;
 }
 
 .woocommerce-MyAccount-navigation {
