@@ -450,51 +450,51 @@
   @apply mt-8;
 }
 
-.woocommerce-account .woocommerce-columns--addresses {
-  @apply grid gap-6 md:grid-cols-2;
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses {
+  @apply grid grid-cols-1 gap-4 items-start;
 }
 
-.woocommerce-account .woocommerce-column {
-  @apply rounded-[24px] bg-gradient-to-br from-slate-50/80 to-slate-100/50 dark:from-slate-900/40 dark:to-slate-800/40 p-6 border border-slate-100 dark:border-slate-700/60 backdrop-blur-sm;
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses > .woocommerce-column {
+  @apply h-fit w-full overflow-hidden rounded-[28px] border border-slate-100 bg-white/90 shadow-[0_12px_30px_rgba(15,23,42,0.08)] backdrop-blur-sm dark:border-slate-700/60 dark:bg-slate-900/70 dark:shadow-[0_12px_30px_rgba(0,0,0,0.28)];
 }
 
-.woocommerce-account .woocommerce-column__title {
-  @apply text-lg font-extrabold text-slate-900 dark:text-white mb-5;
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses > .woocommerce-column .woocommerce-column__title {
+  @apply mb-0 border-b border-slate-100 px-5 py-4 text-lg font-extrabold text-slate-900 dark:border-slate-700/60 dark:text-white sm:px-6;
   font-family: 'Bubblegum Sans', cursive;
+  background: linear-gradient(135deg, rgba(255, 183, 197, 0.10) 0%, rgba(168, 216, 234, 0.12) 100%);
 }
 
-.woocommerce-account .woocommerce-column address {
-  @apply text-sm text-slate-600 dark:text-slate-300 leading-relaxed space-y-1;
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses > .woocommerce-column address {
+  @apply m-0 grid gap-1.5 px-5 py-5 text-sm not-italic leading-relaxed text-slate-600 dark:text-slate-300 sm:px-6;
+  border: 0;
+  background: transparent;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
-.woocommerce-account .woocommerce-column address br {
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses > .woocommerce-column address > * {
+  @apply m-0 w-full;
+}
+
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses > .woocommerce-column address br {
   content: '';
 }
 
-.woocommerce-account .woocommerce-column address br::after {
+.woocommerce-account .woocommerce-customer-details .woocommerce-columns--addresses > .woocommerce-column address br::after {
   content: '\A';
   white-space: pre;
 }
 
 .woocommerce-account .woocommerce-customer-details--phone,
 .woocommerce-account .woocommerce-customer-details--email {
-  @apply mt-4 pt-4 border-t border-slate-200 dark:border-slate-700/60 text-sm font-medium;
-}
-
-.woocommerce-account .woocommerce-customer-details--phone {
-  @apply text-slate-700 dark:text-slate-200;
-}
-
-.woocommerce-account .woocommerce-customer-details--email {
-  @apply text-slate-700 dark:text-slate-200;
+  @apply flex w-full items-center gap-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 dark:border-slate-700/60 dark:bg-slate-800/70 dark:text-slate-200;
+  padding-left: 32px !important;
 }
 
 .woocommerce-account .woocommerce-customer-details--phone::before {
-  content: '📞 ';
-  @apply mr-2;
+  content: '📞';
 }
 
 .woocommerce-account .woocommerce-customer-details--email::before {
-  content: '✉️ ';
-  @apply mr-2;
+  content: '✉️';
 }
