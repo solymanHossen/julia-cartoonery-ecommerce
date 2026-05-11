@@ -71,14 +71,56 @@
   @apply text-[#ff6b83] dark:text-[#ff92a5];
 }
 
+/* ========== Navigation Icons ========== */
+.woocommerce-account .woocommerce-MyAccount-navigation a::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 24px;
+  background-color: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--dashboard a::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="2"/><rect width="7" height="5" x="14" y="3" rx="2"/><rect width="7" height="9" x="14" y="12" rx="2"/><rect width="7" height="5" x="3" y="16" rx="2"/></svg>');
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--orders a::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>');
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--downloads a::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>');
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--edit-address a::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>');
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--edit-account a::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>');
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation-link--customer-logout a::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>');
+}
+
 @media (max-width: 767px) {
   .woocommerce-account .woocommerce {
-    padding-bottom: calc(6.75rem + env(safe-area-inset-bottom));
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom));
   }
 
   .woocommerce-account .woocommerce>.woocommerce-MyAccount-navigation {
-    @apply fixed bottom-0 left-0 right-0 order-none z-50 mx-0 rounded-t-[28px] rounded-b-none border-x-0 border-b-0 bg-white/95 shadow-[0_-12px_40px_rgba(15,23,42,0.12)] backdrop-blur-xl dark:bg-slate-900/95 dark:shadow-[0_-12px_40px_rgba(0,0,0,0.35)];
-    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    @apply fixed bottom-0 left-0 right-0 order-none z-[100] mx-0 rounded-none border-0 border-t border-slate-200/80 bg-white/95 backdrop-blur-xl shadow-none dark:border-slate-700/80 dark:bg-slate-900/95;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation::before {
@@ -86,10 +128,7 @@
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation ul {
-    @apply flex gap-2 overflow-x-auto px-3 py-3 pb-0;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    @apply flex justify-between items-center px-1 py-1.5 m-0 w-full overflow-hidden;
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation ul::-webkit-scrollbar {
@@ -97,21 +136,24 @@
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation li {
-    @apply flex-none min-w-[88px] sm:min-w-[104px];
-    scroll-snap-align: start;
+    @apply flex-1 flex justify-center m-0 min-w-0;
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation a {
-    @apply h-full flex-col justify-center gap-1.5 px-3 py-3 text-center text-[0.72rem] leading-tight;
-    min-height: 3.5rem;
+    @apply flex flex-col justify-center items-center gap-0.5 w-full h-[52px] rounded-lg text-center text-[9px] font-bold transition-all duration-300 bg-transparent border-transparent text-slate-500 dark:text-slate-400 shadow-none px-0.5 overflow-hidden whitespace-nowrap text-ellipsis;
+    min-height: auto;
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation li.is-active a {
-    @apply -translate-y-0.5 shadow-[0_10px_24px_rgba(255,183,197,0.18)];
+    @apply text-[#ff6b83] dark:text-[#ff92a5] bg-transparent shadow-none transform-none;
+  }
+
+  .woocommerce-account .woocommerce-MyAccount-navigation li.is-active a::before {
+    transform: scale(1.15);
   }
 
   .woocommerce-account .woocommerce-MyAccount-navigation-link--customer-logout a {
-    @apply bg-rose-50 dark:bg-rose-500/10;
+    @apply text-slate-500 dark:text-slate-400 bg-transparent shadow-none border-none;
   }
 }
 
