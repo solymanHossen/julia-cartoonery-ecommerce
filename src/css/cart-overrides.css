@@ -129,6 +129,43 @@
   @apply bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-300 hover:bg-slate-800 hover:text-white dark:hover:bg-slate-600;
 }
 
+/* Shipping calculator button */
+.woocommerce-cart .shipping-calculator-form button.button[name="calc_shipping"],
+.woocommerce-cart .woocommerce-shipping-calculator button.button[name="calc_shipping"],
+.woocommerce-cart button.button[name="calc_shipping"] {
+  @apply relative inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(255,183,197,0.35)] active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900;
+  border: 0;
+  box-shadow: 0 8px 20px rgba(255, 183, 197, 0.22);
+  overflow: hidden;
+}
+
+.woocommerce-cart .shipping-calculator-form button.button[name="calc_shipping"]::after,
+.woocommerce-cart .woocommerce-shipping-calculator button.button[name="calc_shipping"]::after,
+.woocommerce-cart button.button[name="calc_shipping"]::after {
+  content: '';
+  @apply pointer-events-none absolute inset-0 bg-gradient-to-r from-white/0 via-white/15 to-white/0 opacity-0 transition-opacity duration-300;
+}
+
+.woocommerce-cart .shipping-calculator-form button.button[name="calc_shipping"]:hover::after,
+.woocommerce-cart .woocommerce-shipping-calculator button.button[name="calc_shipping"]:hover::after,
+.woocommerce-cart button.button[name="calc_shipping"]:hover::after {
+  @apply opacity-100;
+}
+
+.woocommerce-cart .shipping-calculator-form button.button[name="calc_shipping"]:disabled,
+.woocommerce-cart .woocommerce-shipping-calculator button.button[name="calc_shipping"]:disabled,
+.woocommerce-cart button.button[name="calc_shipping"]:disabled {
+  @apply cursor-not-allowed opacity-60 hover:translate-y-0 hover:shadow-[0_8px_20px_rgba(255,183,197,0.22)];
+}
+
+@media (max-width: 639px) {
+  .woocommerce-cart .shipping-calculator-form button.button[name="calc_shipping"],
+  .woocommerce-cart .woocommerce-shipping-calculator button.button[name="calc_shipping"],
+  .woocommerce-cart button.button[name="calc_shipping"] {
+    @apply w-full px-5 py-3 text-xs;
+  }
+}
+
 /* Cart Summary Card */
 .woocommerce-cart .cart_totals {
   @apply w-full bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl rounded-[32px] p-6 sm:p-8 sticky top-8 border border-slate-100 dark:border-slate-700/60;
