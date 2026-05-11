@@ -30,7 +30,7 @@ $current_sort = sanitize_text_field( wp_unslash( $_GET['sort'] ?? 'newest' ) );
 
 		<div class="min-w-0">
 			<?php if ( woocommerce_product_loop() ) : ?>
-				<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 xl:gap-7">
+				<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:grid-cols-3 gap-4 lg:gap-6">
 					<?php while ( have_posts() ) : the_post(); ?>
 						<?php wc_get_template_part( 'content', 'product' ); ?>
 					<?php endwhile; ?>
