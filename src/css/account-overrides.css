@@ -4,6 +4,23 @@
   @apply w-full grid gap-6 lg:gap-8;
 }
 
+.woocommerce-account:not(.logged-in) .woocommerce {
+  @apply flex flex-col items-center gap-6 lg:gap-8;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce > .woocommerce-notices-wrapper,
+.woocommerce-account:not(.logged-in) .woocommerce > #customer_login,
+.woocommerce-account:not(.logged-in) .woocommerce > .woocommerce-form-login,
+.woocommerce-account:not(.logged-in) .woocommerce > .woocommerce-ResetPassword {
+  @apply w-full;
+}
+
+.woocommerce-account:not(.logged-in) .woocommerce > #customer_login,
+.woocommerce-account:not(.logged-in) .woocommerce > .woocommerce-form-login,
+.woocommerce-account:not(.logged-in) .woocommerce > .woocommerce-ResetPassword {
+  @apply max-w-lg mx-auto;
+}
+
 .woocommerce-account .woocommerce > .woocommerce-notices-wrapper {
   @apply order-1;
 }
