@@ -58,7 +58,7 @@
     </footer>
 
     <!-- LIVE SUPPORT CHAT WIDGET -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div id="site-chat-widget" class="fixed bottom-6 right-6 z-50 flex flex-col items-end">
         <!-- Chat Window -->
         <div id="chat-window" class="hidden bg-white dark:bg-slate-800 w-80 h-96 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] mb-4 border border-gray-100 dark:border-slate-700 flex-col overflow-hidden transition-all duration-300 origin-bottom-right">
             <div class="bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-600 dark:to-sky-600 p-4 text-white flex justify-between items-center shadow-md">

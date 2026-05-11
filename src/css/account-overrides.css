@@ -118,6 +118,7 @@
 @media (min-width: 768px) and (max-width: 1023px) {
   .woocommerce-account .woocommerce {
     padding-bottom: 0;
+    display: block;
   }
 
   .woocommerce-account .woocommerce > .woocommerce-MyAccount-navigation {
