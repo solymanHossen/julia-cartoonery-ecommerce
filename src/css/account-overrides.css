@@ -715,3 +715,37 @@
     @apply col-span-2;
   }
 }
+
+/* ========== Edit Address Form ========== */
+.woocommerce-address-fields {
+  @apply flex flex-col;
+}
+
+.woocommerce-account .woocommerce-MyAccount-content form > h2,
+.woocommerce-account .woocommerce-MyAccount-content form > h3 {
+  @apply text-2xl font-extrabold text-slate-800 dark:text-slate-200 mb-6 pb-4 border-b border-slate-200 dark:border-slate-700/60;
+  font-family: 'Bubblegum Sans', cursive;
+}
+
+.woocommerce-address-fields__field-wrapper {
+  @apply flex flex-col gap-4 sm:gap-5 mb-2;
+}
+
+@media (min-width: 640px) {
+  .woocommerce-address-fields__field-wrapper {
+    @apply grid grid-cols-2 gap-x-6 gap-y-0;
+  }
+  .woocommerce-address-fields__field-wrapper .form-row-first,
+  .woocommerce-address-fields__field-wrapper .form-row-last {
+    @apply col-span-1 mb-6;
+  }
+  .woocommerce-address-fields__field-wrapper .form-row-wide {
+    @apply col-span-2 mb-6;
+  }
+}
+
+.woocommerce-address-fields p:last-child button[type="submit"] {
+  @apply mt-6 px-10 py-4 rounded-full bg-[#FFB7C5] hover:bg-[#ff9eaa] text-white font-bold text-base transition-all duration-300 shadow-[0_8px_20px_rgba(255,183,197,0.4)] hover:shadow-[0_12px_24px_rgba(255,183,197,0.6)] hover:-translate-y-1 w-full sm:w-auto text-center;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.05em;
+}
