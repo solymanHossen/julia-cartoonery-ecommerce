@@ -31,7 +31,7 @@
 }
 
 .woocommerce-account .woocommerce-MyAccount-navigation {
-  @apply order-2 lg:order-1 min-w-0;
+  @apply order-2 lg:order-1 min-w-0 lg:mb-0 md:mb-6 mb-0;
 }
 
 .woocommerce-account .woocommerce-MyAccount-content {
