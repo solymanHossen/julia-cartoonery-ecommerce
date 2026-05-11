@@ -251,6 +251,72 @@
     display: none;
   }
 
+  /* ===== Responsive Category Filter ===== */
+  /* Flex-wrap behavior on mobile - naturally wraps without overflow */
+  .sidebar-shop ul {
+    @apply flex-wrap;
+  }
+
+  .sidebar-shop li {
+    @apply flex-shrink-0 min-w-0;
+  }
+
+  /* Category button responsiveness */
+  .sidebar-shop a {
+    @apply inline-flex items-center gap-1.5;
+  }
+
+  /* Text truncation for long category names */
+  .sidebar-shop a span:first-child {
+    @apply truncate;
+  }
+
+  /* Ensure badge doesn't shrink and stays visible */
+  .sidebar-shop a span:last-child {
+    @apply flex-shrink-0;
+  }
+
+  /* Desktop: Convert to vertical stack */
+  @media (min-width: 1024px) {
+    .sidebar-shop ul {
+      @apply flex-col space-y-2.5 gap-0;
+    }
+
+    .sidebar-shop li {
+      @apply flex-shrink;
+    }
+
+    .sidebar-shop a {
+      @apply w-full justify-between gap-2;
+    }
+
+    .sidebar-shop a span:first-child {
+      @apply truncate flex-1;
+    }
+  }
+
+  /* Small screens: Reduce padding for compact layout */
+  @media (max-width: 639px) {
+    .sidebar-shop a {
+      @apply px-3 py-2 text-[0.77rem];
+    }
+
+    .sidebar-shop a span:last-child {
+      @apply px-1.5 text-[0.6rem];
+    }
+  }
+
+  /* Medium screens: Balanced sizing */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .sidebar-shop a {
+      @apply px-4 py-2.5 text-[0.88rem];
+    }
+
+    .sidebar-shop a span:last-child {
+      @apply px-2;
+    }
+  }
+
   /* Keep floating support chat clear of mobile bottom docks and safe areas. */
   #site-chat-widget #chat-window {
     width: min(20rem, calc(100vw - 1.25rem));

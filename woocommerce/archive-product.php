@@ -7,8 +7,8 @@ $current_sort = sanitize_text_field( wp_unslash( $_GET['sort'] ?? 'newest' ) );
 ?>
 
 <div class="container mx-auto  px-4 lg:px-8 pt-6 pb-12">
-	<div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8 lg:mb-10">
-		<h1 class="font-['Bubblegum_Sans'] text-[3.35rem] leading-none tracking-tight text-slate-800 dark:text-slate-100">
+	<div class="flex justify-between gap-6 mb-0 lg:mb-10">
+		<h1 class="font-['Bubblegum_Sans'] md:text-[3.35rem] text-xl leading-none tracking-tight text-slate-800 dark:text-slate-100">
 			<?php woocommerce_page_title(); ?>
 		</h1>
 <div class="flex items-center justify-end">
