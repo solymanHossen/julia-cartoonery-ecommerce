@@ -656,3 +656,62 @@
 .woocommerce-account .woocommerce-customer-details--email::before {
   content: '✉️';
 }
+/* ========== Forms (Edit Account & Address) ========== */
+
+.woocommerce-account .woocommerce-EditAccountForm,
+.woocommerce-account .woocommerce-EditAddressForm {
+  @apply flex flex-col gap-5 sm:gap-6;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm .clear,
+.woocommerce-account .woocommerce-EditAddressForm .clear {
+  @apply hidden;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm fieldset {
+  @apply mt-8 p-6 sm:p-8 rounded-[28px] bg-white/60 dark:bg-slate-900/40 border border-slate-100 dark:border-slate-700/60 shadow-[0_12px_30px_-10px_rgba(15,23,42,0.05)] relative flex flex-col gap-5 sm:gap-6;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm fieldset legend {
+  @apply text-lg font-extrabold text-slate-800 dark:text-slate-200 mb-2 bg-white dark:bg-slate-800 px-5 py-2 rounded-full border border-slate-100 dark:border-slate-700/60 shadow-sm block w-fit;
+  font-family: 'Bubblegum Sans', cursive;
+  transform: translateY(-2.25rem);
+  margin-bottom: -1rem;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm em {
+  @apply block mt-2.5 text-[0.8rem] text-slate-500 dark:text-slate-400 not-italic leading-relaxed bg-slate-50 dark:bg-slate-900/50 p-3 rounded-xl border border-slate-100 dark:border-slate-700/60;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm button[type="submit"],
+.woocommerce-account .woocommerce-EditAddressForm button[type="submit"] {
+  @apply mt-8 px-10 py-4 rounded-full bg-[#FFB7C5] hover:bg-[#ff9eaa] text-white font-bold text-base transition-all duration-300 shadow-[0_8px_20px_rgba(255,183,197,0.4)] hover:shadow-[0_12px_24px_rgba(255,183,197,0.6)] hover:-translate-y-1 w-full sm:w-auto text-center;
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm .password-input {
+  @apply block w-full relative;
+}
+
+.woocommerce-account .woocommerce-EditAccountForm .password-input .show-password-input {
+  @apply absolute right-4 top-[2.2rem] -translate-y-1/2 text-slate-400 hover:text-[#FFB7C5] cursor-pointer transition-colors bg-transparent border-none p-0 w-auto h-auto focus:outline-none focus:ring-0;
+}
+
+/* Flex row layout for desktop */
+@media (min-width: 640px) {
+  .woocommerce-account .woocommerce-EditAccountForm {
+    @apply grid grid-cols-2 gap-x-6 gap-y-0;
+  }
+  
+  .woocommerce-account .woocommerce-EditAccountForm .form-row-first,
+  .woocommerce-account .woocommerce-EditAccountForm .form-row-last {
+    @apply col-span-1;
+  }
+  
+  .woocommerce-account .woocommerce-EditAccountForm .form-row-wide,
+  .woocommerce-account .woocommerce-EditAccountForm fieldset,
+  .woocommerce-account .woocommerce-EditAccountForm p:last-of-type {
+    @apply col-span-2;
+  }
+}
