@@ -19,7 +19,7 @@ if (empty($hero_slides)) {
 $first_slide = $hero_slides[0] ?? null;
 if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
     printf(
-        '<link rel="preload" as="image" href="%s" imagesrcset="%s" imagesizes="%s">\n',
+        '<link rel="preload" as="image" href="%s" imagesrcset="%s" imagesizes="%s">',
         esc_url($first_slide['image']['url']),
         esc_attr($first_slide['image']['srcset'] ?? ''),
         esc_attr($first_slide['image']['sizes'] ?? '(min-width:1024px)600px,100vw')
