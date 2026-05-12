@@ -73,40 +73,40 @@ $product_count = count( $latest_products );
 
 ?>
 
-<section class="relative overflow-hidden py-20 sm:py-24 lg:py-28">
-	<div class="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(168,216,234,0.15),transparent_60%),linear-gradient(180deg,#fffdfb_0%,#f8fbff_50%,#f0f9ff_100%)] dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(168,216,234,0.08),transparent_60%),linear-gradient(180deg,#020617_0%,#0c1220_60%,#051030_100%)]"></div>
+<section class="relative overflow-hidden py-20 sm:py-24 lg:py-28 bg-[#FAFAFA] dark:bg-slate-950">
+	<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[400px] bg-sky-100/40 rounded-full blur-3xl pointer-events-none dark:bg-sky-900/10"></div>
 
 	<div class="container mx-auto px-4 lg:px-8 relative z-10">
 		<!-- Header -->
-		<div class="mx-auto max-w-7xl">
+		<div>
 			<div class="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
 				<div class="max-w-3xl">
-					<p class="text-xs font-black uppercase tracking-[0.4em] text-sky-500 dark:text-sky-300"><?php esc_html_e( 'New Arrivals', 'julia-cartoonery' ); ?></p>
-					<h2 class="mt-4 font-['Bubblegum_Sans'] text-5xl leading-[0.95] text-slate-800 dark:text-slate-100 lg:text-6xl">
+					<p class="text-[11px] font-black uppercase tracking-[0.3em] text-[#0EA5E9] dark:text-sky-400"><?php esc_html_e( 'NEW ARRIVALS', 'julia-cartoonery' ); ?></p>
+					<h2 class="mt-3 font-['Bubblegum_Sans'] text-[42px] leading-[1.1] text-slate-800 dark:text-slate-100 lg:text-[54px]">
 						<?php esc_html_e( 'Fresh toys in stock', 'julia-cartoonery' ); ?>
 					</h2>
-					<p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-500 dark:text-slate-300 sm:text-lg">
+					<p class="mt-4 max-w-2xl text-[15px] leading-relaxed text-slate-500 dark:text-slate-400">
 						<?php esc_html_e( 'Scroll through the latest additions to our collection. Each toy is carefully selected for quality and fun.', 'julia-cartoonery' ); ?>
 					</p>
 				</div>
 
-				<div class="flex flex-wrap items-center gap-3">
-					<div class="rounded-full border border-sky-200/50 bg-sky-50/40 px-4 py-2.5 text-sm font-black text-sky-700 shadow-sm backdrop-blur dark:border-sky-700/50 dark:bg-sky-950/30 dark:text-sky-200">
+				<div class="flex flex-wrap items-center gap-4 mt-6 sm:mt-0">
+					<div class="rounded-full border border-sky-100 bg-white px-5 py-2.5 text-[13px] font-bold text-[#0EA5E9] shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-sky-400">
 						<?php echo esc_html( sprintf( _n( '%s item', '%s items', 8, 'julia-cartoonery' ), 8 ) ); ?>
 					</div>
-					<a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-sky-400 to-[#A8D8EA] px-6 py-3 text-sm font-black text-white shadow-[0_12px_28px_rgba(168,216,234,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(168,216,234,0.4)]">
+					<a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#38BDF8] px-7 py-2.5 text-[13px] font-bold text-white shadow-md transition-all duration-300 hover:bg-[#0EA5E9] hover:shadow-lg hover:-translate-y-0.5">
 						<?php esc_html_e( 'Browse Shop', 'julia-cartoonery' ); ?>
-						<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+						<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
 					</a>
 				</div>
 			</div>
 
 			<!-- Two Column: Video + Carousel Layout -->
-			<div class="mt-12 grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-start">
+			<div class="mt-12 grid gap-6 lg:grid-cols-[300px_1fr] lg:gap-8 lg:items-start">
 				<!-- Featured Video - Desktop Only -->
-				<div class="hidden lg:flex lg:flex-col lg:gap-4">
-					<!-- Video Player -->
-					<div class="group relative overflow-hidden rounded-3xl border border-white/60 shadow-2xl dark:border-slate-700/60" style="aspect-ratio: 16/9;">
+				<div class="hidden lg:flex lg:flex-col lg:gap-6">
+					<!-- Video Player / Thumbnail -->
+					<div class="group relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#A7F3D0] to-[#86E8D0] shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:from-emerald-900 dark:to-teal-900" style="aspect-ratio: 4/3;">
 						<?php if ( $video_url ) : ?>
 							<?php if ( $is_youtube ) : ?>
 								<!-- YouTube Embed -->
@@ -117,47 +117,45 @@ $product_count = count( $latest_products );
 									frameborder="0" 
 									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
 									allowfullscreen
-									class="absolute inset-0 h-full w-full"
+									class="absolute inset-0 h-full w-full z-10"
 									title="<?php echo esc_attr( $video_title ); ?>">
 								</iframe>
 							<?php else : ?>
 								<!-- Video File Player -->
 								<video 
 									controls 
-									class="absolute inset-0 h-full w-full object-cover"
+									class="absolute inset-0 h-full w-full object-cover z-10"
 									title="<?php echo esc_attr( $video_title ); ?>">
 									<source src="<?php echo esc_attr( $video_url ); ?>" type="video/mp4">
 									Your browser does not support the video tag.
 								</video>
 							<?php endif; ?>
 						<?php else : ?>
-							<!-- Placeholder when no video URL set -->
-							<div class="absolute inset-0 bg-gradient-to-br from-sky-200 to-emerald-200 dark:from-slate-800 dark:to-slate-900"></div>
+							<!-- Placeholder / Mockup Style -->
 							<div class="absolute inset-0 flex items-center justify-center">
-								<svg class="h-20 w-20 animate-pulse text-sky-400 opacity-30 dark:text-sky-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-							</div>
-							<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 via-black/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-								<div class="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur">
-									<svg class="h-7 w-7 text-sky-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-								</div>
+								<svg class="h-[72px] w-[72px] text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-white/70" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
 							</div>
 						<?php endif; ?>
-						<div class="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-slate-700 shadow-lg backdrop-blur dark:bg-slate-800/95 dark:text-slate-100">
-							<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
+						
+						<!-- Featured Badge -->
+						<div class="absolute left-4 top-4 z-20">
+							<span class="inline-flex items-center justify-center rounded-full bg-white px-3.5 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-800 shadow-sm dark:bg-slate-800 dark:text-slate-100">
+								<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
+							</span>
 						</div>
 					</div>
 
 					<!-- Video Description Card -->
-					<div class="rounded-2xl border border-slate-100/60 bg-white p-6 shadow-lg dark:border-slate-700/60 dark:bg-slate-900 sm:p-7">
-						<h3 class="font-['Bubblegum_Sans'] text-2xl leading-[0.95] text-slate-800 dark:text-slate-100">
+					<div class="rounded-[24px] bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-slate-900 dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)]">
+						<h3 class="font-['Bubblegum_Sans'] text-[24px] leading-tight text-slate-800 dark:text-slate-100">
 							<?php echo esc_html( $video_title ); ?>
 						</h3>
-						<p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+						<p class="mt-3 text-[14px] leading-relaxed text-slate-500 dark:text-slate-400">
 							<?php echo esc_html( $video_description ); ?>
 						</p>
-						<a href="<?php echo esc_url( $shop_url ); ?>" class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 px-5 py-2.5 text-sm font-black text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 dark:from-sky-600 dark:to-sky-700">
+						<a href="<?php echo esc_url( $shop_url ); ?>" class="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0EA5E9] px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-sky-500/30 transition-all hover:bg-sky-500 hover:shadow-sky-500/40 dark:bg-sky-600 dark:hover:bg-sky-500">
 							<?php echo esc_html( $video_button_text ); ?>
-							<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+							<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
 						</a>
 					</div>
 				</div>
@@ -166,8 +164,8 @@ $product_count = count( $latest_products );
 				<div>
 				<?php if ( $use_carousel ) : ?>
 					<!-- CAROUSEL VIEW: 4+ Products -->
-					<div class="embla relative overflow-hidden rounded-3xl border border-white/60 bg-white/40 shadow-xl backdrop-blur-xl dark:border-slate-700/60 dark:bg-slate-900/50" aria-roledescription="carousel" aria-label="Latest products carousel" tabindex="0">
-						<div class="embla__container flex gap-5 lg:gap-6">
+					<div class="embla relative overflow-hidden" aria-roledescription="carousel" aria-label="Latest products carousel" tabindex="0">
+						<div class="embla__container flex gap-4 lg:gap-6">
 							<?php foreach ( $latest_products as $product ) : ?>
 								<?php
 								$product_id = $product->get_id();
@@ -179,54 +177,60 @@ $product_count = count( $latest_products );
 								$product_label = $product->is_in_stock() ? __( 'In Stock', 'julia-cartoonery' ) : __( 'Sold Out', 'julia-cartoonery' );
 								$is_featured = $product->is_featured();
 								?>
-								<article class="embla__slide flex-[0_0_calc(25%-1.25rem)] min-w-0 lg:flex-[0_0_calc(25%-1.5rem)]">
-									<div class="group h-full overflow-hidden rounded-2xl border border-slate-100/60 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(168,216,234,0.2)] dark:border-slate-700/60 dark:bg-slate-900">
-										<!-- Product Image -->
-										<div class="relative min-h-[220px] overflow-hidden bg-gradient-to-br from-sky-100 via-white to-emerald-50/40 dark:from-slate-800 dark:via-slate-900 dark:to-slate-950">
+								<article class="embla__slide flex-[0_0_100%] min-w-0 sm:flex-[0_0_calc(50%-0.5rem)] lg:flex-[0_0_100%]">
+									<div class="group relative h-full min-h-[400px] lg:min-h-[500px] overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-slate-900">
+										<!-- Product Image Background -->
+										<div class="absolute inset-0 h-full w-full">
 											<?php if ( $product_image_id ) : ?>
-												<?php echo wp_get_attachment_image( $product_image_id, 'woocommerce_gallery_thumbnail', false, array( 'class' => 'h-full w-full object-cover transition-transform duration-700 group-hover:scale-110', 'loading' => 'lazy', 'decoding' => 'async', 'alt' => $product_name ) ); ?>
+												<?php echo wp_get_attachment_image( $product_image_id, 'full', false, array( 'class' => 'h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105', 'loading' => 'lazy', 'decoding' => 'async', 'alt' => $product_name ) ); ?>
 											<?php else : ?>
-												<div class="flex h-full min-h-[220px] w-full items-center justify-center bg-gradient-to-br from-sky-100 to-emerald-100 text-xs font-bold text-slate-400 dark:text-slate-500">
-													<?php esc_html_e( 'Product', 'julia-cartoonery' ); ?>
+												<div class="flex h-full w-full items-center justify-center bg-slate-200 text-sm font-bold text-slate-400 dark:bg-slate-800 dark:text-slate-500">
+													<?php esc_html_e( 'Product Image', 'julia-cartoonery' ); ?>
 												</div>
 											<?php endif; ?>
-
-											<!-- Badges -->
-											<div class="absolute right-3 top-3 flex flex-col gap-2">
-												<?php if ( $is_featured ) : ?>
-													<div class="rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-3 py-1 text-[10px] font-black text-white shadow-md">
-														<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
-													</div>
-												<?php endif; ?>
-												<div class="rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-slate-700 shadow-md backdrop-blur dark:bg-slate-800/95 dark:text-slate-100">
-													<?php esc_html_e( 'New', 'julia-cartoonery' ); ?>
-												</div>
-											</div>
-
-											<!-- Rating Badge -->
-											<div class="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1.5 text-[10px] font-bold text-slate-700 shadow-md backdrop-blur dark:bg-slate-800/90 dark:text-slate-100">
-												<svg class="h-3.5 w-3.5 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2Z" /></svg>
-												<span><?php echo esc_html( $product_rating ); ?></span>
-											</div>
-											<div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
+											
+											<!-- Gradient Overlay -->
+											<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90"></div>
 										</div>
 
-										<!-- Product Info -->
-										<div class="flex flex-col justify-between p-4">
-											<div>
-												<h3 class="line-clamp-2 text-sm font-extrabold leading-snug text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-100 dark:group-hover:text-sky-400">
-													<a href="<?php echo esc_url( $product_link ); ?>">
+										<!-- Badges -->
+										<div class="absolute right-5 top-5 flex flex-col gap-2 z-20">
+											<?php if ( $is_featured ) : ?>
+												<div class="rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-3.5 py-1.5 text-[10px] font-black text-white shadow-md">
+													<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
+												</div>
+											<?php endif; ?>
+											<div class="rounded-full bg-white px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-800 shadow-md dark:bg-slate-800 dark:text-slate-100">
+												<?php esc_html_e( 'New', 'julia-cartoonery' ); ?>
+											</div>
+										</div>
+
+										<!-- Product Info Overlay -->
+										<div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8 z-20 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+											<div class="flex-1">
+												<!-- Rating -->
+												<div class="mb-3 flex items-center gap-1.5">
+													<div class="flex gap-0.5">
+														<?php for ( $i = 0; $i < 5; $i++ ) : ?>
+															<svg class="h-4 w-4 <?php echo $i < (int) $product->get_average_rating() ? 'text-yellow-400' : 'text-slate-400/50'; ?>" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+														<?php endfor; ?>
+													</div>
+													<span class="text-xs font-bold text-white/90 ml-1"><?php echo esc_html( $product_rating ); ?></span>
+												</div>
+												
+												<h3 class="text-2xl lg:text-3xl font-extrabold leading-tight text-white transition-colors group-hover:text-sky-300">
+													<a href="<?php echo esc_url( $product_link ); ?>" class="before:absolute before:inset-0">
 														<?php echo esc_html( $product_name ); ?>
 													</a>
 												</h3>
-												<div class="mt-2 text-lg font-black text-sky-600 dark:text-sky-400">
+												<div class="mt-2 text-xl font-black text-[#38BDF8]">
 													<?php echo wp_kses_post( $product_price ); ?>
 												</div>
 											</div>
 
-											<div class="mt-4 flex items-center gap-2 border-t border-slate-100 pt-3 dark:border-slate-800">
-												<a href="<?php echo esc_url( $product_link ); ?>" class="flex-1 rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-center text-xs font-bold text-slate-700 transition-all duration-300 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-sky-600 dark:hover:bg-sky-950/30 dark:hover:text-sky-300">
-													<?php esc_html_e( 'View', 'julia-cartoonery' ); ?>
+											<div class="flex items-center gap-3 relative z-30">
+												<a href="<?php echo esc_url( $product_link ); ?>" class="rounded-xl bg-white/10 backdrop-blur-md border border-white/20 px-5 py-3 text-[13px] font-bold text-white transition-all hover:bg-white hover:text-slate-900">
+													<?php esc_html_e( 'Details', 'julia-cartoonery' ); ?>
 												</a>
 												<div class="custom-premium-cart">
 													<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" data-quantity="1" class="button add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo esc_attr( $product_id ); ?>" data-product_sku="<?php echo esc_attr( $product->get_sku() ); ?>" rel="nofollow" aria-label="<?php echo esc_attr( sprintf( __( 'Add %s to your cart', 'julia-cartoonery' ), $product_name ) ); ?>"></a>
@@ -240,21 +244,21 @@ $product_count = count( $latest_products );
 					</div>
 
 					<!-- Carousel Controls -->
-					<div class="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<div class="embla__dots flex items-center justify-center gap-3 sm:justify-start" aria-label="Latest products carousel pagination"></div>
-						<div class="flex items-center justify-center gap-2 sm:justify-end">
-							<button type="button" class="embla__prev inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-sky-300 hover:text-sky-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-sky-600 dark:hover:text-sky-400" aria-label="Previous product">
-								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+					<div class="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between px-2">
+						<div class="embla__dots flex items-center justify-center gap-2 sm:justify-start" aria-label="Latest products carousel pagination"></div>
+						<div class="flex items-center justify-center gap-3 sm:justify-end">
+							<button type="button" class="embla__prev inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition-all duration-300 hover:border-[#38BDF8] hover:text-[#38BDF8] hover:shadow-md dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-sky-400 dark:hover:text-sky-400" aria-label="Previous product">
+								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
 							</button>
-							<button type="button" class="embla__next inline-flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-r from-sky-400 to-[#A8D8EA] text-white shadow-[0_12px_26px_rgba(168,216,234,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_32px_rgba(168,216,234,0.4)]" aria-label="Next product">
-								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+							<button type="button" class="embla__next inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#38BDF8] text-white shadow-md transition-all duration-300 hover:bg-[#0EA5E9] hover:shadow-lg" aria-label="Next product">
+								<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
 							</button>
 						</div>
 					</div>
 
 				<?php else : ?>
 					<!-- GRID VIEW: 1-3 Products -->
-					<div class="rounded-3xl border border-white/60 bg-white/40 p-6 shadow-xl backdrop-blur-xl dark:border-slate-700/60 dark:bg-slate-900/50 sm:p-8">
+					<div class="w-full">
 						<?php if ( $product_count === 1 ) : ?>
 							<div class="flex justify-center">
 								<div class="w-full max-w-md">
@@ -273,53 +277,59 @@ $product_count = count( $latest_products );
 								$product_rating = number_format_i18n( (float) $product->get_average_rating(), 1 );
 								$is_featured = $product->is_featured();
 								?>
-								<article class="group flex flex-col overflow-hidden rounded-2xl border border-slate-100/60 bg-white shadow-[0_8px_24px_rgba(15,23,42,0.08)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(168,216,234,0.2)] dark:border-slate-700/60 dark:bg-slate-900">
-									<!-- Product Image -->
-									<div class="relative min-h-[260px] overflow-hidden bg-gradient-to-br from-sky-100 via-white to-emerald-50/40 dark:from-slate-800 dark:via-slate-900 dark:to-slate-950 sm:min-h-[300px]">
+								<article class="group relative h-full min-h-[400px] overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-slate-900">
+									<!-- Product Image Background -->
+									<div class="absolute inset-0 h-full w-full">
 										<?php if ( $product_image_id ) : ?>
-											<?php echo wp_get_attachment_image( $product_image_id, 'woocommerce_gallery_thumbnail', false, array( 'class' => 'h-full w-full object-cover transition-transform duration-700 group-hover:scale-110', 'loading' => 'lazy', 'decoding' => 'async', 'alt' => $product_name ) ); ?>
+											<?php echo wp_get_attachment_image( $product_image_id, 'full', false, array( 'class' => 'h-full w-full object-cover transition-transform duration-1000 group-hover:scale-105', 'loading' => 'lazy', 'decoding' => 'async', 'alt' => $product_name ) ); ?>
 										<?php else : ?>
-											<div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-sky-100 to-emerald-100 text-sm font-bold text-slate-400 dark:text-slate-500">
+											<div class="flex h-full w-full items-center justify-center bg-slate-200 text-sm font-bold text-slate-400 dark:bg-slate-800 dark:text-slate-500">
 												<?php esc_html_e( 'Product Image', 'julia-cartoonery' ); ?>
 											</div>
 										<?php endif; ?>
-
-										<!-- Badges -->
-										<div class="absolute right-3 top-3 flex flex-col gap-2">
-											<?php if ( $is_featured ) : ?>
-												<div class="rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-3 py-1 text-[10px] font-black text-white shadow-md">
-													<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
-												</div>
-											<?php endif; ?>
-											<div class="rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-slate-700 shadow-md backdrop-blur dark:bg-slate-800/95 dark:text-slate-100">
-												<?php esc_html_e( 'New', 'julia-cartoonery' ); ?>
-											</div>
-										</div>
-
-										<!-- Rating Badge -->
-										<div class="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-white/90 px-2.5 py-1.5 text-[10px] font-bold text-slate-700 shadow-md backdrop-blur dark:bg-slate-800/90 dark:text-slate-100">
-											<svg class="h-3.5 w-3.5 text-yellow-400" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2Z" /></svg>
-											<span><?php echo esc_html( $product_rating ); ?></span>
-										</div>
-										<div class="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent"></div>
+										
+										<!-- Gradient Overlay -->
+										<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity duration-500 group-hover:opacity-90"></div>
 									</div>
 
-									<!-- Product Info -->
-									<div class="flex flex-1 flex-col justify-between p-5 sm:p-6">
+									<!-- Badges -->
+									<div class="absolute right-5 top-5 flex flex-col gap-2 z-20">
+										<?php if ( $is_featured ) : ?>
+											<div class="rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-3.5 py-1.5 text-[10px] font-black text-white shadow-md">
+												<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
+											</div>
+										<?php endif; ?>
+										<div class="rounded-full bg-white px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-800 shadow-md dark:bg-slate-800 dark:text-slate-100">
+											<?php esc_html_e( 'New', 'julia-cartoonery' ); ?>
+										</div>
+									</div>
+
+									<!-- Product Info Overlay -->
+									<div class="absolute bottom-0 left-0 right-0 p-6 z-20 flex flex-col gap-4">
 										<div>
-											<h3 class="line-clamp-2 text-base font-extrabold leading-snug text-slate-800 transition-colors group-hover:text-sky-600 dark:text-slate-100 dark:group-hover:text-sky-400 sm:text-lg">
-												<a href="<?php echo esc_url( $product_link ); ?>">
+											<!-- Rating -->
+											<div class="mb-3 flex items-center gap-1.5">
+												<div class="flex gap-0.5">
+													<?php for ( $i = 0; $i < 5; $i++ ) : ?>
+														<svg class="h-4 w-4 <?php echo $i < (int) $product->get_average_rating() ? 'text-yellow-400' : 'text-slate-400/50'; ?>" viewBox="0 0 20 20" fill="currentColor"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+													<?php endfor; ?>
+												</div>
+												<span class="text-xs font-bold text-white/90 ml-1"><?php echo esc_html( $product_rating ); ?></span>
+											</div>
+											
+											<h3 class="text-2xl font-extrabold leading-tight text-white transition-colors group-hover:text-sky-300">
+												<a href="<?php echo esc_url( $product_link ); ?>" class="before:absolute before:inset-0">
 													<?php echo esc_html( $product_name ); ?>
 												</a>
 											</h3>
-											<div class="mt-3 text-xl font-black text-sky-600 dark:text-sky-400 sm:text-2xl">
+											<div class="mt-2 text-xl font-black text-[#38BDF8]">
 												<?php echo wp_kses_post( $product_price ); ?>
 											</div>
 										</div>
 
-										<div class="mt-6 flex flex-col gap-2 border-t border-slate-100 pt-4 dark:border-slate-800 sm:flex-row sm:items-center sm:gap-3">
-											<a href="<?php echo esc_url( $product_link ); ?>" class="flex-1 rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-center text-sm font-bold text-slate-700 transition-all duration-300 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-sky-600 dark:hover:bg-sky-950/30 dark:hover:text-sky-300 sm:py-3">
-												<?php esc_html_e( 'View Details', 'julia-cartoonery' ); ?>
+										<div class="flex items-center gap-3 relative z-30 pt-2 border-t border-white/10">
+											<a href="<?php echo esc_url( $product_link ); ?>" class="flex-1 text-center rounded-xl bg-white/10 backdrop-blur-md border border-white/20 px-4 py-3 text-[13px] font-bold text-white transition-all hover:bg-white hover:text-slate-900">
+												<?php esc_html_e( 'Details', 'julia-cartoonery' ); ?>
 											</a>
 											<div class="custom-premium-cart">
 												<a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" data-quantity="1" class="button add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo esc_attr( $product_id ); ?>" data-product_sku="<?php echo esc_attr( $product->get_sku() ); ?>" rel="nofollow" aria-label="<?php echo esc_attr( sprintf( __( 'Add %s to your cart', 'julia-cartoonery' ), $product_name ) ); ?>"></a>
