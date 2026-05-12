@@ -106,7 +106,7 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                             $sale_code = $sale['code'] ?: '';
                                             $sale_link = $sale['link'] ?: '';
                                             ?>
-                                            <div class="absolute bottom-6 right-6 z-30 pointer-events-auto transform translate-y-6 opacity-0 animate-slide-up">
+                                            <div class="absolute bottom-6 right-6 z-30 pointer-events-auto translate-y-0 opacity-100 transition-all duration-500 ease-out motion-safe:animate-pulse">
                                                 <div class="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-pink-100 dark:border-slate-700/50 max-w-[320px]">
                                                     <div class="text-xs font-bold text-pink-500 uppercase tracking-wide mb-1"><?php echo esc_html($sale_label); ?></div>
                                                     <div class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white leading-tight mb-2"><?php echo esc_html($sale_discount); ?></div>
