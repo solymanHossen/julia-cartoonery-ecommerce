@@ -13,14 +13,42 @@ export function initCarousel() {
   const options = { loop: true, speed: 8 };
   const emblaApi = EmblaCarousel(emblaNode, options);
   const slideNodes = emblaApi.slideNodes();
+  const AUTOPLAY_DELAY = 5000;
+  let autoplayTimer = null;
+
+  const startAutoplay = () => {
+    if (autoplayTimer || slideNodes.length <= 1) return;
+
+    autoplayTimer = window.setInterval(() => {
+      emblaApi.scrollNext();
+    }, AUTOPLAY_DELAY);
+  };
+
+  const stopAutoplay = () => {
+    if (!autoplayTimer) return;
+
+    window.clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  };
+
+  const resetAutoplay = () => {
+    stopAutoplay();
+    startAutoplay();
+  };
 
   // Arrow Navigation Buttons
   const prevBtn = emblaNode.querySelector('.embla__prev');
   const nextBtn = emblaNode.querySelector('.embla__next');
 
   if (prevBtn && nextBtn) {
-    prevBtn.addEventListener('click', () => emblaApi.scrollPrev());
-    nextBtn.addEventListener('click', () => emblaApi.scrollNext());
+    prevBtn.addEventListener('click', () => {
+      emblaApi.scrollPrev();
+      resetAutoplay();
+    });
+    nextBtn.addEventListener('click', () => {
+      emblaApi.scrollNext();
+      resetAutoplay();
+    });
   }
 
   // Dot Pagination Setup
@@ -35,7 +63,10 @@ export function initCarousel() {
     dot.className = 'embla__dot transition-all duration-500 rounded-full w-3 h-3 bg-gray-400/30 dark:bg-gray-500/50 hover:bg-gray-600 dark:hover:bg-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]';
     dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
     dot.setAttribute('aria-pressed', 'false');
-    dot.addEventListener('click', () => emblaApi.scrollTo(index));
+    dot.addEventListener('click', () => {
+      emblaApi.scrollTo(index);
+      resetAutoplay();
+    });
     dotsContainer.appendChild(dot);
     dots.push(dot);
   });
@@ -67,18 +98,37 @@ export function initCarousel() {
   emblaApi.on('select', updateDots);
   emblaApi.on('init', updateDots);
 
+  emblaNode.addEventListener('mouseenter', stopAutoplay);
+  emblaNode.addEventListener('mouseleave', startAutoplay);
+  emblaNode.addEventListener('focusin', stopAutoplay);
+  emblaNode.addEventListener('focusout', startAutoplay);
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      stopAutoplay();
+      return;
+    }
+
+    startAutoplay();
+  });
+
   // Keyboard Navigation
   emblaNode.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft') {
       e.preventDefault();
       emblaApi.scrollPrev();
+      resetAutoplay();
     }
 
     if (e.key === 'ArrowRight') {
       e.preventDefault();
       emblaApi.scrollNext();
+      resetAutoplay();
     }
   });
+
+  updateDots();
+  startAutoplay();
 
   return emblaApi;
 }
