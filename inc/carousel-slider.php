@@ -254,6 +254,48 @@ add_action('save_post_carousel_slide', 'julias_save_carousel_meta');
  * 
  * @return array Array of carousel slides
  */
+function julias_get_carousel_image_data($post_id, $size = 'large') {
+    $attachment_id = get_post_thumbnail_id($post_id);
+
+    if (!$attachment_id) {
+        return [
+            'id'       => 0,
+            'url'      => '',
+            'alt'      => '',
+            'width'    => 0,
+            'height'   => 0,
+            'srcset'   => '',
+            'sizes'    => '',
+        ];
+    }
+
+    $image = wp_get_attachment_image_src($attachment_id, $size);
+
+    if (!$image) {
+        return [
+            'id'       => $attachment_id,
+            'url'      => '',
+            'alt'      => get_the_title($attachment_id),
+            'width'    => 0,
+            'height'   => 0,
+            'srcset'   => '',
+            'sizes'    => '',
+        ];
+    }
+
+    $alt = get_post_meta($attachment_id, '_wp_attachment_image_alt', true);
+
+    return [
+        'id'       => $attachment_id,
+        'url'      => $image[0],
+        'alt'      => $alt !== '' ? $alt : get_the_title($post_id),
+        'width'    => (int) $image[1],
+        'height'   => (int) $image[2],
+        'srcset'   => wp_get_attachment_image_srcset($attachment_id, $size),
+        'sizes'    => wp_get_attachment_image_sizes($attachment_id, $size),
+    ];
+}
+
 function julias_get_carousel_slides() {
     $args = [
         'post_type'      => 'carousel_slide',
@@ -270,21 +312,68 @@ function julias_get_carousel_slides() {
     if ($slides_query->have_posts()) {
         while ($slides_query->have_posts()) {
             $slides_query->the_post();
+            $image = julias_get_carousel_image_data(get_the_ID(), 'large');
+
             $slides[] = [
-                'id'       => get_the_ID(),
-                'badge'    => get_post_meta(get_the_ID(), 'carousel_badge', true),
-                'title'    => get_the_title(),
-                'desc'     => get_post_meta(get_the_ID(), 'carousel_description', true),
-                'img'      => has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'full') : get_template_directory_uri() . '/assets/img/placeholder.jpg',
-                'bgClass'  => get_post_meta(get_the_ID(), 'carousel_background_color', true) ?: 'from-pink-100/50',
-                'blob1'    => get_post_meta(get_the_ID(), 'carousel_blob_1_color', true) ?: 'bg-pink-300',
-                'blob2'    => get_post_meta(get_the_ID(), 'carousel_blob_2_color', true) ?: 'bg-purple-300',
+                'id'      => get_the_ID(),
+                'badge'   => get_post_meta(get_the_ID(), 'carousel_badge', true),
+                'title'   => get_the_title(),
+                'desc'    => get_post_meta(get_the_ID(), 'carousel_description', true),
+                'image'   => $image,
+                'bgClass' => get_post_meta(get_the_ID(), 'carousel_background_color', true) ?: 'from-pink-100/50',
+                'blob1'   => get_post_meta(get_the_ID(), 'carousel_blob_1_color', true) ?: 'bg-pink-300',
+                'blob2'   => get_post_meta(get_the_ID(), 'carousel_blob_2_color', true) ?: 'bg-purple-300',
             ];
         }
         wp_reset_postdata();
     }
 
     return apply_filters('julias_hero_slides', $slides);
+}
+
+/**
+ * Build JSON-LD for the hero carousel.
+ *
+ * @param array $slides Carousel slides.
+ * @return string JSON-LD markup or an empty string.
+ */
+function julias_get_carousel_schema_markup($slides) {
+    if (empty($slides)) {
+        return '';
+    }
+
+    $items = [];
+
+    foreach ($slides as $index => $slide) {
+        $item = [
+            '@type'       => 'CreativeWork',
+            'name'        => $slide['title'],
+            'description' => $slide['desc'],
+        ];
+
+        if (!empty($slide['image']['url'])) {
+            $item['image'] = $slide['image']['url'];
+        }
+
+        if (!empty($slide['badge'])) {
+            $item['alternativeHeadline'] = $slide['badge'];
+        }
+
+        $items[] = [
+            '@type'    => 'ListItem',
+            'position' => $index + 1,
+            'item'     => $item,
+        ];
+    }
+
+    $schema = [
+        '@context'        => 'https://schema.org',
+        '@type'           => 'ItemList',
+        'name'            => 'Hero Carousel',
+        'itemListElement' => $items,
+    ];
+
+    return wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 }
 
 /**
@@ -312,10 +401,22 @@ function julias_register_carousel_rest_fields() {
 
     register_rest_field('carousel_slide', 'featured_image_url', [
         'get_callback' => function ($post) {
-            if (has_post_thumbnail($post['id'])) {
-                return get_the_post_thumbnail_url($post['id'], 'full');
+            $image = julias_get_carousel_image_data($post['id'], 'full');
+
+            if (!empty($image['url'])) {
+                return $image['url'];
             }
-            return get_template_directory_uri() . '/assets/img/placeholder.jpg';
+
+            return '';
+        },
+        'schema' => null,
+    ]);
+
+    register_rest_field('carousel_slide', 'featured_image_alt', [
+        'get_callback' => function ($post) {
+            $image = julias_get_carousel_image_data($post['id'], 'full');
+
+            return $image['alt'];
         },
         'schema' => null,
     ]);

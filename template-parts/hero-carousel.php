@@ -7,18 +7,19 @@
 
 // Get hero slides from database (custom post type)
 $hero_slides = julias_get_carousel_slides();
+$carousel_schema = julias_get_carousel_schema_markup($hero_slides);
 
 if (empty($hero_slides)) {
     return;
 }
 ?>
 
-<section class="relative bg-gray-50/50 dark:bg-slate-900 transition-colors duration-1000 overflow-hidden">
-    <div class="embla overflow-hidden relative">
+<section id="hero-carousel" class="relative bg-gray-50/50 dark:bg-slate-900 transition-colors duration-1000 overflow-hidden" aria-roledescription="carousel" aria-label="Featured hero carousel">
+    <div class="embla overflow-hidden relative" tabindex="0" aria-label="Hero carousel viewport" aria-live="off">
         <div class="embla__container flex">
             
             <?php foreach ($hero_slides as $index => $slide) : ?>
-            <div class="embla__slide relative flex-[0_0_100%] min-w-0 min-h-[700px] lg:min-h-[85vh] flex items-center">
+            <article class="embla__slide relative flex-[0_0_100%] min-w-0 min-h-[700px] lg:min-h-[85vh] flex items-center" role="group" aria-roledescription="slide" aria-label="Slide <?php echo esc_attr($index + 1); ?> of <?php echo esc_attr(count($hero_slides)); ?>" <?php echo $index === 0 ? '' : 'aria-hidden="true"'; ?>>
                 
                 <div class="absolute inset-0 bg-gradient-to-b <?php echo esc_attr($slide['bgClass']); ?> to-transparent"></div>
 
@@ -34,9 +35,9 @@ if (empty($hero_slides)) {
                                 </span>
                             </div>
                             
-                            <h1 class="font-['Bubblegum_Sans'] text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] text-gray-800 dark:text-gray-100 mb-6 drop-shadow-sm">
+                            <h2 class="font-['Bubblegum_Sans'] text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] text-gray-800 dark:text-gray-100 mb-6 drop-shadow-sm">
                                 <?php echo esc_html($slide['title']); ?>
-                            </h1>
+                            </h2>
                             
                             <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 leading-relaxed mb-10">
                                 <?php echo esc_html($slide['desc']); ?>
@@ -62,28 +63,46 @@ if (empty($hero_slides)) {
                                 
                                 <!-- Image Card -->
                                 <div class="absolute inset-4 lg:inset-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-[3rem] p-4 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-3 transform hover:rotate-0 hover:scale-[1.02] transition-all duration-500 border border-white/50 dark:border-slate-700/50 overflow-hidden">
-                                    <img 
-                                        src="<?php echo esc_url($slide['img']); ?>" 
-                                        alt="<?php echo esc_attr($slide['title']); ?>" 
-                                        class="w-full h-full object-cover rounded-[2.5rem] transition-transform duration-700"
-                                    />
+                                    <?php if (!empty($slide['image']['id'])) : ?>
+                                        <?php
+                                        echo wp_get_attachment_image(
+                                            $slide['image']['id'],
+                                            'large',
+                                            false,
+                                            [
+                                                'class'        => 'w-full h-full object-cover rounded-[2.5rem] transition-transform duration-700',
+                                                'alt'          => $slide['image']['alt'],
+                                                'loading'      => $index === 0 ? 'eager' : 'lazy',
+                                                'fetchpriority' => $index === 0 ? 'high' : 'auto',
+                                                'decoding'     => 'async',
+                                                'sizes'        => $slide['image']['sizes'] ?: '(min-width: 1024px) 600px, (min-width: 640px) 80vw, 100vw',
+                                            ]
+                                        );
+                                        ?>
+                                    <?php else : ?>
+                                        <div class="flex h-full w-full items-center justify-center rounded-[2.5rem] bg-gradient-to-br from-pink-100 to-blue-100 text-sm font-bold text-slate-500 dark:from-slate-700 dark:to-slate-600 dark:text-slate-200" aria-hidden="true">
+                                            <?php esc_html_e('Slide image unavailable', 'julias-cartoonery'); ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
+            </article>
             <?php endforeach; ?>
             
         </div>
 
         <!-- Carousel Controls: Arrows & Dots -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl px-6 py-4 rounded-full border border-white/60 dark:border-slate-700 shadow-xl">
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl px-6 py-4 rounded-full border border-white/60 dark:border-slate-700 shadow-xl" aria-label="Carousel controls">
             <!-- Previous Button -->
             <button 
+                type="button"
                 class="embla__prev p-2 text-gray-800 dark:text-gray-200 hover:text-[#FFB7C5] dark:hover:text-pink-400 hover:bg-white dark:hover:bg-slate-700 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/50" 
                 aria-label="Previous slide"
+                aria-controls="hero-carousel"
             >
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M15 18l-6-6 6-6"/>
@@ -91,12 +110,14 @@ if (empty($hero_slides)) {
             </button>
             
             <!-- Dot Pagination -->
-            <div class="embla__dots flex items-center gap-3"></div>
+            <div class="embla__dots flex items-center gap-3" aria-label="Choose a slide"></div>
             
             <!-- Next Button -->
             <button 
+                type="button"
                 class="embla__next p-2 text-gray-800 dark:text-gray-200 hover:text-[#FFB7C5] dark:hover:text-pink-400 hover:bg-white dark:hover:bg-slate-700 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/50" 
                 aria-label="Next slide"
+                aria-controls="hero-carousel"
             >
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M9 18l6-6-6-6"/>
@@ -105,3 +126,7 @@ if (empty($hero_slides)) {
         </div>
     </div>
 </section>
+
+<?php if ($carousel_schema) : ?>
+<script type="application/ld+json"><?php echo $carousel_schema; ?></script>
+<?php endif; ?>
