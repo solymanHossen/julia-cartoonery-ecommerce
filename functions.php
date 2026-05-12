@@ -13,3 +13,4 @@ require_once get_theme_file_path('inc/post-types.php');
 require_once get_theme_file_path('inc/menu-setup.php');
 require_once get_theme_file_path('inc/woocommerce-functions.php');
 require_once get_theme_file_path('inc/admin-wishlist.php');
+require_once get_theme_file_path('inc/carousel-slider.php');
