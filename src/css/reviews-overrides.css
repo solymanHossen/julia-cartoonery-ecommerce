@@ -10,7 +10,7 @@
 
   /* Reviews Container - Two Column Layout */
   #reviews {
-    @apply flex flex-col lg:flex-row gap-8 lg:gap-12;
+    @apply grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 lg:gap-12;
   }
 
   /* Left Column: Customer Reviews */
