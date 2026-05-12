@@ -31,27 +31,27 @@ $video_count = count( $long_videos ) + count( $short_videos );
 ?>
 
 
-<section id="videos-section" class="relative overflow-hidden bg-gradient-to-b from-white via-[#fff8fa] to-[#f8fbff] py-20 sm:py-24 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
-	<div class="absolute inset-0">
-		<div class="absolute inset-x-0 top-0 h-56 bg-[radial-gradient(circle_at_top,rgba(255,183,197,0.24),transparent_65%)]"></div>
-		<div class="absolute -left-24 top-24 h-64 w-64 rounded-full bg-[#A8D8EA]/20 blur-3xl"></div>
-		<div class="absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-[#FFB7C5]/20 blur-3xl"></div>
-	</div>
-	<div class="container mx-auto px-4 lg:px-8 relative z-10">
-		<div class="mx-auto mb-12 grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:items-end">
+
+<section id="videos-section" class="relative overflow-hidden bg-[#fff9fb] py-16 sm:py-20 dark:bg-slate-950">
+	<div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,183,197,0.22),transparent_42%),radial-gradient(circle_at_85%_18%,rgba(168,216,234,0.18),transparent_28%),linear-gradient(180deg,#fffdfd_0%,#fff7f9_48%,#f8fbff_100%)] dark:bg-[radial-gradient(circle_at_top,rgba(255,183,197,0.16),transparent_42%),radial-gradient(circle_at_85%_18%,rgba(168,216,234,0.12),transparent_28%),linear-gradient(180deg,#020617_0%,#020617_52%,#0f172a_100%)]"></div>
+	<div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.16)_1px,transparent_1px)] bg-[size:120px_120px] opacity-35 [mask-image:radial-gradient(circle_at_center,black,transparent_82%)] dark:opacity-20"></div>
+	<div class="absolute left-[6%] top-24 h-80 w-80 rounded-full bg-[#FFB7C5]/18 blur-3xl"></div>
+	<div class="absolute right-[8%] top-40 h-72 w-72 rounded-full bg-[#A8D8EA]/18 blur-3xl"></div>
+	<div class="container mx-auto px-4 relative z-10 lg:px-8">
+		<div class="mx-auto mb-8 grid  gap-8 rounded-[40px] border border-white/60 bg-white/35 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.05)] backdrop-blur-lg lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)] lg:items-end dark:border-white/10 dark:bg-slate-900/20 lg:p-6">
 			<div class="max-w-3xl text-center lg:text-left">
-			<span class="inline-flex items-center gap-2 rounded-full border border-[#FFB7C5]/30 bg-white/80 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-[#FF93AB] shadow-[0_10px_30px_rgba(255,183,197,0.12)] backdrop-blur dark:border-pink-400/20 dark:bg-slate-900/70 dark:text-pink-300">
+				<span class="inline-flex items-center gap-2 rounded-full border border-[#FFB7C5]/30 bg-white/80 px-4 py-2 text-xs font-black uppercase tracking-[0.25em] text-[#FF93AB] shadow-[0_10px_30px_rgba(255,183,197,0.12)] backdrop-blur dark:border-pink-400/20 dark:bg-slate-900/70 dark:text-pink-300">
 				<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 8.64V15.36L15.27 12 10 8.64ZM21 8v8c0 2.21-1.79 4-4 4H7c-2.21 0-4-1.79-4-4V8c0-2.21 1.79-4 4-4h10c2.21 0 4 1.79 4 4Z"/></svg>
 				<?php esc_html_e( 'Watch & Learn', 'julias-cartoonery' ); ?>
 			</span>
-				<h2 class="mt-5 font-['Bubblegum_Sans'] text-4xl text-slate-800 dark:text-slate-100 md:text-5xl lg:text-6xl">
-				<?php esc_html_e( 'Julia\'s Channel', 'julias-cartoonery' ); ?>
-			</h2>
-			<p class="mt-4 text-base leading-relaxed text-slate-500 dark:text-slate-300 md:text-lg">
-				<?php esc_html_e( 'Fresh videos and Shorts from Julia\'s Cartoonery, organized by the way kids actually watch them.', 'julias-cartoonery' ); ?>
-			</p>
-		</div>
-			<div class="rounded-[32px] border border-white/70 bg-white/85 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-800/70 dark:bg-slate-900/80">
+				<h2 class="mt-5 font-['Bubblegum_Sans'] text-4xl leading-[0.95] text-slate-800 dark:text-slate-100 md:text-5xl lg:text-6xl">
+					<?php esc_html_e( 'Julia\'s Channel', 'julias-cartoonery' ); ?>
+				</h2>
+				<p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-500 dark:text-slate-300 md:text-lg">
+					<?php esc_html_e( 'Fresh videos and Shorts from Julia\'s Cartoonery, organized by the way kids actually watch them.', 'julias-cartoonery' ); ?>
+				</p>
+			</div>
+			<div class="rounded-[32px] border border-white/70 bg-white/90 p-5 shadow-[0_18px_50px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-800/70 dark:bg-slate-900/80">
 				<div class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
 					<div class="rounded-2xl bg-[#FFB7C5]/12 px-4 py-3">
 						<p class="text-[11px] font-black uppercase tracking-[0.22em] text-[#FF93AB] dark:text-pink-300"><?php esc_html_e( 'Total Videos', 'julias-cartoonery' ); ?></p>
@@ -70,7 +70,7 @@ $video_count = count( $long_videos ) + count( $short_videos );
 		</div>
 
 		<?php if ( ! empty( $long_videos ) && ! empty( $short_videos ) ) : ?>
-			<div class="mx-auto mb-8 flex w-full max-w-2xl rounded-full border border-white/80 bg-white/90 p-1.5 shadow-[0_16px_40px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700 dark:bg-slate-900/90" role="tablist" aria-label="Video categories">
+			<div class="mx-auto mb-5 flex w-full max-w-2xl rounded-full border border-white/80 bg-white/90 p-1.5 shadow-[0_14px_32px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700 dark:bg-slate-900/90" role="tablist" aria-label="Video categories">
 				<button type="button" id="tab-videos-tab" class="js-video-tab flex-1 rounded-full px-4 py-3 text-sm font-black tracking-wide transition-all duration-300" data-target="tab-videos" role="tab" aria-controls="tab-videos" aria-selected="true">
 					<?php esc_html_e( 'Latest Videos', 'julias-cartoonery' ); ?>
 				</button>
