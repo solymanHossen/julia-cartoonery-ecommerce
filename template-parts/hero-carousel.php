@@ -106,21 +106,47 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                             $sale_code = $sale['code'] ?: '';
                                             $sale_link = $sale['link'] ?: '';
                                             ?>
-                                            <div class="absolute bottom-6 right-6 z-30 pointer-events-auto translate-y-0 opacity-100 transition-all duration-500 ease-out motion-safe:animate-pulse">
-                                                <div class="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-pink-100 dark:border-slate-700/50 max-w-[320px]">
-                                                    <div class="text-xs font-bold text-pink-500 uppercase tracking-wide mb-1"><?php echo esc_html($sale_label); ?></div>
-                                                    <div class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white leading-tight mb-2"><?php echo esc_html($sale_discount); ?></div>
-                                                    <?php if ($sale_code) : ?>
-                                                        <div class="inline-flex items-center gap-3 bg-gray-50 dark:bg-slate-700/60 px-3 py-2 rounded-full text-sm font-medium">
-                                                            <span class="font-mono tracking-wide text-sm"><?php echo esc_html($sale_code); ?></span>
-                                                            <button type="button" class="ml-auto text-xs px-2 py-1 bg-pink-50 text-pink-600 rounded" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); e.target.innerText = 'Copied'; setTimeout(()=>e.target.innerText='Copy',1200)})(event)">Copy</button>
+                                            <!-- Animated Bullet Decorators -->
+                                            <div class="absolute bottom-12 right-8 z-20 h-2 w-2 rounded-full bg-[#FFB7C5] shadow-lg shadow-pink-300/60 animate-[bounce_2s_ease-in-out_infinite]"></div>
+                                            <div class="absolute bottom-5 right-32 z-20 h-1.5 w-1.5 rounded-full bg-[#A8D8EA] shadow-lg shadow-sky-300/50 animate-[bounce_2.5s_ease-in-out_infinite_0.3s]"></div>
+                                            <div class="absolute bottom-16 right-24 z-20 h-2.5 w-2.5 rounded-full bg-yellow-300 shadow-lg shadow-yellow-300/50 animate-[bounce_3s_ease-in-out_infinite_0.6s]"></div>
+
+                                            <div class="absolute bottom-6 right-6 z-30 pointer-events-auto animate-[float_6s_ease-in-out_infinite]">
+                                                <div class="bg-gradient-to-br from-white/98 to-white/92 dark:from-slate-800/98 dark:to-slate-800/92 backdrop-blur-lg rounded-3xl p-5 shadow-[0_20px_60px_rgba(255,183,197,0.25)] border border-white/80 dark:border-slate-700/60 max-w-[340px] relative overflow-hidden">
+                                                    <!-- Animated Gradient Background -->
+                                                    <div class="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-50/30 to-blue-50/0 dark:from-pink-950/0 dark:via-pink-900/20 dark:to-blue-950/0 animate-pulse"></div>
+
+                                                    <div class="relative z-10">
+                                                        <div class="mb-3 inline-block">
+                                                            <span class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-100 to-red-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-pink-600">
+                                                                <span class="h-2 w-2 rounded-full bg-pink-500 shadow-[0_0_0_6px_rgba(255,107,159,0.15)] animate-pulse"></span>
+                                                                <?php echo esc_html($sale_label); ?>
+                                                            </span>
                                                         </div>
-                                                    <?php endif; ?>
-                                                    <?php if ($sale_link) : ?>
-                                                        <div class="mt-3">
-                                                            <a href="<?php echo esc_url($sale_link); ?>" class="inline-block text-sm font-bold text-white bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-4 py-2 rounded-full shadow-md">Shop Sale</a>
+
+                                                        <div class="mb-3 text-3xl font-black leading-tight text-slate-900 dark:text-white">
+                                                            <span class="bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] bg-clip-text text-transparent"><?php echo esc_html($sale_discount); ?></span>
                                                         </div>
-                                                    <?php endif; ?>
+
+                                                        <p class="mb-4 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                                                            Limited time offer. Perfect gifts for kids!
+                                                        </p>
+
+                                                        <?php if ($sale_code) : ?>
+                                                            <div class="mb-4 inline-flex items-center gap-2 rounded-xl bg-white/60 px-2.5 py-2 ring-1 ring-pink-100/50 dark:bg-slate-700/40 dark:ring-slate-600/50">
+                                                                <span class="font-mono tracking-wide text-sm"><?php echo esc_html($sale_code); ?></span>
+                                                                <button type="button" class="ml-auto rounded-lg bg-gradient-to-r from-pink-400 to-pink-500 px-2 py-1 text-xs font-bold text-white transition-all hover:shadow-lg hover:scale-105" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); e.target.innerText = 'Copied!'; setTimeout(()=>e.target.innerText='Copy',1200)})(event)">Copy</button>
+                                                            </div>
+                                                        <?php endif; ?>
+                                                        <?php if ($sale_link) : ?>
+                                                            <a href="<?php echo esc_url($sale_link); ?>" class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-5 py-3 text-sm font-extrabold text-white shadow-lg shadow-pink-300/40 transition-all hover:shadow-pink-400/60 hover:scale-110 active:scale-95">
+                                                                <span>Shop Now</span>
+                                                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                                                </svg>
+                                                            </a>
+                                                        <?php endif; ?>
+                                                    </div>
                                                 </div>
                                             </div>
                                         <?php endif; ?>
@@ -141,30 +167,30 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
         </div>
 
         <!-- Carousel Controls: Arrows & Dots -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20 bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl px-6 py-4 rounded-full border border-white/60 dark:border-slate-700 shadow-xl" aria-label="Carousel controls">
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 rounded-full border border-white/75 bg-white/85 px-2.5 py-1.5 shadow-[0_8px_24px_rgba(15,23,42,0.1)] backdrop-blur-xl dark:border-slate-700/60 dark:bg-slate-900/72 sm:bottom-6 sm:px-3 sm:py-2" aria-label="Carousel controls">
             <!-- Previous Button -->
             <button 
                 type="button"
-                class="embla__prev p-2 text-gray-800 dark:text-gray-200 hover:text-[#FFB7C5] dark:hover:text-pink-400 hover:bg-white dark:hover:bg-slate-700 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/50" 
+                class="embla__prev flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white" 
                 aria-label="Previous slide"
                 aria-controls="hero-carousel"
             >
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M15 18l-6-6 6-6"/>
                 </svg>
             </button>
             
             <!-- Dot Pagination -->
-            <div class="embla__dots flex items-center gap-3" aria-label="Choose a slide"></div>
+            <div class="embla__dots flex items-center gap-1" aria-label="Choose a slide"></div>
             
             <!-- Next Button -->
             <button 
                 type="button"
-                class="embla__next p-2 text-gray-800 dark:text-gray-200 hover:text-[#FFB7C5] dark:hover:text-pink-400 hover:bg-white dark:hover:bg-slate-700 rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/50" 
+                class="embla__next flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white" 
                 aria-label="Next slide"
                 aria-controls="hero-carousel"
             >
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M9 18l6-6-6-6"/>
                 </svg>
             </button>

@@ -50,6 +50,15 @@
     }
   }
 
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
   .animate-ping-once {
     animation: ping-once 0.6s ease-out;
   }
