@@ -36,7 +36,7 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                 
                 <div class="absolute inset-0 bg-gradient-to-b <?php echo esc_attr($slide['bgClass']); ?> to-transparent"></div>
 
-                <div class="container mx-auto max-w-7xl px-4 lg:px-8 relative z-10 py-20 lg:py-0">
+                <div class="container mx-auto px-4 lg:px-8 relative z-10 py-20 lg:py-0">
                     <div class="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
                         
                         <!-- Left: Text Content -->
