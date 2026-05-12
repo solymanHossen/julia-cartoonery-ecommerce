@@ -63,7 +63,7 @@ $stock_label = $featured_product->is_in_stock() ? __( 'In Stock', 'julia-cartoon
 	<div class="absolute left-1/2 top-10 h-56 w-[52rem] -translate-x-1/2 rounded-full bg-white/30 blur-3xl dark:bg-pink-500/10"></div>
 
 	<div class="container mx-auto px-4 lg:px-8 relative z-10">
-		<div class="mx-auto max-w-6xl rounded-[32px] border border-white/70 bg-white/75 p-5 shadow-[0_18px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/35 sm:p-6 lg:p-8">
+		<div>
 			<div class="flex flex-col gap-5 border-b border-slate-200/70 pb-5 dark:border-slate-700/70 lg:flex-row lg:items-end lg:justify-between">
 				<div class="max-w-2xl">
 					<p class="text-[10px] font-black uppercase tracking-[0.35em] text-[#FF93AB] dark:text-pink-300"><?php esc_html_e( 'Favorite Toys', 'julia-cartoonery' ); ?></p>
