@@ -118,6 +118,9 @@
                     <?php endif; ?>
                 </div>
                 
+                <!-- YouTube CTA (Template Part) -->
+                <?php get_template_part( 'template-parts/components/youtube-cta' ); ?>
+
                 <!-- Mobile Hamburger -->
                 <button id="mobile-menu-open" class="lg:hidden p-3 text-gray-500 dark:text-gray-400">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
