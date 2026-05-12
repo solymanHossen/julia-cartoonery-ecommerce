@@ -12,6 +12,8 @@ export function initVideos() {
   const activeClasses = [
     'bg-white',
     'text-[#FF93AB]',
+    'ring-1',
+    'ring-[#FFB7C5]/30',
     'shadow-[0_10px_30px_rgba(255,183,197,0.14)]',
     'dark:bg-slate-800',
     'dark:text-pink-300',
@@ -29,13 +31,17 @@ export function initVideos() {
   if (tabs.length && contents.length) {
     const setActiveTab = (targetId) => {
       contents.forEach((content) => {
-        content.classList.toggle('hidden', content.id !== targetId);
+        const isActive = content.id === targetId;
+        content.classList.toggle('hidden', !isActive);
+        content.setAttribute('aria-hidden', String(!isActive));
       });
 
       tabs.forEach((tab) => {
         const isActive = tab.getAttribute('data-target') === targetId;
         tab.classList.remove(...activeClasses, ...inactiveClasses);
         tab.classList.add(...(isActive ? activeClasses : inactiveClasses));
+        tab.setAttribute('aria-selected', String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
       });
     };
 
