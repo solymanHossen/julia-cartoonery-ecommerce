@@ -249,3 +249,27 @@ add_action('init', function() {
         wc_clear_template_cache();
     }
 });
+
+/**
+ * 9. Custom Product Video Field
+ * Adds a video URL field to the general product data tab.
+ */
+function julias_add_product_video_field() {
+    echo '<div class="options_group">';
+    woocommerce_wp_text_input( array(
+        'id'          => '_julia_product_video_url',
+        'label'       => __( 'Product Video URL', 'julia-cartoonery' ),
+        'placeholder' => 'https://www.youtube.com/watch?v=...',
+        'desc_tip'    => 'true',
+        'description' => __( 'Enter a YouTube or MP4 video URL to showcase this product in the Latest Products carousel.', 'julia-cartoonery' ),
+    ) );
+    echo '</div>';
+}
+add_action( 'woocommerce_product_options_general_product_data', 'julias_add_product_video_field' );
+
+function julias_save_product_video_field( $post_id ) {
+    $video_url = isset( $_POST['_julia_product_video_url'] ) ? sanitize_text_field( $_POST['_julia_product_video_url'] ) : '';
+    update_post_meta( $post_id, '_julia_product_video_url', $video_url );
+}
+add_action( 'woocommerce_process_product_meta', 'julias_save_product_video_field' );
+

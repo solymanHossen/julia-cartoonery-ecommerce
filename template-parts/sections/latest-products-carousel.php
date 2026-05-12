@@ -113,36 +113,45 @@ $product_count = count( $latest_products );
 				<!-- Featured Video - Desktop Only -->
 				<div class="hidden lg:flex lg:flex-col lg:gap-6">
 					<!-- Video Player / Thumbnail -->
-					<div class="group relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#A7F3D0] to-[#86E8D0] shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:from-emerald-900 dark:to-teal-900" style="aspect-ratio: 4/3;">
-						<?php if ( $video_url ) : ?>
-							<?php if ( $is_youtube ) : ?>
-								<!-- YouTube Embed -->
-								<iframe 
-									width="100%" 
-									height="100%" 
-									src="https://www.youtube.com/embed/<?php echo esc_attr( $youtube_id ); ?>?autoplay=0&controls=1" 
-									frameborder="0" 
-									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-									allowfullscreen
-									class="absolute inset-0 h-full w-full z-10"
-									title="<?php echo esc_attr( $video_title ); ?>">
-								</iframe>
+					<div id="julia-dynamic-video-stage" class="group relative overflow-hidden rounded-[24px] bg-gradient-to-br from-[#A7F3D0] to-[#86E8D0] shadow-sm transition-transform duration-300 hover:-translate-y-1 dark:from-emerald-900 dark:to-teal-900" style="aspect-ratio: 4/3;" data-default-video="<?php echo esc_attr( $video_url ); ?>" data-default-is-youtube="<?php echo $is_youtube ? 'true' : 'false'; ?>" data-default-youtube-id="<?php echo esc_attr( $youtube_id ); ?>">
+						<div id="julia-dynamic-video-player" class="absolute inset-0 h-full w-full z-10 transition-opacity duration-300">
+							<?php if ( $video_url ) : ?>
+								<?php if ( $is_youtube ) : ?>
+									<!-- YouTube Embed -->
+									<iframe 
+										width="100%" 
+										height="100%" 
+										src="https://www.youtube.com/embed/<?php echo esc_attr( $youtube_id ); ?>?autoplay=0&controls=1&rel=0&enablejsapi=1" 
+										frameborder="0" 
+										allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+										allowfullscreen
+										class="absolute inset-0 h-full w-full z-10"
+										title="<?php echo esc_attr( $video_title ); ?>">
+									</iframe>
+								<?php else : ?>
+									<!-- Video File Player -->
+									<video 
+										controls 
+										class="absolute inset-0 h-full w-full object-cover z-10 bg-black"
+										title="<?php echo esc_attr( $video_title ); ?>">
+										<source src="<?php echo esc_attr( $video_url ); ?>" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								<?php endif; ?>
 							<?php else : ?>
-								<!-- Video File Player -->
-								<video 
-									controls 
-									class="absolute inset-0 h-full w-full object-cover z-10"
-									title="<?php echo esc_attr( $video_title ); ?>">
-									<source src="<?php echo esc_attr( $video_url ); ?>" type="video/mp4">
-									Your browser does not support the video tag.
-								</video>
+								<!-- Placeholder / Mockup Style -->
+								<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-indigo-400 via-purple-400 to-pink-400 opacity-80">
+									<svg class="h-[72px] w-[72px] text-white/50" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+								</div>
 							<?php endif; ?>
-						<?php else : ?>
-							<!-- Placeholder / Mockup Style -->
-							<div class="absolute inset-0 flex items-center justify-center">
-								<svg class="h-[72px] w-[72px] text-white/50 transition-all duration-300 group-hover:scale-110 group-hover:text-white/70" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-							</div>
-						<?php endif; ?>
+						</div>
+						
+						<!-- Interactive Play Overlay -->
+						<div id="julia-video-overlay" class="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/10 backdrop-blur-[2px] transition-all duration-300 group-hover:bg-black/20 <?php echo $video_url ? '' : 'hidden'; ?> cursor-pointer">
+							<button id="julia-dynamic-video-play" class="flex h-20 w-20 items-center justify-center rounded-full bg-white/30 backdrop-blur-md shadow-[0_8px_32px_rgba(255,255,255,0.2)] transition-all duration-300 hover:scale-110 hover:bg-white/50 focus:outline-none focus:ring-4 focus:ring-white/50" aria-label="Play Video">
+								<svg class="h-10 w-10 text-white ml-1 drop-shadow-md" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+							</button>
+						</div>
 						
 						<!-- Featured Badge -->
 						<div class="absolute left-4 top-4 z-20">
@@ -183,8 +192,9 @@ $product_count = count( $latest_products );
 								$product_rating = number_format_i18n( (float) $product->get_average_rating(), 1 );
 								$product_label = $product->is_in_stock() ? __( 'In Stock', 'julia-cartoonery' ) : __( 'Sold Out', 'julia-cartoonery' );
 								$is_featured = $product->is_featured();
+								$product_video_url = get_post_meta( $product_id, '_julia_product_video_url', true );
 								?>
-								<article class="embla__slide flex-[0_0_100%] min-w-0 sm:flex-[0_0_calc(50%-0.5rem)] lg:flex-[0_0_100%]">
+								<article class="embla__slide flex-[0_0_100%] min-w-0 sm:flex-[0_0_calc(50%-0.5rem)] lg:flex-[0_0_100%] cursor-pointer" data-video-url="<?php echo esc_attr( $product_video_url ); ?>">
 									<div class="group relative h-full min-h-[400px] lg:min-h-[500px] overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-slate-900">
 										<!-- Product Image Background -->
 										<div class="absolute inset-0 h-full w-full">
@@ -210,6 +220,11 @@ $product_count = count( $latest_products );
 											<div class="rounded-full bg-white px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-800 shadow-md dark:bg-slate-800 dark:text-slate-100">
 												<?php esc_html_e( 'New', 'julia-cartoonery' ); ?>
 											</div>
+											<?php if ( ! empty( $product_video_url ) ) : ?>
+												<div class="rounded-full bg-sky-500 px-3 py-1.5 flex items-center justify-center shadow-md animate-pulse">
+													<svg class="h-3 w-3 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+												</div>
+											<?php endif; ?>
 										</div>
 
 										<!-- Product Info Overlay -->
@@ -283,8 +298,9 @@ $product_count = count( $latest_products );
 								$product_price = $product->get_price_html();
 								$product_rating = number_format_i18n( (float) $product->get_average_rating(), 1 );
 								$is_featured = $product->is_featured();
+								$product_video_url = get_post_meta( $product_id, '_julia_product_video_url', true );
 								?>
-								<article class="group relative h-full min-h-[400px] overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-slate-900">
+								<article class="group relative h-full min-h-[400px] overflow-hidden rounded-[24px] bg-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-slate-900 cursor-pointer" data-video-url="<?php echo esc_attr( $product_video_url ); ?>">
 									<!-- Product Image Background -->
 									<div class="absolute inset-0 h-full w-full">
 										<?php if ( $product_image_id ) : ?>
@@ -309,6 +325,11 @@ $product_count = count( $latest_products );
 										<div class="rounded-full bg-white px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-800 shadow-md dark:bg-slate-800 dark:text-slate-100">
 											<?php esc_html_e( 'New', 'julia-cartoonery' ); ?>
 										</div>
+										<?php if ( ! empty( $product_video_url ) ) : ?>
+											<div class="rounded-full bg-sky-500 px-3 py-1.5 flex items-center justify-center shadow-md animate-pulse">
+												<svg class="h-3 w-3 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+											</div>
+										<?php endif; ?>
 									</div>
 
 									<!-- Product Info Overlay -->
