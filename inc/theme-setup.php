@@ -122,13 +122,58 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
         )
     );
 
+    // New Arrivals Header Section
+    $wp_customize->add_section(
+        'julia_latest_products_header',
+        array(
+            'title'       => __( 'Latest Products - Header', 'julias-cartoonery' ),
+            'description' => __( 'Configure the header texts in the New Arrivals section', 'julias-cartoonery' ),
+            'panel'       => 'julia_home_page',
+            'priority'    => 10,
+        )
+    );
+
+    $wp_customize->add_setting( 'julia_latest_products_subtitle', array(
+        'default'           => __( 'NEW ARRIVALS', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_latest_products_subtitle', array(
+        'label'   => __( 'Subtitle', 'julias-cartoonery' ),
+        'section' => 'julia_latest_products_header',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_latest_products_title', array(
+        'default'           => __( 'Fresh toys in stock', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_latest_products_title', array(
+        'label'   => __( 'Main Title', 'julias-cartoonery' ),
+        'section' => 'julia_latest_products_header',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_latest_products_description', array(
+        'default'           => __( 'Scroll through the latest additions to our collection. Each toy is carefully selected for quality and fun.', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_latest_products_description', array(
+        'label'   => __( 'Description', 'julias-cartoonery' ),
+        'section' => 'julia_latest_products_header',
+        'type'    => 'textarea',
+    ) );
+
     // New Arrivals Video Section
     $wp_customize->add_section(
         'julia_latest_products_video',
         array(
-            'title'       => __( 'Latest Products - Video', 'julias-cartoonery' ),
-            'description' => __( 'Configure the featured video in New Arrivals section', 'julias-cartoonery' ),
+            'title'       => __( 'Latest Products - Video / Left Card', 'julias-cartoonery' ),
+            'description' => __( 'Configure the featured video card in New Arrivals section', 'julias-cartoonery' ),
             'panel'       => 'julia_home_page',
+            'priority'    => 20,
         )
     );
 

@@ -18,6 +18,11 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 
 $shop_url = wc_get_page_permalink( 'shop' );
 
+// Get header settings from customizer
+$header_subtitle = get_theme_mod( 'julia_latest_products_subtitle', __( 'NEW ARRIVALS', 'julia-cartoonery' ) );
+$header_title = get_theme_mod( 'julia_latest_products_title', __( 'Fresh toys in stock', 'julia-cartoonery' ) );
+$header_description = get_theme_mod( 'julia_latest_products_description', __( 'Scroll through the latest additions to our collection. Each toy is carefully selected for quality and fun.', 'julia-cartoonery' ) );
+
 // Get video settings from customizer
 $video_url = get_theme_mod( 'julia_latest_products_video_url', '' );
 $video_title = get_theme_mod( 'julia_latest_products_video_title', __( 'See toys in action', 'julia-cartoonery' ) );
@@ -81,20 +86,22 @@ $product_count = count( $latest_products );
 		<div>
 			<div class="mb-12 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
 				<div class="max-w-3xl">
-					<p class="text-[11px] font-black uppercase tracking-[0.3em] text-[#0EA5E9] dark:text-sky-400"><?php esc_html_e( 'NEW ARRIVALS', 'julia-cartoonery' ); ?></p>
+					<p class="text-[11px] font-black uppercase tracking-[0.3em] text-[#FFB7C5] dark:text-pink-400">
+						<?php echo esc_html( $header_subtitle ); ?>
+					</p>
 					<h2 class="mt-3 font-['Bubblegum_Sans'] text-[42px] leading-[1.1] text-slate-800 dark:text-slate-100 lg:text-[54px]">
-						<?php esc_html_e( 'Fresh toys in stock', 'julia-cartoonery' ); ?>
+						<?php echo esc_html( $header_title ); ?>
 					</h2>
 					<p class="mt-4 max-w-2xl text-[15px] leading-relaxed text-slate-500 dark:text-slate-400">
-						<?php esc_html_e( 'Scroll through the latest additions to our collection. Each toy is carefully selected for quality and fun.', 'julia-cartoonery' ); ?>
+						<?php echo esc_html( $header_description ); ?>
 					</p>
 				</div>
 
 				<div class="flex flex-wrap items-center gap-4 mt-6 sm:mt-0">
-					<div class="rounded-full border border-sky-100 bg-white px-5 py-2.5 text-[13px] font-bold text-[#0EA5E9] shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-sky-400">
+					<div class="rounded-full border border-pink-100 bg-white px-5 py-2.5 text-[13px] font-bold text-[#FFB7C5] shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-pink-400">
 						<?php echo esc_html( sprintf( _n( '%s item', '%s items', 8, 'julia-cartoonery' ), 8 ) ); ?>
 					</div>
-					<a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#38BDF8] px-7 py-2.5 text-[13px] font-bold text-white shadow-md transition-all duration-300 hover:bg-[#0EA5E9] hover:shadow-lg hover:-translate-y-0.5">
+					<a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center gap-2 rounded-full bg-[#0EA5E9] px-7 py-2.5 text-[13px] font-bold text-white shadow-md transition-all duration-300 hover:bg-sky-500 hover:shadow-lg hover:-translate-y-0.5">
 						<?php esc_html_e( 'Browse Shop', 'julia-cartoonery' ); ?>
 						<svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
 					</a>
