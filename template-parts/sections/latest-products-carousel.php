@@ -18,6 +18,24 @@ if ( ! class_exists( 'WooCommerce' ) ) {
 
 $shop_url = wc_get_page_permalink( 'shop' );
 
+// Get video settings from customizer
+$video_url = get_theme_mod( 'julia_latest_products_video_url', '' );
+$video_title = get_theme_mod( 'julia_latest_products_video_title', __( 'See toys in action', 'julia-cartoonery' ) );
+$video_description = get_theme_mod( 'julia_latest_products_video_description', __( 'Watch kids play with their favorite toys and discover what makes them special.', 'julia-cartoonery' ) );
+$video_button_text = get_theme_mod( 'julia_latest_products_video_button_text', __( 'Watch Now', 'julia-cartoonery' ) );
+
+// Helper function to extract YouTube video ID
+function get_youtube_video_id( $url ) {
+	if ( preg_match( '%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?\s]{11})%i', $url, $match ) ) {
+		return $match[1];
+	}
+	return false;
+}
+
+// Determine if URL is YouTube
+$youtube_id = $video_url ? get_youtube_video_id( $video_url ) : false;
+$is_youtube = $youtube_id !== false;
+
 // Get latest 8 products
 $latest_query = new WP_Query(
 	array(
@@ -89,15 +107,41 @@ $product_count = count( $latest_products );
 				<div class="hidden lg:flex lg:flex-col lg:gap-4">
 					<!-- Video Player -->
 					<div class="group relative overflow-hidden rounded-3xl border border-white/60 shadow-2xl dark:border-slate-700/60" style="aspect-ratio: 16/9;">
-						<div class="absolute inset-0 bg-gradient-to-br from-sky-200 to-emerald-200 dark:from-slate-800 dark:to-slate-900"></div>
-						<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 via-black/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-							<div class="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur">
-								<svg class="h-7 w-7 text-sky-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+						<?php if ( $video_url ) : ?>
+							<?php if ( $is_youtube ) : ?>
+								<!-- YouTube Embed -->
+								<iframe 
+									width="100%" 
+									height="100%" 
+									src="https://www.youtube.com/embed/<?php echo esc_attr( $youtube_id ); ?>?autoplay=0&controls=1" 
+									frameborder="0" 
+									allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+									allowfullscreen
+									class="absolute inset-0 h-full w-full"
+									title="<?php echo esc_attr( $video_title ); ?>">
+								</iframe>
+							<?php else : ?>
+								<!-- Video File Player -->
+								<video 
+									controls 
+									class="absolute inset-0 h-full w-full object-cover"
+									title="<?php echo esc_attr( $video_title ); ?>">
+									<source src="<?php echo esc_attr( $video_url ); ?>" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+							<?php endif; ?>
+						<?php else : ?>
+							<!-- Placeholder when no video URL set -->
+							<div class="absolute inset-0 bg-gradient-to-br from-sky-200 to-emerald-200 dark:from-slate-800 dark:to-slate-900"></div>
+							<div class="absolute inset-0 flex items-center justify-center">
+								<svg class="h-20 w-20 animate-pulse text-sky-400 opacity-30 dark:text-sky-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 							</div>
-						</div>
-						<div class="absolute inset-0 flex items-center justify-center">
-							<svg class="h-20 w-20 animate-pulse text-sky-400 opacity-30 dark:text-sky-300" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-						</div>
+							<div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/40 via-black/0 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+								<div class="flex h-16 w-16 items-center justify-center rounded-full bg-white/95 shadow-xl backdrop-blur">
+									<svg class="h-7 w-7 text-sky-600" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+								</div>
+							</div>
+						<?php endif; ?>
 						<div class="absolute left-4 top-4 rounded-full bg-white/95 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-slate-700 shadow-lg backdrop-blur dark:bg-slate-800/95 dark:text-slate-100">
 							<?php esc_html_e( 'Featured', 'julia-cartoonery' ); ?>
 						</div>
@@ -106,13 +150,13 @@ $product_count = count( $latest_products );
 					<!-- Video Description Card -->
 					<div class="rounded-2xl border border-slate-100/60 bg-white p-6 shadow-lg dark:border-slate-700/60 dark:bg-slate-900 sm:p-7">
 						<h3 class="font-['Bubblegum_Sans'] text-2xl leading-[0.95] text-slate-800 dark:text-slate-100">
-							<?php esc_html_e( 'See toys in action', 'julia-cartoonery' ); ?>
+							<?php echo esc_html( $video_title ); ?>
 						</h3>
 						<p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-							<?php esc_html_e( 'Watch kids play with their favorite toys and discover what makes them special.', 'julia-cartoonery' ); ?>
+							<?php echo esc_html( $video_description ); ?>
 						</p>
-						<a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 px-5 py-2.5 text-sm font-black text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 dark:from-sky-600 dark:to-sky-700">
-							<?php esc_html_e( 'Watch Now', 'julia-cartoonery' ); ?>
+						<a href="<?php echo esc_url( $shop_url ); ?>" class="mt-5 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-sky-500 to-sky-600 px-5 py-2.5 text-sm font-black text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 dark:from-sky-600 dark:to-sky-700">
+							<?php echo esc_html( $video_button_text ); ?>
 							<svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
 						</a>
 					</div>

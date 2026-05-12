@@ -108,3 +108,105 @@ function jc_force_create_cart_page() {
 }
 // থিম সেটআপের সময় এটি রান করবে
 add_action( 'after_setup_theme', 'jc_force_create_cart_page' );
+/**
+ * Register customizer settings for dynamic home page sections
+ */
+function julias_cartoonery_customizer_settings( $wp_customize ) {
+    // Create "Home Page" panel
+    $wp_customize->add_panel(
+        'julia_home_page',
+        array(
+            'title'           => __( 'Home Page Settings', 'julias-cartoonery' ),
+            'description'     => __( 'Customize home page sections', 'julias-cartoonery' ),
+            'priority'        => 25,
+        )
+    );
+
+    // New Arrivals Video Section
+    $wp_customize->add_section(
+        'julia_latest_products_video',
+        array(
+            'title'       => __( 'Latest Products - Video', 'julias-cartoonery' ),
+            'description' => __( 'Configure the featured video in New Arrivals section', 'julias-cartoonery' ),
+            'panel'       => 'julia_home_page',
+        )
+    );
+
+    // Video URL Setting
+    $wp_customize->add_setting(
+        'julia_latest_products_video_url',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'refresh',
+        )
+    );
+
+    $wp_customize->add_control(
+        'julia_latest_products_video_url',
+        array(
+            'label'       => __( 'Video URL (YouTube or MP4)', 'julias-cartoonery' ),
+            'description' => __( 'Enter YouTube URL (youtube.com/watch?v=...) or MP4 file URL', 'julias-cartoonery' ),
+            'section'     => 'julia_latest_products_video',
+            'type'        => 'url',
+        )
+    );
+
+    // Video Title
+    $wp_customize->add_setting(
+        'julia_latest_products_video_title',
+        array(
+            'default'           => __( 'See toys in action', 'julias-cartoonery' ),
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        )
+    );
+
+    $wp_customize->add_control(
+        'julia_latest_products_video_title',
+        array(
+            'label'   => __( 'Video Title', 'julias-cartoonery' ),
+            'section' => 'julia_latest_products_video',
+            'type'    => 'text',
+        )
+    );
+
+    // Video Description
+    $wp_customize->add_setting(
+        'julia_latest_products_video_description',
+        array(
+            'default'           => __( 'Watch kids play with their favorite toys and discover what makes them special.', 'julias-cartoonery' ),
+            'sanitize_callback' => 'sanitize_textarea_field',
+            'transport'         => 'refresh',
+        )
+    );
+
+    $wp_customize->add_control(
+        'julia_latest_products_video_description',
+        array(
+            'label'   => __( 'Video Description', 'julias-cartoonery' ),
+            'section' => 'julia_latest_products_video',
+            'type'    => 'textarea',
+        )
+    );
+
+    // Button Text
+    $wp_customize->add_setting(
+        'julia_latest_products_video_button_text',
+        array(
+            'default'           => __( 'Watch Now', 'julias-cartoonery' ),
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        )
+    );
+
+    $wp_customize->add_control(
+        'julia_latest_products_video_button_text',
+        array(
+            'label'   => __( 'Button Text', 'julias-cartoonery' ),
+            'section' => 'julia_latest_products_video',
+            'type'    => 'text',
+        )
+    );
+}
+add_action( 'customize_register', 'julias_cartoonery_customizer_settings' );
