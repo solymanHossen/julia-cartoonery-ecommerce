@@ -268,12 +268,43 @@ function julias_save_carousel_meta($post_id) {
         return;
     }
 
-    $meta_fields = ['badge', 'description', 'background_color', 'blob_1_color', 'blob_2_color', 'slide_order'];
+    $meta_fields = [
+        'badge',
+        'description',
+        'background_color',
+        'blob_1_color',
+        'blob_2_color',
+        'slide_order',
+        // Flash sale fields
+        'sale_enabled',
+        'sale_label',
+        'sale_discount',
+        'sale_code',
+        'sale_link',
+    ];
 
     foreach ($meta_fields as $field) {
         $meta_key = "carousel_{$field}";
+
+        // Checkbox (sale_enabled) may not be present when unchecked — explicit handling
+        if ($field === 'sale_enabled') {
+            $value = isset($_POST[$meta_key]) && $_POST[$meta_key] === '1' ? '1' : '0';
+            update_post_meta($post_id, $meta_key, $value);
+            continue;
+        }
+
         if (isset($_POST[$meta_key])) {
-            update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$meta_key]));
+            // Use URL sanitizer for links
+            if ($field === 'sale_link') {
+                update_post_meta($post_id, $meta_key, esc_url_raw($_POST[$meta_key]));
+            } else {
+                update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$meta_key]));
+            }
+        } else {
+            // If field missing, ensure we clear previous value for non-checkbox fields when appropriate
+            if (in_array($field, ['sale_label', 'sale_discount', 'sale_code', 'sale_link'], true)) {
+                update_post_meta($post_id, $meta_key, '');
+            }
         }
     }
 }
