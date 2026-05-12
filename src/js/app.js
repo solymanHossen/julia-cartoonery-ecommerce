@@ -11,6 +11,7 @@ import { initSingleProduct } from './components/singleProduct.js';
 import { initCart } from './components/cart.js';
 import { initCheckout } from './components/checkout.js';
 import { initCarousel } from './components/carousel.js';
+import { initVideos } from './components/videos.js';
 
 (function ($) {
   "use strict";
@@ -27,6 +28,7 @@ import { initCarousel } from './components/carousel.js';
     initCart($);
     initCheckout($);
     initCarousel();
+    initVideos();
 
     // WooCommerce native trigger when an item is added to cart via AJAX
     $(document.body).on('added_to_cart', function (event, fragments, cart_hash, $button) {
