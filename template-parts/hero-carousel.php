@@ -14,6 +14,19 @@ if (empty($hero_slides)) {
 }
 ?>
 
+<?php
+// Preload the first slide image to improve LCP when available
+$first_slide = $hero_slides[0] ?? null;
+if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
+    printf(
+        '<link rel="preload" as="image" href="%s" imagesrcset="%s" imagesizes="%s">\n',
+        esc_url($first_slide['image']['url']),
+        esc_attr($first_slide['image']['srcset'] ?? ''),
+        esc_attr($first_slide['image']['sizes'] ?? '(min-width:1024px)600px,100vw')
+    );
+}
+?>
+
 <section id="hero-carousel" class="relative bg-gray-50/50 dark:bg-slate-900 transition-colors duration-1000 overflow-hidden" aria-roledescription="carousel" aria-label="Featured hero carousel">
     <div class="embla overflow-hidden relative" tabindex="0" aria-label="Hero carousel viewport" aria-live="off">
         <div class="embla__container flex">
@@ -55,7 +68,13 @@ if (empty($hero_slides)) {
                         </div>
                         
                         <!-- Right: Hero Image with Blobs -->
-                        <div class="flex-1 relative w-full aspect-square max-w-[500px] lg:max-w-[600px] mx-auto lg:mr-0 h-[400px] lg:h-[600px]">
+                        <?php
+                        $aspect_attr = '';
+                        if (!empty($slide['image']['width']) && !empty($slide['image']['height'])) {
+                            $aspect_attr = 'style="aspect-ratio: ' . esc_attr((int) $slide['image']['width']) . '/' . esc_attr((int) $slide['image']['height']) . ';"';
+                        }
+                        ?>
+                        <div class="flex-1 relative w-full max-w-[500px] lg:max-w-[600px] mx-auto lg:mr-0 h-[400px] lg:h-[600px]" <?php echo $aspect_attr; ?>>
                             <div class="relative w-full h-full flex items-center justify-center">
                                 <!-- Animated Blobs -->
                                 <div class="absolute top-[10%] right-[10%] w-40 h-40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-pulse shadow-2xl <?php echo esc_attr($slide['blob1']); ?>" style="animation-duration: 4s;"></div>
@@ -79,6 +98,32 @@ if (empty($hero_slides)) {
                                             ]
                                         );
                                         ?>
+                                        <?php if (!empty($slide['sale']['enabled'])) : ?>
+                                            <?php
+                                            $sale = $slide['sale'];
+                                            $sale_label = $sale['label'] ?: 'Flash Sale';
+                                            $sale_discount = $sale['discount'] ?: '';
+                                            $sale_code = $sale['code'] ?: '';
+                                            $sale_link = $sale['link'] ?: '';
+                                            ?>
+                                            <div class="absolute bottom-6 right-6 z-30 pointer-events-auto transform translate-y-6 opacity-0 animate-slide-up">
+                                                <div class="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-pink-100 dark:border-slate-700/50 max-w-[320px]">
+                                                    <div class="text-xs font-bold text-pink-500 uppercase tracking-wide mb-1"><?php echo esc_html($sale_label); ?></div>
+                                                    <div class="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white leading-tight mb-2"><?php echo esc_html($sale_discount); ?></div>
+                                                    <?php if ($sale_code) : ?>
+                                                        <div class="inline-flex items-center gap-3 bg-gray-50 dark:bg-slate-700/60 px-3 py-2 rounded-full text-sm font-medium">
+                                                            <span class="font-mono tracking-wide text-sm"><?php echo esc_html($sale_code); ?></span>
+                                                            <button type="button" class="ml-auto text-xs px-2 py-1 bg-pink-50 text-pink-600 rounded" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); e.target.innerText = 'Copied'; setTimeout(()=>e.target.innerText='Copy',1200)})(event)">Copy</button>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                    <?php if ($sale_link) : ?>
+                                                        <div class="mt-3">
+                                                            <a href="<?php echo esc_url($sale_link); ?>" class="inline-block text-sm font-bold text-white bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-4 py-2 rounded-full shadow-md">Shop Sale</a>
+                                                        </div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     <?php else : ?>
                                         <div class="flex h-full w-full items-center justify-center rounded-[2.5rem] bg-gradient-to-br from-pink-100 to-blue-100 text-sm font-bold text-slate-500 dark:from-slate-700 dark:to-slate-600 dark:text-slate-200" aria-hidden="true">
                                             <?php esc_html_e('Slide image unavailable', 'julias-cartoonery'); ?>

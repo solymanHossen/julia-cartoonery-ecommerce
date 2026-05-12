@@ -51,6 +51,12 @@ function julias_register_carousel_meta() {
         'blob_1_color',
         'blob_2_color',
         'slide_order',
+        // Flash sale fields
+        'sale_enabled',
+        'sale_label',
+        'sale_discount',
+        'sale_code',
+        'sale_link',
     ];
 
     foreach ($meta_fields as $field) {
@@ -216,6 +222,30 @@ function julias_carousel_metabox_callback($post) {
         </div>
     </div>
 
+        <hr style="margin:20px 0; border:none; border-top:1px solid #eee;" />
+        <h4 style="margin:0 0 10px 0;">Flash Sale (optional)</h4>
+        <?php
+        $sale_enabled = get_post_meta($post->ID, 'carousel_sale_enabled', true);
+        $sale_label = get_post_meta($post->ID, 'carousel_sale_label', true);
+        $sale_discount = get_post_meta($post->ID, 'carousel_sale_discount', true);
+        $sale_code = get_post_meta($post->ID, 'carousel_sale_code', true);
+        $sale_link = get_post_meta($post->ID, 'carousel_sale_link', true);
+        ?>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; align-items:center;">
+            <label style="display:flex; align-items:center; gap:8px;">
+                <input type="checkbox" id="carousel_sale_enabled" name="carousel_sale_enabled" value="1" <?php checked($sale_enabled, '1'); ?> />
+                <?php esc_html_e('Enable sale card on this slide', 'julias-cartoonery'); ?>
+            </label>
+
+            <input type="text" id="carousel_sale_label" name="carousel_sale_label" placeholder="e.g., Flash Sale" value="<?php echo esc_attr($sale_label); ?>" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;" />
+
+            <input type="text" id="carousel_sale_discount" name="carousel_sale_discount" placeholder="e.g., 20% OFF" value="<?php echo esc_attr($sale_discount); ?>" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;" />
+
+            <input type="text" id="carousel_sale_code" name="carousel_sale_code" placeholder="e.g., JULIA20" value="<?php echo esc_attr($sale_code); ?>" style="width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;" />
+
+            <input type="url" id="carousel_sale_link" name="carousel_sale_link" placeholder="https://yourshop.example/sale" value="<?php echo esc_attr($sale_link); ?>" style="grid-column: 1 / -1; width:100%; padding:8px; border:1px solid #ddd; border-radius:4px;" />
+        </div>
+
     <p style="margin-top: 15px; color: #666; font-size: 13px;">
         <?php esc_html_e('Use the featured image uploader below to set the slide background image.', 'julias-cartoonery'); ?>
     </p>
@@ -320,6 +350,13 @@ function julias_get_carousel_slides() {
                 'title'   => get_the_title(),
                 'desc'    => get_post_meta(get_the_ID(), 'carousel_description', true),
                 'image'   => $image,
+                'sale'    => [
+                    'enabled'  => get_post_meta(get_the_ID(), 'carousel_sale_enabled', true) === '1',
+                    'label'    => get_post_meta(get_the_ID(), 'carousel_sale_label', true),
+                    'discount' => get_post_meta(get_the_ID(), 'carousel_sale_discount', true),
+                    'code'     => get_post_meta(get_the_ID(), 'carousel_sale_code', true),
+                    'link'     => get_post_meta(get_the_ID(), 'carousel_sale_link', true),
+                ],
                 'bgClass' => get_post_meta(get_the_ID(), 'carousel_background_color', true) ?: 'from-pink-100/50',
                 'blob1'   => get_post_meta(get_the_ID(), 'carousel_blob_1_color', true) ?: 'bg-pink-300',
                 'blob2'   => get_post_meta(get_the_ID(), 'carousel_blob_2_color', true) ?: 'bg-purple-300',
