@@ -1,0 +1,219 @@
+@layer components {
+  .flash-sale-section {
+    @apply relative overflow-hidden;
+  }
+
+  .flash-sale-section__bg {
+    @apply absolute inset-0 pointer-events-none;
+    background:
+      radial-gradient(65rem 30rem at 8% -10%, rgba(255, 183, 197, 0.4), transparent 60%),
+      radial-gradient(55rem 28rem at 100% 115%, rgba(168, 216, 234, 0.32), transparent 58%),
+      linear-gradient(145deg, #fff6f8 0%, #f4fbff 50%, #fff9f2 100%);
+  }
+
+  html.dark .flash-sale-section__bg {
+    background:
+      radial-gradient(65rem 32rem at 8% -10%, rgba(255, 183, 197, 0.12), transparent 60%),
+      radial-gradient(55rem 30rem at 100% 120%, rgba(168, 216, 234, 0.14), transparent 60%),
+      linear-gradient(145deg, #0f172a 0%, #131d35 45%, #1e293b 100%);
+  }
+
+  .flash-sale-hero {
+    @apply mb-10 sm:mb-14 rounded-[2rem] border border-white/70 bg-white/72 p-6 shadow-[0_24px_80px_rgba(148,163,184,0.15)] backdrop-blur-xl;
+    @apply flex flex-col gap-8 xl:flex-row xl:items-center xl:justify-between;
+  }
+
+  html.dark .flash-sale-hero {
+    @apply border-slate-700/55 bg-slate-900/75 shadow-[0_24px_80px_rgba(2,6,23,0.35)];
+  }
+
+  .flash-sale-hero__badge {
+    @apply mb-4 inline-flex items-center gap-2 rounded-full border border-rose-300/60 bg-rose-50 px-4 py-2 text-[0.65rem] font-black uppercase tracking-[0.2em] text-rose-600;
+  }
+
+  html.dark .flash-sale-hero__badge {
+    @apply border-rose-400/30 bg-rose-500/10 text-rose-200;
+  }
+
+  .flash-sale-hero__badge-dot {
+    @apply h-2 w-2 rounded-full bg-rose-500;
+    box-shadow: 0 0 0 7px rgba(244, 63, 94, 0.16);
+  }
+
+  .flash-sale-hero__title {
+    @apply text-4xl font-black leading-tight tracking-tight text-slate-900 sm:text-5xl lg:text-6xl;
+    font-family: 'Bubblegum Sans', sans-serif;
+  }
+
+  html.dark .flash-sale-hero__title {
+    @apply text-slate-50;
+  }
+
+  .flash-sale-hero__description {
+    @apply mt-4 max-w-2xl text-sm font-semibold leading-relaxed text-slate-600 sm:text-base;
+  }
+
+  html.dark .flash-sale-hero__description {
+    @apply text-slate-300;
+  }
+
+  .flash-sale-timer {
+    @apply grid grid-cols-2 gap-2 sm:flex sm:items-center sm:gap-3;
+  }
+
+  .flash-sale-timer__unit {
+    @apply min-w-[4.25rem] rounded-2xl border border-[#FFB7C5]/45 bg-white px-3 py-3 text-center shadow-sm sm:min-w-[5.5rem] sm:px-4;
+  }
+
+  html.dark .flash-sale-timer__unit {
+    @apply border-pink-200/20 bg-slate-800;
+  }
+
+  .flash-sale-timer__unit--accent {
+    @apply border-amber-300/60 bg-amber-50;
+  }
+
+  html.dark .flash-sale-timer__unit--accent {
+    @apply border-amber-300/35 bg-amber-400/10;
+  }
+
+  .flash-sale-timer__value {
+    @apply block text-2xl font-black tabular-nums text-slate-900 sm:text-3xl;
+  }
+
+  html.dark .flash-sale-timer__value {
+    @apply text-slate-100;
+  }
+
+  .flash-sale-timer__label {
+    @apply mt-1 block text-[0.62rem] font-black uppercase tracking-[0.16em] text-slate-500;
+  }
+
+  html.dark .flash-sale-timer__label {
+    @apply text-slate-300;
+  }
+
+  .flash-sale-card {
+    @apply relative flex h-full flex-col rounded-3xl border border-white/85 bg-white/86 p-5 shadow-[0_16px_36px_rgba(148,163,184,0.16)] transition-all duration-300;
+  }
+
+  .flash-sale-card:hover {
+    @apply -translate-y-1.5 shadow-[0_20px_46px_rgba(148,163,184,0.24)];
+  }
+
+  html.dark .flash-sale-card {
+    @apply border-slate-700/55 bg-slate-900/78 shadow-[0_16px_36px_rgba(2,6,23,0.35)];
+  }
+
+  .flash-sale-card__discount {
+    @apply absolute left-4 top-4 z-20 rounded-full bg-gradient-to-r from-rose-500 to-pink-500 px-3 py-1 text-[0.62rem] font-black uppercase tracking-[0.12em] text-white;
+  }
+
+  .flash-sale-card__media {
+    @apply mb-5 h-56 overflow-hidden rounded-2xl bg-slate-100;
+  }
+
+  html.dark .flash-sale-card__media {
+    @apply bg-slate-800;
+  }
+
+  .flash-sale-card__image {
+    @apply h-full w-full object-cover transition-transform duration-500 ease-out;
+  }
+
+  .flash-sale-card:hover .flash-sale-card__image {
+    @apply scale-105;
+  }
+
+  .flash-sale-card__body {
+    @apply flex flex-1 flex-col justify-between;
+  }
+
+  .flash-sale-card__title {
+    @apply text-lg font-extrabold leading-tight text-slate-900 transition-colors duration-200;
+  }
+
+  .flash-sale-card:hover .flash-sale-card__title {
+    @apply text-rose-500;
+  }
+
+  html.dark .flash-sale-card__title {
+    @apply text-white;
+  }
+
+  .flash-sale-card__price-wrap {
+    @apply mt-3 flex items-end gap-3;
+  }
+
+  .flash-sale-card__sale-price {
+    @apply text-2xl font-black leading-none text-rose-500;
+  }
+
+  .flash-sale-card__regular-price {
+    @apply mb-0.5 text-sm font-semibold text-slate-400 line-through;
+  }
+
+  html.dark .flash-sale-card__regular-price {
+    @apply text-slate-500;
+  }
+
+  .flash-sale-card__meta {
+    @apply mt-5 border-t border-slate-200 pt-5;
+  }
+
+  html.dark .flash-sale-card__meta {
+    @apply border-slate-700;
+  }
+
+  .flash-sale-card__stock-row {
+    @apply mb-2 flex items-end justify-between gap-2;
+  }
+
+  .flash-sale-card__stock-label {
+    @apply text-[0.62rem] font-black uppercase tracking-[0.13em] text-rose-500;
+  }
+
+  .flash-sale-card__stock-value {
+    @apply text-[0.65rem] font-bold tabular-nums text-slate-500;
+  }
+
+  html.dark .flash-sale-card__stock-value {
+    @apply text-slate-400;
+  }
+
+  .flash-sale-card__stock-track {
+    @apply h-2.5 overflow-hidden rounded-full bg-slate-200;
+  }
+
+  html.dark .flash-sale-card__stock-track {
+    @apply bg-slate-700;
+  }
+
+  .flash-sale-card__stock-fill {
+    @apply h-full rounded-full bg-gradient-to-r from-[#FF8AA0] via-[#FFB7C5] to-[#A8D8EA];
+    animation: flash-sale-shimmer 2.2s linear infinite;
+    background-size: 200% 100%;
+  }
+
+  .flash-sale-card__cta {
+    @apply mt-4 block w-full rounded-xl border border-[#FFB7C5]/40 bg-white px-4 py-3 text-center text-sm font-black uppercase tracking-[0.1em] text-slate-800 transition-all duration-300;
+  }
+
+  .flash-sale-card__cta:hover {
+    @apply border-transparent bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] text-slate-900;
+  }
+
+  html.dark .flash-sale-card__cta {
+    @apply bg-slate-800 text-slate-100 border-slate-600;
+  }
+
+  @keyframes flash-sale-shimmer {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+}
