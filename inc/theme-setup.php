@@ -552,6 +552,20 @@ function julias_cartoonery_handle_contact_form() {
     $body = "Name: {$name}\nPhone: {$phone}\n\nMessage:\n{$message}\n";
     $headers = array( 'Content-Type: text/plain; charset=UTF-8' );
 
+    $message_post_id = wp_insert_post( array(
+        'post_type'    => 'contact_message',
+        'post_status'  => 'publish',
+        'post_title'   => $name,
+        'post_content' => $message,
+        'post_excerpt' => $phone,
+    ) );
+
+    if ( ! is_wp_error( $message_post_id ) && $message_post_id ) {
+        update_post_meta( $message_post_id, 'contact_phone', $phone );
+        update_post_meta( $message_post_id, 'contact_status', 'new' );
+        update_post_meta( $message_post_id, 'contact_source', 'website_form' );
+    }
+
     wp_mail( $to, $subject, $body, $headers );
 
     wp_safe_redirect( add_query_arg( 'contact', 'sent', home_url( '/contact/' ) ) );
