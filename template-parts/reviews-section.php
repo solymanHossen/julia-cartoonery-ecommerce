@@ -82,12 +82,13 @@ if ( empty( $reviews_data ) ) {
 			</div>
 		</div>
 
-		<div class="relative group review-carousel-wrapper">
-			<div class="overflow-hidden rounded-2xl lg:rounded-3xl relative" id="reviews-viewport">
-				<div class="carousel-track flex py-8 items-start box-border transition-transform duration-700 ease-out will-change-transform" style="transform: translateX(0);">
+		<div class="review-carousel-wrapper">
+			<div class="relative group">
+				<div class="overflow-hidden rounded-2xl lg:rounded-3xl relative" id="reviews-viewport">
+					<div class="carousel-track flex py-4 items-stretch box-border transition-transform duration-700 ease-out will-change-transform" style="transform: translateX(0);">
 					<?php foreach ( $reviews_data as $review ) : ?>
-						<div class="carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-3">
-							<div class="h-full bg-white rounded-[24px] p-6 shadow-sm hover:shadow-2xl hover:-translate-y-2 border border-slate-100 transition-all duration-500 flex flex-col relative group/review min-h-[20rem]">
+						<div class="carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-3 flex">
+							<div class="w-full flex-1 bg-white rounded-[24px] p-6 shadow-sm border-2 border-slate-100 hover:border-[#FF93AB] hover:-translate-y-1 transition-all duration-300 flex flex-col relative group/review min-h-[20rem]">
 								<div class="flex items-start justify-between mb-5">
 									<div class="flex items-center gap-3 min-w-0">
 										<img src="<?php echo esc_url( $review['avatar'] ); ?>" alt="<?php echo esc_attr( $review['author'] ); ?>" class="w-10 h-10 rounded-full object-cover border border-slate-100 shadow-sm flex-shrink-0" loading="lazy" decoding="async" />
@@ -123,16 +124,18 @@ if ( empty( $reviews_data ) ) {
 					<?php endforeach; ?>
 				</div>
 
-				<div class="carousel-indicators absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2 px-4" aria-label="Carousel Pagination"></div>
 			</div>
-
-			<button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:bg-[#FF93AB] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Previous reviews">
+			
+			<button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-100 hover:bg-[#FF93AB] hover:border-[#FF93AB] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Previous reviews">
 				<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
 			</button>
-			<button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:bg-[#FF93AB] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Next reviews">
+			<button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-100 hover:bg-[#FF93AB] hover:border-[#FF93AB] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Next reviews">
 				<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
 			</button>
 		</div>
+
+		<div class="carousel-indicators flex justify-center gap-2 px-4 mt-8" aria-label="Carousel Pagination"></div>
+	</div>
 	</div>
 </section>
 
