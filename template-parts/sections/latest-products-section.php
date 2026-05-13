@@ -135,7 +135,7 @@ if ( empty( $products ) ) {
                                         <div class="custom-premium-cart hidden sm:block">
                                             <a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" data-quantity="1" class="button add_to_cart_button ajax_add_to_cart inline-flex items-center justify-center w-10 h-10 rounded-full bg-[#FFB7C5] text-white font-bold hover:bg-[#FF93AB] transition-all duration-300 shadow-md" data-product_id="<?php echo esc_attr( $product_id ); ?>" data-product_sku="<?php echo esc_attr( $product->get_sku() ); ?>" rel="nofollow" aria-label="<?php echo esc_attr( sprintf( __( 'Add %s to cart', 'julia-cartoonery' ), $product_name ) ); ?>">
                                                 <span class="sr-only"><?php echo esc_html( sprintf( __( 'Add %s to cart', 'julia-cartoonery' ), $product_name ) ); ?></span>
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                                          
                                             </a>
                                         </div>
                                     </div>
