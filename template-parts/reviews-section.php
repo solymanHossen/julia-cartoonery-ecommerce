@@ -65,20 +65,20 @@ if ( empty( $reviews_data ) ) {
 }
 ?>
 
-<section class="md:py-16 py-10 relative overflow-hidden bg-gradient-to-br from-white via-[#fcf4f4] to-white">
+<section class="md:py-16 py-10 relative overflow-hidden bg-gradient-to-br from-white via-[#fcf4f4] to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
 	<div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 		<div class=" mb-6 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
 			<div>
-				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white shadow-sm border border-slate-100 mb-4">
+				<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 mb-4">
 					<div class="flex gap-1 text-yellow-400" aria-hidden="true">
 						<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 							<svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
 						<?php endfor; ?>
 					</div>
-					<span class="text-xs font-bold text-slate-800">4.9 / 5.0</span>
+					<span class="text-xs font-bold text-slate-800 dark:text-slate-100">4.9 / 5.0</span>
 				</div>
-				<h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Happy Customers</h2>
-				<p class="mt-4 text-base text-slate-600 max-w-xl">Real reviews from verified buyers.</p>
+				<h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-slate-100 leading-tight">Happy Customers</h2>
+				<p class="mt-4 text-base text-slate-600 dark:text-slate-300 max-w-xl">Real reviews from verified buyers.</p>
 			</div>
 		</div>
 
@@ -88,12 +88,12 @@ if ( empty( $reviews_data ) ) {
 					<div class="carousel-track flex py-4 items-stretch box-border transition-transform duration-700 ease-out will-change-transform" style="transform: translateX(0);">
 					<?php foreach ( $reviews_data as $review ) : ?>
 						<div class="carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-3 flex">
-							<div class="w-full flex-1 bg-white rounded-[24px] p-6 shadow-sm border-2 border-slate-100 hover:border-[#FF93AB] hover:-translate-y-1 transition-all duration-300 flex flex-col relative group/review min-h-[20rem]">
+							<div class="w-full flex-1 bg-white dark:bg-slate-900 rounded-[24px] p-6 shadow-sm border-2 border-slate-100 dark:border-slate-700 hover:border-[#FF93AB] hover:-translate-y-1 transition-all duration-300 flex flex-col relative group/review min-h-[20rem]">
 								<div class="flex items-start justify-between mb-5">
 									<div class="flex items-center gap-3 min-w-0">
-										<img src="<?php echo esc_url( $review['avatar'] ); ?>" alt="<?php echo esc_attr( $review['author'] ); ?>" class="w-10 h-10 rounded-full object-cover border border-slate-100 shadow-sm flex-shrink-0" loading="lazy" decoding="async" />
+										<img src="<?php echo esc_url( $review['avatar'] ); ?>" alt="<?php echo esc_attr( $review['author'] ); ?>" class="w-10 h-10 rounded-full object-cover border border-slate-100 dark:border-slate-700 shadow-sm flex-shrink-0" loading="lazy" decoding="async" />
 										<div class="min-w-0">
-											<h4 class="font-bold text-slate-900 text-sm leading-none mb-1 truncate"><?php echo esc_html( $review['author'] ); ?></h4>
+											<h4 class="font-bold text-slate-900 dark:text-slate-100 text-sm leading-none mb-1 truncate"><?php echo esc_html( $review['author'] ); ?></h4>
 											<?php if ( $review['is_verified'] ) : ?>
 												<div class="flex items-center gap-1 text-[#22c55e]">
 													<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
@@ -106,17 +106,17 @@ if ( empty( $reviews_data ) ) {
 
 								<div class="flex gap-1 text-yellow-400 mb-3 drop-shadow-sm" aria-label="<?php echo esc_attr( $review['rating'] . ' star rating' ); ?>">
 									<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-										<svg class="w-4 h-4 <?php echo $i <= $review['rating'] ? 'fill-current' : 'text-slate-200 fill-current'; ?>" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+										<svg class="w-4 h-4 <?php echo $i <= $review['rating'] ? 'fill-current' : 'text-slate-200 dark:text-slate-600 fill-current'; ?>" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
 									<?php endfor; ?>
 								</div>
 
-								<p class="text-slate-600 text-sm leading-relaxed flex-1 mb-6 font-medium italic">"<?php echo esc_html( $review['content'] ); ?>"</p>
+								<p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed flex-1 mb-6 font-medium italic">"<?php echo esc_html( $review['content'] ); ?>"</p>
 
-								<a href="<?php echo esc_url( $review['product_link'] ); ?>" class="flex items-center gap-3 pt-3 border-t border-slate-100 group/product hover:bg-slate-50 -mx-2 px-2 pb-1 rounded-lg transition-colors">
-									<img src="<?php echo esc_url( $review['product_image'] ); ?>" alt="<?php echo esc_attr( $review['product_name'] ); ?>" class="w-8 h-8 rounded object-cover bg-slate-100 flex-shrink-0" loading="lazy" decoding="async" />
+								<a href="<?php echo esc_url( $review['product_link'] ); ?>" class="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-slate-700 group/product hover:bg-slate-50 dark:hover:bg-slate-800 -mx-2 px-2 pb-1 rounded-lg transition-colors">
+									<img src="<?php echo esc_url( $review['product_image'] ); ?>" alt="<?php echo esc_attr( $review['product_name'] ); ?>" class="w-8 h-8 rounded object-cover bg-slate-100 dark:bg-slate-700 flex-shrink-0" loading="lazy" decoding="async" />
 									<div class="flex-1 min-w-0">
-										<h5 class="text-xs font-bold text-slate-800 truncate group-hover/product:text-[#FF93AB] transition-colors"><?php echo esc_html( $review['product_name'] ); ?></h5>
-										<span class="text-[9px] text-slate-400 uppercase tracking-wider font-bold">View Product</span>
+										<h5 class="text-xs font-bold text-slate-800 dark:text-slate-100 truncate group-hover/product:text-[#FF93AB] transition-colors"><?php echo esc_html( $review['product_name'] ); ?></h5>
+										<span class="text-[9px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold">View Product</span>
 									</div>
 								</a>
 							</div>
@@ -126,10 +126,10 @@ if ( empty( $reviews_data ) ) {
 
 			</div>
 			
-			<button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-100 hover:bg-[#FF93AB] hover:border-[#FF93AB] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Previous reviews">
+			<button class="carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-100 shadow-md border border-slate-100 dark:border-slate-700 hover:bg-[#FF93AB] hover:border-[#FF93AB] hover:text-white dark:hover:text-slate-900 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Previous reviews">
 				<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
 			</button>
-			<button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-md border border-slate-100 hover:bg-[#FF93AB] hover:border-[#FF93AB] hover:text-white transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Next reviews">
+			<button class="carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-100 shadow-md border border-slate-100 dark:border-slate-700 hover:bg-[#FF93AB] hover:border-[#FF93AB] hover:text-white dark:hover:text-slate-900 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100" aria-label="Next reviews">
 				<svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
 			</button>
 		</div>
@@ -171,7 +171,7 @@ if ( empty( $reviews_data ) ) {
 		for (let i = 0; i < pages; i += 1) {
 			const dot = document.createElement('button');
 			dot.type = 'button';
-			dot.className = 'h-2.5 w-2.5 rounded-full transition-all duration-300 bg-slate-300 hover:bg-slate-400';
+			dot.className = 'h-2.5 w-2.5 rounded-full transition-all duration-300 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500';
 			dot.setAttribute('aria-label', 'Go to review slide ' + (i + 1));
 			dot.addEventListener('click', function () {
 				index = i;
@@ -186,8 +186,12 @@ if ( empty( $reviews_data ) ) {
 		dots.forEach(function (dot, dotIndex) {
 			const active = dotIndex === index;
 			dot.classList.toggle('bg-[#FF93AB]', active);
+			dot.classList.toggle('dark:bg-[#FF93AB]', active);
 			dot.classList.toggle('w-8', active);
 			dot.classList.toggle('bg-slate-300', !active);
+			dot.classList.toggle('dark:bg-slate-600', !active);
+			dot.classList.toggle('hover:bg-slate-400', !active);
+			dot.classList.toggle('dark:hover:bg-slate-500', !active);
 			dot.classList.toggle('w-2.5', !active);
 		});
 	}

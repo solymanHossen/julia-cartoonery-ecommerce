@@ -39,13 +39,13 @@ if ( empty( $products ) ) {
 }
 ?>
 
-<section class="py-16 sm:py-20 pb-14 bg-gradient-to-br from-white via-[#fcf4f4] to-white overflow-hidden">
+<section class="py-16 sm:py-20 pb-14 bg-gradient-to-br from-white via-[#fcf4f4] to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 overflow-hidden">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
                 <p class="text-[10px] font-black uppercase tracking-[0.35em] text-[#FF93AB] mb-3">NEW ARRIVALS</p>
-                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-tight">Fresh toys in stock</h2>
-                <p class="mt-4 text-base text-slate-600 max-w-xl">Scroll through our newest handpicked toys with a smooth, modern experience.</p>
+                <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-slate-100 leading-tight">Fresh toys in stock</h2>
+                <p class="mt-4 text-base text-slate-600 dark:text-slate-300 max-w-xl">Scroll through our newest handpicked toys with a smooth, modern experience.</p>
             </div>
             <div>
                 <a href="<?php echo esc_url( $shop_url ); ?>" class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white font-black uppercase text-sm rounded-full shadow-lg hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
@@ -71,8 +71,8 @@ if ( empty( $products ) ) {
                         $on_sale              = $product->is_on_sale();
                         ?>
                         <article class="js-carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-2 sm:px-3">
-                            <div class="group/card h-full overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col min-h-[24rem] sm:min-h-[26rem] lg:min-h-[28rem]">
-                                <div class="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 h-56 sm:h-60 lg:h-64">
+                            <div class="group/card h-full overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-700/70 shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col min-h-[24rem] sm:min-h-[26rem] lg:min-h-[28rem]">
+                                <div class="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-700 h-56 sm:h-60 lg:h-64">
                                     <a href="<?php echo esc_url( $product_link ); ?>" class="block w-full h-full">
                                         <?php
                                         if ( $product_image_id ) {
@@ -95,8 +95,8 @@ if ( empty( $products ) ) {
                                     </div>
 
                                     <?php if ( $product_rating > 0 ) : ?>
-                                        <div class="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1.5 bg-white/95 backdrop-blur rounded-full text-xs font-bold shadow-md">
-                                            <span class="text-gray-700"><?php echo esc_html( $product_rating ); ?></span>
+                                        <div class="absolute bottom-3 left-3 flex items-center gap-1.5 px-3 py-1.5 bg-white/95 dark:bg-slate-800/95 backdrop-blur rounded-full text-xs font-bold shadow-md">
+                                            <span class="text-gray-700 dark:text-slate-200"><?php echo esc_html( $product_rating ); ?></span>
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -104,25 +104,25 @@ if ( empty( $products ) ) {
                                 <div class="flex-1 flex flex-col justify-between p-4 sm:p-5">
                                     <div>
                                         <a href="<?php echo esc_url( $product_link ); ?>" class="inline-block">
-                                            <h3 class="font-bold text-slate-900 line-clamp-2 group-hover/card:text-[#FF93AB] transition-colors duration-300 text-sm sm:text-base">
+                                            <h3 class="font-bold text-slate-900 dark:text-slate-100 line-clamp-2 group-hover/card:text-[#FF93AB] transition-colors duration-300 text-sm sm:text-base">
                                                 <?php echo esc_html( $product_name ); ?>
                                             </h3>
                                         </a>
                                         <?php if ( $product_review_count > 0 ) : ?>
-                                            <p class="text-xs text-slate-500 mt-1">
+                                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
                                                 <?php echo sprintf( _n( '%d review', '%d reviews', $product_review_count, 'julia-cartoonery' ), $product_review_count ); ?>
                                             </p>
                                         <?php endif; ?>
                                     </div>
 
-                                    <div class="mt-4 pt-4 border-t border-slate-100 flex items-end justify-between gap-3">
+                                    <div class="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-end justify-between gap-3">
                                         <div class="flex items-baseline gap-3">
                                             <?php
                                             $regular_price = $product->get_regular_price();
                                             $sale_price    = $product->get_sale_price();
                                             if ( $on_sale && $sale_price ) :
                                             ?>
-                                                <del class="text-sm text-slate-400 line-through whitespace-nowrap" aria-hidden="true"><?php echo wp_kses_post( wc_price( $regular_price ) ); ?></del>
+                                                <del class="text-sm text-slate-400 dark:text-slate-500 line-through whitespace-nowrap" aria-hidden="true"><?php echo wp_kses_post( wc_price( $regular_price ) ); ?></del>
                                                 <span class="sr-only"><?php echo esc_html__( 'Original price was:', 'julia-cartoonery' ) . ' ' . wp_strip_all_tags( wc_price( $regular_price ) ); ?></span>
                                                 <ins class="text-lg sm:text-xl font-black text-[#FF93AB] whitespace-nowrap" aria-hidden="true"><?php echo wp_kses_post( wc_price( $sale_price ) ); ?></ins>
                                                 <span class="sr-only"><?php echo esc_html__( 'Current price is:', 'julia-cartoonery' ) . ' ' . wp_strip_all_tags( wc_price( $sale_price ) ); ?></span>
@@ -147,11 +147,11 @@ if ( empty( $products ) ) {
                 <div class="js-carousel-dots flex justify-center gap-2 py-8" aria-label="Carousel Pagination"></div>
             </div>
 
-            <button type="button" class="js-carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 lg:-translate-x-8 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl hover:bg-[#FFB7C5] hover:text-white transition-all duration-300 flex items-center justify-center" aria-label="Previous products" aria-controls="latest-products-viewport">
+            <button type="button" class="js-carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 lg:-translate-x-8 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-100 shadow-lg hover:shadow-xl hover:bg-[#FFB7C5] hover:text-white dark:hover:text-slate-900 transition-all duration-300 flex items-center justify-center" aria-label="Previous products" aria-controls="latest-products-viewport">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             </button>
 
-            <button type="button" class="js-carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 lg:translate-x-8 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl hover:bg-[#FFB7C5] hover:text-white transition-all duration-300 flex items-center justify-center" aria-label="Next products" aria-controls="latest-products-viewport">
+            <button type="button" class="js-carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 lg:translate-x-8 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-100 shadow-lg hover:shadow-xl hover:bg-[#FFB7C5] hover:text-white dark:hover:text-slate-900 transition-all duration-300 flex items-center justify-center" aria-label="Next products" aria-controls="latest-products-viewport">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </button>
         </div>
@@ -196,7 +196,7 @@ if ( empty( $products ) ) {
         for (let i = 0; i < pages; i += 1) {
             const dot = document.createElement('button');
             dot.type = 'button';
-            dot.className = 'h-2.5 rounded-full transition-all duration-300 w-2.5 bg-slate-300 hover:bg-slate-400';
+            dot.className = 'h-2.5 rounded-full transition-all duration-300 w-2.5 bg-slate-300 dark:bg-slate-600 hover:bg-slate-400 dark:hover:bg-slate-500';
             dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
             dot.addEventListener('click', function () {
                 index = i;
@@ -219,8 +219,12 @@ if ( empty( $products ) ) {
         dots.forEach(function (dot, dotIndex) {
             const active = dotIndex === index;
             dot.classList.toggle('bg-[#FF93AB]', active);
+            dot.classList.toggle('dark:bg-[#FF93AB]', active);
             dot.classList.toggle('w-8', active);
             dot.classList.toggle('bg-slate-300', !active);
+            dot.classList.toggle('dark:bg-slate-600', !active);
+            dot.classList.toggle('hover:bg-slate-400', !active);
+            dot.classList.toggle('dark:hover:bg-slate-500', !active);
             dot.classList.toggle('w-2.5', !active);
         });
     }
