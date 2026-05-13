@@ -28,6 +28,7 @@
                         echo '<ul class="space-y-4 text-gray-500 dark:text-gray-400 text-[15px]">';
                         echo '<li><a href="' . esc_url( home_url( '/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Home</a></li>';
                         echo '<li><a href="' . esc_url( home_url( '/shop/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Shop</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/about-us/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">About Us</a></li>';
                         echo '<li><a href="' . esc_url( home_url( '/shipping-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Shipping & Delivery Policy</a></li>';
                         echo '<li><a href="' . esc_url( home_url( '/return-refund-exchange-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Return, Refund & Exchange Policy</a></li>';
                         echo '</ul>';
@@ -50,6 +51,7 @@
                     } else {
                         echo '<ul class="space-y-4 text-gray-500 dark:text-gray-400 text-[15px]">';
                         echo '<li><a href="' . esc_url( home_url( '/contact/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Contact Us</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/about-us/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">About Us</a></li>';
                         echo '<li><a href="' . esc_url( home_url( '/shipping-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Shipping & Delivery Policy</a></li>';
                         echo '<li><a href="' . esc_url( home_url( '/return-refund-exchange-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Return, Refund & Exchange Policy</a></li>';
                         echo '</ul>';

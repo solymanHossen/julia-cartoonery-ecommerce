@@ -94,6 +94,11 @@ function julias_cartoonery_auto_create_pages() {
             'title' => 'Return, Refund & Exchange Policy',
             'slug' => 'return-refund-exchange-policy',
             'template' => 'page-return-refund-exchange-policy.php'
+        ],
+        [
+            'title' => 'About Us',
+            'slug' => 'about-us',
+            'template' => 'page-about-us.php'
         ]
     ];
 
