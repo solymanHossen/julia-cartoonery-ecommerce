@@ -25,7 +25,12 @@
                             'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                         ) );
                     } else {
-                        echo '<p class="text-sm text-gray-400">Please assign a menu from Dashboard.</p>';
+                        echo '<ul class="space-y-4 text-gray-500 dark:text-gray-400 text-[15px]">';
+                        echo '<li><a href="' . esc_url( home_url( '/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Home</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/shop/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Shop</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/shipping-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Shipping & Delivery Policy</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/return-refund-exchange-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Return, Refund & Exchange Policy</a></li>';
+                        echo '</ul>';
                     }
                     ?>
                 </div>
@@ -43,7 +48,11 @@
                             'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
                         ) );
                     } else {
-                        echo '<p class="text-sm text-gray-400">Please assign a menu from Dashboard.</p>';
+                        echo '<ul class="space-y-4 text-gray-500 dark:text-gray-400 text-[15px]">';
+                        echo '<li><a href="' . esc_url( home_url( '/contact/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Contact Us</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/shipping-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Shipping & Delivery Policy</a></li>';
+                        echo '<li><a href="' . esc_url( home_url( '/return-refund-exchange-policy/' ) ) . '" class="hover:text-[#A8D8EA] dark:hover:text-sky-400 cursor-pointer transition-colors block">Return, Refund & Exchange Policy</a></li>';
+                        echo '</ul>';
                     }
                     ?>
                 </div>

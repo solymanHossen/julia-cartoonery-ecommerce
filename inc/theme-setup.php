@@ -89,6 +89,11 @@ function julias_cartoonery_auto_create_pages() {
             'title' => 'Shipping & Delivery Policy',
             'slug' => 'shipping-policy',
             'template' => 'page-shipping-policy.php'
+        ],
+        [
+            'title' => 'Return, Refund & Exchange Policy',
+            'slug' => 'return-refund-exchange-policy',
+            'template' => 'page-return-refund-exchange-policy.php'
         ]
     ];
 
