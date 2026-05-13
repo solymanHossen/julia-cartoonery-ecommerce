@@ -42,8 +42,8 @@ if ( empty( $sale_deadline_gmt ) ) {
 
 <section class="flash-sale-section py-16 sm:py-24" data-sale-deadline="<?php echo esc_attr( $sale_deadline_gmt ); ?>">
 	<div class="flash-sale-section__bg" aria-hidden="true"></div>
-	<div class="flash-sale-section__container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-		<div class="flash-sale-hero">
+	<div class="flash-sale-section__container container  mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+		<div class="flash-sale-hero max-w-7xl mx-auto">
 			<div class="flash-sale-hero__content">
 				<div class="flash-sale-hero__badge">
 					<span class="flash-sale-hero__badge-dot" aria-hidden="true"></span>
