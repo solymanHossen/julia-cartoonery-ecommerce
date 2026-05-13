@@ -70,8 +70,8 @@ function julias_cartoonery_nav_classes( $atts, $item, $args ) {
 add_filter( 'nav_menu_link_attributes', 'julias_cartoonery_nav_classes', 10, 3 );
 
 /**
- * Automatically create the Playground Games & Create Character pages if they don't exist
- * to ensure the /games/ and /create/ URLs work immediately.
+ * Automatically create the Playground Games, Create Character, and Shipping Policy pages if they don't exist
+ * to ensure the URLs work immediately. These pages are always published.
  */
 function julias_cartoonery_auto_create_pages() {
     $pages = [
@@ -84,18 +84,32 @@ function julias_cartoonery_auto_create_pages() {
             'title' => 'Create Character',
             'slug' => 'create',
             'template' => 'page-create.php'
+        ],
+        [
+            'title' => 'Shipping & Delivery Policy',
+            'slug' => 'shipping-policy',
+            'template' => 'page-shipping-policy.php'
         ]
     ];
 
     foreach ($pages as $page) {
         if ( ! get_page_by_path( $page['slug'] ) ) {
-            wp_insert_post( array(
+            $page_post = wp_insert_post( array(
                 'post_title'     => $page['title'],
                 'post_name'      => $page['slug'],
                 'post_status'    => 'publish',
                 'post_type'      => 'page',
                 'page_template'  => $page['template']
             ) );
+        } else {
+            // Ensure it's always published
+            $page_post = get_page_by_path( $page['slug'] );
+            if ( $page_post && get_post_status( $page_post->ID ) !== 'publish' ) {
+                wp_update_post( array(
+                    'ID'          => $page_post->ID,
+                    'post_status' => 'publish'
+                ) );
+            }
         }
     }
 }
@@ -297,5 +311,152 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
             ),
         )
     );
+
+    // ===== Shipping & Delivery Policy Settings =====
+    $wp_customize->add_section(
+        'julia_shipping_policy',
+        array(
+            'title'       => __( 'Shipping & Delivery Policy', 'julias-cartoonery' ),
+            'description' => __( 'Manage shipping policy content and delivery information', 'julias-cartoonery' ),
+            'panel'       => 'julia_home_page',
+            'priority'    => 50,
+        )
+    );
+
+    // Hero Section
+    $wp_customize->add_setting( 'julia_shipping_hero_title', array(
+        'default'           => __( 'Shipping & Delivery', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_hero_title', array(
+        'label'   => __( 'Hero Title', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_hero_description', array(
+        'default'           => __( 'We ensure your toys reach safely and on time! Fast, reliable delivery across Bangladesh.', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_hero_description', array(
+        'label'   => __( 'Hero Description', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'textarea',
+    ) );
+
+    // Inside Dhaka
+    $wp_customize->add_setting( 'julia_shipping_dhaka_title', array(
+        'default'           => __( 'Inside Dhaka', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_dhaka_title', array(
+        'label'   => __( 'Inside Dhaka - Title', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_dhaka_time', array(
+        'default'           => __( '24-48 hours', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_dhaka_time', array(
+        'label'   => __( 'Inside Dhaka - Delivery Time', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_dhaka_cost', array(
+        'default'           => '60',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_dhaka_cost', array(
+        'label'   => __( 'Inside Dhaka - Cost (BDT)', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'number',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_dhaka_coverage', array(
+        'default'           => __( 'All areas within Dhaka city', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_dhaka_coverage', array(
+        'label'   => __( 'Inside Dhaka - Coverage', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    // Outside Dhaka
+    $wp_customize->add_setting( 'julia_shipping_outside_title', array(
+        'default'           => __( 'Outside Dhaka', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_outside_title', array(
+        'label'   => __( 'Outside Dhaka - Title', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_outside_time', array(
+        'default'           => __( '3-5 business days', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_outside_time', array(
+        'label'   => __( 'Outside Dhaka - Delivery Time', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_outside_cost', array(
+        'default'           => '120',
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_outside_cost', array(
+        'label'   => __( 'Outside Dhaka - Cost (BDT)', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'number',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_outside_partners', array(
+        'default'           => __( 'Pathao & Steadfast', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_outside_partners', array(
+        'label'   => __( 'Outside Dhaka - Partners', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    // COD Section
+    $wp_customize->add_setting( 'julia_shipping_cod_title', array(
+        'default'           => __( '💳 Cash on Delivery (COD)', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_cod_title', array(
+        'label'   => __( 'COD - Title', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_shipping_cod_description', array(
+        'default'           => __( 'Pay when you receive your order! Cash on Delivery is available for all areas across Bangladesh. Order with confidence—pay only when you see your package!', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_shipping_cod_description', array(
+        'label'   => __( 'COD - Description', 'julias-cartoonery' ),
+        'section' => 'julia_shipping_policy',
+        'type'    => 'textarea',
+    ) );
 }
 add_action( 'customize_register', 'julias_cartoonery_customizer_settings' );
