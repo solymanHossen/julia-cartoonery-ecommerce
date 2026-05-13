@@ -23,7 +23,7 @@ if ( empty( $categories ) || is_wp_error( $categories ) ) {
 }
 ?>
 
-<section class="py-16 sm:py-24 relative overflow-hidden bg-white">
+<section class="py-16 sm:py-20 relative overflow-hidden bg-white">
 	<!-- Soft ambient background glow -->
 	<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#FF93AB]/5 via-white to-white pointer-events-none"></div>
 
