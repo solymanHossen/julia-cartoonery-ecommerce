@@ -70,7 +70,7 @@ if ( empty( $products ) ) {
                         $is_in_stock          = $product->is_in_stock();
                         $on_sale              = $product->is_on_sale();
                         ?>
-                        <article class="js-carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-2 sm:px-3">
+                        <article class="js-carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-2 sm:px-3 pb-8">
                             <div class="group/card h-full overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col min-h-[24rem] sm:min-h-[26rem] lg:min-h-[28rem]">
                                 <div class="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 h-56 sm:h-60 lg:h-64">
                                     <a href="<?php echo esc_url( $product_link ); ?>" class="block w-full h-full">
