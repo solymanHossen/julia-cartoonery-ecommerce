@@ -31,7 +31,12 @@ if ( ! $flash_sale_query->have_posts() ) {
 	return;
 }
 
-$sale_deadline_gmt = gmdate( 'c', strtotime( 'next sunday 23:59:59' ) );
+$sale_deadline_gmt = function_exists( 'julias_cartoonery_get_flash_sale_deadline' ) ? julias_cartoonery_get_flash_sale_deadline() : '';
+
+if ( empty( $sale_deadline_gmt ) ) {
+	$next_sunday = new DateTimeImmutable( 'next sunday 23:59:59', wp_timezone() );
+	$sale_deadline_gmt = $next_sunday->setTimezone( new DateTimeZone( 'UTC' ) )->format( 'c' );
+}
 ?>
 
 

@@ -31,6 +31,27 @@ function julias_cartoonery_theme_bootstrap() {
 }
 add_action( 'wp_head', 'julias_cartoonery_theme_bootstrap', 1 );
 
+function julias_cartoonery_get_flash_sale_deadline() {
+    $deadline = get_theme_mod( 'flash_sale_end_date', '' );
+
+    if ( empty( $deadline ) ) {
+        return '';
+    }
+
+    $timezone = wp_timezone();
+    $local_deadline = DateTimeImmutable::createFromFormat( 'Y-m-d\TH:i:s', $deadline, $timezone );
+
+    if ( ! $local_deadline ) {
+        $local_deadline = DateTimeImmutable::createFromFormat( 'Y-m-d\TH:i', $deadline, $timezone );
+    }
+
+    if ( ! $local_deadline ) {
+        return '';
+    }
+
+    return $local_deadline->setTimezone( new DateTimeZone( 'UTC' ) )->format( 'c' );
+}
+
 function julias_cartoonery_nav_classes( $atts, $item, $args ) {
     if ( $args->theme_location == 'primary' ) {
         $classes = 'hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors relative pb-1';
@@ -251,6 +272,29 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
             'label'   => __( 'Button Text', 'julias-cartoonery' ),
             'section' => 'julia_latest_products_video',
             'type'    => 'text',
+        )
+    );
+
+    $wp_customize->add_setting(
+        'flash_sale_end_date',
+        array(
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport'         => 'refresh',
+        )
+    );
+
+    $wp_customize->add_control(
+        'flash_sale_end_date_control',
+        array(
+            'label'       => __( 'Set Timer End Date & Time', 'julias-cartoonery' ),
+            'description' => __( 'Use your site timezone. Format: YYYY-MM-DDTHH:MM or YYYY-MM-DDTHH:MM:SS. Leave blank to fall back to next Sunday at 11:59 PM.', 'julias-cartoonery' ),
+            'section'     => 'static_front_page',
+            'settings'    => 'flash_sale_end_date',
+            'type'        => 'datetime-local',
+            'input_attrs' => array(
+                'step' => 1,
+            ),
         )
     );
 }
