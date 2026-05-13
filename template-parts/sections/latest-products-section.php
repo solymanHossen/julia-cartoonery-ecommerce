@@ -70,7 +70,7 @@ if ( empty( $products ) ) {
                         $is_in_stock          = $product->is_in_stock();
                         $on_sale              = $product->is_on_sale();
                         ?>
-                        <article class="js-carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-2 sm:px-3 pb-8">
+                        <article class="js-carousel-slide flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 px-2 sm:px-3">
                             <div class="group/card h-full overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 flex flex-col min-h-[24rem] sm:min-h-[26rem] lg:min-h-[28rem]">
                                 <div class="relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 h-56 sm:h-60 lg:h-64">
                                     <a href="<?php echo esc_url( $product_link ); ?>" class="block w-full h-full">
@@ -144,6 +144,7 @@ if ( empty( $products ) ) {
                         </article>
                     <?php endforeach; ?>
                 </div>
+                <div class="js-carousel-dots flex justify-center gap-2 py-8" aria-label="Carousel Pagination"></div>
             </div>
 
             <button type="button" class="js-carousel-prev absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-6 lg:-translate-x-8 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl hover:bg-[#FFB7C5] hover:text-white transition-all duration-300 flex items-center justify-center" aria-label="Previous products" aria-controls="latest-products-viewport">
@@ -153,8 +154,6 @@ if ( empty( $products ) ) {
             <button type="button" class="js-carousel-next absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-6 lg:translate-x-8 z-10 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white shadow-lg hover:shadow-xl hover:bg-[#FFB7C5] hover:text-white transition-all duration-300 flex items-center justify-center" aria-label="Next products" aria-controls="latest-products-viewport">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </button>
-
-            <div class="js-carousel-dots mt-8 flex justify-center gap-2" aria-label="Carousel Pagination"></div>
         </div>
     </div>
 </section>
