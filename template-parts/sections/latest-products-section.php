@@ -28,7 +28,7 @@ if ( ! $latest_query->have_posts() ) {
 ?>
 
 <section class="py-16 sm:py-24 bg-gradient-to-br from-white via-[#fcf4f4] to-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div>
