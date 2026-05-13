@@ -77,7 +77,7 @@ if ( empty( $sale_deadline_gmt ) ) {
 			</div>
 		</div>
 
-		<div class="flash-sale-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+		<div class="flash-sale-grid grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
 			<?php 
 			while ( $flash_sale_query->have_posts() ) : $flash_sale_query->the_post(); 
 				global $product;
