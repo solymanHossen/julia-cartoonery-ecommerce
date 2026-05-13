@@ -99,6 +99,11 @@ function julias_cartoonery_auto_create_pages() {
             'title' => 'About Us',
             'slug' => 'about-us',
             'template' => 'page-about-us.php'
+        ],
+        [
+            'title' => 'Contact Us',
+            'slug' => 'contact',
+            'template' => 'page-contact.php'
         ]
     ];
 
@@ -468,5 +473,89 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
         'section' => 'julia_shipping_policy',
         'type'    => 'textarea',
     ) );
+
+    // ===== Contact Page Settings =====
+    $wp_customize->add_section(
+        'julia_contact_page',
+        array(
+            'title'       => __( 'Contact Page', 'julias-cartoonery' ),
+            'description' => __( 'Manage the contact page trust details and WhatsApp button', 'julias-cartoonery' ),
+            'panel'       => 'julia_home_page',
+            'priority'    => 60,
+        )
+    );
+
+    $wp_customize->add_setting( 'julia_contact_address', array(
+        'default'           => __( 'Dhaka, Bangladesh', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_contact_address', array(
+        'label'   => __( 'Physical Address', 'julias-cartoonery' ),
+        'section' => 'julia_contact_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_contact_email', array(
+        'default'           => get_option( 'admin_email' ),
+        'sanitize_callback' => 'sanitize_email',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_contact_email', array(
+        'label'   => __( 'Email Address', 'julias-cartoonery' ),
+        'section' => 'julia_contact_page',
+        'type'    => 'email',
+    ) );
+
+    $wp_customize->add_setting( 'julia_contact_whatsapp', array(
+        'default'           => __( '+8801XXXXXXXXX', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_contact_whatsapp', array(
+        'label'   => __( 'WhatsApp Number', 'julias-cartoonery' ),
+        'description' => __( 'Include country code, for example +8801XXXXXXXXX', 'julias-cartoonery' ),
+        'section' => 'julia_contact_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_contact_intro', array(
+        'default'           => __( 'We usually reply quickly during business hours.', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_contact_intro', array(
+        'label'   => __( 'Support Note', 'julias-cartoonery' ),
+        'section' => 'julia_contact_page',
+        'type'    => 'textarea',
+    ) );
 }
 add_action( 'customize_register', 'julias_cartoonery_customizer_settings' );
+
+function julias_cartoonery_handle_contact_form() {
+    if ( ! isset( $_POST['julias_contact_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['julias_contact_nonce'] ) ), 'julias_contact_submit' ) ) {
+        wp_safe_redirect( add_query_arg( 'contact', 'invalid', wp_get_referer() ? wp_get_referer() : home_url( '/contact/' ) ) );
+        exit;
+    }
+
+    $name = isset( $_POST['contact_name'] ) ? sanitize_text_field( wp_unslash( $_POST['contact_name'] ) ) : '';
+    $phone = isset( $_POST['contact_phone'] ) ? sanitize_text_field( wp_unslash( $_POST['contact_phone'] ) ) : '';
+    $message = isset( $_POST['contact_message'] ) ? sanitize_textarea_field( wp_unslash( $_POST['contact_message'] ) ) : '';
+
+    if ( empty( $name ) || empty( $phone ) || empty( $message ) ) {
+        wp_safe_redirect( add_query_arg( 'contact', 'missing', wp_get_referer() ? wp_get_referer() : home_url( '/contact/' ) ) );
+        exit;
+    }
+
+    $to = get_theme_mod( 'julia_contact_email', get_option( 'admin_email' ) );
+    $subject = sprintf( __( 'New contact message from %s', 'julias-cartoonery' ), $name );
+    $body = "Name: {$name}\nPhone: {$phone}\n\nMessage:\n{$message}\n";
+    $headers = array( 'Content-Type: text/plain; charset=UTF-8' );
+
+    wp_mail( $to, $subject, $body, $headers );
+
+    wp_safe_redirect( add_query_arg( 'contact', 'sent', home_url( '/contact/' ) ) );
+    exit;
+}
+add_action( 'admin_post_nopriv_julias_contact_submit', 'julias_cartoonery_handle_contact_form' );
+add_action( 'admin_post_julias_contact_submit', 'julias_cartoonery_handle_contact_form' );
