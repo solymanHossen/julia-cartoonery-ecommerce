@@ -47,7 +47,7 @@
                 </button>
 
                 <!-- Search Icon -->
-                <button class="p-1 sm:p-2 text-gray-500 dark:text-gray-400 hover:text-[#A8D8EA] dark:hover:text-sky-300 transition-colors">
+                <button id="search-modal-open" class="p-1 sm:p-2 text-gray-500 dark:text-gray-400 hover:text-[#A8D8EA] dark:hover:text-sky-300 transition-colors" aria-label="Search">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </button>
 
@@ -172,6 +172,69 @@
             <div id="wishlist-drawer-items" class="flex-1 overflow-y-auto relative bg-slate-50 dark:bg-slate-900/50">
                 <div class="flex flex-col items-center justify-center h-full text-slate-400">
                     <svg class="w-8 h-8 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH MODAL -->
+    <div id="search-modal" class="fixed inset-0 z-[80] bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="fixed inset-0 flex items-start justify-center pt-16 md:pt-24 px-4 z-[80]">
+            <div id="search-modal-content" class="w-full max-w-2xl bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+                <!-- Search Input -->
+                <div class="p-4 md:p-6 border-b border-slate-100 dark:border-slate-700">
+                    <div class="flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6 text-slate-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <input 
+                            type="text" 
+                            id="search-input" 
+                            placeholder="Search products, stories, characters..." 
+                            class="w-full bg-transparent text-lg md:text-xl font-medium text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none"
+                            autocomplete="off"
+                        >
+                        <button id="search-modal-close" class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
+                            <svg class="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Results -->
+                <div id="search-results-container" class="max-h-[60vh] overflow-y-auto">
+                    <!-- Initial State - Recent or Popular -->
+                    <div id="search-empty-state" class="p-6 md:p-8 text-center text-slate-500 dark:text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <p class="text-sm md:text-base font-medium">Start typing to search...</p>
+                        <p class="text-xs md:text-sm mt-1">Try "characters", "products", or "stories"</p>
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="search-loading-state" class="hidden p-6 md:p-8">
+                        <div class="flex items-center justify-center gap-3">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 animate-spin text-[#A8D8EA]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                            <span class="text-sm md:text-base text-slate-600 dark:text-slate-300">Searching...</span>
+                        </div>
+                    </div>
+
+                    <!-- Results List -->
+                    <div id="search-results-list" class="hidden divide-y divide-slate-100 dark:divide-slate-700">
+                        <!-- Results will be inserted here -->
+                    </div>
+
+                    <!-- No Results -->
+                    <div id="search-no-results" class="hidden p-6 md:p-8 text-center text-slate-500 dark:text-slate-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 md:w-16 md:h-16 mx-auto mb-3 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <p class="text-sm md:text-base font-medium">No results found</p>
+                        <p class="text-xs md:text-sm mt-1" id="search-no-results-query"></p>
+                    </div>
+                </div>
+
+                <!-- Footer with Keyboard Hints -->
+                <div class="hidden md:flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-900/50 border-t border-slate-100 dark:border-slate-700 text-xs text-slate-500 dark:text-slate-400">
+                    <div class="flex gap-4">
+                        <span><kbd class="px-2 py-1 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600 text-xs">↑↓</kbd> Navigate</span>
+                        <span><kbd class="px-2 py-1 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600 text-xs">Enter</kbd> Select</span>
+                    </div>
+                    <span><kbd class="px-2 py-1 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600 text-xs">Esc</kbd> Close</span>
                 </div>
             </div>
         </div>

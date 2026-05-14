@@ -14,6 +14,7 @@ import { initCarousel } from './components/carousel.js';
 import { initVideos } from './components/videos.js';
 import { initFlashSale } from './components/flashSale.js';
 import { initFaq } from './components/faq.js';
+import './components/search.js';
 
 (function ($) {
   "use strict";
