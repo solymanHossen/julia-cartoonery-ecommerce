@@ -17,11 +17,32 @@
             <!-- 1. LOGO -->
             <?php 
             if ( has_custom_logo() ) {
-                the_custom_logo();
+                $custom_logo_id = get_theme_mod( 'custom_logo' );
+                $site_title     = get_bloginfo( 'name' );
+                ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2 md:gap-3 cursor-pointer shrink-0 max-w-[62vw] overflow-hidden group">
+                    <span class="flex items-center justify-center shrink-0">
+                        <?php
+                        echo wp_get_attachment_image(
+                            $custom_logo_id,
+                            'full',
+                            false,
+                            array(
+                                'class' => 'site-logo h-10 w-auto max-h-10 md:h-11 md:max-h-11 lg:h-12 lg:max-h-12 object-contain transition-transform duration-300 group-hover:scale-105',
+                                'alt'   => $site_title,
+                            )
+                        );
+                        ?>
+                    </span>
+                    <h1 class="font-['Bubblegum_Sans'] text-xl md:text-2xl xl:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden xl:block truncate">
+                        <?php echo esc_html( $site_title ); ?>
+                    </h1>
+                </a>
+                <?php
             } else {
                 ?>
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 cursor-pointer shrink-0">
-                    <div class="w-12 h-12 bg-[#FFB7C5] dark:bg-pink-500 rounded-full flex items-center justify-center shadow-inner text-white font-['Bubblegum_Sans'] text-2xl rotate-[-5deg] transition-colors">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-2 md:gap-3 cursor-pointer shrink-0 max-w-[62vw] overflow-hidden group">
+                    <div class="w-11 h-11 md:w-12 md:h-12 bg-[#FFB7C5] dark:bg-pink-500 rounded-full flex items-center justify-center shadow-inner text-white font-['Bubblegum_Sans'] text-xl md:text-2xl rotate-[-5deg] transition-colors shrink-0">
                         <?php 
                         $site_title = get_bloginfo( 'name' );
                         $words = explode( ' ', $site_title );
@@ -32,7 +53,7 @@
                         echo esc_html( substr( $initials, 0, 2 ) );
                         ?>
                     </div>
-                    <h1 class="font-['Bubblegum_Sans'] text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden sm:block">
+                    <h1 class="font-['Bubblegum_Sans'] text-xl md:text-2xl xl:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden xl:block truncate">
                         <?php bloginfo( 'name' ); ?>
                     </h1>
                 </a>
