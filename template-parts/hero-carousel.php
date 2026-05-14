@@ -60,10 +60,14 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                 <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="w-full sm:w-auto text-lg py-4 px-10 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full shadow-xl shadow-pink-500/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center font-bold uppercase tracking-wide">
                                     Shop Now
                                 </a>
-                                <a href="#" class="w-full sm:w-auto text-lg py-4 px-8 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border-2 border-gray-300 dark:border-slate-700 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2 font-bold">
-                                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 
-                                    Watch Videos
-                                </a>
+                                <?php if (!empty($slide['video'])) : ?>
+                                    <button type="button" onclick="openVideoModal('<?php echo esc_url($slide['video']); ?>')" class="w-full sm:w-auto text-lg py-3 px-8 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border-2 border-gray-300 dark:border-slate-700 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-3 font-bold group shadow-sm hover:shadow-md">
+                                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-[#FFB7C5] text-white group-hover:scale-110 group-hover:bg-[#FF93AB] transition-all">
+                                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 
+                                        </div>
+                                        Watch Video
+                                    </button>
+                                <?php endif; ?>
                             </div>
                         </div>
                         
@@ -195,3 +199,69 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
 <?php if ($carousel_schema) : ?>
 <script type="application/ld+json"><?php echo $carousel_schema; ?></script>
 <?php endif; ?>
+
+<!-- Video Modal -->
+<div id="hero-video-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300" aria-hidden="true">
+    <div class="absolute inset-0 bg-slate-900/95 backdrop-blur-sm" onclick="closeVideoModal()"></div>
+    <div class="relative w-full max-w-5xl aspect-video mx-4 sm:mx-8 md:mx-12 rounded-2xl overflow-hidden shadow-2xl bg-black transform scale-95 transition-transform duration-300" id="hero-video-container">
+        <button type="button" onclick="closeVideoModal()" class="absolute top-4 right-4 sm:-top-12 sm:-right-12 text-white/70 hover:text-white transition-colors p-2 z-10 bg-black/50 sm:bg-transparent rounded-full backdrop-blur-md" aria-label="Close Video">
+            <svg class="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <iframe id="hero-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+<script>
+    function openVideoModal(url) {
+        const modal = document.getElementById('hero-video-modal');
+        const container = document.getElementById('hero-video-container');
+        const iframe = document.getElementById('hero-video-iframe');
+        
+        // Convert standard YouTube/Vimeo URLs to embed URLs if needed
+        let embedUrl = url;
+        if (url.includes('youtube.com/watch?v=')) {
+            embedUrl = url.replace('watch?v=', 'embed/') + (url.includes('?') ? '&' : '?') + 'autoplay=1';
+        } else if (url.includes('youtu.be/')) {
+            embedUrl = url.replace('youtu.be/', 'youtube.com/embed/') + '?autoplay=1';
+        } else if (url.includes('vimeo.com/')) {
+            embedUrl = url.replace('vimeo.com/', 'player.vimeo.com/video/') + '?autoplay=1';
+        }
+
+        iframe.src = embedUrl;
+        
+        // Show modal
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        
+        // Trigger reflow for transition
+        void modal.offsetWidth;
+        
+        modal.classList.remove('opacity-0');
+        container.classList.remove('scale-95');
+    }
+
+    function closeVideoModal() {
+        const modal = document.getElementById('hero-video-modal');
+        const container = document.getElementById('hero-video-container');
+        const iframe = document.getElementById('hero-video-iframe');
+        
+        modal.classList.add('opacity-0');
+        container.classList.add('scale-95');
+        document.body.style.overflow = '';
+        
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            iframe.src = ''; // Stop video playback
+        }, 300);
+    }
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modal = document.getElementById('hero-video-modal');
+            if (modal && !modal.classList.contains('hidden')) {
+                closeVideoModal();
+            }
+        }
+    });
+</script>

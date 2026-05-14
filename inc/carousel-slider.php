@@ -51,6 +51,7 @@ function julias_register_carousel_meta() {
         'blob_1_color',
         'blob_2_color',
         'slide_order',
+        'video_url',
         // Flash sale fields
         'sale_enabled',
         'sale_label',
@@ -167,6 +168,21 @@ function julias_carousel_metabox_callback($post) {
             ><?php echo esc_textarea($description); ?></textarea>
         </div>
 
+        <!-- Video URL -->
+        <div style="grid-column: 1 / -1;">
+            <label for="carousel_video_url" style="display: block; margin-bottom: 5px; font-weight: bold;">
+                <?php esc_html_e('Watch Video URL (YouTube/Vimeo/MP4)', 'julias-cartoonery'); ?>
+            </label>
+            <input
+                type="url"
+                id="carousel_video_url"
+                name="carousel_video_url"
+                value="<?php echo esc_attr(get_post_meta($post->ID, 'carousel_video_url', true)); ?>"
+                placeholder="https://www.youtube.com/watch?v=..."
+                style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"
+            />
+        </div>
+
         <!-- Background Color -->
         <div>
             <label for="carousel_background_color" style="display: block; margin-bottom: 5px; font-weight: bold;">
@@ -275,6 +291,7 @@ function julias_save_carousel_meta($post_id) {
         'blob_1_color',
         'blob_2_color',
         'slide_order',
+        'video_url',
         // Flash sale fields
         'sale_enabled',
         'sale_label',
@@ -295,14 +312,14 @@ function julias_save_carousel_meta($post_id) {
 
         if (isset($_POST[$meta_key])) {
             // Use URL sanitizer for links
-            if ($field === 'sale_link') {
+            if (in_array($field, ['sale_link', 'video_url'], true)) {
                 update_post_meta($post_id, $meta_key, esc_url_raw($_POST[$meta_key]));
             } else {
                 update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$meta_key]));
             }
         } else {
             // If field missing, ensure we clear previous value for non-checkbox fields when appropriate
-            if (in_array($field, ['sale_label', 'sale_discount', 'sale_code', 'sale_link'], true)) {
+            if (in_array($field, ['sale_label', 'sale_discount', 'sale_code', 'sale_link', 'video_url'], true)) {
                 update_post_meta($post_id, $meta_key, '');
             }
         }
@@ -391,6 +408,7 @@ function julias_get_carousel_slides() {
                 'bgClass' => get_post_meta(get_the_ID(), 'carousel_background_color', true) ?: 'from-pink-100/50',
                 'blob1'   => get_post_meta(get_the_ID(), 'carousel_blob_1_color', true) ?: 'bg-pink-300',
                 'blob2'   => get_post_meta(get_the_ID(), 'carousel_blob_2_color', true) ?: 'bg-purple-300',
+                'video'   => get_post_meta(get_the_ID(), 'carousel_video_url', true),
             ];
         }
         wp_reset_postdata();
