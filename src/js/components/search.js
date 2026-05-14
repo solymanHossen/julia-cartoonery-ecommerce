@@ -1,6 +1,6 @@
 /**
  * Modern Search Modal Component
- * Handles search functionality with real-time results
+ * Clean, minimal search interface
  */
 
 class SearchModal {
@@ -160,7 +160,7 @@ class SearchModal {
         this.loadingState.classList.add('hidden');
         this.resultsList.classList.add('hidden');
         this.noResults.classList.remove('hidden');
-        this.noResultsQuery.textContent = `No results for "${query}"`;
+        this.noResultsQuery.textContent = query;
     }
 
     renderResults() {
@@ -169,7 +169,7 @@ class SearchModal {
         this.results.forEach((result, index) => {
             const item = document.createElement('a');
             item.href = result.url;
-            item.className = `block p-4 md:p-5 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer group ${
+            item.className = `block p-4 md:p-5 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-all duration-200 cursor-pointer group border-b border-slate-100 dark:border-slate-700 last:border-0 ${
                 index === this.selectedIndex ? 'bg-slate-100 dark:bg-slate-700' : ''
             }`;
             item.dataset.index = index;
@@ -183,41 +183,30 @@ class SearchModal {
                 this.updateSelection();
             });
 
-            // Build content based on result type
-            let icon = '';
-            let typeLabel = '';
-            
-            if (result.type === 'product') {
-                icon = '🛍️';
-                typeLabel = 'Product';
-            } else if (result.type === 'character') {
-                icon = '👤';
-                typeLabel = 'Character';
-            } else if (result.type === 'story') {
-                icon = '📖';
-                typeLabel = 'Story';
-            } else if (result.type === 'post') {
-                icon = '📝';
-                typeLabel = 'Blog Post';
-            } else {
-                icon = '📄';
-                typeLabel = 'Page';
-            }
+            // Icons for different types
+            const icons = {
+                'product': '🛍️',
+                'character': '👤',
+                'story': '📖',
+                'post': '📝',
+                'default': '📄'
+            };
+
+            const icon = icons[result.type] || icons['default'];
+            const typeLabel = result.type.charAt(0).toUpperCase() + result.type.slice(1);
 
             item.innerHTML = `
-                <div class="flex items-start gap-4">
-                    <div class="text-xl md:text-2xl flex-shrink-0">${icon}</div>
+                <div class="flex items-start gap-3 md:gap-4">
+                    <span class="text-xl md:text-2xl flex-shrink-0">${icon}</span>
                     <div class="flex-1 min-w-0">
-                        <div class="flex items-center gap-2 mb-1">
-                            <h3 class="font-semibold text-slate-800 dark:text-slate-100 truncate group-hover:text-[#A8D8EA] dark:group-hover:text-sky-400 transition-colors">
-                                ${this.escapeHtml(result.title)}
-                            </h3>
-                            <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-600 text-slate-600 dark:text-slate-300 rounded-full whitespace-nowrap">
-                                ${typeLabel}
-                            </span>
-                        </div>
-                        ${result.excerpt ? `<p class="text-xs md:text-sm text-slate-600 dark:text-slate-400 line-clamp-2">${this.escapeHtml(result.excerpt)}</p>` : ''}
+                        <h3 class="font-semibold text-slate-800 dark:text-slate-100 truncate group-hover:text-[#A8D8EA] dark:group-hover:text-sky-400 transition-colors text-sm md:text-base">
+                            ${this.escapeHtml(result.title)}
+                        </h3>
+                        ${result.excerpt ? `<p class="text-xs md:text-sm text-slate-500 dark:text-slate-400 line-clamp-1 mt-1">${this.escapeHtml(result.excerpt)}</p>` : ''}
                     </div>
+                    <span class="text-xs px-2 py-1 bg-slate-100 dark:bg-slate-600 text-slate-600 dark:text-slate-300 rounded-lg whitespace-nowrap flex-shrink-0">
+                        ${typeLabel}
+                    </span>
                 </div>
             `;
             
