@@ -34,9 +34,6 @@
                         );
                         ?>
                     </span>
-                    <h1 class="font-['Bubblegum_Sans'] text-xl md:text-2xl xl:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden xl:block truncate">
-                        <?php echo esc_html( $site_title ); ?>
-                    </h1>
                 </a>
                 <?php
             } else {
@@ -53,7 +50,7 @@
                         echo esc_html( substr( $initials, 0, 2 ) );
                         ?>
                     </div>
-                    <h1 class="font-['Bubblegum_Sans'] text-xl md:text-2xl xl:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden xl:block truncate">
+                    <h1 class="font-['Bubblegum_Sans'] text-xl md:text-2xl xl:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent truncate">
                         <?php bloginfo( 'name' ); ?>
                     </h1>
                 </a>
