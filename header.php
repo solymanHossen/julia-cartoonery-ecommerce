@@ -15,14 +15,30 @@
         <div class="container mx-auto px-4 lg:px-8 py-4 flex items-center justify-between">
             
             <!-- 1. LOGO -->
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 cursor-pointer shrink-0">
-                <div class="w-12 h-12 bg-[#FFB7C5] dark:bg-pink-500 rounded-full flex items-center justify-center shadow-inner text-white font-['Bubblegum_Sans'] text-2xl rotate-[-5deg] transition-colors">
-                    JC
-                </div>
-                <h1 class="font-['Bubblegum_Sans'] text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden sm:block">
-                    Julia's Cartoonery
-                </h1>
-            </a>
+            <?php 
+            if ( has_custom_logo() ) {
+                the_custom_logo();
+            } else {
+                ?>
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center gap-3 cursor-pointer shrink-0">
+                    <div class="w-12 h-12 bg-[#FFB7C5] dark:bg-pink-500 rounded-full flex items-center justify-center shadow-inner text-white font-['Bubblegum_Sans'] text-2xl rotate-[-5deg] transition-colors">
+                        <?php 
+                        $site_title = get_bloginfo( 'name' );
+                        $words = explode( ' ', $site_title );
+                        $initials = '';
+                        foreach ( $words as $word ) {
+                            $initials .= strtoupper( substr( $word, 0, 1 ) );
+                        }
+                        echo esc_html( substr( $initials, 0, 2 ) );
+                        ?>
+                    </div>
+                    <h1 class="font-['Bubblegum_Sans'] text-2xl md:text-3xl tracking-wide bg-gradient-to-r from-[#FFB7C5] to-[#A8D8EA] dark:from-pink-400 dark:to-sky-400 bg-clip-text text-transparent hidden sm:block">
+                        <?php bloginfo( 'name' ); ?>
+                    </h1>
+                </a>
+                <?php
+            }
+            ?>
 
             <!-- 2. DYNAMIC DESKTOP NAV (Matches Image exactly) -->
             <nav class="hidden lg:flex items-center">

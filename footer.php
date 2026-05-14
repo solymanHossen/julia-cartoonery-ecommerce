@@ -8,7 +8,7 @@
                 
                 <!-- 1. Brand Info -->
                 <div class="col-span-1 md:col-span-2">
-                    <h2 class="font-['Bubblegum_Sans'] text-3xl text-[#FFB7C5] dark:text-pink-400 mb-4">Julia's Cartoonery</h2>
+                    <h2 class="font-['Bubblegum_Sans'] text-3xl text-[#FFB7C5] dark:text-pink-400 mb-4"><?php bloginfo( 'name' ); ?></h2>
                     <p class="text-gray-500 dark:text-gray-400 mb-6 max-w-sm leading-relaxed text-[15px]">Where cartoons meet playtime! We bring joyful learning and safe play to kids everywhere.</p>
                 </div>
                 
@@ -63,7 +63,7 @@
             
             <!-- 4. Dynamic Copyright -->
             <div class="text-center text-[#9ca3af] dark:text-gray-600 text-[14px] border-t border-gray-100 dark:border-slate-800 pt-8 mt-4">
-                &copy; <?php echo date('Y'); ?> Julia's Cartoonery. All rights reserved.
+                &copy; <?php echo date('Y'); ?> <?php bloginfo( 'name' ); ?>. All rights reserved.
             </div>
         </div>
     </footer>

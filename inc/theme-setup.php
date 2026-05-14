@@ -11,6 +11,13 @@ function julias_cartoonery_setup() {
     add_theme_support( 'html5', array( 'search-form', 'gallery', 'caption', 'style', 'script' ) );
     add_theme_support( 'responsive-embeds' );
     add_theme_support( 'woocommerce' );
+    add_theme_support( 'custom-logo', array(
+        'height'      => 250,
+        'width'       => 250,
+        'flex-height' => true,
+        'flex-width'  => true,
+        'header-text' => array( 'site-title', 'site-description' ),
+    ) );
 }
 add_action( 'after_setup_theme', 'julias_cartoonery_setup' );
 
@@ -202,8 +209,9 @@ function julias_cartoonery_get_faq_sections( $lang = 'en' ) {
         $section_items = array();
 
         foreach ( $items as $item ) {
-            $question = get_theme_mod( $item['question_key'], $item[ $lang_key ] );
-            $answer = get_theme_mod( $item['answer_key'], $item[ $answer_lang_key ] );
+            $lang_suffix = ( 'en' === $lang ) ? '' : '_' . $lang;
+            $question = get_theme_mod( $item['question_key'] . $lang_suffix, $item[ $lang_key ] );
+            $answer = get_theme_mod( $item['answer_key'] . $lang_suffix, $item[ $answer_lang_key ] );
 
             if ( '' === trim( (string) $question ) && '' === trim( (string) $answer ) ) {
                 continue;
@@ -819,7 +827,7 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
             $answer_label = sprintf( '%s - Answer %d', $section_label, $index + 1 );
 
             $wp_customize->add_setting( $item['question_key'], array(
-                'default'           => $item['question'],
+                'default'           => $item['question_en'],
                 'sanitize_callback' => 'sanitize_text_field',
                 'transport'         => 'refresh',
             ) );
@@ -830,7 +838,7 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
             ) );
 
             $wp_customize->add_setting( $item['answer_key'], array(
-                'default'           => $item['answer'],
+                'default'           => $item['answer_en'],
                 'sanitize_callback' => 'sanitize_textarea_field',
                 'transport'         => 'refresh',
             ) );
@@ -885,28 +893,28 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
         'type'    => 'textarea',
     ) );
 
-    foreach ( julias_cartoonery_get_faq_defaults_bn() as $section_label => $items ) {
+    foreach ( julias_cartoonery_get_faq_defaults() as $section_label => $items ) {
         foreach ( $items as $index => $item ) {
             $question_label = sprintf( '%s - প্রশ্ন %d', $section_label, $index + 1 );
             $answer_label = sprintf( '%s - উত্তর %d', $section_label, $index + 1 );
 
-            $wp_customize->add_setting( $item['question_key'], array(
-                'default'           => $item['question'],
+            $wp_customize->add_setting( $item['question_key'] . '_bn', array(
+                'default'           => $item['question_bn'],
                 'sanitize_callback' => 'sanitize_text_field',
                 'transport'         => 'refresh',
             ) );
-            $wp_customize->add_control( $item['question_key'], array(
+            $wp_customize->add_control( $item['question_key'] . '_bn', array(
                 'label'   => $question_label,
                 'section' => 'julia_faq_page_bn',
                 'type'    => 'text',
             ) );
 
-            $wp_customize->add_setting( $item['answer_key'], array(
-                'default'           => $item['answer'],
+            $wp_customize->add_setting( $item['answer_key'] . '_bn', array(
+                'default'           => $item['answer_bn'],
                 'sanitize_callback' => 'sanitize_textarea_field',
                 'transport'         => 'refresh',
             ) );
-            $wp_customize->add_control( $item['answer_key'], array(
+            $wp_customize->add_control( $item['answer_key'] . '_bn', array(
                 'label'   => $answer_label,
                 'section' => 'julia_faq_page_bn',
                 'type'    => 'textarea',
