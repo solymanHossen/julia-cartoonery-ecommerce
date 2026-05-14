@@ -41,19 +41,19 @@
             <div class="flex items-center gap-2 sm:gap-4 shrink-0">
                 
                 <!-- Moon/Sun Icon -->
-                <button id="theme-toggle" class="p-2 text-gray-500 dark:text-gray-400 hover:text-[#A8D8EA] dark:hover:text-sky-300 transition-colors">
-                    <svg id="theme-toggle-dark-icon" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-                    <svg id="theme-toggle-light-icon" class="hidden w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                <button id="theme-toggle" class="p-1 sm:p-2 text-gray-500 dark:text-gray-400 hover:text-[#A8D8EA] dark:hover:text-sky-300 transition-colors">
+                    <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 sm:w-6 sm:h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
                 </button>
 
                 <!-- Search Icon -->
-                <button class="p-2 text-gray-500 dark:text-gray-400 hover:text-[#A8D8EA] dark:hover:text-sky-300 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <button class="p-1 sm:p-2 text-gray-500 dark:text-gray-400 hover:text-[#A8D8EA] dark:hover:text-sky-300 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </button>
 
                 <!-- Wishlist Icon with Pink Badge -->
-                <button type="button" id="wishlist-drawer-open" class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg>
+                <button type="button" id="wishlist-drawer-open" class="relative p-1 sm:p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78Z"/></svg>
                     
                     <?php 
                     $wishlist = function_exists('julias_get_wishlist') ? julias_get_wishlist() : [];
@@ -66,8 +66,8 @@
 
                 <!-- Cart Icon with Red Badge -->
                 <?php if ( class_exists( 'WooCommerce' ) ) : ?>
-                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="relative p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:scale-110 transition-transform"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <a href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="relative p-1 sm:p-2 text-gray-500 dark:text-gray-400 hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors group">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                         
                         <?php $cart_count = WC()->cart->get_cart_contents_count(); ?>
                         <span class="julias-cart-count absolute -top-1 -right-1 bg-red-400 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full transition-transform duration-300 transform scale-100 <?php echo $cart_count == 0 ? 'hidden' : ''; ?>">
@@ -82,13 +82,13 @@
                 $is_logged_in = is_user_logged_in();
                 ?>
                 <div class="relative group flex items-center h-full">
-                    <a href="<?php echo $myaccount_page_url; ?>" class="<?php echo $is_logged_in ? 'p-1.5' : 'p-2'; ?> text-gray-500 dark:text-gray-400 hover:text-[#B5EAD7] dark:hover:text-emerald-400 transition-colors flex items-center justify-center">
+                    <a href="<?php echo $myaccount_page_url; ?>" class="<?php echo $is_logged_in ? 'p-1 sm:p-1.5' : 'p-1 sm:p-2'; ?> text-gray-500 dark:text-gray-400 hover:text-[#B5EAD7] dark:hover:text-emerald-400 transition-colors flex items-center justify-center">
                         <?php if ( $is_logged_in ) : ?>
-                            <div class="w-8 h-8 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 group-hover:border-[#B5EAD7] dark:group-hover:border-emerald-400 transition-colors shadow-sm">
+                            <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700 group-hover:border-[#B5EAD7] dark:group-hover:border-emerald-400 transition-colors shadow-sm">
                                 <?php echo get_avatar( get_current_user_id(), 64, '', 'User Avatar', array( 'class' => 'w-full h-full object-cover' ) ); ?>
                             </div>
                         <?php else : ?>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         <?php endif; ?>
                     </a>
                     
