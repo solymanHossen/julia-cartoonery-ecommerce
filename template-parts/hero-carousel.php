@@ -106,47 +106,41 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                             $sale_code = $sale['code'] ?: '';
                                             $sale_link = $sale['link'] ?: '';
                                             ?>
-                                            <!-- Animated Bullet Decorators -->
-                                            <div class="absolute bottom-12 right-8 z-20 h-2 w-2 rounded-full bg-[#FFB7C5] shadow-lg shadow-pink-300/60 animate-[bounce_2s_ease-in-out_infinite]"></div>
-                                            <div class="absolute bottom-5 right-32 z-20 h-1.5 w-1.5 rounded-full bg-[#A8D8EA] shadow-lg shadow-sky-300/50 animate-[bounce_2.5s_ease-in-out_infinite_0.3s]"></div>
-                                            <div class="absolute bottom-16 right-24 z-20 h-2.5 w-2.5 rounded-full bg-yellow-300 shadow-lg shadow-yellow-300/50 animate-[bounce_3s_ease-in-out_infinite_0.6s]"></div>
-
-                                            <div class="absolute bottom-6 right-6 z-30 pointer-events-auto animate-[float_6s_ease-in-out_infinite] scale-90 sm:scale-100 origin-bottom-right">
-                                                <div class="bg-gradient-to-br from-white/98 to-white/92 dark:from-slate-800/98 dark:to-slate-800/92 backdrop-blur-lg rounded-3xl p-4 sm:p-5 shadow-[0_20px_60px_rgba(255,183,197,0.25)] border border-white/80 dark:border-slate-700/60 max-w-[280px] sm:max-w-[340px] relative overflow-hidden">
-                                                    <!-- Animated Gradient Background -->
-                                                    <div class="absolute inset-0 bg-gradient-to-r from-pink-100/0 via-pink-50/30 to-blue-50/0 dark:from-pink-950/0 dark:via-pink-900/20 dark:to-blue-950/0 animate-pulse"></div>
-
-                                                    <div class="relative z-10">
-                                                        <div class="mb-3 inline-block">
-                                                            <span class="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-100 to-red-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.24em] text-pink-600">
-                                                                <span class="h-2 w-2 rounded-full bg-pink-500 shadow-[0_0_0_6px_rgba(255,107,159,0.15)] animate-pulse"></span>
-                                                                <?php echo esc_html($sale_label); ?>
+                                            <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 pointer-events-auto animate-[float_6s_ease-in-out_infinite] origin-bottom-right">
+                                                <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 dark:border-slate-700/50 w-[240px] flex flex-col gap-3">
+                                                    <!-- Header -->
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-2">
+                                                            <span class="relative flex h-2 w-2">
+                                                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                                              <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
                                                             </span>
+                                                            <span class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider"><?php echo esc_html($sale_label); ?></span>
                                                         </div>
-
-                                                        <div class="mb-2 sm:mb-3 text-2xl sm:text-3xl font-black leading-tight text-slate-900 dark:text-white">
-                                                            <span class="bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] bg-clip-text text-transparent"><?php echo esc_html($sale_discount); ?></span>
-                                                        </div>
-
-                                                        <p class="mb-4 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
-                                                            Limited time offer. Perfect gifts for kids!
-                                                        </p>
-
-                                                        <?php if ($sale_code) : ?>
-                                                            <div class="mb-4 inline-flex items-center gap-2 rounded-xl bg-white/60 px-2.5 py-2 ring-1 ring-pink-100/50 dark:bg-slate-700/40 dark:ring-slate-600/50">
-                                                                <span class="font-mono tracking-wide text-sm"><?php echo esc_html($sale_code); ?></span>
-                                                                <button type="button" class="ml-auto rounded-lg bg-gradient-to-r from-pink-400 to-pink-500 px-2 py-1 text-xs font-bold text-white transition-all hover:shadow-lg hover:scale-105" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); e.target.innerText = 'Copied!'; setTimeout(()=>e.target.innerText='Copy',1200)})(event)">Copy</button>
-                                                            </div>
-                                                        <?php endif; ?>
                                                         <?php if ($sale_link) : ?>
-                                                            <a href="<?php echo esc_url($sale_link); ?>" class="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] px-4 py-2.5 sm:px-5 sm:py-3 text-sm font-extrabold text-white shadow-lg shadow-pink-300/40 transition-all hover:shadow-pink-400/60 hover:scale-110 active:scale-95">
-                                                                <span>Shop Now</span>
-                                                                <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                                                </svg>
+                                                            <a href="<?php echo esc_url($sale_link); ?>" class="flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white hover:bg-[#FFB7C5] hover:text-white transition-colors" aria-label="Shop Sale">
+                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/></svg>
                                                             </a>
                                                         <?php endif; ?>
                                                     </div>
+
+                                                    <!-- Body -->
+                                                    <div>
+                                                        <div class="text-2xl font-black text-slate-900 dark:text-white leading-none tracking-tight mb-1">
+                                                            <?php echo esc_html($sale_discount); ?>
+                                                        </div>
+                                                        <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-snug">Limited time offer. Apply code at checkout.</p>
+                                                    </div>
+
+                                                    <!-- Footer / Code -->
+                                                    <?php if ($sale_code) : ?>
+                                                        <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 rounded-lg p-1.5 border border-slate-100 dark:border-slate-700 mt-1">
+                                                            <span class="font-mono text-xs font-bold text-slate-800 dark:text-slate-200 px-2"><?php echo esc_html($sale_code); ?></span>
+                                                            <button type="button" class="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-md px-3 py-1.5 text-[10px] font-bold text-slate-700 dark:text-slate-200 hover:bg-[#FFB7C5] hover:text-white hover:border-[#FFB7C5] transition-all shadow-sm flex items-center gap-1" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); const originalText = e.currentTarget.innerHTML; e.currentTarget.innerHTML = '<svg class=\'w-3 h-3 inline\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M5 13l4 4L19 7\'></path></svg> Copied'; e.currentTarget.classList.add('bg-green-500', 'text-white', 'border-green-500'); setTimeout(()=>{e.currentTarget.innerHTML=originalText; e.currentTarget.classList.remove('bg-green-500', 'text-white', 'border-green-500');}, 1500)})(event)">
+                                                                Copy
+                                                            </button>
+                                                        </div>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                         <?php endif; ?>
