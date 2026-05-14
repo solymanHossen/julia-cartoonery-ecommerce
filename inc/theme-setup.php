@@ -56,120 +56,154 @@ function julias_cartoonery_get_faq_defaults() {
     return array(
         'Delivery & Tracking' => array(
             array(
-                'question_key' => 'julia_faq_delivery_tracking_1_question',
-                'answer_key'   => 'julia_faq_delivery_tracking_1_answer',
-                'question'     => 'How fast do you deliver inside Dhaka?',
-                'answer'       => 'Orders inside Dhaka are usually delivered within 24-48 hours after confirmation, depending on the delivery location and order volume. We keep you updated if there is any unexpected delay.',
+                'question_key' => 'julia_faq_delivery_1_question',
+                'answer_key'   => 'julia_faq_delivery_1_answer',
+                'question_en'  => 'How fast do you deliver inside Dhaka?',
+                'question_bn'  => 'ঢাকার ভেতরে কত দ্রুত ডেলিভারি দেন?',
+                'answer_en'    => 'Orders inside Dhaka are usually delivered within 24-48 hours after confirmation, depending on the delivery location and order volume. We keep you updated if there is any unexpected delay.',
+                'answer_bn'    => 'অর্ডার কনফার্ম হওয়ার পর সাধারণত ২৪-৪৮ ঘণ্টার মধ্যে ঢাকার ভেতরে ডেলিভারি করা হয়। লোকেশন ও অর্ডারের পরিমাণ অনুযায়ী সময় কিছুটা পরিবর্তন হতে পারে।',
             ),
             array(
-                'question_key' => 'julia_faq_delivery_tracking_2_question',
-                'answer_key'   => 'julia_faq_delivery_tracking_2_answer',
-                'question'     => 'How long does delivery take outside Dhaka?',
-                'answer'       => 'Outside Dhaka delivery typically takes 3-5 business days. We partner with trusted courier services so your order reaches you safely and on time.',
+                'question_key' => 'julia_faq_delivery_2_question',
+                'answer_key'   => 'julia_faq_delivery_2_answer',
+                'question_en'  => 'How long does delivery take outside Dhaka?',
+                'question_bn'  => 'ঢাকার বাইরে ডেলিভারি কত দিনে হয়?',
+                'answer_en'    => 'Outside Dhaka delivery typically takes 3-5 business days. We partner with trusted courier services so your order reaches you safely and on time.',
+                'answer_bn'    => 'ঢাকার বাইরে সাধারণত ৩-৫ কার্যদিবসের মধ্যে ডেলিভারি পৌঁছে যায়। নির্ভরযোগ্য কুরিয়ার পার্টনার দিয়ে আমরা প্যাকেজ নিরাপদে পাঠাই।',
             ),
             array(
-                'question_key' => 'julia_faq_delivery_tracking_3_question',
-                'answer_key'   => 'julia_faq_delivery_tracking_3_answer',
-                'question'     => 'Will I get tracking information for my order?',
-                'answer'       => 'Yes. Once your order is dispatched, we share tracking details by SMS or email so you can follow the parcel status easily.',
+                'question_key' => 'julia_faq_delivery_3_question',
+                'answer_key'   => 'julia_faq_delivery_3_answer',
+                'question_en'  => 'Will I get tracking information for my order?',
+                'question_bn'  => 'অর্ডারের ট্র্যাকিং কি পাব?',
+                'answer_en'    => 'Yes. Once your order is dispatched, we share tracking details by SMS or email so you can follow the parcel status easily.',
+                'answer_bn'    => 'হ্যাঁ। অর্ডার পাঠানো হলে SMS বা ইমেইলের মাধ্যমে ট্র্যাকিং তথ্য পাঠানো হয়, যাতে আপনি সহজে পার্সেলের অবস্থা জানতে পারেন।',
             ),
             array(
-                'question_key' => 'julia_faq_delivery_tracking_4_question',
-                'answer_key'   => 'julia_faq_delivery_tracking_4_answer',
-                'question'     => 'Can I change my shipping address after placing an order?',
-                'answer'       => 'If the parcel has not been handed to the courier yet, contact us as soon as possible. We will try to update the address before dispatch.',
+                'question_key' => 'julia_faq_delivery_4_question',
+                'answer_key'   => 'julia_faq_delivery_4_answer',
+                'question_en'  => 'Can I change my shipping address after placing an order?',
+                'question_bn'  => 'অর্ডার দেওয়ার পর ঠিকানা পরিবর্তন করা যাবে?',
+                'answer_en'    => 'If the parcel has not been handed to the courier yet, contact us as soon as possible. We will try to update the address before dispatch.',
+                'answer_bn'    => 'পার্সেল কুরিয়ারের কাছে হস্তান্তর না হলে দ্রুত যোগাযোগ করুন। সম্ভব হলে আমরা ঠিকানা আপডেট করার চেষ্টা করব।',
             ),
         ),
         'Returns & Refunds' => array(
             array(
                 'question_key' => 'julia_faq_returns_1_question',
                 'answer_key'   => 'julia_faq_returns_1_answer',
-                'question'     => 'What is your return policy?',
-                'answer'       => 'We offer an easy return process for damaged, missing, or incorrect items. Contact us quickly with your order number and clear photos so we can help fast.',
+                'question_en'  => 'What is your return policy?',
+                'question_bn'  => 'রিটার্ন পলিসি কী?',
+                'answer_en'    => 'We offer an easy return process for damaged, missing, or incorrect items. Contact us quickly with your order number and clear photos so we can help fast.',
+                'answer_bn'    => 'ক্ষতিগ্রস্ত, ভুল, বা অনুপস্থিত আইটেমের ক্ষেত্রে সহজ রিটার্ন প্রসেস রয়েছে। অর্ডার নম্বর ও পরিষ্কার ছবি দিয়ে দ্রুত যোগাযোগ করলে আমরা সাহায্য করি।',
             ),
             array(
                 'question_key' => 'julia_faq_returns_2_question',
                 'answer_key'   => 'julia_faq_returns_2_answer',
-                'question'     => 'What if my item arrives damaged?',
-                'answer'       => 'Please refuse delivery if the damage is visible, or message us immediately with photos. We will arrange a replacement or refund based on the issue.',
+                'question_en'  => 'What if my item arrives damaged?',
+                'question_bn'  => 'পণ্য ক্ষতিগ্রস্ত হয়ে এলে কী করব?',
+                'answer_en'    => 'Please refuse delivery if the damage is visible, or message us immediately with photos. We will arrange a replacement or refund based on the issue.',
+                'answer_bn'    => 'ডেলিভারির সময় দৃশ্যমান ক্ষতি হলে গ্রহণ না করাই ভালো, অথবা দ্রুত ছবি পাঠিয়ে যোগাযোগ করুন। আমরা প্রতিস্থাপন বা রিফান্ডের ব্যবস্থা করব।',
             ),
             array(
                 'question_key' => 'julia_faq_returns_3_question',
                 'answer_key'   => 'julia_faq_returns_3_answer',
-                'question'     => 'How long do refunds take?',
-                'answer'       => 'Refund timing depends on the payment method and the issue type. Once approved, we process it as quickly as possible and keep you informed.',
+                'question_en'  => 'How long do refunds take?',
+                'question_bn'  => 'রিফান্ড পেতে কত সময় লাগে?',
+                'answer_en'    => 'Refund timing depends on the payment method and the issue type. Once approved, we process it as quickly as possible and keep you informed.',
+                'answer_bn'    => 'পেমেন্ট মেথড ও সমস্যার ধরন অনুযায়ী সময় পরিবর্তিত হয়। অনুমোদনের পর যত দ্রুত সম্ভব রিফান্ড প্রসেস করা হয়।',
             ),
             array(
                 'question_key' => 'julia_faq_returns_4_question',
                 'answer_key'   => 'julia_faq_returns_4_answer',
-                'question'     => 'Can I exchange a product instead of returning it?',
-                'answer'       => 'Yes, if the item is eligible for exchange and stock is available. Reach out with your order details and we will guide you through the next step.',
+                'question_en'  => 'Can I exchange a product instead of returning it?',
+                'question_bn'  => 'রিটার্নের বদলে এক্সচেঞ্জ করা যাবে?',
+                'answer_en'    => 'Yes, if the item is eligible for exchange and stock is available. Reach out with your order details and we will guide you through the next step.',
+                'answer_bn'    => 'হ্যাঁ, স্টক থাকলে এবং প্রোডাক্টটি যোগ্য হলে এক্সচেঞ্জ করা যায়। অর্ডারের তথ্য দিয়ে যোগাযোগ করুন, আমরা পরবর্তী ধাপ জানিয়ে দেব।',
             ),
         ),
         'Payments & COD' => array(
             array(
                 'question_key' => 'julia_faq_payments_1_question',
                 'answer_key'   => 'julia_faq_payments_1_answer',
-                'question'     => 'Do you offer Cash on Delivery?',
-                'answer'       => 'Yes. Cash on Delivery is available across Bangladesh for most orders, making checkout simple and trusted for parents and gift buyers.',
+                'question_en'  => 'Do you offer Cash on Delivery?',
+                'question_bn'  => 'Cash on Delivery কি আছে?',
+                'answer_en'    => 'Yes. Cash on Delivery is available across Bangladesh for most orders, making checkout simple and trusted for parents and gift buyers.',
+                'answer_bn'    => 'হ্যাঁ। বাংলাদেশজুড়ে বেশিরভাগ অর্ডারের জন্য Cash on Delivery সুবিধা আছে, যাতে কেনাকাটা সহজ ও নির্ভরযোগ্য হয়।',
             ),
             array(
                 'question_key' => 'julia_faq_payments_2_question',
                 'answer_key'   => 'julia_faq_payments_2_answer',
-                'question'     => 'What payment methods do you accept?',
-                'answer'       => 'We support Cash on Delivery and other payment methods offered during checkout. The available options may vary by location and order type.',
+                'question_en'  => 'What payment methods do you accept?',
+                'question_bn'  => 'কোন কোন পেমেন্ট মেথড গ্রহণ করেন?',
+                'answer_en'    => 'We support Cash on Delivery and other payment methods offered during checkout. The available options may vary by location and order type.',
+                'answer_bn'    => 'Cash on Delivery এবং চেকআউটে দেখানো অন্যান্য পেমেন্ট অপশন গ্রহণ করা হয়। অর্ডার ও লোকেশন অনুযায়ী অপশন পরিবর্তিত হতে পারে।',
             ),
             array(
                 'question_key' => 'julia_faq_payments_3_question',
                 'answer_key'   => 'julia_faq_payments_3_answer',
-                'question'     => 'Is COD available outside Dhaka?',
-                'answer'       => 'Yes, COD is available in many areas outside Dhaka as well. If your address is eligible, the option appears at checkout.',
+                'question_en'  => 'Is COD available outside Dhaka?',
+                'question_bn'  => 'ঢাকার বাইরে COD পাওয়া যাবে?',
+                'answer_en'    => 'Yes, COD is available in many areas outside Dhaka as well. If your address is eligible, the option appears at checkout.',
+                'answer_bn'    => 'হ্যাঁ, অনেক ঢাকার বাইরের এলাকায়ও COD পাওয়া যায়। আপনার ঠিকানা eligible হলে চেকআউটে অপশন দেখাবে।',
             ),
             array(
                 'question_key' => 'julia_faq_payments_4_question',
                 'answer_key'   => 'julia_faq_payments_4_answer',
-                'question'     => 'Is checkout secure?',
-                'answer'       => 'Absolutely. We only ask for the information needed to process your order and keep the checkout flow clear, quick, and secure.',
+                'question_en'  => 'Is checkout secure?',
+                'question_bn'  => 'চেকআউট কি নিরাপদ?',
+                'answer_en'    => 'Absolutely. We only ask for the information needed to process your order and keep the checkout flow clear, quick, and secure.',
+                'answer_bn'    => 'অবশ্যই। অর্ডার প্রসেস করার জন্য প্রয়োজনীয় তথ্যই শুধু নেওয়া হয়, আর চেকআউট ফ্লো সহজ ও পরিষ্কার রাখা হয়।',
             ),
         ),
         'General' => array(
             array(
                 'question_key' => 'julia_faq_general_1_question',
                 'answer_key'   => 'julia_faq_general_1_answer',
-                'question'     => 'How do I contact support if I need help?',
-                'answer'       => 'Use our contact page or WhatsApp support for quick help. We are happy to answer product questions, delivery concerns, or order updates.',
+                'question_en'  => 'How do I contact support if I need help?',
+                'question_bn'  => 'সাপোর্ট লাগলে কীভাবে যোগাযোগ করব?',
+                'answer_en'    => 'Use our contact page or WhatsApp support for quick help. We are happy to answer product questions, delivery concerns, or order updates.',
+                'answer_bn'    => 'কন্টাক্ট পেজ বা WhatsApp দিয়ে দ্রুত যোগাযোগ করতে পারেন। প্রোডাক্ট, ডেলিভারি, বা অর্ডার-সংক্রান্ত যেকোনো বিষয়ে আমরা সাহায্য করি।',
             ),
             array(
                 'question_key' => 'julia_faq_general_2_question',
                 'answer_key'   => 'julia_faq_general_2_answer',
-                'question'     => 'Do you package items safely for gifting?',
-                'answer'       => 'Yes. We pack products carefully so they arrive clean, secure, and ready for gifting. We also try to use neat, eco-friendly packaging where possible.',
+                'question_en'  => 'Do you package items safely for gifting?',
+                'question_bn'  => 'উপহার দেওয়ার জন্য প্যাকেজিং কি নিরাপদ?',
+                'answer_en'    => 'Yes. We pack products carefully so they arrive clean, secure, and ready for gifting. We also try to use neat, eco-friendly packaging where possible.',
+                'answer_bn'    => 'হ্যাঁ। প্রোডাক্টগুলো যত্ন করে প্যাক করা হয় যাতে সেগুলো পরিষ্কার, সুরক্ষিত, এবং গিফট করার জন্য প্রস্তুত থাকে।',
             ),
             array(
                 'question_key' => 'julia_faq_general_3_question',
                 'answer_key'   => 'julia_faq_general_3_answer',
-                'question'     => 'Do you restock popular items?',
-                'answer'       => 'Popular products are restocked whenever possible. If you love something that is out of stock, check back soon or contact us for an update.',
+                'question_en'  => 'Do you restock popular items?',
+                'question_bn'  => 'জনপ্রিয় পণ্য কি আবার স্টক হয়?',
+                'answer_en'    => 'Popular products are restocked whenever possible. If you love something that is out of stock, check back soon or contact us for an update.',
+                'answer_bn'    => 'সুযোগ থাকলে জনপ্রিয় পণ্য আবার স্টক করা হয়। কোনো পণ্য আউট অব স্টক হলে কিছুদিন পর আবার দেখে নিতে পারেন বা আমাদের জানাতে পারেন।',
             ),
             array(
                 'question_key' => 'julia_faq_general_4_question',
                 'answer_key'   => 'julia_faq_general_4_answer',
-                'question'     => 'Can I order gifts for birthdays or special occasions?',
-                'answer'       => 'Yes. Julia\'s Cartoonery is built for memorable gifting. You can shop toys and character-inspired goodies for birthdays, celebrations, and surprise deliveries.',
+                'question_en'  => 'Can I order gifts for birthdays or special occasions?',
+                'question_bn'  => 'জন্মদিন বা স্পেশাল ইভেন্টের জন্য অর্ডার করা যাবে?',
+                'answer_en'    => 'Yes. Julia\'s Cartoonery is built for memorable gifting. You can shop toys and character-inspired goodies for birthdays, celebrations, and surprise deliveries.',
+                'answer_bn'    => 'অবশ্যই। Julia\'s Cartoonery জন্মদিন, উদযাপন, আর সারপ্রাইজ ডেলিভারির জন্য উপযুক্ত গিফট আইটেম দেয়।',
             ),
         ),
     );
 }
 
-function julias_cartoonery_get_faq_sections() {
+function julias_cartoonery_get_faq_sections( $lang = 'en' ) {
     $sections = array();
+    $lang_key = 'question_' . $lang;
+    $answer_lang_key = 'answer_' . $lang;
 
     foreach ( julias_cartoonery_get_faq_defaults() as $section_label => $items ) {
         $section_items = array();
 
         foreach ( $items as $item ) {
-            $question = get_theme_mod( $item['question_key'], $item['question'] );
-            $answer = get_theme_mod( $item['answer_key'], $item['answer'] );
+            $question = get_theme_mod( $item['question_key'], $item[ $lang_key ] );
+            $answer = get_theme_mod( $item['answer_key'], $item[ $answer_lang_key ] );
 
             if ( '' === trim( (string) $question ) && '' === trim( (string) $answer ) ) {
                 continue;
@@ -803,6 +837,78 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
             $wp_customize->add_control( $item['answer_key'], array(
                 'label'   => $answer_label,
                 'section' => 'julia_faq_page',
+                'type'    => 'textarea',
+            ) );
+        }
+    }
+
+    $wp_customize->add_section(
+        'julia_faq_page_bn',
+        array(
+            'title'       => __( 'FAQ Page - Bangla', 'julias-cartoonery' ),
+            'description' => __( 'Manage the Bangla FAQ content directly from the dashboard', 'julias-cartoonery' ),
+            'panel'       => 'julia_home_page',
+            'priority'    => 71,
+        )
+    );
+
+    $wp_customize->add_setting( 'julia_faq_bn_eyebrow', array(
+        'default'           => __( 'বাংলা ভার্সন', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_bn_eyebrow', array(
+        'label'   => __( 'Hero Eyebrow', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page_bn',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_bn_title', array(
+        'default'           => __( 'প্রশ্নোত্তর', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_bn_title', array(
+        'label'   => __( 'Hero Title', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page_bn',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_bn_description', array(
+        'default'           => __( 'বাংলায় দ্রুত উত্তর, যাতে আপনার ক্রেতারা আরও সহজে অর্ডার করতে পারেন এবং আস্থা পান।', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_bn_description', array(
+        'label'   => __( 'Hero Description', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page_bn',
+        'type'    => 'textarea',
+    ) );
+
+    foreach ( julias_cartoonery_get_faq_defaults_bn() as $section_label => $items ) {
+        foreach ( $items as $index => $item ) {
+            $question_label = sprintf( '%s - প্রশ্ন %d', $section_label, $index + 1 );
+            $answer_label = sprintf( '%s - উত্তর %d', $section_label, $index + 1 );
+
+            $wp_customize->add_setting( $item['question_key'], array(
+                'default'           => $item['question'],
+                'sanitize_callback' => 'sanitize_text_field',
+                'transport'         => 'refresh',
+            ) );
+            $wp_customize->add_control( $item['question_key'], array(
+                'label'   => $question_label,
+                'section' => 'julia_faq_page_bn',
+                'type'    => 'text',
+            ) );
+
+            $wp_customize->add_setting( $item['answer_key'], array(
+                'default'           => $item['answer'],
+                'sanitize_callback' => 'sanitize_textarea_field',
+                'transport'         => 'refresh',
+            ) );
+            $wp_customize->add_control( $item['answer_key'], array(
+                'label'   => $answer_label,
+                'section' => 'julia_faq_page_bn',
                 'type'    => 'textarea',
             ) );
         }

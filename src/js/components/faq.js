@@ -1,13 +1,44 @@
 export function initFaq() {
-  const root = document.querySelector('[data-faq-root]');
-  if (!root) return;
+  const roots = Array.from(document.querySelectorAll('[data-faq-root]'));
+  if (!roots.length) return;
 
-  const searchInput = root.querySelector('[data-faq-search]');
-  const clearButton = root.querySelector('[data-faq-clear]');
-  const countLabel = root.querySelector('[data-faq-count]');
-  const emptyState = root.querySelector('[data-faq-empty]');
-  const categorySections = Array.from(root.querySelectorAll('[data-faq-category]'));
-  const items = Array.from(root.querySelectorAll('[data-faq-item]'));
+  // Language Toggle Setup
+  let currentLanguage = 'en';
+  const langToggleBtns = document.querySelectorAll('.lang-toggle-btn');
+  
+  const setLanguage = (lang) => {
+    currentLanguage = lang;
+    
+    // Update toggle buttons
+    langToggleBtns.forEach(btn => {
+      const isActive = btn.dataset.lang === lang;
+      btn.classList.toggle('active', isActive);
+      if (isActive) {
+        btn.style.backgroundColor = lang === 'en' ? '#FFB7C5' : '#A8D8EA';
+        btn.style.color = 'white';
+      } else {
+        btn.style.backgroundColor = 'transparent';
+        btn.style.color = lang === 'en' ? '#FFB7C5' : '#A8D8EA';
+      }
+    });
+    
+    // Update FAQ text
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.textContent = q.dataset[`question${lang === 'en' ? 'En' : 'Bn'}`];
+    });
+    
+    document.querySelectorAll('.faq-answer').forEach(a => {
+      a.textContent = a.dataset[`answer${lang === 'en' ? 'En' : 'Bn'}`];
+    });
+  };
+  
+  langToggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setLanguage(btn.dataset.lang);
+    });
+  });
+  
+  setLanguage('en');
 
   const closeItem = (item) => {
     const trigger = item.querySelector('[data-faq-trigger]');
@@ -42,100 +73,111 @@ export function initFaq() {
     openItem(item);
   };
 
-  const refreshOpenPanels = () => {
+  const initRoot = (root) => {
+    const searchInput = root.querySelector('[data-faq-search]');
+    const clearButton = root.querySelector('[data-faq-clear]');
+    const countLabel = root.querySelector('[data-faq-count]');
+    const emptyState = root.querySelector('[data-faq-empty]');
+    const categorySections = Array.from(root.querySelectorAll('[data-faq-category]'));
+    const items = Array.from(root.querySelectorAll('[data-faq-item]'));
+
+    const refreshOpenPanels = () => {
+      items.forEach((item) => {
+        if (item.dataset.state !== 'open') return;
+        const panel = item.querySelector('[data-faq-panel]');
+        if (panel) panel.style.maxHeight = `${panel.scrollHeight}px`;
+      });
+    };
+
+    const applyFilter = () => {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const text = (item.dataset.faqText || '').toLowerCase();
+        const matches = !query || text.includes(query);
+        item.classList.toggle('hidden', !matches);
+
+        if (!matches) closeItem(item);
+        if (matches) visibleCount += 1;
+      });
+
+      categorySections.forEach((section) => {
+        const sectionVisible = section.querySelector('[data-faq-item]:not(.hidden)');
+        section.classList.toggle('hidden', !sectionVisible);
+      });
+
+      if (countLabel) {
+        countLabel.textContent = query
+          ? `Showing ${visibleCount} result${visibleCount === 1 ? '' : 's'} for “${query}”`
+          : 'Showing all questions';
+      }
+
+      if (emptyState) {
+        emptyState.classList.toggle('hidden', visibleCount !== 0 || !query);
+      }
+
+      if (clearButton) {
+        clearButton.classList.toggle('hidden', !query);
+      }
+    };
+
     items.forEach((item) => {
-      if (item.dataset.state !== 'open') return;
+      const trigger = item.querySelector('[data-faq-trigger]');
       const panel = item.querySelector('[data-faq-panel]');
-      if (panel) panel.style.maxHeight = `${panel.scrollHeight}px`;
-    });
-  };
 
-  const applyFilter = () => {
-    const query = (searchInput?.value || '').trim().toLowerCase();
-    let visibleCount = 0;
+      if (!trigger || !panel) return;
 
-    items.forEach((item) => {
-      const text = (item.dataset.faqText || '').toLowerCase();
-      const matches = !query || text.includes(query);
-      item.classList.toggle('hidden', !matches);
+      closeItem(item);
 
-      if (!matches) closeItem(item);
-      if (matches) visibleCount += 1;
-    });
+      trigger.addEventListener('click', () => {
+        toggleItem(item);
+      });
 
-    categorySections.forEach((section) => {
-      const sectionVisible = section.querySelector('[data-faq-item]:not(.hidden)');
-      section.classList.toggle('hidden', !sectionVisible);
-    });
+      trigger.addEventListener('keydown', (event) => {
+        const buttons = items
+          .filter((faqItem) => !faqItem.classList.contains('hidden'))
+          .map((faqItem) => faqItem.querySelector('[data-faq-trigger]'))
+          .filter(Boolean);
 
-    if (countLabel) {
-      countLabel.textContent = query
-        ? `Showing ${visibleCount} result${visibleCount === 1 ? '' : 's'} for “${query}”`
-        : 'Showing all questions';
-    }
+        if (!buttons.length) return;
 
-    if (emptyState) {
-      emptyState.classList.toggle('hidden', visibleCount !== 0 || !query);
-    }
+        const currentIndex = buttons.indexOf(trigger);
 
-    if (clearButton) {
-      clearButton.classList.toggle('hidden', !query);
-    }
-  };
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          const nextButton = buttons[(currentIndex + 1) % buttons.length];
+          nextButton?.focus();
+        }
 
-  items.forEach((item) => {
-    const trigger = item.querySelector('[data-faq-trigger]');
-    const panel = item.querySelector('[data-faq-panel]');
+        if (event.key === 'ArrowUp') {
+          event.preventDefault();
+          const previousButton = buttons[(currentIndex - 1 + buttons.length) % buttons.length];
+          previousButton?.focus();
+        }
 
-    if (!trigger || !panel) return;
+        if (event.key === 'Home') {
+          event.preventDefault();
+          buttons[0]?.focus();
+        }
 
-    closeItem(item);
-
-    trigger.addEventListener('click', () => {
-      toggleItem(item);
+        if (event.key === 'End') {
+          event.preventDefault();
+          buttons[buttons.length - 1]?.focus();
+        }
+      });
     });
 
-    trigger.addEventListener('keydown', (event) => {
-      const buttons = items
-        .filter((faqItem) => !faqItem.classList.contains('hidden'))
-        .map((faqItem) => faqItem.querySelector('[data-faq-trigger]'))
-        .filter(Boolean);
-
-      if (!buttons.length) return;
-
-      const currentIndex = buttons.indexOf(trigger);
-
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        const nextButton = buttons[(currentIndex + 1) % buttons.length];
-        nextButton?.focus();
-      }
-
-      if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        const previousButton = buttons[(currentIndex - 1 + buttons.length) % buttons.length];
-        previousButton?.focus();
-      }
-
-      if (event.key === 'Home') {
-        event.preventDefault();
-        buttons[0]?.focus();
-      }
-
-      if (event.key === 'End') {
-        event.preventDefault();
-        buttons[buttons.length - 1]?.focus();
-      }
+    searchInput?.addEventListener('input', applyFilter);
+    clearButton?.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      applyFilter();
+      searchInput?.focus();
     });
-  });
 
-  searchInput?.addEventListener('input', applyFilter);
-  clearButton?.addEventListener('click', () => {
-    if (searchInput) searchInput.value = '';
+    window.addEventListener('resize', refreshOpenPanels);
     applyFilter();
-    searchInput?.focus();
-  });
+  };
 
-  window.addEventListener('resize', refreshOpenPanels);
-  applyFilter();
+  roots.forEach(initRoot);
 }

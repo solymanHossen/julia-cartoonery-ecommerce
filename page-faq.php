@@ -8,7 +8,9 @@
 
 get_header();
 
-$faq_sections = julias_cartoonery_get_faq_sections();
+$faq_sections_en = julias_cartoonery_get_faq_sections( 'en' );
+$faq_sections_bn = julias_cartoonery_get_faq_sections( 'bn' );
+
 $faq_eyebrow = get_theme_mod( 'julia_faq_eyebrow', 'Cash on Delivery, fast shipping, and easy returns' );
 $faq_title = get_theme_mod( 'julia_faq_title', 'Frequently Asked Questions' );
 $faq_description = get_theme_mod( 'julia_faq_description', 'Find quick answers about delivery, payments, COD, and returns. Everything here is designed to reduce hesitation and help shoppers complete checkout with confidence.' );
@@ -62,47 +64,63 @@ $faq_trust_description = get_theme_mod( 'julia_faq_trust_description', 'Clear de
 						<p>Try terms like COD, Dhaka, refund, tracking, or exchange.</p>
 					</div>
 
-					<div class="mt-8 space-y-8">
-						<?php $section_index = 0; ?>
-						<?php foreach ( $faq_sections as $section_label => $faqs ) : ?>
-							<section class="faq-category" data-faq-category data-category-label="<?php echo esc_attr( strtolower( $section_label ) ); ?>">
-								<div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-									<div>
-										<p class="text-xs font-bold uppercase tracking-[0.3em] text-[#FF93AB] dark:text-[#FFB7C5]">Section</p>
-										<h2 class="mt-2 text-2xl font-black text-slate-950 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;"><?php echo esc_html( $section_label ); ?></h2>
-									</div>
-									<p class="text-sm text-slate-500 dark:text-slate-400"><?php echo esc_html( count( $faqs ) ); ?> questions</p>
-								</div>
+						<!-- Language Toggle -->
+						<div class="mb-6 flex items-center justify-center gap-3">
+							<button class="lang-toggle-btn active rounded-full px-5 py-2 font-bold transition" data-lang="en" style="background-color: #FFB7C5; color: white;">
+								English
+							</button>
+							<span class="text-slate-400">/</span>
+							<button class="lang-toggle-btn rounded-full px-5 py-2 font-bold transition" data-lang="bn" style="color: #A8D8EA;">
+								বাংলা
+							</button>
+						</div>
 
-								<div class="space-y-4" data-faq-group>
-									<?php foreach ( $faqs as $faq_index => $faq ) : ?>
-										<?php
-										$panel_id = sprintf( 'faq-panel-%d-%d', $section_index, $faq_index );
-										$button_id = sprintf( 'faq-button-%d-%d', $section_index, $faq_index );
-										?>
-										<article class="faq-item overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_45px_rgba(15,23,42,0.09)] dark:border-slate-700 dark:bg-slate-900" data-faq-item data-faq-text="<?php echo esc_attr( strtolower( $section_label . ' ' . $faq['question'] . ' ' . $faq['answer'] ) ); ?>">
-											<h3 class="m-0">
-												<button id="<?php echo esc_attr( $button_id ); ?>" type="button" class="faq-trigger flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-pink-50/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FFB7C5]/25 dark:hover:bg-slate-800" aria-expanded="false" aria-controls="<?php echo esc_attr( $panel_id ); ?>" data-faq-trigger>
-													<span class="pr-4 text-lg font-extrabold leading-7 text-slate-950 dark:text-white"><?php echo esc_html( $faq['question'] ); ?></span>
-													<span class="faq-icon grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-700 transition-transform duration-300 dark:bg-slate-800 dark:text-slate-200" aria-hidden="true">
-														<span class="faq-icon-plus relative block h-4 w-4">
-															<span class="absolute left-1/2 top-1/2 h-0.5 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition-transform duration-300"></span>
-															<span class="absolute left-1/2 top-1/2 h-4 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition-transform duration-300"></span>
+						<div class="mt-8 space-y-8">
+							<?php $section_index = 0; ?>
+							<?php foreach ( $faq_sections_en as $section_label => $faqs ) : ?>
+								<!-- Get corresponding Bangla section -->
+								<?php 
+									$faqs_bn = isset( $faq_sections_bn[ $section_label ] ) ? $faq_sections_bn[ $section_label ] : array();
+								?>
+								<section class="faq-category" data-faq-category data-category-label="<?php echo esc_attr( strtolower( $section_label ) ); ?>">
+									<div class="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+										<div>
+											<p class="text-xs font-bold uppercase tracking-[0.3em] text-[#FF93AB] dark:text-[#FFB7C5]">Section</p>
+											<h2 class="mt-2 text-2xl font-black text-slate-950 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;"><?php echo esc_html( $section_label ); ?></h2>
+										</div>
+										<p class="text-sm text-slate-500 dark:text-slate-400"><?php echo esc_html( count( $faqs ) ); ?> questions</p>
+									</div>
+
+									<div class="space-y-4" data-faq-group>
+										<?php foreach ( $faqs as $faq_index => $faq ) : ?>
+											<?php
+												$faq_bn = isset( $faqs_bn[ $faq_index ] ) ? $faqs_bn[ $faq_index ] : $faq;
+												$panel_id = sprintf( 'faq-panel-%d-%d', $section_index, $faq_index );
+												$button_id = sprintf( 'faq-button-%d-%d', $section_index, $faq_index );
+											?>
+											<article class="faq-item overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-[0_10px_30px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_45px_rgba(15,23,42,0.09)] dark:border-slate-700 dark:bg-slate-900" data-faq-item data-faq-text="<?php echo esc_attr( strtolower( $section_label . ' ' . $faq['question'] . ' ' . $faq['answer'] ) ); ?>">
+												<h3 class="m-0">
+													<button id="<?php echo esc_attr( $button_id ); ?>" type="button" class="faq-trigger flex w-full items-center justify-between gap-4 px-5 py-5 text-left transition-colors hover:bg-pink-50/70 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FFB7C5]/25 dark:hover:bg-slate-800" aria-expanded="false" aria-controls="<?php echo esc_attr( $panel_id ); ?>" data-faq-trigger>
+														<span class="faq-question pr-4 text-lg font-extrabold leading-7 text-slate-950 dark:text-white" data-question-en="<?php echo esc_attr( $faq['question'] ); ?>" data-question-bn="<?php echo esc_attr( $faq_bn['question'] ); ?>"><?php echo esc_html( $faq['question'] ); ?></span>
+														<span class="faq-icon grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-100 text-slate-700 transition-transform duration-300 dark:bg-slate-800 dark:text-slate-200" aria-hidden="true">
+															<span class="faq-icon-plus relative block h-4 w-4">
+																<span class="absolute left-1/2 top-1/2 h-0.5 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition-transform duration-300"></span>
+																<span class="absolute left-1/2 top-1/2 h-4 w-0.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-current transition-transform duration-300"></span>
+															</span>
 														</span>
-													</span>
-												</button>
-											</h3>
-											<div id="<?php echo esc_attr( $panel_id ); ?>" class="faq-panel max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity] duration-300 ease-out" role="region" aria-labelledby="<?php echo esc_attr( $button_id ); ?>" aria-hidden="true" data-faq-panel>
-												<div class="px-5 pb-5 pt-0 text-base leading-8 text-slate-600 dark:text-slate-300">
-													<p><?php echo esc_html( $faq['answer'] ); ?></p>
+													</button>
+												</h3>
+												<div id="<?php echo esc_attr( $panel_id ); ?>" class="faq-panel max-h-0 overflow-hidden opacity-0 transition-[max-height,opacity] duration-300 ease-out" role="region" aria-labelledby="<?php echo esc_attr( $button_id ); ?>" aria-hidden="true" data-faq-panel>
+													<div class="px-5 pb-5 pt-0 text-base leading-8 text-slate-600 dark:text-slate-300">
+														<p class="faq-answer" data-answer-en="<?php echo esc_attr( $faq['answer'] ); ?>" data-answer-bn="<?php echo esc_attr( $faq_bn['answer'] ); ?>"><?php echo esc_html( $faq['answer'] ); ?></p>
+													</div>
 												</div>
-											</div>
-										</article>
-									<?php endforeach; ?>
-								</div>
-							</section>
-							<?php $section_index++; ?>
-						<?php endforeach; ?>
+											</article>
+										<?php endforeach; ?>
+									</div>
+								</section>
+								<?php $section_index++; ?>
+							<?php endforeach; ?>
 					</div>
 
 					<div class="mt-8 hidden rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50 p-6 text-center dark:border-slate-700 dark:bg-slate-800" data-faq-empty>
@@ -122,8 +140,8 @@ $faq_trust_description = get_theme_mod( 'julia_faq_trust_description', 'Clear de
 				<div class="grid gap-6 lg:grid-cols-[1.5fr_1fr] lg:items-center">
 					<div>
 						<p class="text-xs font-bold uppercase tracking-[0.3em] text-[#FF93AB] dark:text-[#FFB7C5]">Trust factors</p>
-							<h2 class="mt-2 text-3xl font-black text-slate-950 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;"><?php echo esc_html( $faq_trust_title ); ?></h2>
-							<p class="mt-3 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300"><?php echo esc_html( $faq_trust_description ); ?></p>
+						<h2 class="mt-2 text-3xl font-black text-slate-950 dark:text-white" style="font-family: 'Bubblegum Sans', cursive;"><?php echo esc_html( $faq_trust_title ); ?></h2>
+						<p class="mt-3 max-w-2xl text-base leading-8 text-slate-600 dark:text-slate-300"><?php echo esc_html( $faq_trust_description ); ?></p>
 					</div>
 					<div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
 						<div class="rounded-3xl bg-pink-50 p-5 ring-1 ring-pink-100 dark:bg-slate-900 dark:ring-slate-700">
@@ -142,6 +160,8 @@ $faq_trust_description = get_theme_mod( 'julia_faq_trust_description', 'Clear de
 				</div>
 			</div>
 		</section>
+
+
 	</article>
 </main>
 
