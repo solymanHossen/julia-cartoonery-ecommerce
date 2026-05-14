@@ -52,6 +52,143 @@ function julias_cartoonery_get_flash_sale_deadline() {
     return $local_deadline->setTimezone( new DateTimeZone( 'UTC' ) )->format( 'c' );
 }
 
+function julias_cartoonery_get_faq_defaults() {
+    return array(
+        'Delivery & Tracking' => array(
+            array(
+                'question_key' => 'julia_faq_delivery_tracking_1_question',
+                'answer_key'   => 'julia_faq_delivery_tracking_1_answer',
+                'question'     => 'How fast do you deliver inside Dhaka?',
+                'answer'       => 'Orders inside Dhaka are usually delivered within 24-48 hours after confirmation, depending on the delivery location and order volume. We keep you updated if there is any unexpected delay.',
+            ),
+            array(
+                'question_key' => 'julia_faq_delivery_tracking_2_question',
+                'answer_key'   => 'julia_faq_delivery_tracking_2_answer',
+                'question'     => 'How long does delivery take outside Dhaka?',
+                'answer'       => 'Outside Dhaka delivery typically takes 3-5 business days. We partner with trusted courier services so your order reaches you safely and on time.',
+            ),
+            array(
+                'question_key' => 'julia_faq_delivery_tracking_3_question',
+                'answer_key'   => 'julia_faq_delivery_tracking_3_answer',
+                'question'     => 'Will I get tracking information for my order?',
+                'answer'       => 'Yes. Once your order is dispatched, we share tracking details by SMS or email so you can follow the parcel status easily.',
+            ),
+            array(
+                'question_key' => 'julia_faq_delivery_tracking_4_question',
+                'answer_key'   => 'julia_faq_delivery_tracking_4_answer',
+                'question'     => 'Can I change my shipping address after placing an order?',
+                'answer'       => 'If the parcel has not been handed to the courier yet, contact us as soon as possible. We will try to update the address before dispatch.',
+            ),
+        ),
+        'Returns & Refunds' => array(
+            array(
+                'question_key' => 'julia_faq_returns_1_question',
+                'answer_key'   => 'julia_faq_returns_1_answer',
+                'question'     => 'What is your return policy?',
+                'answer'       => 'We offer an easy return process for damaged, missing, or incorrect items. Contact us quickly with your order number and clear photos so we can help fast.',
+            ),
+            array(
+                'question_key' => 'julia_faq_returns_2_question',
+                'answer_key'   => 'julia_faq_returns_2_answer',
+                'question'     => 'What if my item arrives damaged?',
+                'answer'       => 'Please refuse delivery if the damage is visible, or message us immediately with photos. We will arrange a replacement or refund based on the issue.',
+            ),
+            array(
+                'question_key' => 'julia_faq_returns_3_question',
+                'answer_key'   => 'julia_faq_returns_3_answer',
+                'question'     => 'How long do refunds take?',
+                'answer'       => 'Refund timing depends on the payment method and the issue type. Once approved, we process it as quickly as possible and keep you informed.',
+            ),
+            array(
+                'question_key' => 'julia_faq_returns_4_question',
+                'answer_key'   => 'julia_faq_returns_4_answer',
+                'question'     => 'Can I exchange a product instead of returning it?',
+                'answer'       => 'Yes, if the item is eligible for exchange and stock is available. Reach out with your order details and we will guide you through the next step.',
+            ),
+        ),
+        'Payments & COD' => array(
+            array(
+                'question_key' => 'julia_faq_payments_1_question',
+                'answer_key'   => 'julia_faq_payments_1_answer',
+                'question'     => 'Do you offer Cash on Delivery?',
+                'answer'       => 'Yes. Cash on Delivery is available across Bangladesh for most orders, making checkout simple and trusted for parents and gift buyers.',
+            ),
+            array(
+                'question_key' => 'julia_faq_payments_2_question',
+                'answer_key'   => 'julia_faq_payments_2_answer',
+                'question'     => 'What payment methods do you accept?',
+                'answer'       => 'We support Cash on Delivery and other payment methods offered during checkout. The available options may vary by location and order type.',
+            ),
+            array(
+                'question_key' => 'julia_faq_payments_3_question',
+                'answer_key'   => 'julia_faq_payments_3_answer',
+                'question'     => 'Is COD available outside Dhaka?',
+                'answer'       => 'Yes, COD is available in many areas outside Dhaka as well. If your address is eligible, the option appears at checkout.',
+            ),
+            array(
+                'question_key' => 'julia_faq_payments_4_question',
+                'answer_key'   => 'julia_faq_payments_4_answer',
+                'question'     => 'Is checkout secure?',
+                'answer'       => 'Absolutely. We only ask for the information needed to process your order and keep the checkout flow clear, quick, and secure.',
+            ),
+        ),
+        'General' => array(
+            array(
+                'question_key' => 'julia_faq_general_1_question',
+                'answer_key'   => 'julia_faq_general_1_answer',
+                'question'     => 'How do I contact support if I need help?',
+                'answer'       => 'Use our contact page or WhatsApp support for quick help. We are happy to answer product questions, delivery concerns, or order updates.',
+            ),
+            array(
+                'question_key' => 'julia_faq_general_2_question',
+                'answer_key'   => 'julia_faq_general_2_answer',
+                'question'     => 'Do you package items safely for gifting?',
+                'answer'       => 'Yes. We pack products carefully so they arrive clean, secure, and ready for gifting. We also try to use neat, eco-friendly packaging where possible.',
+            ),
+            array(
+                'question_key' => 'julia_faq_general_3_question',
+                'answer_key'   => 'julia_faq_general_3_answer',
+                'question'     => 'Do you restock popular items?',
+                'answer'       => 'Popular products are restocked whenever possible. If you love something that is out of stock, check back soon or contact us for an update.',
+            ),
+            array(
+                'question_key' => 'julia_faq_general_4_question',
+                'answer_key'   => 'julia_faq_general_4_answer',
+                'question'     => 'Can I order gifts for birthdays or special occasions?',
+                'answer'       => 'Yes. Julia\'s Cartoonery is built for memorable gifting. You can shop toys and character-inspired goodies for birthdays, celebrations, and surprise deliveries.',
+            ),
+        ),
+    );
+}
+
+function julias_cartoonery_get_faq_sections() {
+    $sections = array();
+
+    foreach ( julias_cartoonery_get_faq_defaults() as $section_label => $items ) {
+        $section_items = array();
+
+        foreach ( $items as $item ) {
+            $question = get_theme_mod( $item['question_key'], $item['question'] );
+            $answer = get_theme_mod( $item['answer_key'], $item['answer'] );
+
+            if ( '' === trim( (string) $question ) && '' === trim( (string) $answer ) ) {
+                continue;
+            }
+
+            $section_items[] = array(
+                'question' => $question,
+                'answer'   => $answer,
+            );
+        }
+
+        if ( ! empty( $section_items ) ) {
+            $sections[ $section_label ] = $section_items;
+        }
+    }
+
+    return $sections;
+}
+
 function julias_cartoonery_nav_classes( $atts, $item, $args ) {
     if ( $args->theme_location == 'primary' ) {
         $classes = 'hover:text-[#FFB7C5] dark:hover:text-pink-400 transition-colors relative pb-1';
@@ -75,6 +212,11 @@ add_filter( 'nav_menu_link_attributes', 'julias_cartoonery_nav_classes', 10, 3 )
  */
 function julias_cartoonery_auto_create_pages() {
     $pages = [
+        [
+            'title' => 'FAQ',
+            'slug' => 'faq',
+            'template' => 'page-faq.php'
+        ],
         [
             'title' => 'Playground Games',
             'slug' => 'games',
@@ -108,23 +250,31 @@ function julias_cartoonery_auto_create_pages() {
     ];
 
     foreach ($pages as $page) {
-        if ( ! get_page_by_path( $page['slug'] ) ) {
+        $page_post = get_page_by_path( $page['slug'] );
+
+        if ( ! $page_post ) {
             $page_post = wp_insert_post( array(
                 'post_title'     => $page['title'],
                 'post_name'      => $page['slug'],
                 'post_status'    => 'publish',
                 'post_type'      => 'page',
-                'page_template'  => $page['template']
             ) );
         } else {
             // Ensure it's always published
-            $page_post = get_page_by_path( $page['slug'] );
             if ( $page_post && get_post_status( $page_post->ID ) !== 'publish' ) {
                 wp_update_post( array(
                     'ID'          => $page_post->ID,
                     'post_status' => 'publish'
                 ) );
             }
+
+            if ( $page_post && ! is_wp_error( $page_post ) ) {
+                update_post_meta( $page_post->ID, '_wp_page_template', $page['template'] );
+            }
+        }
+
+        if ( is_numeric( $page_post ) && ! is_wp_error( $page_post ) ) {
+            update_post_meta( (int) $page_post, '_wp_page_template', $page['template'] );
         }
     }
 }
@@ -529,6 +679,134 @@ function julias_cartoonery_customizer_settings( $wp_customize ) {
         'section' => 'julia_contact_page',
         'type'    => 'textarea',
     ) );
+
+    // ===== FAQ Page Settings =====
+    $wp_customize->add_section(
+        'julia_faq_page',
+        array(
+            'title'       => __( 'FAQ Page', 'julias-cartoonery' ),
+            'description' => __( 'Manage FAQ content directly from the dashboard', 'julias-cartoonery' ),
+            'panel'       => 'julia_home_page',
+            'priority'    => 70,
+        )
+    );
+
+    $wp_customize->add_setting( 'julia_faq_eyebrow', array(
+        'default'           => __( 'Cash on Delivery, fast shipping, and easy returns', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_eyebrow', array(
+        'label'   => __( 'Hero Eyebrow', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_title', array(
+        'default'           => __( 'Frequently Asked Questions', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_title', array(
+        'label'   => __( 'Hero Title', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_description', array(
+        'default'           => __( 'Find quick answers about delivery, payments, COD, and returns. Everything here is designed to reduce hesitation and help shoppers complete checkout with confidence.', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_description', array(
+        'label'   => __( 'Hero Description', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'textarea',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_inside_dhaka', array(
+        'default'           => __( '24-48 hours', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_inside_dhaka', array(
+        'label'   => __( 'Inside Dhaka Stat', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_outside_dhaka', array(
+        'default'           => __( '3-5 business days', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_outside_dhaka', array(
+        'label'   => __( 'Outside Dhaka Stat', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_payment', array(
+        'default'           => __( 'COD available', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_payment', array(
+        'label'   => __( 'Payment Stat', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_trust_title', array(
+        'default'           => __( 'Why shoppers feel safe ordering here', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_text_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_trust_title', array(
+        'label'   => __( 'Trust Section Title', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'text',
+    ) );
+
+    $wp_customize->add_setting( 'julia_faq_trust_description', array(
+        'default'           => __( 'Clear delivery windows, simple returns, and COD support help reduce friction for Bangladeshi shoppers who want confidence before they click buy.', 'julias-cartoonery' ),
+        'sanitize_callback' => 'sanitize_textarea_field',
+        'transport'         => 'refresh',
+    ) );
+    $wp_customize->add_control( 'julia_faq_trust_description', array(
+        'label'   => __( 'Trust Section Description', 'julias-cartoonery' ),
+        'section' => 'julia_faq_page',
+        'type'    => 'textarea',
+    ) );
+
+    foreach ( julias_cartoonery_get_faq_defaults() as $section_label => $items ) {
+        foreach ( $items as $index => $item ) {
+            $question_label = sprintf( '%s - Question %d', $section_label, $index + 1 );
+            $answer_label = sprintf( '%s - Answer %d', $section_label, $index + 1 );
+
+            $wp_customize->add_setting( $item['question_key'], array(
+                'default'           => $item['question'],
+                'sanitize_callback' => 'sanitize_text_field',
+                'transport'         => 'refresh',
+            ) );
+            $wp_customize->add_control( $item['question_key'], array(
+                'label'   => $question_label,
+                'section' => 'julia_faq_page',
+                'type'    => 'text',
+            ) );
+
+            $wp_customize->add_setting( $item['answer_key'], array(
+                'default'           => $item['answer'],
+                'sanitize_callback' => 'sanitize_textarea_field',
+                'transport'         => 'refresh',
+            ) );
+            $wp_customize->add_control( $item['answer_key'], array(
+                'label'   => $answer_label,
+                'section' => 'julia_faq_page',
+                'type'    => 'textarea',
+            ) );
+        }
+    }
 }
 add_action( 'customize_register', 'julias_cartoonery_customizer_settings' );
 
