@@ -17,7 +17,7 @@ $whatsapp_link = $whatsapp_number ? 'https://wa.me/' . $whatsapp_number . '?text
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<section class="relative overflow-hidden bg-gradient-to-b from-pink-50 via-white to-violet-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900">
 			<div class="absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_top_left,_rgba(255,147,171,0.34),_transparent_52%),radial-gradient(circle_at_top_right,_rgba(196,181,253,0.26),_transparent_46%)] pointer-events-none"></div>
-			<div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
+			<div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20">
 				<div class="grid gap-10 lg:grid-cols-2 lg:items-center">
 					<div>
 						<div class="inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm backdrop-blur dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-200">
