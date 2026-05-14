@@ -79,20 +79,20 @@ final class Julias_Asset_Loader {
             if ( ! empty( $asset['css'] ) ) {
                 foreach ( $asset['css'] as $index => $css_rel_path ) {
                     wp_enqueue_style(
-                        'julias-cartoonery-app-' . $index,
+                        $index === 0 ? 'main-style' : 'main-style-' . $index,
                         get_theme_file_uri( 'assets/' . $css_rel_path ),
                         [],
-                        null // Version null because hash is in filename
+                        null
                     );
                 }
             }
 
             // 2. Enqueue Hashed JS
             wp_enqueue_script(
-                'julias-cartoonery-app',
+                'app-js',
                 get_theme_file_uri( 'assets/' . $asset['file'] ),
                 [ 'jquery' ],
-                null, // Version null because hash is in filename
+                null,
                 true
             );
         } else {
@@ -103,11 +103,11 @@ final class Julias_Asset_Loader {
             $version = wp_get_theme()->get( 'Version' );
             
             if ( file_exists( get_theme_file_path( 'assets/css/app.css' ) ) ) {
-                wp_enqueue_style( 'julias-cartoonery-fallback', get_theme_file_uri( 'assets/css/app.css' ), [], $version );
+                wp_enqueue_style( 'main-style', get_theme_file_uri( 'assets/css/app.css' ), [], $version );
             }
             
             if ( file_exists( get_theme_file_path( 'assets/js/app.js' ) ) ) {
-                wp_enqueue_script( 'julias-cartoonery-fallback', get_theme_file_uri( 'assets/js/app.js' ), [ 'jquery' ], $version, true );
+                wp_enqueue_script( 'app-js', get_theme_file_uri( 'assets/js/app.js' ), [ 'jquery' ], $version, true );
             }
         }
     }
