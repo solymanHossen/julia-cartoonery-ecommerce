@@ -32,27 +32,27 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
         <div class="embla__container flex">
             
             <?php foreach ($hero_slides as $index => $slide) : ?>
-            <article class="embla__slide relative flex-[0_0_100%] min-w-0 min-h-[580px] lg:min-h-[85vh] flex items-center" role="group" aria-roledescription="slide" aria-label="Slide <?php echo esc_attr($index + 1); ?> of <?php echo esc_attr(count($hero_slides)); ?>" <?php echo $index === 0 ? '' : 'aria-hidden="true"'; ?>>
+            <article class="embla__slide relative flex-[0_0_100%] min-w-0 min-h-[520px] sm:min-h-[580px] lg:min-h-[85vh] flex items-center" role="group" aria-roledescription="slide" aria-label="Slide <?php echo esc_attr($index + 1); ?> of <?php echo esc_attr(count($hero_slides)); ?>" <?php echo $index === 0 ? '' : 'aria-hidden="true"'; ?>>
                 
                 <div class="absolute inset-0 bg-gradient-to-b <?php echo esc_attr($slide['bgClass']); ?> to-transparent"></div>
 
-                <div class="container mx-auto px-4 lg:px-8 relative z-10 pt-10 pb-12 lg:py-0">
-                    <div class="flex flex-col-reverse lg:flex-row items-center gap-6 lg:gap-20">
+                <div class="container mx-auto px-4 lg:px-8 relative z-10 pt-8 pb-10 sm:pt-10 sm:pb-12 lg:py-0">
+                    <div class="flex flex-col-reverse lg:flex-row items-center gap-4 sm:gap-6 lg:gap-20">
                         
                         <!-- Left: Text Content -->
                         <div class="flex-1 text-center lg:text-left relative flex flex-col justify-center">
                             <div class="mb-4 lg:mb-6">
                                 <span class="inline-flex items-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-4 sm:px-6 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md text-gray-800 dark:text-gray-200 font-bold text-xs sm:text-sm shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 dark:border-slate-700">
-                                    <svg width="16" height="16" fill="currentColor" class="text-yellow-400" viewBox="0 0 24 24"><path d="M12 2L15 9l7 1-5 5.5L15.5 22 12 18l-3.5 4L10 15.5 5 10l7-1z"/></svg> 
+                                    <svg width="14" height="14" class="sm:w-4 sm:h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15 9l7 1-5 5.5L15.5 22 12 18l-3.5 4L10 15.5 5 10l7-1z"/></svg>
                                     <?php echo esc_html($slide['badge']); ?>
                                 </span>
                             </div>
                             
-                            <h2 class="font-['Bubblegum_Sans'] text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] text-gray-800 dark:text-gray-100 mb-4 lg:mb-6 drop-shadow-sm">
+                            <h2 class="font-['Bubblegum_Sans'] text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] text-gray-800 dark:text-gray-100 mb-3 sm:mb-4 lg:mb-6 drop-shadow-sm">
                                 <?php echo esc_html($slide['title']); ?>
                             </h2>
                             
-                            <p class="text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-lg mx-auto lg:mx-0 leading-relaxed mb-8 lg:mb-10">
+                            <p class="text-sm sm:text-base md:text-xl text-gray-600 dark:text-gray-300 max-w-md sm:max-w-lg mx-auto lg:mx-0 leading-relaxed mb-6 sm:mb-8 lg:mb-10 px-1 sm:px-0">
                                 <?php echo esc_html($slide['desc']); ?>
                             </p>
                             
@@ -78,14 +78,14 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                             $aspect_attr = 'style="aspect-ratio: ' . esc_attr((int) $slide['image']['width']) . '/' . esc_attr((int) $slide['image']['height']) . ';"';
                         }
                         ?>
-                        <div class="flex-1 relative w-full max-w-[500px] lg:max-w-[600px] mx-auto lg:mr-0 h-[320px] sm:h-[400px] lg:h-[600px]" <?php echo $aspect_attr; ?>>
+                        <div class="flex-1 relative w-full max-w-[360px] sm:max-w-[500px] lg:max-w-[600px] mx-auto lg:mr-0 h-[250px] sm:h-[400px] lg:h-[600px]" <?php echo $aspect_attr; ?>>
                             <div class="relative w-full h-full flex items-center justify-center">
                                 <!-- Animated Blobs -->
-                                <div class="absolute top-[10%] right-[10%] w-40 h-40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-pulse shadow-2xl <?php echo esc_attr($slide['blob1']); ?>" style="animation-duration: 4s;"></div>
-                                <div class="absolute bottom-[10%] left-[10%] w-48 h-48 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-pulse shadow-2xl <?php echo esc_attr($slide['blob2']); ?>" style="animation-duration: 5s; animation-delay: 1s;"></div>
+                                <div class="absolute top-[10%] right-[10%] w-28 h-28 sm:w-40 sm:h-40 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-pulse shadow-2xl <?php echo esc_attr($slide['blob1']); ?>" style="animation-duration: 4s;"></div>
+                                <div class="absolute bottom-[10%] left-[10%] w-32 h-32 sm:w-48 sm:h-48 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl animate-pulse shadow-2xl <?php echo esc_attr($slide['blob2']); ?>" style="animation-duration: 5s; animation-delay: 1s;"></div>
                                 
                                 <!-- Image Card -->
-                                <div class="absolute inset-2 sm:inset-4 lg:inset-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-[2rem] sm:rounded-[3rem] p-3 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-3 transform hover:rotate-0 hover:scale-[1.02] transition-all duration-500 border border-white/50 dark:border-slate-700/50 overflow-hidden">
+                                <div class="absolute inset-1.5 sm:inset-4 lg:inset-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm rounded-[1.5rem] sm:rounded-[3rem] p-2.5 sm:p-4 shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] rotate-2 sm:rotate-3 transform hover:rotate-0 hover:scale-[1.02] transition-all duration-500 border border-white/50 dark:border-slate-700/50 overflow-hidden">
                                     <?php if (!empty($slide['image']['id'])) : ?>
                                         <?php
                                         echo wp_get_attachment_image(
@@ -110,8 +110,8 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                             $sale_code = $sale['code'] ?: '';
                                             $sale_link = $sale['link'] ?: '';
                                             ?>
-                                            <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-30 pointer-events-auto animate-[float_6s_ease-in-out_infinite] origin-bottom-right">
-                                                <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-2xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 dark:border-slate-700/50 w-[240px] flex flex-col gap-3">
+                                            <div class="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 z-30 pointer-events-auto animate-[float_6s_ease-in-out_infinite] origin-bottom-right">
+                                                <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl rounded-xl sm:rounded-2xl p-3 sm:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/50 dark:border-slate-700/50 w-[190px] sm:w-[240px] flex flex-col gap-2 sm:gap-3">
                                                     <!-- Header -->
                                                     <div class="flex items-center justify-between">
                                                         <div class="flex items-center gap-2">
@@ -130,7 +130,7 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
 
                                                     <!-- Body -->
                                                     <div>
-                                                        <div class="text-2xl font-black text-slate-900 dark:text-white leading-none tracking-tight mb-1">
+                                                        <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-none tracking-tight mb-1">
                                                             <?php echo esc_html($sale_discount); ?>
                                                         </div>
                                                         <p class="text-[10px] text-slate-500 dark:text-slate-400 leading-snug">Limited time offer. Apply code at checkout.</p>
@@ -140,7 +140,7 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                                     <?php if ($sale_code) : ?>
                                                         <div class="flex items-center justify-between bg-slate-50 dark:bg-slate-800 rounded-lg p-1.5 border border-slate-100 dark:border-slate-700 mt-1">
                                                             <span class="font-mono text-xs font-bold text-slate-800 dark:text-slate-200 px-2"><?php echo esc_html($sale_code); ?></span>
-                                                            <button type="button" class="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-md px-3 py-1.5 text-[10px] font-bold text-slate-700 dark:text-slate-200 hover:bg-[#FFB7C5] hover:text-white hover:border-[#FFB7C5] transition-all shadow-sm flex items-center gap-1" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); const originalText = e.currentTarget.innerHTML; e.currentTarget.innerHTML = '<svg class=\'w-3 h-3 inline\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M5 13l4 4L19 7\'></path></svg> Copied'; e.currentTarget.classList.add('bg-green-500', 'text-white', 'border-green-500'); setTimeout(()=>{e.currentTarget.innerHTML=originalText; e.currentTarget.classList.remove('bg-green-500', 'text-white', 'border-green-500');}, 1500)})(event)">
+                                                            <button type="button" class="bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-md px-2.5 sm:px-3 py-1.5 text-[10px] font-bold text-slate-700 dark:text-slate-200 hover:bg-[#FFB7C5] hover:text-white hover:border-[#FFB7C5] transition-all shadow-sm flex items-center gap-1" onclick="(function(e){navigator.clipboard && navigator.clipboard.writeText('<?php echo esc_js($sale_code); ?>'); const originalText = e.currentTarget.innerHTML; e.currentTarget.innerHTML = '<svg class=\'w-3 h-3 inline\' fill=\'none\' stroke=\'currentColor\' viewBox=\'0 0 24 24\'><path stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\' d=\'M5 13l4 4L19 7\'></path></svg> Copied'; e.currentTarget.classList.add('bg-green-500', 'text-white', 'border-green-500'); setTimeout(()=>{e.currentTarget.innerHTML=originalText; e.currentTarget.classList.remove('bg-green-500', 'text-white', 'border-green-500');}, 1500)})(event)">
                                                                 Copy
                                                             </button>
                                                         </div>
@@ -165,7 +165,7 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
         </div>
 
         <!-- Carousel Controls: Arrows & Dots -->
-        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 rounded-full border border-white/75 bg-white/85 px-2.5 py-1.5 shadow-[0_8px_24px_rgba(15,23,42,0.1)] backdrop-blur-xl dark:border-slate-700/60 dark:bg-slate-900/72 sm:bottom-6 sm:px-3 sm:py-2" aria-label="Carousel controls">
+        <div class="absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 rounded-full border border-white/75 bg-white/90 px-2 py-1.5 sm:px-3 sm:py-2 shadow-[0_8px_24px_rgba(15,23,42,0.1)] backdrop-blur-xl dark:border-slate-700/60 dark:bg-slate-900/72" aria-label="Carousel controls">
             <!-- Previous Button -->
             <button 
                 type="button"
