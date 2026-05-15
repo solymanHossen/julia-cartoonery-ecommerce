@@ -269,6 +269,12 @@ var e=Object.create,t=Object.defineProperty,n=Object.getOwnPropertyDescriptor,r=
             .premium-toast-enter {
                 animation: toast-slide-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             }
+            @media (max-width: 640px) {
+              .premium-glass-toast-wrapper {
+                width: 80vw !important;
+                max-width: 80vw !important;
+              }
+            }
             @keyframes toast-slide-in {
                 0% { opacity: 0; transform: translateY(30px) scale(0.9); }
                 100% { opacity: 1; transform: translateY(0) scale(1); }
