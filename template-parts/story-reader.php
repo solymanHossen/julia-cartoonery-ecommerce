@@ -86,13 +86,13 @@ $has_cover    = isset( $args['has_cover'] ) ? (bool) $args['has_cover'] : false;
                             aria-label="Go to the previous page of this story"
                             class="group inline-flex min-h-12 items-center justify-center rounded-full bg-[#A8D8EA] px-5 sm:px-8 py-3 text-sm sm:text-base font-bold text-white shadow-[0_14px_34px_rgba(168,216,234,0.35)] hover:bg-[#8BCCE6] dark:bg-sky-500 dark:hover:bg-sky-400 active:scale-[0.98]">
                             <span class="mr-2 transition-transform duration-300 group-hover:-translate-x-1">&larr;</span>
-                            Previous Page
+                            <span class="hidden sm:inline">Previous Page</span>
                         </a>
                     <?php else : ?>
                         <button type="button" disabled aria-disabled="true" aria-label="You are already on the first page"
                             class="inline-flex min-h-12 items-center justify-center rounded-full bg-slate-100 px-5 sm:px-8 py-3 text-sm sm:text-base font-bold text-slate-400 dark:bg-slate-800 dark:text-slate-500 cursor-not-allowed opacity-70">
                             <span class="mr-2">&larr;</span>
-                            Previous Page
+                            <span class="hidden sm:inline">Previous Page</span>
                         </button>
                     <?php endif; ?>
 
@@ -107,11 +107,11 @@ $has_cover    = isset( $args['has_cover'] ) ? (bool) $args['has_cover'] : false;
                             data-story-nav="next"
                             aria-label="Go to the next page of this story"
                             class="group inline-flex min-h-12 items-center justify-center rounded-full bg-[#FF9CB0] px-5 sm:px-8 py-3 text-sm sm:text-base font-bold text-white shadow-[0_14px_34px_rgba(255,156,176,0.35)] hover:bg-[#FF86A0] dark:bg-pink-500 dark:hover:bg-pink-400 active:scale-[0.98]">
-                            Next Page
+                            <span class="hidden sm:inline">Next Page</span>
                             <span class="ml-2 transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
                         </a>
                     <?php else : ?>
-                        <a href="<?php echo esc_url( get_post_type_archive_link( 'stories' ) ); ?>"
+                            <a href="<?php echo esc_url( get_post_type_archive_link( 'stories' ) ); ?>"
                             aria-label="Finish the story and return to the story library"
                             data-story-exit="true"
                             class="group inline-flex min-h-12 items-center justify-center rounded-full bg-[#FF9CB0] px-5 sm:px-8 py-3 text-sm sm:text-base font-bold text-white shadow-[0_14px_34px_rgba(255,156,176,0.35)] hover:bg-[#FF86A0] dark:bg-pink-500 dark:hover:bg-pink-400 active:scale-[0.98]">
