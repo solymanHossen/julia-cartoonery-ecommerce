@@ -2,16 +2,21 @@
 
 /* Carousel Container */
 .embla {
-  @apply overflow-hidden w-full;
+  @apply overflow-hidden w-full select-none;
+  touch-action: pan-y pinch-zoom;
+  overscroll-behavior-x: contain;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .embla__container {
   @apply flex touch-pan-y;
+  touch-action: pan-y pinch-zoom;
   backface-visibility: hidden;
 }
 
 .embla__slide {
-  @apply flex-[0_0_100%] min-w-0;
+  @apply flex-[0_0_100%] min-w-0 select-none;
+  touch-action: pan-y pinch-zoom;
   backface-visibility: hidden;
 }
 

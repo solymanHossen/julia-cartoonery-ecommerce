@@ -10,9 +10,10 @@ export function initCarousel() {
   const emblaNode = document.querySelector('.embla');
   if (!emblaNode) return; // Exit if no carousel on page
 
-  const options = { loop: true, speed: 8 };
+  const options = { loop: true, speed: 8, dragThreshold: 5, watchDrag: true };
   const emblaApi = EmblaCarousel(emblaNode, options);
   const slideNodes = emblaApi.slideNodes();
+  const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
   const AUTOPLAY_DELAY = 5000;
   let autoplayTimer = null;
 
@@ -214,20 +215,22 @@ export function initCarousel() {
   }
 
   // Handle clicking on slides directly
-  slideNodes.forEach((slideNode, index) => {
-    slideNode.addEventListener('click', (e) => {
-      // Don't interfere if they clicked the 'Details' or 'Add to Cart' buttons
-      if (e.target.closest('a')) return;
-      
-      emblaApi.scrollTo(index);
-      resetAutoplay();
-      
-      // If mobile layout, maybe we want to scroll to the video stage?
-      if (window.innerWidth < 1024 && videoStage && slideNode.getAttribute('data-video-url')) {
-        videoStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
+  if (!isTouchDevice) {
+    slideNodes.forEach((slideNode, index) => {
+      slideNode.addEventListener('click', (e) => {
+        // Don't interfere if they clicked the 'Details' or 'Add to Cart' buttons
+        if (e.target.closest('a')) return;
+
+        emblaApi.scrollTo(index);
+        resetAutoplay();
+
+        // If mobile layout, maybe we want to scroll to the video stage?
+        if (window.innerWidth < 1024 && videoStage && slideNode.getAttribute('data-video-url')) {
+          videoStage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
     });
-  });
+  }
 
   emblaApi.on('select', updateDots);
   emblaApi.on('init', updateDots);
