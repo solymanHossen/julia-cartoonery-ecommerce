@@ -52,9 +52,27 @@
     @apply border-0 bg-transparent p-0 m-0 shadow-none outline-none;
   }
 
+  .custom-price-color {
+    @apply min-w-0 max-w-full;
+    font-size: 0.72rem;
+  }
+
+  @media (min-width: 640px) {
+    .custom-price-color {
+      font-size: 1rem;
+    }
+  }
+
   .custom-price-color del,
   .minimal-price-stack del {
-    @apply inline-block relative text-slate-400 text-[0.9rem] font-semibold border-0 bg-transparent p-0 m-0 shadow-none;
+    @apply inline-block relative text-slate-400 text-[0.68rem] font-semibold border-0 bg-transparent p-0 m-0 shadow-none;
+  }
+
+  @media (min-width: 640px) {
+    .custom-price-color del,
+    .minimal-price-stack del {
+      font-size: 0.9rem;
+    }
   }
 
   .custom-price-color del::after,

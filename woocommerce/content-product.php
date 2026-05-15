@@ -83,9 +83,9 @@ $categories = wc_get_product_category_list( $product->get_id(), ', ' );
             </a>
 
             <!-- Rating & Price & Button Row -->
-            <div class="mt-auto flex items-center justify-between gap-2">
+            <div class="mt-auto flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
                 <!-- Rating -->
-                <div class="flex items-center gap-1.5">
+                <div class="flex items-center gap-1.5 shrink-0">
                     <svg class="h-3.5 w-3.5 text-yellow-400 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                         <path d="m12 2 3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2Z" />
                     </svg>
@@ -95,8 +95,10 @@ $categories = wc_get_product_category_list( $product->get_id(), ', ' );
                 </div>
 
                 <!-- Price -->
-                <div class="custom-price-color text-base font-black text-[#FFB7C5] leading-none tracking-tight">
-                    <?php echo wp_kses_post( $product->get_price_html() ); ?>
+                <div class="custom-price-color min-w-0 max-w-full text-[0.72rem] font-black text-[#FFB7C5] leading-tight tracking-tight sm:text-base">
+                    <span class="block max-w-full overflow-hidden truncate">
+                        <?php echo wp_kses_post( $product->get_price_html() ); ?>
+                    </span>
                 </div>
 
                 <!-- WooCommerce Cart Button -->
