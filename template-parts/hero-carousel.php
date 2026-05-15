@@ -42,7 +42,7 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                         <!-- Left: Text Content -->
                         <div class="flex-1 text-center lg:text-left relative flex flex-col justify-center">
                             <div class="mb-4 lg:mb-6">
-                                <span class="inline-flex items-center gap-2 py-2 px-6 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md text-gray-800 dark:text-gray-200 font-bold text-sm shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 dark:border-slate-700">
+                                <span class="inline-flex items-center gap-1.5 sm:gap-2 py-1.5 sm:py-2 px-4 sm:px-6 rounded-full bg-white/90 dark:bg-slate-800/90 backdrop-blur-md text-gray-800 dark:text-gray-200 font-bold text-xs sm:text-sm shadow-[0_8px_30px_rgb(0,0,0,0.08)] border border-white/50 dark:border-slate-700">
                                     <svg width="16" height="16" fill="currentColor" class="text-yellow-400" viewBox="0 0 24 24"><path d="M12 2L15 9l7 1-5 5.5L15.5 22 12 18l-3.5 4L10 15.5 5 10l7-1z"/></svg> 
                                     <?php echo esc_html($slide['badge']); ?>
                                 </span>
@@ -56,14 +56,14 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
                                 <?php echo esc_html($slide['desc']); ?>
                             </p>
                             
-                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 w-full sm:w-auto">
-                                <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="w-full sm:w-auto text-lg py-4 px-10 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full shadow-xl shadow-pink-500/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center font-bold uppercase tracking-wide">
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
+                                <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>" class="w-full sm:w-auto text-sm sm:text-base lg:text-lg py-2.5 sm:py-3.5 lg:py-4 px-6 sm:px-8 lg:px-10 bg-gradient-to-r from-[#FFB7C5] to-[#ff9eaa] text-white rounded-full shadow-xl shadow-pink-500/20 hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center font-bold uppercase tracking-wide">
                                     Shop Now
                                 </a>
                                 <?php if (!empty($slide['video'])) : ?>
-                                    <button type="button" onclick="openVideoModal('<?php echo esc_url($slide['video']); ?>')" class="w-full sm:w-auto text-lg py-3 px-8 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border-2 border-gray-300 dark:border-slate-700 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-3 font-bold group shadow-sm hover:shadow-md">
-                                        <div class="flex items-center justify-center w-8 h-8 rounded-full bg-[#FFB7C5] text-white group-hover:scale-110 group-hover:bg-[#FF93AB] transition-all">
-                                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> 
+                                    <button type="button" onclick="openVideoModal('<?php echo esc_url($slide['video']); ?>')" class="w-full sm:w-auto text-sm sm:text-base lg:text-lg py-2.5 sm:py-3 px-6 sm:px-8 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm border-2 border-gray-300 dark:border-slate-700 rounded-full hover:bg-white dark:hover:bg-slate-800 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 font-bold group shadow-sm hover:shadow-md">
+                                        <div class="flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#FFB7C5] text-white group-hover:scale-110 group-hover:bg-[#FF93AB] transition-all">
+                                            <svg width="13" height="13" class="sm:w-[14px] sm:h-[14px]" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                                         </div>
                                         Watch Video
                                     </button>
@@ -169,11 +169,11 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
             <!-- Previous Button -->
             <button 
                 type="button"
-                class="embla__prev flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white" 
+                class="embla__prev flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white" 
                 aria-label="Previous slide"
                 aria-controls="hero-carousel"
             >
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg width="14" height="14" class="sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M15 18l-6-6 6-6"/>
                 </svg>
             </button>
@@ -184,11 +184,11 @@ if (!empty($first_slide) && !empty($first_slide['image']['url'])) {
             <!-- Next Button -->
             <button 
                 type="button"
-                class="embla__next flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white" 
+                class="embla__next flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all duration-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFB7C5]/60 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white" 
                 aria-label="Next slide"
                 aria-controls="hero-carousel"
             >
-                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg width="14" height="14" class="sm:w-4 sm:h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M9 18l6-6-6-6"/>
                 </svg>
             </button>
