@@ -4,6 +4,7 @@ import { StoryPageLoader } from './pageLoader.js';
 import { StoryTransitionController } from './transitionController.js';
 
 const STORY_READER_SELECTOR = '[data-story-reader]';
+const FLIP_DURATION = 760;
 
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -187,28 +188,21 @@ export class StoryReaderApp {
     currentReader.style.minHeight = `${currentHeight}px`;
 
     const pagePromise = exit ? Promise.resolve(null) : this.loader.load(url, { signal });
-    const transitionPromise = this.transition.play(currentReader, direction);
+    const transition = this.transition.play(currentReader, direction);
 
-    let pageData = null;
-
-    try {
-      [pageData] = await Promise.all([pagePromise, transitionPromise]);
-    } catch (error) {
-      currentReader.style.minHeight = '';
-      this.transition.end(currentReader);
-      if (signal.aborted) {
-        return;
+    const commitPage = async () => {
+      if (exit) {
+        return null;
       }
 
-      window.location.href = url;
-      return;
-    }
+      await new Promise((resolve) => window.setTimeout(resolve, FLIP_DURATION * 0.42));
 
-    if (navToken !== this.activeNavToken) {
-      return;
-    }
+      const pageData = await pagePromise;
 
-    if (!exit && pageData) {
+      if (navToken !== this.activeNavToken || signal.aborted || !pageData) {
+        return null;
+      }
+
       this.applyPage(currentReader, pageData);
       document.title = pageData.title;
 
@@ -222,7 +216,34 @@ export class StoryReaderApp {
 
       this.cacheNeighborPages(currentReader);
       this.announce(pageData.liveRegionText);
-    } else {
+
+      return pageData;
+    };
+
+    const commitPromise = commitPage();
+
+    try {
+      const [pageData] = await Promise.all([commitPromise, transition.finished]);
+
+      if (navToken !== this.activeNavToken || signal.aborted) {
+        return;
+      }
+
+      if (!pageData && !exit) {
+        throw new Error('Page data was not available for the story turn.');
+      }
+    } catch (error) {
+      currentReader.style.minHeight = '';
+      this.transition.end(currentReader);
+      if (signal.aborted) {
+        return;
+      }
+
+      window.location.href = url;
+      return;
+    }
+
+    if (exit) {
       window.location.href = url;
       return;
     }

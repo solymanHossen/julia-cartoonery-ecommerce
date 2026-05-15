@@ -75,18 +75,25 @@ export class StoryTransitionController {
     this.isTransitioning = false;
   }
 
-  async play(reader, direction) {
+  play(reader, direction) {
     if (prefersReducedMotion()) {
-      return;
+      return {
+        overlay: null,
+        finished: Promise.resolve()
+      };
     }
 
+    const shell = reader.querySelector('.story-book-shell');
     const stage = reader.querySelector('[data-story-stage]');
-    if (!stage) {
-      return;
+    if (!shell || !stage) {
+      return {
+        overlay: null,
+        finished: Promise.resolve()
+      };
     }
 
     const overlay = buildFlipOverlay(direction);
-    stage.appendChild(overlay);
+    shell.appendChild(overlay);
     reader.classList.add('is-transitioning', `is-transitioning-${direction}`);
 
     requestAnimationFrame(() => {
@@ -153,7 +160,10 @@ export class StoryTransitionController {
       }
     );
 
-    await waitForAnimation(frameAnimation);
+    return {
+      overlay,
+      finished: waitForAnimation(frameAnimation)
+    };
   }
 
   end(reader) {
