@@ -142,11 +142,24 @@
   }
 
   .flash-sale-card__price-wrap {
-    @apply mt-2.5 flex items-end gap-2.5 sm:mt-3 sm:gap-3;
+    @apply mt-2.5 flex flex-wrap items-end gap-x-2 gap-y-1 sm:mt-3 sm:gap-3;
+    min-width: 0;
   }
 
   .flash-sale-card__sale-price {
     @apply text-xl font-black leading-none text-rose-500 sm:text-2xl;
+    min-width: 0;
+    max-width: 100%;
+    line-height: 1.15;
+  }
+
+  .flash-sale-card__sale-price .woocommerce-Price-amount,
+  .flash-sale-card__sale-price .amount,
+  .flash-sale-card__sale-price bdi {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .flash-sale-card__regular-price {
@@ -209,6 +222,21 @@
 
   html.dark .flash-sale-card__cta {
     @apply bg-slate-800 text-slate-100 border-slate-600;
+  }
+
+  @media (max-width: 640px) {
+    .flash-sale-card__price-wrap {
+      row-gap: 0.35rem;
+    }
+
+    .flash-sale-card__sale-price {
+      font-size: clamp(1rem, 5.2vw, 1.25rem);
+    }
+
+    .flash-sale-card__regular-price {
+      flex-basis: 100%;
+      margin-bottom: 0;
+    }
   }
 
   @keyframes flash-sale-shimmer {
